@@ -3,13 +3,13 @@ backend:
   repo: nzsok-GH/nzsok-website # 본인의 GitHub ID/저장소명
   branch: main # 배포 중인 브랜치 이름
 
-media_folder: "nzsok/images/albums" # 이미지가 저장될 경로
+media_folder: "images/albums" # 이미지가 저장될 경로
 public_folder: "/images/albums"    # 웹사이트에서 불러올 이미지 주소
 
 collections:
   - name: "albums"
     label: "학교 앨범"
-    folder: "nzsok/_albums" # CMS가 새 앨범 파일을 저장할 위치
+    folder: "_albums" # CMS가 새 앨범 파일을 저장할 위치
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
