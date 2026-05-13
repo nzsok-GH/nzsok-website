@@ -9,7 +9,8 @@ const fs = require('fs');
 const path = require('path');
 
 const ALBUMS_DIR = path.join(__dirname, '_albums');
-const OUTPUT_FILE = path.join(__dirname, 'gallery', 'albums.json');
+// 수정 후 (루트에 생성)
+const OUTPUT_FILE = path.join(__dirname, 'albums.json');
 
 // Simple frontmatter parser (no dependencies needed)
 function parseFrontmatter(content) {
