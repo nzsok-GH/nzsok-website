@@ -15,5 +15,12 @@ collections:
     fields:
       - { label: "제목", name: "title", widget: "string" }
       - { label: "날짜", name: "date", widget: "datetime" }
-      - { label: "대표 이미지", name: "thumbnail", widget: "image" }
-      - { label: "설명", name: "body", widget: "markdown" }
+      - { label: "분류", name: "category", widget: "select", options: [{label: "🎓 졸업식", value: "graduation"}, {label: "🎉 학교 행사", value: "event"}, {label: "📚 수업 활동", value: "class"}, {label: "🎨 문화 체험", value: "culture"}, {label: "🏅 발표회", value: "performance"}, {label: "📷 기타", value: "other"}] }
+      - { label: "대표 이미지(썸네일)", name: "cover", widget: "image", required: false }
+      - { label: "앨범 설명", name: "description", widget: "text", required: false }
+      - label: "사진 목록 (여러 장 추가)"
+        name: "photos"
+        widget: "list"
+        fields:
+          - { label: "사진", name: "image", widget: "image" }
+          - { label: "사진 캡션(선택)", name: "caption", widget: "string", required: false }
