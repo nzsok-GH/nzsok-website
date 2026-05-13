@@ -1,5 +1,5 @@
 backend:
-  name: github
+  name: git-gateway
   repo: nzsok-GH/nzsok-website # 본인의 GitHub ID/저장소명
   branch: main # 배포 중인 브랜치 이름
 
