@@ -103,6 +103,8 @@
 
   .nav-links > li {
     position: relative;
+    padding-bottom: 8px;
+    margin-bottom: -8px;
   }
 
   .nav-links > li > a {
@@ -125,22 +127,23 @@
   .nav-links li:hover .dropdown {
     opacity: 1;
     pointer-events: all;
-    transform: translateY(0);
+    transform: translateX(-50%) translateY(0);
   }
 
   .dropdown {
     position: absolute;
-    top: calc(100% + 8px);
+    top: 100%;
     left: 50%;
-    transform: translateX(-50%) translateY(-6px);
+    transform: translateX(-50%) translateY(0px);
     background: var(--navy);
     border: 1px solid rgba(200,151,58,0.25);
     border-radius: 12px;
     min-width: 160px;
     padding: 8px;
+    padding-top: 16px;
     opacity: 0;
     pointer-events: none;
-    transition: all 0.2s;
+    transition: opacity 0.2s, transform 0.2s;
     box-shadow: 0 16px 40px rgba(0,0,0,0.35);
   }
 
