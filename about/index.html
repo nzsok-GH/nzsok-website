@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>학교소개 | 뉴질랜드 한민족 한글학교</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Noto+Serif+KR:wght@700;900&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #0d2340;
+      --navy-mid: #1a3a5c;
+      --teal: #1a7a6e;
+      --teal-light: #2aa99a;
+      --gold: #c8973a;
+      --gold-light: #e8b84b;
+      --cream: #f9f5ee;
+      --white: #ffffff;
+      --gray-light: #f2f4f7;
+      --gray: #8a9ab0;
+      --text: #1c2b3a;
+      --text-light: #4a5f75;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Noto Sans KR', 'DM Sans', sans-serif; color: var(--text); background: var(--white); overflow-x: hidden; }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 0 48px; height: 72px;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(13, 35, 64, 0.97);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(200, 151, 58, 0.2);
+    }
+    .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .nav-logo-emblem {
+      width: 40px; height: 40px; background: var(--gold); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Noto Serif KR', serif; font-weight: 900; color: var(--navy); font-size: 15px; flex-shrink: 0;
+    }
+    .nav-logo-text { display: flex; flex-direction: column; }
+    .nav-logo-kr { font-family: 'Noto Serif KR', serif; font-size: 13px; font-weight: 700; color: var(--white); letter-spacing: 0.02em; line-height: 1.2; }
+    .nav-logo-en { font-size: 10px; color: var(--gold); letter-spacing: 0.12em; text-transform: uppercase; font-weight: 500; line-height: 1.2; }
+    .nav-links { display: flex; align-items: center; gap: 8px; list-style: none; }
+    .nav-links > li { position: relative; padding-bottom: 8px; margin-bottom: -8px; }
+    .nav-links > li > a { display: block; padding: 8px 16px; color: rgba(255,255,255,0.82); text-decoration: none; font-size: 14px; font-weight: 500; border-radius: 6px; transition: all 0.2s; letter-spacing: 0.02em; }
+    .nav-links > li > a:hover { color: var(--gold); background: rgba(200, 151, 58, 0.1); }
+    .nav-links li:hover .dropdown { opacity: 1; pointer-events: all; transform: translateX(-50%) translateY(0); }
+    .dropdown {
+      position: absolute; top: 100%; left: 50%;
+      transform: translateX(-50%) translateY(0px);
+      background: var(--navy); border: 1px solid rgba(200,151,58,0.25);
+      border-radius: 12px; min-width: 160px; padding: 8px; padding-top: 16px;
+      opacity: 0; pointer-events: none; transition: opacity 0.2s, transform 0.2s;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.35);
+    }
+    .dropdown a { display: block; padding: 9px 14px; color: rgba(255,255,255,0.78); text-decoration: none; font-size: 13px; border-radius: 7px; transition: all 0.18s; }
+    .dropdown a:hover { color: var(--gold); background: rgba(200,151,58,0.12); }
+    .nav-cta { background: var(--gold) !important; color: var(--navy) !important; font-weight: 700 !important; border-radius: 8px !important; }
+    .nav-cta:hover { background: var(--gold-light) !important; }
+
+    /* PAGE HERO */
+    .page-hero {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+      padding: 140px 48px 80px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .page-hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 30% 50%, rgba(200,151,58,0.08) 0%, transparent 60%),
+                  radial-gradient(ellipse at 70% 50%, rgba(26,122,110,0.08) 0%, transparent 60%);
+    }
+    .page-hero-content { position: relative; z-index: 1; max-width: 700px; margin: 0 auto; }
+    .page-hero-label {
+      display: inline-block; background: rgba(200,151,58,0.15); color: var(--gold);
+      border: 1px solid rgba(200,151,58,0.3); border-radius: 20px;
+      padding: 6px 18px; font-size: 12px; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; margin-bottom: 20px;
+    }
+    .page-hero h1 { font-family: 'Noto Serif KR', serif; font-size: 48px; font-weight: 900; color: var(--white); line-height: 1.2; margin-bottom: 16px; }
+    .page-hero p { font-size: 16px; color: rgba(255,255,255,0.7); line-height: 1.7; }
+
+    /* SECTION NAV TABS */
+    .section-tabs {
+      background: var(--white);
+      border-bottom: 2px solid var(--gray-light);
+      position: sticky; top: 72px; z-index: 90;
+      padding: 0 48px;
+    }
+    .section-tabs-inner { display: flex; gap: 0; max-width: 1100px; margin: 0 auto; }
+    .section-tab {
+      padding: 16px 20px; font-size: 14px; font-weight: 500; color: var(--text-light);
+      text-decoration: none; border-bottom: 3px solid transparent;
+      transition: all 0.2s; white-space: nowrap; margin-bottom: -2px;
+    }
+    .section-tab:hover { color: var(--navy); border-bottom-color: var(--gold); }
+    .section-tab.active { color: var(--navy); font-weight: 700; border-bottom-color: var(--gold); }
+
+    /* SECTIONS */
+    .about-section { padding: 100px 48px; }
+    .about-section:nth-child(even) { background: var(--gray-light); }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+    .section-label {
+      display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--gold); background: rgba(200,151,58,0.1);
+      border: 1px solid rgba(200,151,58,0.25); border-radius: 20px;
+      padding: 5px 14px; margin-bottom: 16px;
+    }
+    .section-title { font-family: 'Noto Serif KR', serif; font-size: 36px; font-weight: 900; color: var(--navy); line-height: 1.3; margin-bottom: 24px; }
+    .section-desc { font-size: 16px; color: var(--text-light); line-height: 1.8; max-width: 720px; }
+
+    /* INTRO SECTION */
+    .intro-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; margin-top: 48px; }
+    .intro-visual { position: relative; }
+    .intro-card-main {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+      border-radius: 20px; padding: 48px 40px; color: var(--white);
+      border: 1px solid rgba(200,151,58,0.2);
+    }
+    .intro-card-main h3 { font-family: 'Noto Serif KR', serif; font-size: 22px; font-weight: 700; margin-bottom: 16px; line-height: 1.4; }
+    .intro-card-main p { font-size: 15px; color: rgba(255,255,255,0.78); line-height: 1.8; }
+    .intro-card-accent {
+      background: var(--gold); border-radius: 16px; padding: 24px 32px;
+      margin-top: 16px; display: flex; align-items: center; gap: 16px;
+    }
+    .intro-card-accent .big-num { font-family: 'Noto Serif KR', serif; font-size: 48px; font-weight: 900; color: var(--navy); line-height: 1; }
+    .intro-card-accent .label { font-size: 15px; font-weight: 700; color: var(--navy); }
+    .values-list { display: flex; flex-direction: column; gap: 24px; }
+    .value-item { display: flex; gap: 20px; align-items: flex-start; }
+    .value-icon { font-size: 28px; flex-shrink: 0; margin-top: 2px; }
+    .value-text h4 { font-size: 16px; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
+    .value-text p { font-size: 14px; color: var(--text-light); line-height: 1.7; }
+
+    /* PURPOSE SECTION */
+    .purpose-content { margin-top: 40px; }
+    .purpose-quote {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+      border-radius: 20px; padding: 48px; margin-bottom: 40px;
+      border-left: 5px solid var(--gold); color: var(--white);
+      font-family: 'Noto Serif KR', serif; font-size: 18px; line-height: 1.9;
+    }
+    .purpose-quote strong { color: var(--gold-light); }
+    .purpose-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .purpose-card {
+      background: var(--white); border: 1px solid rgba(0,0,0,0.08); border-radius: 16px;
+      padding: 32px 28px; box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    }
+    .purpose-card-icon { font-size: 32px; margin-bottom: 16px; }
+    .purpose-card h4 { font-size: 16px; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
+    .purpose-card p { font-size: 14px; color: var(--text-light); line-height: 1.7; }
+
+    /* HYMN SECTION */
+    .hymn-content { margin-top: 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+    .hymn-card {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+      border-radius: 20px; padding: 48px; color: var(--white); border: 1px solid rgba(200,151,58,0.2);
+    }
+    .hymn-card h3 { font-family: 'Noto Serif KR', serif; font-size: 20px; font-weight: 700; color: var(--gold); margin-bottom: 24px; }
+    .hymn-verse { margin-bottom: 24px; }
+    .hymn-verse p { font-size: 15px; line-height: 2.2; color: rgba(255,255,255,0.88); }
+    .hymn-chorus {
+      border-top: 1px solid rgba(200,151,58,0.3); padding-top: 24px;
+    }
+    .hymn-chorus-label { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; color: var(--gold); text-transform: uppercase; margin-bottom: 12px; }
+    .hymn-chorus p { font-size: 15px; line-height: 2.2; color: rgba(255,255,255,0.88); }
+    .hymn-info { display: flex; flex-direction: column; gap: 20px; }
+    .hymn-info-card {
+      background: var(--white); border: 1px solid rgba(0,0,0,0.08); border-radius: 16px;
+      padding: 28px; box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    }
+    .hymn-info-card h4 { font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+    .hymn-info-card p { font-size: 14px; color: var(--text-light); line-height: 1.7; }
+
+    /* HISTORY SECTION */
+    .timeline { margin-top: 48px; position: relative; padding-left: 32px; }
+    .timeline::before { content: ''; position: absolute; left: 0; top: 8px; bottom: 8px; width: 3px; background: linear-gradient(to bottom, var(--gold), var(--teal)); border-radius: 2px; }
+    .timeline-item { position: relative; padding-left: 32px; margin-bottom: 40px; }
+    .timeline-item::before {
+      content: ''; position: absolute; left: -38px; top: 8px;
+      width: 12px; height: 12px; border-radius: 50%;
+      background: var(--gold); border: 3px solid var(--white);
+      box-shadow: 0 0 0 2px var(--gold);
+    }
+    .timeline-year {
+      display: inline-block; background: var(--navy); color: var(--gold);
+      font-size: 13px; font-weight: 700; padding: 4px 14px; border-radius: 20px;
+      margin-bottom: 10px; letter-spacing: 0.05em;
+    }
+    .timeline-item h4 { font-size: 17px; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
+    .timeline-item p { font-size: 14px; color: var(--text-light); line-height: 1.7; }
+
+    /* BOARD SECTION */
+    .board-intro { margin-top: 16px; margin-bottom: 40px; font-size: 15px; color: var(--text-light); line-height: 1.8; }
+    .board-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .board-card {
+      background: var(--white); border: 1px solid rgba(0,0,0,0.08); border-radius: 16px;
+      padding: 32px 28px; text-align: center; box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .board-card:hover { transform: translateY(-4px); box-shadow: 0 8px 32px rgba(0,0,0,0.1); }
+    .board-avatar {
+      width: 72px; height: 72px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--navy), var(--navy-mid));
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Noto Serif KR', serif; font-weight: 900; font-size: 22px;
+      color: var(--gold); margin: 0 auto 16px;
+    }
+    .board-name { font-size: 16px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+    .board-role { font-size: 13px; color: var(--gold); font-weight: 600; margin-bottom: 8px; }
+    .board-desc { font-size: 13px; color: var(--text-light); line-height: 1.6; }
+
+    /* STAFF SECTION */
+    .staff-intro { margin-top: 16px; margin-bottom: 40px; font-size: 15px; color: var(--text-light); line-height: 1.8; }
+    .staff-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    .staff-card {
+      background: var(--white); border: 1px solid rgba(0,0,0,0.08); border-radius: 16px;
+      padding: 28px 20px; text-align: center; box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .staff-card:hover { transform: translateY(-4px); box-shadow: 0 8px 32px rgba(0,0,0,0.1); }
+    .staff-avatar {
+      width: 64px; height: 64px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--teal), var(--teal-light));
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Noto Serif KR', serif; font-weight: 900; font-size: 18px;
+      color: var(--white); margin: 0 auto 14px;
+    }
+    .staff-name { font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+    .staff-role { font-size: 12px; color: var(--teal); font-weight: 600; margin-bottom: 6px; }
+    .staff-class { font-size: 12px; color: var(--text-light); }
+
+    /* FOOTER */
+    footer {
+      background: var(--navy); color: rgba(255,255,255,0.7); padding: 64px 48px 32px;
+    }
+    .footer-inner { max-width: 1100px; margin: 0 auto; }
+    .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+    .footer-brand .footer-logo-emblem {
+      width: 44px; height: 44px; background: var(--gold); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Noto Serif KR', serif; font-weight: 900; font-size: 16px; color: var(--navy); margin-bottom: 16px;
+    }
+    .footer-brand h3 { font-family: 'Noto Serif KR', serif; font-size: 16px; font-weight: 700; color: var(--white); margin-bottom: 8px; }
+    .footer-brand p { font-size: 13px; line-height: 1.8; }
+    .footer-col h4 { font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .footer-col ul li a { font-size: 13px; color: rgba(255,255,255,0.65); text-decoration: none; transition: color 0.2s; }
+    .footer-col ul li a:hover { color: var(--gold); }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 24px; display: flex; justify-content: space-between; font-size: 12px; }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="../index.html" class="nav-logo">
+    <div class="nav-logo-emblem">한</div>
+    <div class="nav-logo-text">
+      <span class="nav-logo-kr">뉴질랜드 한민족 한글학교</span>
+      <span class="nav-logo-en">NZ School of Korea</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li>
+      <a href="index.html">학교소개 ▾</a>
+      <div class="dropdown">
+        <a href="#intro">소개글</a>
+        <a href="#purpose">학교 설립 취지</a>
+        <a href="#hymn">학교 교가</a>
+        <a href="#history">학교 연혁</a>
+        <a href="#board">이사회</a>
+        <a href="#staff">교직원 소개</a>
+      </div>
+    </li>
+    <li>
+      <a href="../index.html#programs">교육 ▾</a>
+      <div class="dropdown">
+        <a href="../index.html#schedule">수업 시간</a>
+        <a href="../index.html#programs">커리큘럼</a>
+        <a href="../index.html#programs">연간 교육계획</a>
+      </div>
+    </li>
+    <li><a href="../gallery/index.html">알림마당</a></li>
+    <li><a href="../admission/index.html" class="nav-cta">입학안내</a></li>
+  </ul>
+</nav>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-content">
+    <span class="page-hero-label">학교소개</span>
+    <h1>뉴질랜드 한민족<br>한글학교를 소개합니다</h1>
+    <p>2012년 설립 이래, 한국어와 문화를 미래 세대에 전하는<br>뉴질랜드 오클랜드의 한글 교육 공동체입니다.</p>
+  </div>
+</section>
+
+<!-- SECTION TABS -->
+<nav class="section-tabs">
+  <div class="section-tabs-inner">
+    <a href="#intro" class="section-tab">소개글</a>
+    <a href="#purpose" class="section-tab">설립 취지</a>
+    <a href="#hymn" class="section-tab">학교 교가</a>
+    <a href="#history" class="section-tab">학교 연혁</a>
+    <a href="#board" class="section-tab">이사회</a>
+    <a href="#staff" class="section-tab">교직원 소개</a>
+  </div>
+</nav>
+
+<!-- 1. 소개글 -->
+<section class="about-section" id="intro">
+  <div class="section-inner">
+    <span class="section-label">소개글</span>
+    <h2 class="section-title">한국어와 문화를<br>미래 세대에게</h2>
+    <p class="section-desc">뉴질랜드에서 자라는 한국계 어린이들이 한국어와 한국 문화를 자연스럽게 습득하고, 두 문화권에서 자신감 있게 성장할 수 있도록 돕는 교육 공동체입니다.</p>
+    <div class="intro-grid">
+      <div class="intro-visual">
+        <div class="intro-card-main">
+          <h3>이중언어 교육을 통한<br>정체성 확립</h3>
+          <p>뉴질랜드 한인 사회와 함께 성장해 온 한글학교입니다. 열정적인 교직원과 체계적인 커리큘럼으로 매주 토요일, 200여 명의 학생들이 한국어와 한국 문화를 배우고 있습니다.</p>
+        </div>
+        <div class="intro-card-accent">
+          <div class="big-num">14</div>
+          <div class="label">년의 교육 전통<br><small style="font-weight:400;font-size:13px;">2012년 설립</small></div>
+        </div>
+      </div>
+      <div class="values-list">
+        <div class="value-item">
+          <div class="value-icon">🇰🇷</div>
+          <div class="value-text">
+            <h4>언어 · 문화 교육</h4>
+            <p>체계적인 한국어 읽기·쓰기·말하기와 함께 전통 문화와 역사를 배웁니다.</p>
+          </div>
+        </div>
+        <div class="value-item">
+          <div class="value-icon">🌏</div>
+          <div class="value-text">
+            <h4>이중문화 정체성</h4>
+            <p>뉴질랜드 사회의 일원이면서도 한국인으로서의 자부심을 키웁니다.</p>
+          </div>
+        </div>
+        <div class="value-item">
+          <div class="value-icon">🤝</div>
+          <div class="value-text">
+            <h4>한인 커뮤니티</h4>
+            <p>같은 배경을 가진 가족들과 함께 따뜻한 공동체를 이룹니다.</p>
+          </div>
+        </div>
+        <div class="value-item">
+          <div class="value-icon">📚</div>
+          <div class="value-text">
+            <h4>체계적 커리큘럼</h4>
+            <p>연령별 맞춤 교재와 레벨별 수업으로 효율적인 학습 환경을 제공합니다.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 2. 설립 취지 -->
+<section class="about-section" id="purpose">
+  <div class="section-inner">
+    <span class="section-label">학교 설립 취지</span>
+    <h2 class="section-title">우리가 이 학교를<br>만든 이유</h2>
+    <div class="purpose-content">
+      <div class="purpose-quote">
+        <strong>"긍정적인 생활태도와 이중문화 소유자"</strong><br><br>
+        뉴질랜드에서 태어나고 자라는 우리 아이들이 한국인으로서의 뿌리와 정체성을 잃지 않고, 동시에 뉴질랜드 사회의 당당한 구성원으로 성장하기를 바라는 마음에서 이 학교를 세웠습니다.<br><br>
+        언어는 단순한 의사소통 도구가 아니라 문화와 역사, 그리고 가족과 이어주는 소중한 연결고리입니다. 우리 아이들이 할머니 할아버지와 한국어로 대화하고, 한국 문화를 이해하며, 두 문화 사이에서 더 넓은 세상을 바라볼 수 있도록 돕고자 합니다.
+      </div>
+      <div class="purpose-cards">
+        <div class="purpose-card">
+          <div class="purpose-card-icon">🌱</div>
+          <h4>정체성 교육</h4>
+          <p>한국인으로서의 자부심과 뿌리를 심어주어 건강한 자아정체성을 형성합니다.</p>
+        </div>
+        <div class="purpose-card">
+          <div class="purpose-card-icon">🌐</div>
+          <h4>글로벌 인재 양성</h4>
+          <p>두 언어와 두 문화를 자유롭게 넘나드는 글로벌 인재로 성장시킵니다.</p>
+        </div>
+        <div class="purpose-card">
+          <div class="purpose-card-icon">👨‍👩‍👧‍👦</div>
+          <h4>가족과의 연결</h4>
+          <p>한국어를 통해 한국의 가족, 친척과 소통하고 유대를 이어나갑니다.</p>
+        </div>
+        <div class="purpose-card">
+          <div class="purpose-card-icon">🏫</div>
+          <h4>커뮤니티 형성</h4>
+          <p>같은 배경의 한인 가정들이 함께 모여 따뜻한 공동체를 만들어갑니다.</p>
+        </div>
+        <div class="purpose-card">
+          <div class="purpose-card-icon">📖</div>
+          <h4>문화 계승</h4>
+          <p>한국의 전통 문화, 역사, 예술을 체험하며 문화적 유산을 이어받습니다.</p>
+        </div>
+        <div class="purpose-card">
+          <div class="purpose-card-icon">🎯</div>
+          <h4>미래 경쟁력</h4>
+          <p>이중언어 능력은 미래 사회에서 강력한 경쟁력이 되어줄 것입니다.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. 학교 교가 -->
+<section class="about-section" id="hymn">
+  <div class="section-inner">
+    <span class="section-label">학교 교가</span>
+    <h2 class="section-title">우리들의 노래</h2>
+    <p class="section-desc">뉴질랜드 한민족 한글학교의 교가입니다. 함께 부르며 우리의 정체성과 꿈을 키워갑니다.</p>
+    <div class="hymn-content">
+      <div class="hymn-card">
+        <h3>🎵 교가 가사</h3>
+        <div class="hymn-verse">
+          <p style="font-size:12px; color:rgba(200,151,58,0.8); letter-spacing:0.08em; margin-bottom:10px;">1절</p>
+          <p>태평양 물결 위에 솟아오르는<br>
+          키위 나라 새 땅 위에 우리 학교<br>
+          한국의 얼 이어받아 꽃피우세<br>
+          한글학교 우리 자랑 빛내어라</p>
+        </div>
+        <div class="hymn-verse">
+          <p style="font-size:12px; color:rgba(200,151,58,0.8); letter-spacing:0.08em; margin-bottom:10px;">2절</p>
+          <p>남십자성 빛나는 저 하늘 아래<br>
+          두 나라의 문화 품고 자라나세<br>
+          한국말로 생각하고 꿈을 꾸며<br>
+          세계 속에 한민족의 얼 심어라</p>
+        </div>
+        <div class="hymn-chorus">
+          <p class="hymn-chorus-label">후렴</p>
+          <p>한글학교 한글학교 우리들의 학교<br>
+          배우고 익혀서 크게 자라나<br>
+          긍정으로 생각하고 두 문화 품고<br>
+          세계 인재 되어보자 한글학교</p>
+        </div>
+      </div>
+      <div class="hymn-info">
+        <div class="hymn-info-card">
+          <h4>🎼 교가에 담긴 의미</h4>
+          <p>뉴질랜드(키위 나라, 남십자성)와 한국의 문화를 함께 담아, 두 나라의 정체성을 가진 이중문화인으로 자라나길 바라는 소망이 담겨 있습니다.</p>
+        </div>
+        <div class="hymn-info-card">
+          <h4>🌟 교훈</h4>
+          <p style="font-size:18px; font-family:'Noto Serif KR',serif; font-weight:700; color:#0d2340; margin-bottom:8px;">"긍정적인 생활태도와<br>이중문화 소유자"</p>
+          <p>Think positively and be bicultural</p>
+        </div>
+        <div class="hymn-info-card">
+          <h4>📅 교가 제정</h4>
+          <p>뉴질랜드 한민족 한글학교 설립과 함께 제정된 교가로, 매 학기 시작 및 행사 때 함께 부릅니다.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. 학교 연혁 -->
+<section class="about-section" id="history">
+  <div class="section-inner">
+    <span class="section-label">학교 연혁</span>
+    <h2 class="section-title">함께 걸어온 길</h2>
+    <p class="section-desc">2012년 소박하게 시작한 작은 학교가 오늘날 200여 명의 학생이 다니는 지역 대표 한글 교육기관으로 성장했습니다.</p>
+    <div class="timeline">
+      <div class="timeline-item">
+        <span class="timeline-year">2012</span>
+        <h4>학교 설립</h4>
+        <p>뉴질랜드 오클랜드 Browns Bay 지역에 뉴질랜드 한민족 한글학교(NZSOK) 설립. 초대 교장 취임 및 첫 학기 수업 시작.</p>
+      </div>
+      <div class="timeline-item">
+        <span class="timeline-year">2013</span>
+        <h4>1기 졸업생 배출</h4>
+        <p>첫 졸업생을 배출하며 교육 기반 확립. 한국 전통 문화 체험 프로그램 도입.</p>
+      </div>
+      <div class="timeline-item">
+        <span class="timeline-year">2015</span>
+        <h4>교육 과정 체계화</h4>
+        <p>레벨별 교육 과정 정비, 교재 도입. 학생 수 50명 돌파.</p>
+      </div>
+      <div class="timeline-item">
+        <span class="timeline-year">2017</span>
+        <h4>연간 문화행사 정착</h4>
+        <p>추석 문화 체험, 한국어 말하기 대회, 연말 발표회 등 연간 행사 체계 완성. 학생 수 100명 돌파.</p>
+      </div>
+      <div class="timeline-item">
+        <span class="timeline-year">2019</span>
+        <h4>교육 시설 확충</h4>
+        <p>증가하는 학생 수에 맞춰 교실 확충 및 교육 환경 개선.</p>
+      </div>
+      <div class="timeline-item">
+        <span class="timeline-year">2020–2021</span>
+        <h4>코로나19 온라인 수업 전환</h4>
+        <p>팬데믹 상황에서도 온라인 플랫폼을 활용한 수업 지속. 비대면 교육 역량 강화.</p>
+      </div>
+      <div class="timeline-item">
+        <span class="timeline-year">2022</span>
+        <h4>개교 10주년</h4>
+        <p>개교 10주년 기념 행사 개최. 동문 및 가족 참여 축제로 지역 사회와 함께하는 한글학교 위상 확립.</p>
+      </div>
+      <div class="timeline-item">
+        <span class="timeline-year">2024</span>
+        <h4>재학생 200명 달성</h4>
+        <p>재학생 수 200명을 돌파하며 오클랜드 지역 최대 규모의 한글학교로 성장. 교직원 및 자원봉사 교사 확충.</p>
+      </div>
+      <div class="timeline-item">
+        <span class="timeline-year">2026</span>
+        <h4>현재 · 계속되는 성장</h4>
+        <p>더 많은 학생들에게 한국어와 한국 문화를 전하기 위해 끊임없이 발전하고 있습니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. 이사회 -->
+<section class="about-section" id="board">
+  <div class="section-inner">
+    <span class="section-label">이사회</span>
+    <h2 class="section-title">학교를 이끌어가는<br>이사회</h2>
+    <p class="board-intro">뉴질랜드 한민족 한글학교의 이사회는 학교의 교육 방향과 운영 전반을 책임지는 기구입니다. 한인 커뮤니티의 다양한 분야 전문가들로 구성되어 학교 발전을 위해 헌신하고 있습니다.</p>
+    <div class="board-grid">
+      <div class="board-card">
+        <div class="board-avatar">이</div>
+        <div class="board-name">이 사장</div>
+        <div class="board-role">이사장</div>
+        <div class="board-desc">학교 설립 초기부터 함께하며 한글 교육의 토대를 마련해 왔습니다.</div>
+      </div>
+      <div class="board-card">
+        <div class="board-avatar">김</div>
+        <div class="board-name">김 이사</div>
+        <div class="board-role">부이사장</div>
+        <div class="board-desc">교육과정 개발 및 교사 연수 프로그램을 총괄하고 있습니다.</div>
+      </div>
+      <div class="board-card">
+        <div class="board-avatar">박</div>
+        <div class="board-name">박 이사</div>
+        <div class="board-role">이사 · 재정</div>
+        <div class="board-desc">학교 재정 건전성을 유지하고 장학 프로그램을 운영합니다.</div>
+      </div>
+      <div class="board-card">
+        <div class="board-avatar">최</div>
+        <div class="board-name">최 이사</div>
+        <div class="board-role">이사 · 대외협력</div>
+        <div class="board-desc">한국 교육부 및 재외동포재단과의 협력 업무를 담당합니다.</div>
+      </div>
+      <div class="board-card">
+        <div class="board-avatar">정</div>
+        <div class="board-name">정 이사</div>
+        <div class="board-role">이사 · 학부모 대표</div>
+        <div class="board-desc">학부모 의견을 대변하고 학교와 가정을 연결하는 역할을 합니다.</div>
+      </div>
+      <div class="board-card">
+        <div class="board-avatar">한</div>
+        <div class="board-name">한 이사</div>
+        <div class="board-role">이사 · 문화행사</div>
+        <div class="board-desc">연간 문화 행사 및 지역 사회 연계 프로그램을 기획합니다.</div>
+      </div>
+    </div>
+    <p style="margin-top:32px; font-size:13px; color:var(--gray); text-align:center;">* 이사회 구성원 정보는 변경될 수 있습니다. 최신 정보는 학교로 문의해 주세요.</p>
+  </div>
+</section>
+
+<!-- 6. 교직원 소개 -->
+<section class="about-section" id="staff">
+  <div class="section-inner">
+    <span class="section-label">교직원 소개</span>
+    <h2 class="section-title">열정적인 선생님들을<br>소개합니다</h2>
+    <p class="staff-intro">뉴질랜드 한민족 한글학교의 선생님들은 한국어 교육과 한국 문화 전파에 대한 깊은 열정을 가진 분들입니다. 아이들 한 명 한 명의 성장을 위해 최선을 다하고 있습니다.</p>
+    <div class="staff-grid">
+      <div class="staff-card">
+        <div class="staff-avatar">교</div>
+        <div class="staff-name">교 장</div>
+        <div class="staff-role">교장</div>
+        <div class="staff-class">학교 총괄 운영</div>
+      </div>
+      <div class="staff-card">
+        <div class="staff-avatar">교</div>
+        <div class="staff-name">교 감</div>
+        <div class="staff-role">교감</div>
+        <div class="staff-class">교육과정 담당</div>
+      </div>
+      <div class="staff-card">
+        <div class="staff-avatar">김</div>
+        <div class="staff-name">김 선생님</div>
+        <div class="staff-role">담임교사</div>
+        <div class="staff-class">레벨 1 · 기초반</div>
+      </div>
+      <div class="staff-card">
+        <div class="staff-avatar">이</div>
+        <div class="staff-name">이 선생님</div>
+        <div class="staff-role">담임교사</div>
+        <div class="staff-class">레벨 2 · 초급반</div>
+      </div>
+      <div class="staff-card">
+        <div class="staff-avatar">박</div>
+        <div class="staff-name">박 선생님</div>
+        <div class="staff-role">담임교사</div>
+        <div class="staff-class">레벨 3 · 초중급반</div>
+      </div>
+      <div class="staff-card">
+        <div class="staff-avatar">최</div>
+        <div class="staff-name">최 선생님</div>
+        <div class="staff-role">담임교사</div>
+        <div class="staff-class">레벨 4 · 중급반</div>
+      </div>
+      <div class="staff-card">
+        <div class="staff-avatar">정</div>
+        <div class="staff-name">정 선생님</div>
+        <div class="staff-role">담임교사</div>
+        <div class="staff-class">레벨 5 · 중고급반</div>
+      </div>
+      <div class="staff-card">
+        <div class="staff-avatar">강</div>
+        <div class="staff-name">강 선생님</div>
+        <div class="staff-role">담임교사</div>
+        <div class="staff-class">레벨 6 · 고급반</div>
+      </div>
+    </div>
+    <p style="margin-top:32px; font-size:13px; color:var(--gray); text-align:center;">* 교직원 명단은 학기별로 변경될 수 있습니다. 이름은 실제 등록 후 업데이트 예정입니다.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo-emblem">한</div>
+        <h3>뉴질랜드 한민족 한글학교</h3>
+        <p>New Zealand School of Korea (NZSOK)<br>40 Sartors Avenue, Browns Bay, Auckland 0630<br>뉴질랜드 오클랜드 한인 한국어 교육기관</p>
+      </div>
+      <div class="footer-col">
+        <h4>학교소개</h4>
+        <ul>
+          <li><a href="#intro">소개글</a></li>
+          <li><a href="#purpose">설립 취지</a></li>
+          <li><a href="#hymn">학교 교가</a></li>
+          <li><a href="#history">학교 연혁</a></li>
+          <li><a href="#board">이사회</a></li>
+          <li><a href="#staff">교직원 소개</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>바로가기</h4>
+        <ul>
+          <li><a href="../index.html">홈</a></li>
+          <li><a href="../index.html#programs">교육과정</a></li>
+          <li><a href="../gallery/index.html">학교앨범</a></li>
+          <li><a href="../admission/index.html">입학안내</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>Copyright &copy; 2012&ndash;2026 NZSOK. All rights reserved.</span>
+      <span>40 Sartors Avenue, Browns Bay, Auckland 0630, NZ</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
