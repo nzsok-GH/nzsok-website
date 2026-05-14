@@ -251,7 +251,21 @@
     .footer-col ul li a { font-size: 13px; color: rgba(255,255,255,0.65); text-decoration: none; transition: color 0.2s; }
     .footer-col ul li a:hover { color: var(--gold); }
     .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 24px; display: flex; justify-content: space-between; font-size: 12px; }
-  </style>
+  
+    /* STAFF DEPT */
+    .staff-dept { margin-bottom: 48px; }
+    .staff-dept-title {
+      font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--teal); border-bottom: 2px solid rgba(26,122,110,0.2);
+      padding-bottom: 10px; margin-bottom: 20px;
+    }
+    .staff-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    .staff-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .staff-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    @media (max-width: 768px) {
+      .staff-grid-2, .staff-grid-3, .staff-grid-4 { grid-template-columns: repeat(2, 1fr); }
+    }
+</style>
 </head>
 <body>
 
@@ -637,57 +651,144 @@
     <span class="section-label">교직원 소개</span>
     <h2 class="section-title">열정적인 선생님들을<br>소개합니다</h2>
     <p class="staff-intro">뉴질랜드 한민족 한글학교의 선생님들은 한국어 교육과 한국 문화 전파에 대한 깊은 열정을 가진 분들입니다. 아이들 한 명 한 명의 성장을 위해 최선을 다하고 있습니다.</p>
-    <div class="staff-grid">
-      <div class="staff-card">
-        <div class="staff-avatar">교</div>
-        <div class="staff-name">교 장</div>
-        <div class="staff-role">교장</div>
-        <div class="staff-class">학교 총괄 운영</div>
-      </div>
-      <div class="staff-card">
-        <div class="staff-avatar">교</div>
-        <div class="staff-name">교 감</div>
-        <div class="staff-role">교감</div>
-        <div class="staff-class">교육과정 담당</div>
-      </div>
-      <div class="staff-card">
-        <div class="staff-avatar">김</div>
-        <div class="staff-name">김 선생님</div>
-        <div class="staff-role">담임교사</div>
-        <div class="staff-class">레벨 1 · 기초반</div>
-      </div>
-      <div class="staff-card">
-        <div class="staff-avatar">이</div>
-        <div class="staff-name">이 선생님</div>
-        <div class="staff-role">담임교사</div>
-        <div class="staff-class">레벨 2 · 초급반</div>
-      </div>
-      <div class="staff-card">
-        <div class="staff-avatar">박</div>
-        <div class="staff-name">박 선생님</div>
-        <div class="staff-role">담임교사</div>
-        <div class="staff-class">레벨 3 · 초중급반</div>
-      </div>
-      <div class="staff-card">
-        <div class="staff-avatar">최</div>
-        <div class="staff-name">최 선생님</div>
-        <div class="staff-role">담임교사</div>
-        <div class="staff-class">레벨 4 · 중급반</div>
-      </div>
-      <div class="staff-card">
-        <div class="staff-avatar">정</div>
-        <div class="staff-name">정 선생님</div>
-        <div class="staff-role">담임교사</div>
-        <div class="staff-class">레벨 5 · 중고급반</div>
-      </div>
-      <div class="staff-card">
-        <div class="staff-avatar">강</div>
-        <div class="staff-name">강 선생님</div>
-        <div class="staff-role">담임교사</div>
-        <div class="staff-class">레벨 6 · 고급반</div>
+
+    <!-- 교장/교감 -->
+    <div class="staff-dept">
+      <div class="staff-dept-title">🏫 교장 · 교감</div>
+      <div class="staff-grid-2" style="max-width:520px;">
+        <div class="staff-card">
+          <div class="staff-avatar">김</div>
+          <div class="staff-name">김현정</div>
+          <div class="staff-role">교장</div>
+          <div class="staff-class">제6대 교장</div>
+        </div>
+        <div class="staff-card">
+          <div class="staff-avatar">장</div>
+          <div class="staff-name">장우리</div>
+          <div class="staff-role">교감</div>
+          <div class="staff-class">교육과정 담당</div>
+        </div>
       </div>
     </div>
-    <p style="margin-top:32px; font-size:13px; color:var(--gray); text-align:center;">* 교직원 명단은 학기별로 변경될 수 있습니다. 이름은 실제 등록 후 업데이트 예정입니다.</p>
+
+    <!-- 유치부 -->
+    <div class="staff-dept">
+      <div class="staff-dept-title">🌸 유치부 선생님</div>
+      <div class="staff-grid-3">
+        <div class="staff-card">
+          <div class="staff-avatar" style="background:linear-gradient(135deg,#e8b84b,#c8973a);">유</div>
+          <div class="staff-name">유은경 · 강수진 · 신미영</div>
+          <div class="staff-role">담임교사</div>
+          <div class="staff-class">병아리반</div>
+        </div>
+        <div class="staff-card">
+          <div class="staff-avatar" style="background:linear-gradient(135deg,#e8b84b,#c8973a);">다</div>
+          <div class="staff-name">이유선 · 김민경</div>
+          <div class="staff-role">담임교사</div>
+          <div class="staff-class">다람쥐반</div>
+        </div>
+        <div class="staff-card">
+          <div class="staff-avatar" style="background:linear-gradient(135deg,#e8b84b,#c8973a);">개</div>
+          <div class="staff-name">심성미 · 임마리</div>
+          <div class="staff-role">담임교사</div>
+          <div class="staff-class">개나리반</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 초등부 -->
+    <div class="staff-dept">
+      <div class="staff-dept-title">📚 초등부 선생님</div>
+      <div class="staff-grid-4">
+        <div class="staff-card">
+          <div class="staff-avatar">권</div>
+          <div class="staff-name">권영희 · 백주영</div>
+          <div class="staff-role">담임교사</div>
+          <div class="staff-class">초등 1학년</div>
+        </div>
+        <div class="staff-card">
+          <div class="staff-avatar">박</div>
+          <div class="staff-name">박선혜 · 이옥진</div>
+          <div class="staff-role">담임교사</div>
+          <div class="staff-class">초등 2학년</div>
+        </div>
+        <div class="staff-card">
+          <div class="staff-avatar">조</div>
+          <div class="staff-name">조하은</div>
+          <div class="staff-role">담임교사</div>
+          <div class="staff-class">초등 3학년</div>
+        </div>
+        <div class="staff-card">
+          <div class="staff-avatar">최</div>
+          <div class="staff-name">최윤우 · 은지현</div>
+          <div class="staff-role">담임교사</div>
+          <div class="staff-class">초등 4학년</div>
+        </div>
+        <div class="staff-card">
+          <div class="staff-avatar">정</div>
+          <div class="staff-name">정지윤</div>
+          <div class="staff-role">담임교사</div>
+          <div class="staff-class">초등 5학년</div>
+        </div>
+        <div class="staff-card">
+          <div class="staff-avatar">심</div>
+          <div class="staff-name">심은정</div>
+          <div class="staff-role">담임교사</div>
+          <div class="staff-class">초등 6학년</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 중등부 -->
+    <div class="staff-dept">
+      <div class="staff-dept-title">🎓 중등부 선생님</div>
+      <div class="staff-grid-4" style="max-width:280px;">
+        <div class="staff-card">
+          <div class="staff-avatar">이</div>
+          <div class="staff-name">이계우</div>
+          <div class="staff-role">담임교사</div>
+          <div class="staff-class">중등</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 특강 -->
+    <div class="staff-dept">
+      <div class="staff-dept-title">🎨 특강 선생님</div>
+      <div class="staff-grid-4">
+        <div class="staff-card">
+          <div class="staff-avatar" style="background:linear-gradient(135deg,#1a7a6e,#2aa99a);">미</div>
+          <div class="staff-name">장혜윤 · 유은경</div>
+          <div class="staff-role">특강교사</div>
+          <div class="staff-class">유아미술</div>
+        </div>
+        <div class="staff-card">
+          <div class="staff-avatar" style="background:linear-gradient(135deg,#1a7a6e,#2aa99a);">미</div>
+          <div class="staff-name">이계우 · 심성미</div>
+          <div class="staff-role">특강교사</div>
+          <div class="staff-class">초등미술</div>
+        </div>
+        <div class="staff-card">
+          <div class="staff-avatar" style="background:linear-gradient(135deg,#1a7a6e,#2aa99a);">바</div>
+          <div class="staff-name">루크 바트람 · 정믿음</div>
+          <div class="staff-role">특강교사</div>
+          <div class="staff-class">바이올린</div>
+        </div>
+        <div class="staff-card">
+          <div class="staff-avatar" style="background:linear-gradient(135deg,#1a7a6e,#2aa99a);">태</div>
+          <div class="staff-name">박민재</div>
+          <div class="staff-role">특강교사</div>
+          <div class="staff-class">태권도</div>
+        </div>
+        <div class="staff-card">
+          <div class="staff-avatar" style="background:linear-gradient(135deg,#1a7a6e,#2aa99a);">4D</div>
+          <div class="staff-name">권영희</div>
+          <div class="staff-role">특강교사</div>
+          <div class="staff-class">4D 프레임</div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 
