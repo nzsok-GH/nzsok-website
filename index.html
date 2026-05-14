@@ -1077,7 +1077,146 @@
     footer { padding: 48px 24px 24px; }
   }
 
-  /* ── ANNUAL PLAN ── */
+  /* ── PROGRAMS / CURRICULUM ── */
+  .programs {
+    background: var(--navy);
+    color: var(--white);
+  }
+
+  .programs .section-label {
+    color: var(--gold);
+    border-color: rgba(200,151,58,0.3);
+    background: rgba(200,151,58,0.08);
+  }
+
+  .programs .section-title {
+    color: var(--white);
+  }
+
+  .programs .section-desc {
+    color: rgba(255,255,255,0.6);
+  }
+
+  .curriculum-tabs {
+    display: flex;
+    gap: 8px;
+    margin-top: 48px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .curriculum-tab {
+    padding: 10px 22px;
+    border-radius: 40px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    border: 2px solid rgba(255,255,255,0.15);
+    background: rgba(255,255,255,0.05);
+    color: rgba(255,255,255,0.55);
+    transition: all 0.25s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    letter-spacing: 0.02em;
+  }
+
+  .curriculum-tab:hover {
+    border-color: rgba(255,255,255,0.35);
+    color: var(--white);
+    background: rgba(255,255,255,0.1);
+  }
+
+  .curriculum-tab.active {
+    color: var(--navy);
+    font-weight: 700;
+    border-color: transparent;
+  }
+
+  .curriculum-tab .tab-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: currentColor;
+    opacity: 0.8;
+    flex-shrink: 0;
+  }
+
+  .curriculum-panels {
+    margin-top: 36px;
+  }
+
+  .curriculum-panel {
+    display: none;
+  }
+
+  .curriculum-panel.active {
+    display: block;
+  }
+
+  .curriculum-panel-inner {
+    border-radius: 24px;
+    padding: 40px 48px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .curriculum-panel-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 32px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .curriculum-panel-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    flex-shrink: 0;
+  }
+
+  .curriculum-panel-title {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 4px;
+  }
+
+  .curriculum-panel-sub {
+    font-size: 13px;
+    color: rgba(255,255,255,0.45);
+    letter-spacing: 0.03em;
+  }
+
+  .curriculum-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .curriculum-tag {
+    padding: 8px 16px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    line-height: 1;
+    border: 1px solid transparent;
+    transition: transform 0.15s;
+  }
+
+  .curriculum-tag:hover {
+    transform: translateY(-2px);
+  }
+
+    /* ── ANNUAL PLAN ── */
   .annual-plan { padding: 80px 48px; background: var(--gray-light); }
   .annual-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 48px; }
   .term-card { background: var(--white); border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.07); }
@@ -1305,54 +1444,207 @@
 <!-- ANNUAL PLAN -->
 <section class="programs" id="programs">
   <div class="section-inner">
-    <div class="programs-header">
-      <div>
-        <span class="section-label">교육 과정</span>
-        <h2 class="section-title">학년별 연계 수업 커리큘럼</h2>
-      </div>
-    </div>
-    <p class="section-desc" style="margin-bottom:40px;">2024년도 학년별 중점 교육 사항입니다. 각 학년의 발달 단계에 맞춘 체계적인 커리큘럼으로 운영됩니다.</p>
+    <span class="section-label">교육 과정</span>
+    <h2 class="section-title">학년별 연계 수업 커리큘럼</h2>
+    <p class="section-desc">2024년도 학년별 중점 교육 사항입니다. 각 학년의 발달 단계에 맞춘 체계적인 커리큘럼으로 운영됩니다.</p>
 
-    <div class="programs-grid">
-      <div class="program-card featured">
-        <span class="program-num">01</span>
-        <span class="program-tag">유치부</span>
-        <h3>유치부</h3>
-        <p>주제별 수업, 사회성 인성 교육, 한글 모음, 자음, 기본 어휘, 짧은 문장, 전래동화</p>
-      </div>
-      <div class="program-card">
-        <span class="program-num">02</span>
-        <span class="program-tag">초등 저학년</span>
-        <h3>초등저</h3>
-        <p>한글 모음, 자음 정리, 어휘 확장, 기본 문법, 문장 연습, 전래동화</p>
-      </div>
-      <div class="program-card">
-        <span class="program-num">03</span>
-        <span class="program-tag">초등 고학년</span>
-        <h3>초등고</h3>
-        <p>어휘 확장, 고급 어휘, 기본 문법, 자신의 생각 표현, 글의 흐름 이해, 역사, 속담, 한자어, 사자성어</p>
-      </div>
-      <div class="program-card">
-        <span class="program-num">04</span>
-        <span class="program-tag">중등</span>
-        <h3>중등</h3>
-        <p>고급 어휘 확장, 문법, 글쓰기 확장, 여러 종류의 글, 배경 지식 확장, 토론, 발표, 역사, 한자어, 속담, 사자성어</p>
-      </div>
-      <div class="program-card">
-        <span class="program-num">05</span>
-        <span class="program-tag">음악</span>
-        <h3>음악</h3>
-        <p>전래동요, 창작동요, 민요, 애국가, 교가, 리듬 게임</p>
-      </div>
-      <div class="program-card">
-        <span class="program-num">06</span>
-        <span class="program-tag">체육</span>
-        <h3>체육</h3>
-        <p>연령에 따른 신체 발달, 협동심 및 사회성 발달, 전학년 줄넘기를 통한 기초 체력 단련</p>
-      </div>
+    <!-- 탭 버튼 -->
+    <div class="curriculum-tabs">
+      <button class="curriculum-tab active" style="background:#2aa99a;border-color:#2aa99a;" onclick="switchTab(event,'tab-kinder')">
+        <span class="tab-dot"></span>유치부
+      </button>
+      <button class="curriculum-tab" onclick="switchTab(event,'tab-elem-low')">
+        <span class="tab-dot"></span>초등저 (1–3학년)
+      </button>
+      <button class="curriculum-tab" onclick="switchTab(event,'tab-elem-high')">
+        <span class="tab-dot"></span>초등고 (4–6학년)
+      </button>
+      <button class="curriculum-tab" onclick="switchTab(event,'tab-middle')">
+        <span class="tab-dot"></span>중등
+      </button>
+      <button class="curriculum-tab" onclick="switchTab(event,'tab-music')">
+        <span class="tab-dot"></span>음악
+      </button>
+      <button class="curriculum-tab" onclick="switchTab(event,'tab-pe')">
+        <span class="tab-dot"></span>체육
+      </button>
     </div>
+
+    <!-- 패널들 -->
+    <div class="curriculum-panels">
+
+      <!-- 유치부 -->
+      <div class="curriculum-panel active" id="tab-kinder">
+        <div class="curriculum-panel-inner" style="border-color:rgba(42,169,154,0.25);">
+          <div class="curriculum-panel-header">
+            <div class="curriculum-panel-icon" style="background:rgba(42,169,154,0.15);">🌱</div>
+            <div>
+              <div class="curriculum-panel-title">유치부</div>
+              <div class="curriculum-panel-sub">놀이 중심 한국어 기초 · 정서 발달</div>
+            </div>
+          </div>
+          <div class="curriculum-tags">
+            <span class="curriculum-tag" style="background:rgba(42,169,154,0.12);color:#2aa99a;border-color:rgba(42,169,154,0.25);">주제별 수업</span>
+            <span class="curriculum-tag" style="background:rgba(42,169,154,0.12);color:#2aa99a;border-color:rgba(42,169,154,0.25);">사회성·인성 교육</span>
+            <span class="curriculum-tag" style="background:rgba(42,169,154,0.12);color:#2aa99a;border-color:rgba(42,169,154,0.25);">한글 모음 &amp; 자음</span>
+            <span class="curriculum-tag" style="background:rgba(42,169,154,0.12);color:#2aa99a;border-color:rgba(42,169,154,0.25);">기본 어휘</span>
+            <span class="curriculum-tag" style="background:rgba(42,169,154,0.12);color:#2aa99a;border-color:rgba(42,169,154,0.25);">짧은 문장</span>
+            <span class="curriculum-tag" style="background:rgba(42,169,154,0.12);color:#2aa99a;border-color:rgba(42,169,154,0.25);">전래동화</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 초등저 -->
+      <div class="curriculum-panel" id="tab-elem-low">
+        <div class="curriculum-panel-inner" style="border-color:rgba(200,151,58,0.25);">
+          <div class="curriculum-panel-header">
+            <div class="curriculum-panel-icon" style="background:rgba(200,151,58,0.15);">📖</div>
+            <div>
+              <div class="curriculum-panel-title">초등저 (1–3학년)</div>
+              <div class="curriculum-panel-sub">읽기·쓰기 기초 완성 · 어휘 확장</div>
+            </div>
+          </div>
+          <div class="curriculum-tags">
+            <span class="curriculum-tag" style="background:rgba(200,151,58,0.12);color:#e8b84b;border-color:rgba(200,151,58,0.3);">한글 모음·자음 정리</span>
+            <span class="curriculum-tag" style="background:rgba(200,151,58,0.12);color:#e8b84b;border-color:rgba(200,151,58,0.3);">어휘 확장</span>
+            <span class="curriculum-tag" style="background:rgba(200,151,58,0.12);color:#e8b84b;border-color:rgba(200,151,58,0.3);">기본 문법</span>
+            <span class="curriculum-tag" style="background:rgba(200,151,58,0.12);color:#e8b84b;border-color:rgba(200,151,58,0.3);">문장 연습</span>
+            <span class="curriculum-tag" style="background:rgba(200,151,58,0.12);color:#e8b84b;border-color:rgba(200,151,58,0.3);">전래동화</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 초등고 -->
+      <div class="curriculum-panel" id="tab-elem-high">
+        <div class="curriculum-panel-inner" style="border-color:rgba(255,140,60,0.25);">
+          <div class="curriculum-panel-header">
+            <div class="curriculum-panel-icon" style="background:rgba(255,140,60,0.15);">✏️</div>
+            <div>
+              <div class="curriculum-panel-title">초등고 (4–6학년)</div>
+              <div class="curriculum-panel-sub">고급 어휘 · 문법 심화 · 역사·문화</div>
+            </div>
+          </div>
+          <div class="curriculum-tags">
+            <span class="curriculum-tag" style="background:rgba(255,140,60,0.12);color:#ff8c3c;border-color:rgba(255,140,60,0.3);">어휘 확장</span>
+            <span class="curriculum-tag" style="background:rgba(255,140,60,0.12);color:#ff8c3c;border-color:rgba(255,140,60,0.3);">고급 어휘</span>
+            <span class="curriculum-tag" style="background:rgba(255,140,60,0.12);color:#ff8c3c;border-color:rgba(255,140,60,0.3);">기본 문법</span>
+            <span class="curriculum-tag" style="background:rgba(255,140,60,0.12);color:#ff8c3c;border-color:rgba(255,140,60,0.3);">자신의 생각 표현</span>
+            <span class="curriculum-tag" style="background:rgba(255,140,60,0.12);color:#ff8c3c;border-color:rgba(255,140,60,0.3);">글의 흐름 이해</span>
+            <span class="curriculum-tag" style="background:rgba(255,140,60,0.12);color:#ff8c3c;border-color:rgba(255,140,60,0.3);">역사</span>
+            <span class="curriculum-tag" style="background:rgba(255,140,60,0.12);color:#ff8c3c;border-color:rgba(255,140,60,0.3);">속담</span>
+            <span class="curriculum-tag" style="background:rgba(255,140,60,0.12);color:#ff8c3c;border-color:rgba(255,140,60,0.3);">한자어</span>
+            <span class="curriculum-tag" style="background:rgba(255,140,60,0.12);color:#ff8c3c;border-color:rgba(255,140,60,0.3);">사자성어</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 중등 -->
+      <div class="curriculum-panel" id="tab-middle">
+        <div class="curriculum-panel-inner" style="border-color:rgba(138,154,176,0.3);">
+          <div class="curriculum-panel-header">
+            <div class="curriculum-panel-icon" style="background:rgba(138,154,176,0.15);">🎓</div>
+            <div>
+              <div class="curriculum-panel-title">중등</div>
+              <div class="curriculum-panel-sub">심화 독해 · 글쓰기 · 토론·발표</div>
+            </div>
+          </div>
+          <div class="curriculum-tags">
+            <span class="curriculum-tag" style="background:rgba(138,154,176,0.12);color:#b0bfd0;border-color:rgba(138,154,176,0.3);">고급 어휘 확장</span>
+            <span class="curriculum-tag" style="background:rgba(138,154,176,0.12);color:#b0bfd0;border-color:rgba(138,154,176,0.3);">문법</span>
+            <span class="curriculum-tag" style="background:rgba(138,154,176,0.12);color:#b0bfd0;border-color:rgba(138,154,176,0.3);">글쓰기 확장</span>
+            <span class="curriculum-tag" style="background:rgba(138,154,176,0.12);color:#b0bfd0;border-color:rgba(138,154,176,0.3);">여러 종류의 글</span>
+            <span class="curriculum-tag" style="background:rgba(138,154,176,0.12);color:#b0bfd0;border-color:rgba(138,154,176,0.3);">배경 지식 확장</span>
+            <span class="curriculum-tag" style="background:rgba(138,154,176,0.12);color:#b0bfd0;border-color:rgba(138,154,176,0.3);">토론</span>
+            <span class="curriculum-tag" style="background:rgba(138,154,176,0.12);color:#b0bfd0;border-color:rgba(138,154,176,0.3);">발표</span>
+            <span class="curriculum-tag" style="background:rgba(138,154,176,0.12);color:#b0bfd0;border-color:rgba(138,154,176,0.3);">역사</span>
+            <span class="curriculum-tag" style="background:rgba(138,154,176,0.12);color:#b0bfd0;border-color:rgba(138,154,176,0.3);">한자어</span>
+            <span class="curriculum-tag" style="background:rgba(138,154,176,0.12);color:#b0bfd0;border-color:rgba(138,154,176,0.3);">속담</span>
+            <span class="curriculum-tag" style="background:rgba(138,154,176,0.12);color:#b0bfd0;border-color:rgba(138,154,176,0.3);">사자성어</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 음악 -->
+      <div class="curriculum-panel" id="tab-music">
+        <div class="curriculum-panel-inner" style="border-color:rgba(180,100,220,0.25);">
+          <div class="curriculum-panel-header">
+            <div class="curriculum-panel-icon" style="background:rgba(180,100,220,0.15);">🎵</div>
+            <div>
+              <div class="curriculum-panel-title">음악</div>
+              <div class="curriculum-panel-sub">전래동요 · 민요 · 리듬 활동</div>
+            </div>
+          </div>
+          <div class="curriculum-tags">
+            <span class="curriculum-tag" style="background:rgba(180,100,220,0.12);color:#c070e8;border-color:rgba(180,100,220,0.3);">전래동요</span>
+            <span class="curriculum-tag" style="background:rgba(180,100,220,0.12);color:#c070e8;border-color:rgba(180,100,220,0.3);">창작동요</span>
+            <span class="curriculum-tag" style="background:rgba(180,100,220,0.12);color:#c070e8;border-color:rgba(180,100,220,0.3);">민요</span>
+            <span class="curriculum-tag" style="background:rgba(180,100,220,0.12);color:#c070e8;border-color:rgba(180,100,220,0.3);">애국가</span>
+            <span class="curriculum-tag" style="background:rgba(180,100,220,0.12);color:#c070e8;border-color:rgba(180,100,220,0.3);">교가</span>
+            <span class="curriculum-tag" style="background:rgba(180,100,220,0.12);color:#c070e8;border-color:rgba(180,100,220,0.3);">리듬 게임</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 체육 -->
+      <div class="curriculum-panel" id="tab-pe">
+        <div class="curriculum-panel-inner" style="border-color:rgba(60,180,120,0.25);">
+          <div class="curriculum-panel-header">
+            <div class="curriculum-panel-icon" style="background:rgba(60,180,120,0.15);">⚽</div>
+            <div>
+              <div class="curriculum-panel-title">체육</div>
+              <div class="curriculum-panel-sub">신체 발달 · 협동심 · 기초 체력</div>
+            </div>
+          </div>
+          <div class="curriculum-tags">
+            <span class="curriculum-tag" style="background:rgba(60,180,120,0.12);color:#3cb878;border-color:rgba(60,180,120,0.3);">연령에 따른 신체 발달</span>
+            <span class="curriculum-tag" style="background:rgba(60,180,120,0.12);color:#3cb878;border-color:rgba(60,180,120,0.3);">협동심 발달</span>
+            <span class="curriculum-tag" style="background:rgba(60,180,120,0.12);color:#3cb878;border-color:rgba(60,180,120,0.3);">사회성 발달</span>
+            <span class="curriculum-tag" style="background:rgba(60,180,120,0.12);color:#3cb878;border-color:rgba(60,180,120,0.3);">전학년 줄넘기</span>
+            <span class="curriculum-tag" style="background:rgba(60,180,120,0.12);color:#3cb878;border-color:rgba(60,180,120,0.3);">기초 체력 단련</span>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /curriculum-panels -->
+
   </div>
 </section>
+
+<script>
+function switchTab(e, panelId) {
+  // deactivate all tabs
+  document.querySelectorAll('.curriculum-tab').forEach(function(t) {
+    t.classList.remove('active');
+    t.style.background = 'rgba(255,255,255,0.05)';
+    t.style.borderColor = 'rgba(255,255,255,0.15)';
+    t.style.color = 'rgba(255,255,255,0.55)';
+  });
+  // hide all panels
+  document.querySelectorAll('.curriculum-panel').forEach(function(p) {
+    p.classList.remove('active');
+  });
+  // activate clicked tab
+  var tab = e.currentTarget;
+  tab.classList.add('active');
+  // restore colors per panel
+  var colors = {
+    'tab-kinder':    {bg:'#2aa99a', border:'#2aa99a'},
+    'tab-elem-low':  {bg:'#c8973a', border:'#c8973a'},
+    'tab-elem-high': {bg:'#e07830', border:'#e07830'},
+    'tab-middle':    {bg:'#6a7a90', border:'#6a7a90'},
+    'tab-music':     {bg:'#b464dc', border:'#b464dc'},
+    'tab-pe':        {bg:'#3cb878', border:'#3cb878'}
+  };
+  var c = colors[panelId];
+  if (c) {
+    tab.style.background = c.bg;
+    tab.style.borderColor = c.border;
+    tab.style.color = '#0d2340';
+  }
+  // show target panel
+  document.getElementById(panelId).classList.add('active');
+}
+</script>
 
 <section class="annual-plan" id="annual">
   <div class="section-inner">
