@@ -1055,26 +1055,119 @@
 
   /* ── MOBILE ── */
   @media (max-width: 900px) {
+    /* ── NAV ── */
     nav { padding: 0 20px; }
     .nav-links { display: none; }
-    section { padding: 70px 24px; }
-    .info-strip { padding: 0 24px; }
-    .info-strip-inner { grid-template-columns: 1fr; }
+
+    /* ── GENERAL ── */
+    section { padding: 60px 20px; }
+    .section-inner { max-width: 100%; }
+    .info-strip { padding: 0 20px; }
+    .info-strip-inner { grid-template-columns: 1fr; gap: 0; }
+
+    /* ── HERO ── */
+    .hero-content { padding: 90px 20px 50px; }
+    .hero-title { font-size: clamp(32px, 8vw, 52px); }
+    .hero-stats { gap: 20px; flex-wrap: wrap; }
+    .hero-cta { flex-direction: column; gap: 12px; align-items: flex-start; }
+    .hero-cta a { width: 100%; text-align: center; justify-content: center; }
+
+    /* ── ABOUT ── */
+    .about-intro-wrap { grid-template-columns: 1fr; gap: 16px; }
     .about-grid { grid-template-columns: 1fr; gap: 40px; }
     .about-card-accent { display: none; }
-    .programs-grid { grid-template-columns: 1fr; }
-    .schedule-grid { grid-template-columns: 1fr; }
-    .album-preview-grid { grid-template-columns: 1fr 1fr; }
-    
-    .admission-grid { grid-template-columns: 1fr; }
-    .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
-    .hero-stats { gap: 24px; }
-    .hero-content { padding: 100px 24px 60px; }
+    .about-cta-row { flex-direction: column; gap: 12px; }
+    .about-cta-row a { width: 100%; text-align: center; justify-content: center; }
+
+    /* ── SCHEDULE ── */
+    .schedule-grid { grid-template-columns: 1fr; gap: 40px; }
     .timetable-header,
-    .timetable-row { grid-template-columns: 80px 1fr 1fr; }
+    .timetable-row { grid-template-columns: 70px 1fr 1fr; }
     .timetable-header span:last-child,
     .timetable-row span:last-child { display: none; }
-    footer { padding: 48px 24px 24px; }
+
+    /* ── CURRICULUM TABS ── */
+    .curriculum-tabs { gap: 8px; justify-content: flex-start; }
+    .curriculum-tab { padding: 8px 14px; font-size: 13px; }
+    .curriculum-panel-inner { padding: 24px 20px; }
+    .curriculum-panel-header { gap: 14px; }
+    .curriculum-panel-icon { width: 44px; height: 44px; font-size: 20px; }
+    .curriculum-panel-title { font-size: 18px; }
+    .curriculum-tags { gap: 8px; }
+    .curriculum-tag { padding: 7px 13px; font-size: 13px; }
+
+    /* ── ANNUAL PLAN ── */
+    .annual-plan { padding: 60px 20px; }
+    .annual-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+
+    /* ── NOTICE ── */
+    .notice-item { padding: 16px 18px; gap: 14px; flex-wrap: wrap; }
+    .notice-badge { min-width: 52px; font-size: 10px; }
+    .notice-title { font-size: 14px; }
+
+    /* ── ADMISSION ── */
+    .admission-grid { grid-template-columns: 1fr; }
+
+    /* ── FOOTER ── */
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
+    footer { padding: 48px 20px 24px; }
+    .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+  }
+
+  @media (max-width: 600px) {
+    /* ── NAV ── */
+    nav { height: 60px; padding: 0 16px; }
+    .nav-logo-kr { font-size: 11px; }
+    .nav-logo-en { font-size: 9px; }
+
+    /* ── GENERAL ── */
+    section { padding: 48px 16px; }
+    .section-title { font-size: clamp(22px, 7vw, 32px) !important; }
+    .section-desc { font-size: 14px; }
+
+    /* ── HERO ── */
+    .hero-content { padding: 80px 16px 40px; }
+    .hero-title { font-size: clamp(28px, 10vw, 44px); }
+    .hero-badge { font-size: 11px; }
+    .hero-stats { flex-direction: row; flex-wrap: wrap; gap: 16px; }
+    .hero-stat { min-width: 80px; }
+    .hero-stat-num { font-size: 26px; }
+    .hero-tagline { font-size: 11px; }
+
+    /* ── ABOUT ── */
+    .about-intro-wrap { grid-template-columns: 1fr; }
+    .about-stat-card { padding: 24px 16px; }
+    .about-stat-card .stat-num { font-size: 36px; }
+
+    /* ── SCHEDULE ── */
+    .schedule-grid { gap: 32px; }
+    .schedule-info h3 { font-size: 18px; }
+    .timetable-header,
+    .timetable-row { grid-template-columns: 60px 1fr 1fr; font-size: 13px; }
+    .timetable-header span:last-child,
+    .timetable-row span:last-child { display: none; }
+
+    /* ── CURRICULUM TABS ── */
+    .curriculum-tabs { flex-direction: column; align-items: stretch; gap: 8px; }
+    .curriculum-tab { width: 100%; justify-content: flex-start; border-radius: 12px; }
+    .curriculum-panel-inner { padding: 20px 16px; }
+    .curriculum-panel-title { font-size: 16px; }
+    .curriculum-panel-sub { font-size: 12px; }
+
+    /* ── ANNUAL PLAN ── */
+    .annual-plan { padding: 48px 16px; }
+    .annual-grid { grid-template-columns: 1fr; gap: 16px; }
+    .term-header { padding: 14px 16px; }
+    .term-header .term-name { font-size: 16px; }
+    .term-row { padding: 6px 12px; font-size: 13px; }
+
+    /* ── NOTICE ── */
+    .notice-item { flex-direction: column; gap: 10px; padding: 16px; }
+
+    /* ── FOOTER ── */
+    .footer-top { grid-template-columns: 1fr; gap: 24px; }
+    .footer-col { padding: 0; }
+    .footer-bottom { gap: 6px; font-size: 12px; }
   }
 
   /* ── PROGRAMS / CURRICULUM ── */
@@ -1235,6 +1328,87 @@
   .term-event.highlight { color: #e05a2b; font-weight: 600; }
   .term-event.holiday { color: #888; font-style: italic; }
   .term-event.special { color: #2a7a2a; font-weight: 600; }
+
+  /* ── HAMBURGER / MOBILE MENU ── */
+  .nav-hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 36px;
+    height: 36px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 8px;
+    transition: background 0.2s;
+  }
+  .nav-hamburger:hover { background: rgba(255,255,255,0.1); }
+  .nav-hamburger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: rgba(255,255,255,0.85);
+    border-radius: 2px;
+    transition: all 0.3s;
+  }
+  .nav-hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+  .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+  .nav-hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    top: 72px;
+    left: 0; right: 0;
+    background: rgba(13,35,64,0.98);
+    backdrop-filter: blur(16px);
+    z-index: 99;
+    border-bottom: 1px solid rgba(200,151,58,0.15);
+    transform: translateY(-10px);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.25s ease;
+  }
+  .mobile-menu.open {
+    display: block;
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: all;
+  }
+  .mobile-menu-inner {
+    display: flex;
+    flex-direction: column;
+    padding: 16px 20px 24px;
+    gap: 2px;
+    max-height: calc(100vh - 72px);
+    overflow-y: auto;
+  }
+  .mobile-menu-inner a {
+    display: block;
+    padding: 10px 12px;
+    color: rgba(255,255,255,0.75);
+    text-decoration: none;
+    font-size: 14px;
+    border-radius: 8px;
+    transition: all 0.15s;
+  }
+  .mobile-menu-inner a:hover { background: rgba(255,255,255,0.07); color: var(--white); }
+  .mobile-menu-inner a.mobile-cta {
+    margin-top: 12px;
+    background: var(--gold);
+    color: var(--navy);
+    font-weight: 700;
+    text-align: center;
+    border-radius: 10px;
+    padding: 12px;
+  }
+
+  @media (max-width: 900px) {
+    .nav-hamburger { display: flex; }
+  }
+
 </style>
 </head>
 <body>
@@ -1271,7 +1445,26 @@
     </li>
     <li><a href="#notice">알림마당</a></li>
     <li><a href="admission/index.html" class="nav-cta">입학안내</a></li>
-  </ul></nav>
+  </ul>
+  <button class="nav-hamburger" id="navToggle" onclick="toggleMobileMenu()" aria-label="메뉴 열기">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu-inner">
+    <a href="about/index.html">학교소개</a>
+    <a href="about/index.html#intro">ㄴ 소개글</a>
+    <a href="about/index.html#purpose">ㄴ 설립 취지</a>
+    <a href="about/index.html#hymn">ㄴ 교가</a>
+    <a href="about/index.html#history">ㄴ 연혁</a>
+    <a href="about/index.html#staff">ㄴ 교직원 소개</a>
+    <a href="#schedule">교육 – 수업 시간</a>
+    <a href="#programs">교육 – 커리큘럼</a>
+    <a href="#annual">교육 – 연간 교육계획</a>
+    <a href="#notice">알림마당</a>
+    <a href="admission/index.html" class="mobile-cta">입학안내</a>
+  </div>
+</div>
 
 <!-- HERO -->
 <section class="hero">
@@ -1909,5 +2102,23 @@ function switchTab(e, panelId) {
   }
 </script>
   
+
+<script>
+function toggleMobileMenu() {
+  var btn = document.getElementById('navToggle');
+  var menu = document.getElementById('mobileMenu');
+  btn.classList.toggle('open');
+  menu.classList.toggle('open');
+}
+// Close menu when a link is clicked
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.mobile-menu-inner a').forEach(function(link) {
+    link.addEventListener('click', function() {
+      document.getElementById('navToggle').classList.remove('open');
+      document.getElementById('mobileMenu').classList.remove('open');
+    });
+  });
+});
+</script>
 </body>
 </html>
