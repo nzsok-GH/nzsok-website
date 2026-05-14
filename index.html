@@ -517,262 +517,95 @@
     background: var(--cream);
   }
 
-  .about-grid {
+  .about-intro-wrap {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    align-items: center;
-    margin-top: 60px;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 32px;
+    margin-top: 48px;
   }
 
-  .about-visual {
-    position: relative;
-  }
-
-  .about-card-main {
-    background: var(--navy);
-    border-radius: 20px;
-    padding: 48px;
-    color: var(--white);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .about-card-main::before {
-    content: '한';
-    position: absolute;
-    right: -20px;
-    bottom: -20px;
-    font-family: 'Noto Serif KR', serif;
-    font-size: 180px;
-    font-weight: 900;
-    color: rgba(255,255,255,0.04);
-    line-height: 1;
-    pointer-events: none;
-  }
-
-  .about-card-main h3 {
-    font-family: 'Noto Serif KR', serif;
-    font-size: 26px;
-    font-weight: 700;
-    margin-bottom: 16px;
-    line-height: 1.4;
-  }
-
-  .about-card-main p {
-    color: rgba(255,255,255,0.68);
-    font-size: 14px;
-    line-height: 1.8;
-  }
-
-  .about-card-accent {
-    background: var(--gold);
+  .about-stat-card {
+    background: var(--white);
     border-radius: 16px;
-    padding: 28px 32px;
-    position: absolute;
-    bottom: -30px;
-    right: -24px;
-    width: 220px;
-    box-shadow: 0 16px 40px rgba(200,151,58,0.35);
+    padding: 36px 28px;
+    text-align: center;
+    border: 1px solid rgba(0,0,0,0.07);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.05);
   }
 
-  .about-card-accent .big-num {
-    font-family: 'Playfair Display', serif;
-    font-size: 48px;
+  .about-stat-card .stat-num {
+    font-family: 'Playfair Display', 'Noto Serif KR', serif;
+    font-size: 52px;
+    font-weight: 900;
+    color: var(--teal);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .about-stat-card .stat-unit {
+    font-size: 18px;
     font-weight: 700;
     color: var(--navy);
-    line-height: 1;
+    margin-bottom: 6px;
   }
 
-  .about-card-accent .label {
-    font-size: 12px;
-    font-weight: 600;
-    color: rgba(13,35,64,0.7);
-    margin-top: 4px;
-    letter-spacing: 0.06em;
+  .about-stat-card .stat-desc {
+    font-size: 13px;
+    color: var(--text-light);
+    line-height: 1.6;
   }
 
-  .about-content {
-    padding-bottom: 30px;
-  }
-
-  .about-values {
-    margin-top: 40px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-
-  .value-item {
+  .about-cta-row {
     display: flex;
     gap: 16px;
-    align-items: flex-start;
-  }
-
-  .value-icon {
-    width: 44px;
-    height: 44px;
-    border-radius: 10px;
-    background: var(--navy);
-    display: flex;
-    align-items: center;
+    margin-top: 40px;
     justify-content: center;
-    font-size: 20px;
-    flex-shrink: 0;
-    margin-top: 2px;
   }
 
-  .value-text h4 {
-    font-size: 15px;
-    font-weight: 700;
-    color: var(--navy);
-    margin-bottom: 4px;
-  }
-
-  .value-text p {
-    font-size: 13px;
-    color: var(--text-light);
-    line-height: 1.65;
-  }
-
-  /* ── PROGRAMS ── */
-  .programs {
-    background: var(--white);
-  }
-
-  .programs-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    margin-bottom: 56px;
-  }
-
-  .programs-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-  }
-
-  .program-card {
-    background: var(--gray-light);
-    border-radius: 20px;
-    padding: 36px;
-    position: relative;
-    overflow: hidden;
-    transition: all 0.3s;
-    cursor: pointer;
-    border: 1px solid transparent;
-  }
-
-  .program-card:hover {
-    background: var(--white);
-    border-color: rgba(26,122,110,0.2);
-    transform: translateY(-6px);
-    box-shadow: 0 24px 48px rgba(0,0,0,0.08);
-  }
-
-  .program-card.featured {
-    background: var(--navy);
-    grid-row: span 1;
-  }
-
-  .program-card.featured:hover {
-    background: var(--navy-mid);
-    border-color: rgba(200,151,58,0.3);
-    box-shadow: 0 24px 48px rgba(13,35,64,0.2);
-  }
-
-  .program-num {
-    font-family: 'Playfair Display', serif;
-    font-size: 52px;
-    font-weight: 700;
-    color: rgba(0,0,0,0.06);
-    line-height: 1;
-    margin-bottom: 20px;
-    display: block;
-  }
-
-  .program-card.featured .program-num {
-    color: rgba(255,255,255,0.06);
-  }
-
-  .program-tag {
-    display: inline-block;
-    background: rgba(26,122,110,0.1);
-    color: var(--teal);
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 4px 12px;
-    border-radius: 100px;
-    margin-bottom: 12px;
-  }
-
-  .program-card.featured .program-tag {
-    background: rgba(200,151,58,0.15);
-    color: var(--gold);
-  }
-
-  .program-card h3 {
-    font-family: 'Noto Serif KR', serif;
-    font-size: 20px;
-    font-weight: 700;
-    color: var(--navy);
-    margin-bottom: 10px;
-    line-height: 1.35;
-  }
-
-  .program-card.featured h3 {
-    color: var(--white);
-  }
-
-  .program-card p {
-    font-size: 13px;
-    color: var(--text-light);
-    line-height: 1.7;
-  }
-
-  .program-card.featured p {
-    color: rgba(255,255,255,0.6);
-  }
-
-  .program-details {
-    margin-top: 20px;
-    padding-top: 20px;
-    border-top: 1px solid rgba(0,0,0,0.07);
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
-
-  .program-card.featured .program-details {
-    border-top-color: rgba(255,255,255,0.1);
-  }
-
-  .program-detail {
-    display: flex;
+  .btn-primary {
+    display: inline-flex;
     align-items: center;
     gap: 8px;
-    font-size: 12px;
-    color: var(--text-light);
+    padding: 14px 32px;
+    background: var(--teal);
+    color: var(--white);
+    text-decoration: none;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    transition: all 0.2s;
+    letter-spacing: 0.02em;
   }
 
-  .program-card.featured .program-detail {
-    color: rgba(255,255,255,0.55);
-  }
-
-  .program-detail::before {
-    content: '';
-    width: 4px;
-    height: 4px;
-    border-radius: 50%;
+  .btn-primary:hover {
     background: var(--teal-light);
-    flex-shrink: 0;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(26,122,110,0.3);
   }
 
-  /* ── SCHEDULE ── */
-  .schedule {
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 32px;
+    background: transparent;
+    color: var(--teal);
+    text-decoration: none;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    border: 2px solid var(--teal);
+    transition: all 0.2s;
+    letter-spacing: 0.02em;
+  }
+
+  .btn-secondary:hover {
+    background: var(--teal);
+    color: var(--white);
+    transform: translateY(-2px);
+  }
+
+    .schedule {
     background: var(--navy);
     color: var(--white);
   }
@@ -896,116 +729,83 @@
   }
 
   /* ── GALLERY / ALBUM PREVIEW ── */
-  .gallery {
+  .notice {
     background: var(--cream);
   }
 
-  .album-preview-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-    margin-top: 56px;
+  .notice-list {
+    margin-top: 48px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
   }
 
-  .album-preview-card {
-    border-radius: 20px;
-    overflow: hidden;
+  .notice-item {
     background: var(--white);
-    cursor: pointer;
-    transition: all 0.3s;
-    text-decoration: none;
-    display: block;
+    border-radius: 16px;
+    padding: 24px 32px;
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
     border: 1px solid rgba(0,0,0,0.07);
-    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    transition: all 0.2s;
   }
 
-  .album-preview-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 20px 48px rgba(0,0,0,0.12);
-    border-color: rgba(26,122,110,0.25);
+  .notice-item:hover {
+    border-color: rgba(26,122,110,0.2);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.09);
+    transform: translateY(-2px);
   }
 
-  .album-preview-thumb {
-    aspect-ratio: 4/3;
-    background: var(--navy-mid);
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .album-preview-thumb img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.4s;
-  }
-
-  .album-preview-card:hover .album-preview-thumb img {
-    transform: scale(1.05);
-  }
-
-  .album-preview-placeholder {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .album-preview-emoji {
-    font-size: 40px;
-    margin-bottom: 8px;
-    opacity: 0.7;
-  }
-
-  .album-preview-ph-text {
-    font-size: 12px;
-    color: rgba(255,255,255,0.35);
-    letter-spacing: 0.06em;
-  }
-
-  .album-preview-badge {
-    position: absolute;
-    top: 12px;
-    left: 12px;
-    background: rgba(200,151,58,0.92);
-    color: var(--navy);
+  .notice-badge {
+    flex-shrink: 0;
+    min-width: 64px;
+    padding: 4px 12px;
+    border-radius: 20px;
     font-size: 11px;
     font-weight: 700;
-    padding: 4px 10px;
-    border-radius: 6px;
+    text-align: center;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
   }
 
-  .album-preview-info {
-    padding: 18px 20px;
+  .notice-badge.important {
+    background: rgba(200,151,58,0.15);
+    color: var(--gold);
+    border: 1px solid rgba(200,151,58,0.3);
   }
 
-  .album-preview-date {
-    font-size: 11px;
-    color: var(--text-light);
-    margin-bottom: 4px;
-    letter-spacing: 0.04em;
+  .notice-badge.general {
+    background: rgba(26,122,110,0.1);
+    color: var(--teal);
+    border: 1px solid rgba(26,122,110,0.2);
   }
 
-  .album-preview-title {
-    font-family: 'Noto Serif KR', serif;
+  .notice-badge.event {
+    background: rgba(13,35,64,0.08);
+    color: var(--navy-mid);
+    border: 1px solid rgba(13,35,64,0.15);
+  }
+
+  .notice-content {
+    flex: 1;
+  }
+
+  .notice-title {
     font-size: 16px;
     font-weight: 700;
-    color: var(--navy);
+    color: var(--text);
+    margin-bottom: 6px;
     line-height: 1.4;
   }
 
-  .gallery-more {
-    text-align: center;
-    margin-top: 40px;
+  .notice-meta {
+    font-size: 13px;
+    color: var(--text-light);
   }
 
-  /* ── ADMISSION ── */
-  .admission {
+    .admission {
     background: var(--white);
   }
 
@@ -1330,7 +1130,7 @@
         <a href="#annual">연간 교육계획</a>
       </div>
     </li>
-    <li><a href="gallery/index.html">알림마당</a></li>
+    <li><a href="#notice">알림마당</a></li>
     <li><a href="admission/index.html" class="nav-cta">입학안내</a></li>
   </ul></nav>
 
@@ -1408,50 +1208,32 @@
   <div class="section-inner">
     <span class="section-label">학교 소개</span>
     <h2 class="section-title">한국어와 문화를<br>미래 세대에게</h2>
+    <p class="section-desc">1997년 설립 이래, 뉴질랜드 한인 사회와 함께 성장해 온 한글학교입니다.</p>
 
-    <div class="about-grid">
-      <div class="about-visual">
-        <div class="about-card-main">
-          <h3>이중언어 교육을 통한<br>정체성 확립</h3>
-          <p>뉴질랜드에서 자라는 한국계 어린이들이 한국어와 한국 문화를 자연스럽게 습득하고, 두 문화권에서 자신감 있게 성장할 수 있도록 돕는 교육 공동체입니다.</p>
-        </div>
-        <div class="about-card-accent">
-          <div class="big-num">28</div>
-          <div class="label">년의 교육 전통</div>
-        </div>
+    <div class="about-intro-wrap">
+      <div class="about-stat-card">
+        <div class="stat-num">28<span style="font-size:24px">+</span></div>
+        <div class="stat-unit">년의 역사</div>
+        <div class="stat-desc">1997년 설립 이래<br>뉴질랜드 최장수 한글학교</div>
       </div>
+      <div class="about-stat-card">
+        <div class="stat-num">150<span style="font-size:24px">+</span></div>
+        <div class="stat-unit">명의 학생</div>
+        <div class="stat-desc">유치부·초등·중등<br>다양한 연령대 교육</div>
+      </div>
+      <div class="about-stat-card">
+        <div class="stat-num">20<span style="font-size:24px">+</span></div>
+        <div class="stat-unit">명의 교직원</div>
+        <div class="stat-desc">헌신적인 교장·교사·강사진<br>체계적인 교육 제공</div>
+      </div>
+    </div>
 
-      <div class="about-content">
-        <p class="section-desc">1997년 설립 이래, 뉴질랜드 한인 사회와 함께 성장해 온 한글학교입니다. 체계적인 커리큘럼과 열정적인 교직원이 함께합니다.</p>
-        <div class="about-values">
-          <div class="value-item">
-            <div class="value-icon">🇰🇷</div>
-            <div class="value-text">
-              <h4>언어 · 문화 교육</h4>
-              <p>체계적인 한국어 읽기·쓰기·말하기와 함께 전통 문화와 역사를 배웁니다.</p>
-            </div>
-          </div>
-          <div class="value-item">
-            <div class="value-icon">🌏</div>
-            <div class="value-text">
-              <h4>이중문화 정체성</h4>
-              <p>뉴질랜드 사회의 일원이면서도 한국인으로서의 자부심을 키웁니다.</p>
-            </div>
-          </div>
-          <div class="value-item">
-            <div class="value-icon">🤝</div>
-            <div class="value-text">
-              <h4>한인 커뮤니티</h4>
-              <p>같은 배경을 가진 가족들과 함께 따뜻한 공동체를 이룹니다.</p>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div class="about-cta-row">
+      <a href="about/index.html" class="btn-primary">학교소개 자세히 보기 →</a>
+      <a href="admission/index.html" class="btn-secondary">입학 안내</a>
     </div>
   </div>
 </section>
-
-<!-- PROGRAMS -->
 <section class="schedule" id="schedule">
   <div class="section-inner">
     <span class="section-label" style="color: var(--teal-light);">수업 시간표</span>
@@ -1662,63 +1444,44 @@
   </div>
 </section>
 
-<section class="gallery" id="gallery">
+<section class="notice" id="notice">
   <div class="section-inner">
-    <span class="section-label">학교 앨범</span>
-    <h2 class="section-title">함께한 소중한 순간들</h2>
+    <span class="section-label">알림마당</span>
+    <h2 class="section-title">공지사항</h2>
+    <p class="section-desc">한민족 한글학교의 주요 소식과 공지를 안내합니다.</p>
 
-    <div class="album-preview-grid" id="album-preview-grid">
-      <!-- 앨범 카드들이 JavaScript로 동적 로드됩니다 -->
-      <a class="album-preview-card" href="gallery/index.html">
-        <div class="album-preview-thumb">
-          <div class="album-preview-placeholder" style="background: linear-gradient(135deg, var(--navy-mid), #0f3050);">
-            <div class="album-preview-emoji">🎓</div>
-            <div class="album-preview-ph-text">졸업식</div>
-          </div>
-          <span class="album-preview-badge">🎓 졸업식</span>
+    <div class="notice-list">
+      <div class="notice-item">
+        <span class="notice-badge important">중요</span>
+        <div class="notice-content">
+          <div class="notice-title">2025년 Term 1 개학 안내 – 2월 15일(토) 입학식 및 개학식</div>
+          <div class="notice-meta">2025년 2월 10일</div>
         </div>
-        <div class="album-preview-info">
-          <div class="album-preview-date">2024년 11월 30일</div>
-          <div class="album-preview-title">2024년 졸업식</div>
+      </div>
+      <div class="notice-item">
+        <span class="notice-badge event">행사</span>
+        <div class="notice-content">
+          <div class="notice-title">나의 꿈 말하기 대회 – 3월 15일(토)</div>
+          <div class="notice-meta">2025년 3월 1일</div>
         </div>
-      </a>
-      <a class="album-preview-card" href="gallery/index.html">
-        <div class="album-preview-thumb">
-          <div class="album-preview-placeholder" style="background: linear-gradient(135deg, #1a3a2e, #0d3028);">
-            <div class="album-preview-emoji">🎨</div>
-            <div class="album-preview-ph-text">문화 체험</div>
-          </div>
-          <span class="album-preview-badge">🎨 문화 체험</span>
+      </div>
+      <div class="notice-item">
+        <span class="notice-badge event">행사</span>
+        <div class="notice-content">
+          <div class="notice-title">전국 말하기 대회 – 4월 12일(토)</div>
+          <div class="notice-meta">2025년 4월 1일</div>
         </div>
-        <div class="album-preview-info">
-          <div class="album-preview-date">2024년 9월 14일</div>
-          <div class="album-preview-title">추석 문화 체험</div>
+      </div>
+      <div class="notice-item">
+        <span class="notice-badge general">안내</span>
+        <div class="notice-content">
+          <div class="notice-title">Term 1 특강 안내 – 미술, 바이올린, 태권도, 4D프레임</div>
+          <div class="notice-meta">2025년 2월 10일</div>
         </div>
-      </a>
-      <a class="album-preview-card" href="gallery/index.html">
-        <div class="album-preview-thumb">
-          <div class="album-preview-placeholder" style="background: linear-gradient(135deg, #3a2a10, #2a1e0a);">
-            <div class="album-preview-emoji">🏅</div>
-            <div class="album-preview-ph-text">발표회</div>
-          </div>
-          <span class="album-preview-badge">🏅 발표회</span>
-        </div>
-        <div class="album-preview-info">
-          <div class="album-preview-date">2024년 6월 22일</div>
-          <div class="album-preview-title">2024 발표회</div>
-        </div>
-      </a>
-    </div>
-
-    <div class="gallery-more">
-      <a href="gallery/index.html" class="btn-secondary" style="color: var(--navy); border-color: rgba(0,0,0,0.2); display: inline-flex; margin-top: 8px;">
-        앨범 전체 보기 →
-      </a>
+      </div>
     </div>
   </div>
 </section>
-
-<!-- ADMISSION -->
 <section class="admission" id="admission">
   <div class="section-inner">
     <span class="section-label">입학 안내</span>
@@ -1829,8 +1592,8 @@
       <div class="footer-col">
         <h4>안내</h4>
         <ul>
-          <li><a href="gallery/index.html">알림마당</a></li>
-          <li><a href="gallery/index.html">학교앨범</a></li>
+          <li><a href="#notice">알림마당</a></li>
+          <li><a href="#notice">공지사항</a></li>
           <li><a href="admission/index.html">입학안내</a></li>
         </ul>
       </div>
