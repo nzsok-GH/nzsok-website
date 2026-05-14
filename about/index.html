@@ -1,4 +1,22 @@
-<!DOCTYPE html>
+</ul>
+  <button class="nav-hamburger" id="navToggle" onclick="toggleMobileMenu()" aria-label="메뉴 열기">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu-inner">
+    <a href="index.html">홈</a>
+    <a href="about/index.html#intro">소개글</a>
+    <a href="about/index.html#purpose">설립 취지</a>
+    <a href="about/index.html#hymn">교가</a>
+    <a href="about/index.html#history">연혁</a>
+    <a href="about/index.html#staff">교직원 소개</a>
+    <a href="index.html#schedule">교육 – 수업 시간</a>
+    <a href="index.html#programs">교육 – 커리큘럼</a>
+    <a href="index.html#notice">알림마당</a>
+    <a href="admission/index.html" class="mobile-cta">입학안내</a>
+  </div>
+</div>html>
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
@@ -262,9 +280,122 @@
     .staff-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
     .staff-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
     .staff-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
-    @media (max-width: 768px) {
-      .staff-grid-2, .staff-grid-3, .staff-grid-4 { grid-template-columns: repeat(2, 1fr); }
+    @media (max-width: 900px) {
+      /* ── GLOBAL NAV ── */
+      nav { height: 60px; padding: 0 16px; }
+      .nav-logo-kr { font-size: 11px; }
+      .nav-logo-en { font-size: 9px; }
+
+      /* ── PAGE HERO ── */
+      .page-hero { padding: 100px 20px 60px; }
+      .page-hero-title { font-size: 28px; }
+
+      /* ── SECTION TABS ── */
+      .section-tabs { padding: 0 16px; top: 60px; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+      .section-tabs-inner { gap: 0; min-width: max-content; }
+      .section-tab { padding: 12px 14px; font-size: 13px; }
+
+      /* ── SECTION GENERAL ── */
+      .about-section { padding: 60px 20px; }
+      .section-inner { max-width: 100%; }
+      .section-title { font-size: 26px !important; }
+
+      /* ── INTRO GRID ── */
+      .intro-grid { grid-template-columns: 1fr; gap: 32px; }
+      .intro-card-main { padding: 28px 24px; }
+      .intro-card-accent { padding: 20px 24px; }
+      .intro-card-accent .big-num { font-size: 36px; }
+
+      /* ── INTRO STATS ── */
+      .intro-stats { flex-wrap: wrap; gap: 16px; }
+
+      /* ── STAFF GRID ── */
+      .staff-dept-block { margin-bottom: 32px; }
+      .staff-grid-2, .staff-grid-3, .staff-grid-4 { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+      .staff-card { padding: 16px 12px; }
+      .staff-card h4 { font-size: 14px; }
+
+      /* ── HYMN ── */
+      .hymn-layout { grid-template-columns: 1fr; gap: 24px; }
+      .hymn-lyrics { grid-template-columns: 1fr; gap: 16px; }
+
+      /* ── HISTORY ── */
+      .history-timeline { padding-left: 20px; }
+      .history-item { margin-left: 0; }
+
+      /* ── BOARD ── */
+      .board-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+      .board-card { padding: 20px 16px; }
     }
+
+    @media (max-width: 600px) {
+      /* ── PAGE HERO ── */
+      .page-hero { padding: 80px 16px 48px; }
+      .page-hero-title { font-size: 22px; }
+      .page-hero-sub { font-size: 13px; }
+
+      /* ── SECTION TABS ── */
+      .section-tabs { padding: 0 12px; }
+      .section-tab { padding: 10px 10px; font-size: 12px; white-space: nowrap; }
+
+      /* ── SECTION GENERAL ── */
+      .about-section { padding: 40px 16px; }
+      .section-title { font-size: 20px !important; }
+      .section-desc { font-size: 14px; }
+
+      /* ── INTRO ── */
+      .intro-grid { gap: 24px; }
+      .intro-card-main { padding: 20px 16px; }
+      .intro-card-main h3 { font-size: 16px; }
+      .intro-card-main p { font-size: 13px; }
+      .intro-card-accent { padding: 16px; flex-wrap: wrap; }
+      .intro-card-accent .big-num { font-size: 30px; }
+
+      /* ── VALUES ── */
+      .value-item { flex-direction: column; gap: 10px; }
+      .value-icon { width: 40px; height: 40px; font-size: 18px; }
+
+      /* ── PURPOSE ── */
+      .purpose-items { grid-template-columns: 1fr; gap: 12px; }
+
+      /* ── STAFF ── */
+      .staff-grid-2, .staff-grid-3, .staff-grid-4 { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+      .staff-card { padding: 14px 10px; }
+      .staff-card .staff-avatar { width: 44px; height: 44px; font-size: 16px; margin: 0 auto 8px; }
+      .staff-card h4 { font-size: 13px; }
+      .staff-card p { font-size: 11px; }
+      .staff-dept-header h3 { font-size: 15px; }
+
+      /* ── HYMN ── */
+      .hymn-verse { padding: 16px; }
+      .hymn-verse-title { font-size: 12px; }
+      .hymn-verse-text { font-size: 14px; }
+
+      /* ── HISTORY ── */
+      .history-year { font-size: 13px; }
+      .history-desc { font-size: 13px; }
+
+      /* ── BOARD ── */
+      .board-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+      .board-card { padding: 16px 12px; }
+      .board-chair .chair-title { font-size: 13px; }
+    }
+
+  /* ── HAMBURGER / MOBILE MENU ── */
+  .nav-hamburger { display: none; flex-direction: column; justify-content: center; gap: 5px; width: 36px; height: 36px; background: none; border: none; cursor: pointer; padding: 4px; border-radius: 8px; transition: background 0.2s; }
+  .nav-hamburger:hover { background: rgba(255,255,255,0.1); }
+  .nav-hamburger span { display: block; width: 22px; height: 2px; background: rgba(255,255,255,0.85); border-radius: 2px; transition: all 0.3s; }
+  .nav-hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+  .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+  .nav-hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+  .mobile-menu { display: none; position: fixed; top: 72px; left: 0; right: 0; background: rgba(13,35,64,0.98); backdrop-filter: blur(16px); z-index: 99; border-bottom: 1px solid rgba(200,151,58,0.15); opacity: 0; pointer-events: none; transition: all 0.25s ease; }
+  .mobile-menu.open { display: block; opacity: 1; pointer-events: all; }
+  .mobile-menu-inner { display: flex; flex-direction: column; padding: 16px 20px 24px; gap: 2px; max-height: calc(100vh - 72px); overflow-y: auto; }
+  .mobile-menu-inner a { display: block; padding: 10px 12px; color: rgba(255,255,255,0.75); text-decoration: none; font-size: 14px; border-radius: 8px; transition: all 0.15s; }
+  .mobile-menu-inner a:hover { background: rgba(255,255,255,0.07); color: #fff; }
+  .mobile-menu-inner a.mobile-cta { margin-top: 12px; background: var(--gold); color: var(--navy); font-weight: 700; text-align: center; border-radius: 10px; padding: 12px; }
+  @media (max-width: 900px) { .nav-hamburger { display: flex; } .nav-links { display: none; } }
+
 </style>
 </head>
 <body>
@@ -839,5 +970,22 @@
   </div>
 </footer>
 
+
+<script>
+function toggleMobileMenu() {
+  var btn = document.getElementById('navToggle');
+  var menu = document.getElementById('mobileMenu');
+  btn.classList.toggle('open');
+  menu.classList.toggle('open');
+}
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.mobile-menu-inner a').forEach(function(link) {
+    link.addEventListener('click', function() {
+      document.getElementById('navToggle').classList.remove('open');
+      document.getElementById('mobileMenu').classList.remove('open');
+    });
+  });
+});
+</script>
 </body>
 </html>
