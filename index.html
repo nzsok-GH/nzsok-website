@@ -1311,7 +1311,10 @@
 
     /* ── ANNUAL PLAN ── */
   .annual-plan { padding: 80px 48px; background: var(--gray-light); }
-  .annual-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 48px; }
+  .annual-grid { display: grid; margin-top: 48px; }
+  @media (min-width: 901px) { .annual-grid { grid-template-columns: repeat(4, 1fr); gap: 20px; } }
+  @media (min-width: 601px) and (max-width: 900px) { .annual-grid { grid-template-columns: 1fr 1fr; gap: 16px; } }
+  @media (max-width: 600px) { .annual-grid { grid-template-columns: 1fr; gap: 16px; } }
   .term-card { background: var(--white); border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.07); }
   .term-header { padding: 16px 20px; font-family: 'Noto Serif KR', serif; font-weight: 700; font-size: 15px; }
   .term-header .term-name { font-size: 18px; color: var(--white); }
