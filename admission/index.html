@@ -218,20 +218,46 @@
 
   /* RESPONSIVE */
   @media (max-width: 900px) {
-    nav { padding: 0 20px; }
-    .hero { padding: 120px 24px 60px; }
-    main { padding: 60px 24px 80px; }
-    .info-cards { grid-template-columns: 1fr; }
-    .steps { grid-template-columns: 1fr 1fr; }
+    nav { padding: 0 16px; height: 60px; }
+    .hero { padding: 100px 20px 60px; }
+    .hero h1 { font-size: 32px; }
+    main { padding: 48px 20px 60px; }
+    .page-grid { grid-template-columns: 1fr; gap: 40px; }
+    .info-cards { grid-template-columns: 1fr; gap: 16px; }
+    .steps { grid-template-columns: 1fr; gap: 24px; }
     .steps::before { display: none; }
-    .contact-grid { grid-template-columns: 1fr; }
-    .cta-section { padding: 48px 28px; }
-    footer { padding: 32px 24px 20px; }
+    .contact-grid { grid-template-columns: 1fr; gap: 20px; }
+    .cta-section { padding: 40px 20px; }
+    footer { padding: 32px 20px 20px; }
+  }
+
+  @media (max-width: 600px) {
+    nav { padding: 0 14px; }
+    .hero { padding: 80px 16px 48px; }
+    .hero h1 { font-size: 24px; }
+    .hero p { font-size: 14px; }
+    main { padding: 36px 16px 48px; }
+    .info-card { padding: 20px 16px; }
+    .step-box { padding: 20px 16px; }
+    .contact-card { padding: 20px 16px; }
+    .cta-section { padding: 32px 16px; }
+    .cta-section h2 { font-size: 22px; }
+    footer { padding: 24px 16px 16px; }
   }
   @media (max-width: 560px) {
     .steps { grid-template-columns: 1fr; }
     .tuition-table th, .tuition-table td { padding: 12px 16px; }
   }
+
+  .nav-hamburger { display: none; flex-direction: column; justify-content: center; gap: 5px; width: 36px; height: 36px; background: none; border: none; cursor: pointer; padding: 4px; border-radius: 8px; }
+  .nav-hamburger span { display: block; width: 22px; height: 2px; background: rgba(255,255,255,0.85); border-radius: 2px; transition: all 0.3s; }
+  .mobile-menu { display: none; position: fixed; top: 60px; left: 0; right: 0; background: rgba(13,35,64,0.98); backdrop-filter: blur(16px); z-index: 99; }
+  .mobile-menu.open { display: block; }
+  .mobile-menu-inner { display: flex; flex-direction: column; padding: 16px 20px 24px; gap: 2px; }
+  .mobile-menu-inner a { display: block; padding: 10px 12px; color: rgba(255,255,255,0.75); text-decoration: none; font-size: 14px; border-radius: 8px; }
+  .mobile-menu-inner a.mobile-cta { margin-top: 12px; background: var(--gold, #c8973a); color: #0d2340; font-weight: 700; text-align: center; border-radius: 10px; padding: 12px; }
+  @media (max-width: 900px) { .nav-hamburger { display: flex; } .nav-back { display: none; } }
+
 </style>
 </head>
 <body>
@@ -247,6 +273,19 @@
   </a>
   <a class="nav-back" href="../index.html">← 홈으로</a>
 </nav>
+<button class="nav-hamburger" id="navToggle" onclick="toggleMobileMenu()" aria-label="메뉴 열기" style="position:fixed;top:12px;right:16px;z-index:101;">
+  <span></span><span></span><span></span>
+</button>
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu-inner">
+    <a href="../index.html">홈</a>
+    <a href="../about/index.html">학교소개</a>
+    <a href="../index.html#schedule">수업 시간</a>
+    <a href="../index.html#programs">커리큘럼</a>
+    <a href="../index.html#notice">알림마당</a>
+    <a href="index.html" class="mobile-cta">입학안내</a>
+  </div>
+</div>
 
 <!-- HERO -->
 <div class="hero">
@@ -437,5 +476,9 @@
   </div>
 </footer>
 
+<script>
+function toggleMobileMenu(){var btn=document.getElementById('navToggle');var menu=document.getElementById('mobileMenu');btn.classList.toggle('open');menu.classList.toggle('open');}
+document.addEventListener('DOMContentLoaded',function(){document.querySelectorAll('.mobile-menu-inner a').forEach(function(a){a.addEventListener('click',function(){document.getElementById('navToggle').classList.remove('open');document.getElementById('mobileMenu').classList.remove('open');});});});
+</script>
 </body>
 </html>
