@@ -6,6 +6,7 @@ const SECTIONS = [
   { id: "schedule", label: "시간표" },
   { id: "programs", label: "커리큘럼" },
   { id: "annual", label: "연간 교육계획" },
+  { id: "campus", label: "Sherwood School" },
 ];
 
 const LEVELS = [
@@ -203,7 +204,7 @@ function renderEventLine(line: string, type: string, j: number) {
         <span
           style={{
             color: "#8a9ab0",
-            fontSize: 10,
+            fontSize: 12,
             fontWeight: 400,
             flexShrink: 0,
           }}
@@ -277,7 +278,7 @@ export default function Education() {
                 >
                   <p
                     style={{
-                      fontSize: 11,
+                      fontSize: 12,
                       fontWeight: 700,
                       letterSpacing: "0.07em",
                       textTransform: "uppercase",
@@ -288,7 +289,7 @@ export default function Education() {
                     {title}
                   </p>
                   <p
-                    style={{ color: "#4a5f75", fontSize: 14, lineHeight: 1.7 }}
+                    style={{ color: "#4a5f75", fontSize: 16, lineHeight: 1.7 }}
                   >
                     {body}
                   </p>
@@ -301,7 +302,7 @@ export default function Education() {
                 style={{
                   width: "100%",
                   borderCollapse: "collapse",
-                  fontSize: 12,
+                  fontSize: 14,
                 }}
               >
                 <thead>
@@ -406,6 +407,7 @@ export default function Education() {
                           borderBottom: "1px solid rgba(0,0,0,0.05)",
                           borderRight: "1px solid rgba(0,0,0,0.05)",
                           color: "#4a5f75",
+                          whiteSpace: "nowrap",
                         }}
                       >
                         {time}
@@ -452,7 +454,7 @@ export default function Education() {
                     <div
                       style={{
                         fontFamily: "'SUIT', sans-serif",
-                        fontSize: 15,
+                        fontSize: 17,
                         fontWeight: 700,
                         color: headerColor,
                       }}
@@ -461,7 +463,7 @@ export default function Education() {
                     </div>
                     <div
                       style={{
-                        fontSize: 11,
+                        fontSize: 12,
                         color: headerColor,
                         opacity: 0.7,
                         marginTop: 2,
@@ -488,7 +490,7 @@ export default function Education() {
                         <li
                           key={item}
                           style={{
-                            fontSize: 13,
+                            fontSize: 15,
                             color: "#1c2b3a",
                             lineHeight: 1.5,
                             display: "flex",
@@ -501,7 +503,7 @@ export default function Education() {
                               color: headerColor,
                               flexShrink: 0,
                               marginTop: 3,
-                              fontSize: 10,
+                              fontSize: 11,
                             }}
                           >
                             ▸
@@ -525,7 +527,7 @@ export default function Education() {
               marginTop: 20,
             }}
           >
-            <span style={{ fontSize: 13, fontWeight: 700, color: "#1a4e7a" }}>
+            <span style={{ fontSize: 15, fontWeight: 700, color: "#1a4e7a" }}>
               전학년 공통
             </span>
             <span
@@ -536,7 +538,7 @@ export default function Education() {
                 flexShrink: 0,
               }}
             />
-            <span style={{ fontSize: 13, color: "#1c2b3a" }}>
+            <span style={{ fontSize: 15, color: "#1c2b3a" }}>
               독서 · 체육 · 음악
             </span>
           </div>
@@ -551,7 +553,7 @@ export default function Education() {
               style={{
                 width: "100%",
                 borderCollapse: "collapse",
-                fontSize: 12,
+                fontSize: 13,
                 minWidth: 720,
               }}
             >
@@ -567,7 +569,7 @@ export default function Education() {
                         color: "#1c2b3a",
                         fontFamily: "'SUIT', sans-serif",
                         fontWeight: 700,
-                        fontSize: 13,
+                        fontSize: 15,
                         padding: "10px 14px",
                         textAlign: "left",
                         borderBottom: "2px solid rgba(0,0,0,0.10)",
@@ -737,6 +739,46 @@ export default function Education() {
                 ))}
               </tbody>
             </table>
+          </div>
+        </section>
+
+        {/* ── 4. Sherwood School ── */}
+        <section id="campus" style={{ marginTop: 80 }}>
+          <h2 style={{ ...H2_STYLE, marginBottom: 40 }}>Sherwood School</h2>
+
+          <p
+            style={{
+              fontSize: 14,
+              color: "#4a5f75",
+              lineHeight: 1.85,
+              marginBottom: 24,
+            }}
+          >
+            수업이 진행되는{" "}
+            <strong style={{ color: "#1c2b3a" }}>Sherwood School</strong>은
+            브라운스 베이에 위치한 공립 초등학교입니다. 우리 학교는 14개의
+            교실과 3개의 놀이터를 사용하며, 수업 시간 중에는 외부인의
+            교내 출입이 통제되어 우리 아이들에게 안전한 학습 환경을 제공합니다.
+          </p>
+
+          <div
+            className="rounded-2xl"
+            style={{
+              border: "1px solid rgba(60,120,180,0.18)",
+              overflow: "hidden",
+              height: 400,
+            }}
+          >
+            <iframe
+              title="Sherwood School"
+              src="https://maps.google.com/maps?q=Sherwood+School+Auckland+New+Zealand&output=embed"
+              width="100%"
+              height="100%"
+              style={{ border: 0, display: "block" }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
           </div>
         </section>
       </main>

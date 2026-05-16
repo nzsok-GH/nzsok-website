@@ -175,6 +175,9 @@ export default function Navigation({
                 <Link to="/education#annual" onClick={closeMenu}>
                   연간 교육계획
                 </Link>
+                <Link to="/education#campus" onClick={closeMenu}>
+                  Sherwood School
+                </Link>
               </div>
             </li>
             <li>
@@ -246,6 +249,7 @@ export default function Navigation({
                 { to: "/education#schedule", label: "시간표" },
                 { to: "/education#programs", label: "커리큘럼" },
                 { to: "/education#annual", label: "연간 교육계획" },
+                { to: "/education#campus", label: "Sherwood School" },
               ],
             },
             {
