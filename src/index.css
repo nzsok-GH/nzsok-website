@@ -937,3 +937,89 @@ footer a:hover {
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
+/* ── Education page ────────────────────────────────────────────── */
+.education-main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 140px 48px 120px;
+}
+.education-schedule-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 28px;
+  align-items: start;
+}
+.education-curriculum-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+@media (max-width: 767px) {
+  .education-main {
+    padding: 120px 20px 80px;
+  }
+  .education-schedule-grid {
+    grid-template-columns: 1fr;
+  }
+  .education-curriculum-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ── Enrol page ────────────────────────────────────────────── */
+.enrol-main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 120px 48px 120px;
+}
+.enrol-form-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+.enrol-procedure-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+.enrol-tuition-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+.enrol-classes-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 36px;
+}
+.enrol-contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+@media (max-width: 767px) {
+  .enrol-main {
+    padding: 120px 20px 80px;
+  }
+  .enrol-form-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .enrol-procedure-grid {
+    grid-template-columns: 1fr;
+  }
+  .enrol-tuition-grid {
+    grid-template-columns: 1fr;
+  }
+  .enrol-classes-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .enrol-contact-grid {
+    grid-template-columns: 1fr;
+  }
+}

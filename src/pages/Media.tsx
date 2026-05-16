@@ -4,7 +4,7 @@ import Footer from "../components/Footer";
 import SectionTabs from "../components/SectionTabs";
 import { Album, FilterCategory } from "../types/album";
 
-declare global {
+declare module "react/jsx-runtime" {
   namespace JSX {
     interface IntrinsicElements {
       "behold-widget": React.DetailedHTMLProps<
@@ -196,13 +196,7 @@ export default function Gallery() {
       <Navigation variant="full" />
       <SectionTabs tabs={SECTIONS} />
 
-      <main
-        style={{
-          maxWidth: 1200,
-          margin: "0 auto",
-          padding: "140px 48px 120px",
-        }}
-      >
+      <main className="media-main">
         {/* ── 앨범 ────────────────────────────────── */}
         <section id="album">
           <div className="flex items-start justify-between flex-wrap gap-6 mb-10">
@@ -290,13 +284,7 @@ export default function Gallery() {
                     앨범 {byYear[year].length}개
                   </span>
                 </div>
-                <div
-                  style={{
-                    display: "grid",
-                    gridTemplateColumns: "repeat(3,1fr)",
-                    gap: 20,
-                  }}
-                >
+                <div className="album-grid">
                   {byYear[year].map((album) => (
                     <a
                       key={album.slug}
@@ -435,7 +423,7 @@ export default function Gallery() {
 
         {/* ── 인스타그램 ──────────────────────────────── */}
         <section id="instagram" style={{ marginTop: 96 }}>
-          <div className="flex items-center justify-between flex-wrap gap-4 mb-14">
+          <div className="flex items-center justify-between flex-wrap gap-4 mb-20">
             <h2 style={{ ...H2_STYLE }}>인스타그램</h2>
             <a
               href="https://www.instagram.com/nzsok.official"
@@ -486,16 +474,10 @@ export default function Gallery() {
           }}
         >
           <div
-            className="lightbox-inner bg-white rounded-3xl overflow-hidden w-full"
-            style={{
-              maxWidth: 1000,
-              maxHeight: "90vh",
-              display: "grid",
-              gridTemplateColumns: "1fr 340px",
-            }}
+            className="lightbox-inner lightbox-grid bg-white rounded-3xl overflow-hidden w-full"
           >
             <div
-              className="relative flex items-center justify-center"
+              className="lightbox-image-pane relative flex items-center justify-center"
               style={{ background: "#000", minHeight: 400 }}
             >
               {lightbox.album.photos[lightbox.photoIdx]?.image ? (
@@ -569,7 +551,7 @@ export default function Gallery() {
             </div>
 
             <div
-              className="flex flex-col overflow-y-auto"
+              className="lightbox-info-pane flex flex-col overflow-y-auto"
               style={{ padding: "36px 32px" }}
             >
               <button
