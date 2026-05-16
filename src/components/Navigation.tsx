@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
+import { ArrowLeft } from 'lucide-react'
 
 type NavVariant = 'full' | 'simple' | 'gallery'
 
@@ -22,10 +23,10 @@ export default function Navigation({ variant = 'full' }: NavigationProps) {
       <div
         className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0"
         style={{
-          background: '#c8973a',
-          fontFamily: "'Noto Serif KR', serif",
+          background: '#9278D6',
+          fontFamily: "'SUIT', sans-serif",
           fontWeight: 900,
-          color: '#0d2340',
+          color: '#fff',
           fontSize: 15,
         }}
       >
@@ -34,7 +35,7 @@ export default function Navigation({ variant = 'full' }: NavigationProps) {
       <div className="flex flex-col">
         <span
           style={{
-            fontFamily: "'Noto Serif KR', serif",
+            fontFamily: "'SUIT', sans-serif",
             fontSize: 13,
             fontWeight: 700,
             color: '#fff',
@@ -47,7 +48,7 @@ export default function Navigation({ variant = 'full' }: NavigationProps) {
         <span
           style={{
             fontSize: 10,
-            color: '#c8973a',
+            color: '#B49EE4',
             letterSpacing: '0.12em',
             textTransform: 'uppercase',
             fontWeight: 500,
@@ -67,9 +68,9 @@ export default function Navigation({ variant = 'full' }: NavigationProps) {
           className="fixed top-0 left-0 right-0 z-[100] px-12 flex items-center justify-between"
           style={{
             height: 72,
-            background: 'rgba(13,35,64,0.97)',
+            background: 'rgba(253,252,250,0.97)',
             backdropFilter: 'blur(12px)',
-            borderBottom: '1px solid rgba(200,151,58,0.2)',
+            borderBottom: '1px solid #EDE4D3',
           }}
         >
           <Logo />
@@ -77,7 +78,7 @@ export default function Navigation({ variant = 'full' }: NavigationProps) {
             <Link
               to="/"
               style={{
-                color: 'rgba(255,255,255,0.7)',
+                color: '#4a5f75',
                 textDecoration: 'none',
                 fontSize: 14,
                 display: 'flex',
@@ -85,10 +86,10 @@ export default function Navigation({ variant = 'full' }: NavigationProps) {
                 gap: 6,
                 transition: 'color 0.2s',
               }}
-              onMouseOver={e => (e.currentTarget.style.color = '#c8973a')}
-              onMouseOut={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.7)')}
+              onMouseOver={e => (e.currentTarget.style.color = '#9278D6')}
+              onMouseOut={e => (e.currentTarget.style.color = '#4a5f75')}
             >
-              ← 홈으로
+              <ArrowLeft size={14} /> 홈으로
             </Link>
             {variant === 'gallery' && (
               <Link
@@ -110,7 +111,6 @@ export default function Navigation({ variant = 'full' }: NavigationProps) {
               </Link>
             )}
           </div>
-          {/* Hamburger for simple nav on mobile */}
           <button
             className="nav-hamburger hidden md:hidden flex-col justify-center gap-[5px] w-9 h-9 bg-transparent border-0 cursor-pointer p-1 rounded-lg"
             style={{ display: 'none' }}
@@ -134,9 +134,9 @@ export default function Navigation({ variant = 'full' }: NavigationProps) {
         style={{
           padding: '0 48px',
           height: 72,
-          background: 'rgba(13,35,64,0.97)',
+          background: 'rgba(253,252,250,0.97)',
           backdropFilter: 'blur(12px)',
-          borderBottom: '1px solid rgba(200,151,58,0.2)',
+          borderBottom: '1px solid #EDE4D3',
         }}
       >
         <Logo />
@@ -148,7 +148,7 @@ export default function Navigation({ variant = 'full' }: NavigationProps) {
               to="/about"
               className="block px-4 py-2 text-sm font-medium rounded-md"
               style={{
-                color: 'rgba(255,255,255,0.82)',
+                color: '#4a5f75',
                 textDecoration: 'none',
                 letterSpacing: '0.02em',
               }}
@@ -168,7 +168,7 @@ export default function Navigation({ variant = 'full' }: NavigationProps) {
             <Link
               to={isAbout ? '/#programs' : '#programs'}
               className="block px-4 py-2 text-sm font-medium rounded-md"
-              style={{ color: 'rgba(255,255,255,0.82)', textDecoration: 'none', letterSpacing: '0.02em' }}
+              style={{ color: '#4a5f75', textDecoration: 'none', letterSpacing: '0.02em' }}
             >
               교육 ▾
             </Link>
@@ -192,14 +192,14 @@ export default function Navigation({ variant = 'full' }: NavigationProps) {
               to="/admission"
               className="block px-4 py-2 text-sm font-bold rounded-lg"
               style={{
-                background: '#c8973a',
-                color: '#0d2340',
+                background: '#9278D6',
+                color: '#fff',
                 textDecoration: 'none',
                 padding: '9px 20px',
                 transition: 'background 0.2s',
               }}
-              onMouseOver={e => (e.currentTarget.style.background = '#e8b84b')}
-              onMouseOut={e => (e.currentTarget.style.background = '#c8973a')}
+              onMouseOver={e => (e.currentTarget.style.background = '#B49EE4')}
+              onMouseOut={e => (e.currentTarget.style.background = '#9278D6')}
             >
               입학안내
             </Link>
@@ -256,8 +256,8 @@ export default function Navigation({ variant = 'full' }: NavigationProps) {
             style={{
               display: 'block',
               marginTop: 12,
-              background: '#c8973a',
-              color: '#0d2340',
+              background: '#9278D6',
+              color: '#fff',
               fontWeight: 700,
               textAlign: 'center',
               borderRadius: 10,

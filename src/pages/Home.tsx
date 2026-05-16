@@ -1,15 +1,24 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { MapPin, Phone, Mail, Calendar } from 'lucide-react'
 import Navigation from '../components/Navigation'
 import Footer from '../components/Footer'
 
+const InstagramIcon = ({ size = 18 }: { size?: number }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+  </svg>
+)
+
 const TABS = [
-  { id: 'kinder',    label: '유치부',           color: '#2aa99a', icon: '🌱', title: '유치부', sub: '놀이 중심 한국어 기초 · 정서 발달', tags: ['주제별 수업','사회성·인성 교육','한글 모음 & 자음','기본 어휘','짧은 문장','전래동화'] },
-  { id: 'elem-low',  label: '초등저 (1–3학년)', color: '#c8973a', icon: '📖', title: '초등저 (1–3학년)', sub: '읽기·쓰기 기초 완성 · 어휘 확장', tags: ['한글 모음·자음 정리','어휘 확장','기본 문법','문장 연습','전래동화'] },
-  { id: 'elem-high', label: '초등고 (4–6학년)', color: '#e07830', icon: '✏️', title: '초등고 (4–6학년)', sub: '고급 어휘 · 문법 심화 · 역사·문화', tags: ['어휘 확장','고급 어휘','기본 문법','자신의 생각 표현','글의 흐름 이해','역사','속담','한자어','사자성어'] },
-  { id: 'middle',    label: '중등',             color: '#6a7a90', icon: '🎓', title: '중등', sub: '심화 독해 · 글쓰기 · 토론·발표', tags: ['고급 어휘 확장','문법','글쓰기 확장','여러 종류의 글','배경 지식 확장','토론','발표','역사','한자어','속담','사자성어'] },
-  { id: 'music',     label: '음악',             color: '#b464dc', icon: '🎵', title: '음악', sub: '전래동요 · 민요 · 리듬 활동', tags: ['전래동요','창작동요','민요','애국가','교가','리듬 게임'] },
-  { id: 'pe',        label: '체육',             color: '#3cb878', icon: '⚽', title: '체육', sub: '신체 발달 · 협동심 · 기초 체력', tags: ['연령에 따른 신체 발달','협동심 발달','사회성 발달','전학년 줄넘기','기초 체력 단련'] },
+  { id: 'kinder',    label: '유치부',           color: '#9278D6', icon: '🌱', title: '유치부', sub: '놀이 중심 한국어 기초 · 정서 발달', tags: ['주제별 수업','사회성·인성 교육','한글 모음 & 자음','기본 어휘','짧은 문장','전래동화'] },
+  { id: 'elem-low',  label: '초등저 (1–3학년)', color: '#7c5ecf', icon: '📖', title: '초등저 (1–3학년)', sub: '읽기·쓰기 기초 완성 · 어휘 확장', tags: ['한글 모음·자음 정리','어휘 확장','기본 문법','문장 연습','전래동화'] },
+  { id: 'elem-high', label: '초등고 (4–6학년)', color: '#B49EE4', icon: '✏️', title: '초등고 (4–6학년)', sub: '고급 어휘 · 문법 심화 · 역사·문화', tags: ['어휘 확장','고급 어휘','기본 문법','자신의 생각 표현','글의 흐름 이해','역사','속담','한자어','사자성어'] },
+  { id: 'middle',    label: '중등',             color: '#5a4190', icon: '🎓', title: '중등', sub: '심화 독해 · 글쓰기 · 토론·발표', tags: ['고급 어휘 확장','문법','글쓰기 확장','여러 종류의 글','배경 지식 확장','토론','발표','역사','한자어','속담','사자성어'] },
+  { id: 'music',     label: '음악',             color: '#1c2b3a', icon: '🎵', title: '음악', sub: '전래동요 · 민요 · 리듬 활동', tags: ['전래동요','창작동요','민요','애국가','교가','리듬 게임'] },
+  { id: 'pe',        label: '체육',             color: '#1c2b3a', icon: '⚽', title: '체육', sub: '신체 발달 · 협동심 · 기초 체력', tags: ['연령에 따른 신체 발달','협동심 발달','사회성 발달','전학년 줄넘기','기초 체력 단련'] },
 ]
 
 export default function Home() {
@@ -24,7 +33,7 @@ export default function Home() {
       <section
         id="top"
         className="relative flex items-center overflow-hidden"
-        style={{ minHeight: '100vh', background: '#0d2340' }}
+        style={{ minHeight: '100vh', background: '#E8E0F7' }}
       >
         <div className="hero-bg absolute inset-0" />
         <div className="hero-pattern absolute inset-0" />
@@ -36,16 +45,16 @@ export default function Home() {
           <div
             className="inline-flex items-center gap-2 rounded-full mb-8 anim-delay-1"
             style={{
-              background: 'rgba(200,151,58,0.12)',
-              border: '1px solid rgba(200,151,58,0.3)',
+              background: 'rgba(146,120,214,0.12)',
+              border: '1px solid rgba(146,120,214,0.3)',
               padding: '6px 16px',
             }}
           >
             <div
               className="hero-badge-dot w-1.5 h-1.5 rounded-full"
-              style={{ background: '#2aa99a' }}
+              style={{ background: '#9278D6' }}
             />
-            <span style={{ color: '#c8973a', fontSize: 12, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase' }}>
+            <span style={{ color: '#B49EE4', fontSize: 12, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase' }}>
               뉴질랜드 · 오클랜드 · Browns Bay
             </span>
           </div>
@@ -53,24 +62,24 @@ export default function Home() {
           <h1
             className="anim-delay-2"
             style={{
-              fontFamily: "'Noto Serif KR', serif",
+              fontFamily: "'SUIT', sans-serif",
               fontSize: 'clamp(36px,6vw,72px)',
               fontWeight: 900,
-              color: '#fff',
+              color: '#1c2b3a',
               lineHeight: 1.15,
               marginBottom: 16,
             }}
           >
             뉴질랜드<br />
-            <em style={{ fontStyle: 'normal', color: '#c8973a' }}>한민족 한글학교</em>
+            <em style={{ fontStyle: 'normal', color: '#B49EE4' }}>한민족 한글학교</em>
           </h1>
 
           <p
             className="anim-delay-3"
             style={{
-              fontFamily: "'Playfair Display', serif",
+              fontFamily: "'SUIT', sans-serif",
               fontSize: 'clamp(16px,2vw,22px)',
-              color: 'rgba(255,255,255,0.55)',
+              color: '#4a5f75',
               marginBottom: 12,
               letterSpacing: '0.04em',
             }}
@@ -79,7 +88,7 @@ export default function Home() {
           </p>
           <p
             className="anim-delay-35"
-            style={{ fontSize: 15, color: '#2aa99a', letterSpacing: '0.06em', marginBottom: 48, fontStyle: 'italic' }}
+            style={{ fontSize: 15, color: '#9278D6', letterSpacing: '0.06em', marginBottom: 48, fontStyle: 'italic' }}
           >
             "긍정적인 생활태도와 이중문화 소유자 · Think positively and be bicultural"
           </p>
@@ -88,16 +97,14 @@ export default function Home() {
             <Link
               to="/admission"
               className="inline-flex items-center gap-2.5 font-bold rounded-xl no-underline transition-all"
-              style={{ background: '#c8973a', color: '#0d2340', fontSize: 15, padding: '15px 32px' }}
+              style={{ background: '#9278D6', color: '#fff', fontSize: 15, padding: '15px 32px' }}
               onMouseOver={e => {
-                e.currentTarget.style.background = '#e8b84b'
+                e.currentTarget.style.background = '#B49EE4'
                 e.currentTarget.style.transform = 'translateY(-2px)'
-                e.currentTarget.style.boxShadow = '0 12px 32px rgba(200,151,58,0.35)'
               }}
               onMouseOut={e => {
-                e.currentTarget.style.background = '#c8973a'
+                e.currentTarget.style.background = '#9278D6'
                 e.currentTarget.style.transform = ''
-                e.currentTarget.style.boxShadow = ''
               }}
             >
               <span>입학 안내 보기</span><span>→</span>
@@ -106,15 +113,15 @@ export default function Home() {
               to="/about"
               className="inline-flex items-center gap-2.5 font-medium rounded-xl no-underline transition-all"
               style={{
-                background: 'transparent', color: '#fff', fontSize: 15, padding: '15px 32px',
-                border: '1px solid rgba(255,255,255,0.25)',
+                background: 'transparent', color: '#1c2b3a', fontSize: 15, padding: '15px 32px',
+                border: '1px solid rgba(0,0,0,0.18)',
               }}
               onMouseOver={e => {
-                e.currentTarget.style.borderColor = 'rgba(255,255,255,0.5)'
-                e.currentTarget.style.background = 'rgba(255,255,255,0.06)'
+                e.currentTarget.style.borderColor = 'rgba(0,0,0,0.3)'
+                e.currentTarget.style.background = 'rgba(0,0,0,0.04)'
               }}
               onMouseOut={e => {
-                e.currentTarget.style.borderColor = 'rgba(255,255,255,0.25)'
+                e.currentTarget.style.borderColor = 'rgba(0,0,0,0.18)'
                 e.currentTarget.style.background = 'transparent'
               }}
             >
@@ -124,14 +131,14 @@ export default function Home() {
 
           <div
             className="flex gap-10 mt-16 pt-12 flex-wrap anim-delay-55"
-            style={{ borderTop: '1px solid rgba(255,255,255,0.1)' }}
+            style={{ borderTop: '1px solid rgba(0,0,0,0.1)' }}
           >
             {[['1997', '설립 연도'], ['28+', '운영 연수'], ['200+', '재학생']].map(([num, label]) => (
               <div key={label} className="flex flex-col">
-                <span style={{ fontFamily: "'Playfair Display', serif", fontSize: 36, fontWeight: 700, color: '#c8973a', lineHeight: 1 }}>
+                <span style={{ fontFamily: "'SUIT', sans-serif", fontSize: 36, fontWeight: 700, color: '#9278D6', lineHeight: 1 }}>
                   {num}
                 </span>
-                <span style={{ fontSize: 12, color: 'rgba(255,255,255,0.5)', marginTop: 4, letterSpacing: '0.06em', textTransform: 'uppercase' }}>
+                <span style={{ fontSize: 12, color: 'rgba(0,0,0,0.45)', marginTop: 4, letterSpacing: '0.06em', textTransform: 'uppercase' }}>
                   {label}
                 </span>
               </div>
@@ -141,25 +148,25 @@ export default function Home() {
       </section>
 
       {/* ── INFO STRIP ──────────────────────────────────── */}
-      <div style={{ background: '#0d2340', padding: '0 48px' }}>
+      <div style={{ background: '#E8E0F7', padding: '0 48px' }}>
         <div className="info-strip-inner">
           {[
-            { icon: '📍', title: '위치', body: '40 Sartors Avenue\nBrowns Bay, Auckland 0630' },
-            { icon: '📞', title: '연락처', body: '021 733 5706\nadmin@nzsok.school.nz' },
-            { icon: '🗓', title: '수업 일정', body: '매주 토요일\n학기 중 운영 · 상세 일정 확인' },
-          ].map(({ icon, title, body }) => (
+            { icon: <MapPin size={22} />, iconBg: 'rgba(168,212,184,0.3)', iconColor: '#4a9a6a', title: '위치', body: '40 Sartors Avenue\nBrowns Bay, Auckland 0630' },
+            { icon: <Phone size={22} />, iconBg: 'rgba(168,196,232,0.3)', iconColor: '#4a7ab0', title: '연락처', body: '021 733 5706\nadmin@nzsok.school.nz' },
+            { icon: <Calendar size={22} />, iconBg: 'rgba(245,224,154,0.4)', iconColor: '#9a8030', title: '수업 일정', body: '매주 토요일\n학기 중 운영 · 상세 일정 확인' },
+          ].map(({ icon, iconBg, iconColor, title, body }) => (
             <div key={title} className="info-card-strip">
               <div
-                className="flex items-center justify-center rounded-xl text-[22px] flex-shrink-0"
-                style={{ width: 48, height: 48, background: 'rgba(200,151,58,0.12)' }}
+                className="flex items-center justify-center rounded-xl flex-shrink-0"
+                style={{ width: 48, height: 48, background: iconBg, color: iconColor }}
               >
                 {icon}
               </div>
               <div>
-                <h3 style={{ fontSize: 13, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#c8973a', marginBottom: 6 }}>
+                <h3 style={{ fontSize: 13, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#9278D6', marginBottom: 6 }}>
                   {title}
                 </h3>
-                <p style={{ color: 'rgba(255,255,255,0.75)', fontSize: 14, lineHeight: 1.65 }}>
+                <p style={{ color: '#4a5f75', fontSize: 14, lineHeight: 1.65 }}>
                   {body.split('\n').map((line, i) => <span key={i}>{line}{i < body.split('\n').length - 1 && <br />}</span>)}
                 </p>
               </div>
@@ -169,10 +176,10 @@ export default function Home() {
       </div>
 
       {/* ── ABOUT ──────────────────────────────────────── */}
-      <section id="about" style={{ background: '#f9f5ee', padding: '100px 48px' }}>
+      <section id="about" style={{ background: '#FAF7F2', padding: '100px 48px' }}>
         <div className="max-w-[1200px] mx-auto">
-          <span className="section-label-line" style={{ color: '#1a7a6e' }}>학교 소개</span>
-          <h2 style={{ fontFamily: "'Noto Serif KR', serif", fontSize: 'clamp(28px,3.5vw,44px)', fontWeight: 700, color: '#0d2340', lineHeight: 1.25, marginBottom: 16 }}>
+          <span className="section-label-line">학교 소개</span>
+          <h2 style={{ fontFamily: "'SUIT', sans-serif", fontSize: 'clamp(28px,3.5vw,44px)', fontWeight: 700, color: '#1c2b3a', lineHeight: 1.25, marginBottom: 16 }}>
             한국어와 문화를<br />미래 세대에게
           </h2>
           <p style={{ fontSize: 16, color: '#4a5f75', lineHeight: 1.75, maxWidth: 520, marginBottom: 0 }}>
@@ -188,12 +195,12 @@ export default function Home() {
               <div
                 key={unit}
                 className="text-center rounded-2xl"
-                style={{ background: '#fff', border: '1px solid rgba(0,0,0,0.07)', boxShadow: '0 2px 12px rgba(0,0,0,0.05)', padding: '36px 28px' }}
+                style={{ background: '#fff', border: '1px solid rgba(0,0,0,0.07)',  padding: '36px 28px' }}
               >
-                <div style={{ fontFamily: "'Playfair Display','Noto Serif KR',serif", fontSize: 52, fontWeight: 900, color: '#1a7a6e', lineHeight: 1, marginBottom: 8 }}>
+                <div style={{ fontFamily: "'SUIT', sans-serif", fontSize: 52, fontWeight: 900, color: '#9278D6', lineHeight: 1, marginBottom: 8 }}>
                   {num}<span style={{ fontSize: 24 }}>+</span>
                 </div>
-                <div style={{ fontSize: 18, fontWeight: 700, color: '#0d2340', marginBottom: 6 }}>{unit}</div>
+                <div style={{ fontSize: 18, fontWeight: 700, color: '#1c2b3a', marginBottom: 6 }}>{unit}</div>
                 <div style={{ fontSize: 13, color: '#4a5f75', lineHeight: 1.6 }}>
                   {desc.split('\n').map((l, i) => <span key={i}>{l}{i === 0 && <br />}</span>)}
                 </div>
@@ -205,18 +212,18 @@ export default function Home() {
             <Link
               to="/about"
               className="inline-flex items-center gap-2 rounded-xl no-underline font-semibold transition-all"
-              style={{ padding: '14px 32px', background: '#1a7a6e', color: '#fff', fontSize: 15, letterSpacing: '0.02em' }}
-              onMouseOver={e => { e.currentTarget.style.background = '#2aa99a'; e.currentTarget.style.transform = 'translateY(-2px)' }}
-              onMouseOut={e => { e.currentTarget.style.background = '#1a7a6e'; e.currentTarget.style.transform = '' }}
+              style={{ padding: '14px 32px', background: '#9278D6', color: '#fff', fontSize: 15, letterSpacing: '0.02em' }}
+              onMouseOver={e => { e.currentTarget.style.background = '#B49EE4'; e.currentTarget.style.transform = 'translateY(-2px)' }}
+              onMouseOut={e => { e.currentTarget.style.background = '#9278D6'; e.currentTarget.style.transform = '' }}
             >
               학교소개 자세히 보기 →
             </Link>
             <Link
               to="/admission"
               className="inline-flex items-center gap-2 rounded-xl no-underline font-semibold transition-all"
-              style={{ padding: '14px 32px', background: 'transparent', color: '#1a7a6e', fontSize: 15, border: '2px solid #1a7a6e' }}
-              onMouseOver={e => { e.currentTarget.style.background = '#1a7a6e'; e.currentTarget.style.color = '#fff' }}
-              onMouseOut={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#1a7a6e' }}
+              style={{ padding: '14px 32px', background: 'transparent', color: '#9278D6', fontSize: 15, border: '2px solid #9278D6' }}
+              onMouseOver={e => { e.currentTarget.style.background = '#9278D6'; e.currentTarget.style.color = '#fff' }}
+              onMouseOut={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#9278D6' }}
             >
               입학 안내
             </Link>
@@ -225,48 +232,48 @@ export default function Home() {
       </section>
 
       {/* ── SCHEDULE ────────────────────────────────────── */}
-      <section id="schedule" style={{ background: '#0d2340', color: '#fff', padding: '100px 48px' }}>
+      <section id="schedule" style={{ background: '#E8E0F7', padding: '100px 48px' }}>
         <div className="max-w-[1200px] mx-auto">
-          <span className="section-label-line" style={{ color: '#2aa99a' }}>수업 시간표</span>
-          <h2 style={{ fontFamily: "'Noto Serif KR', serif", fontSize: 'clamp(28px,3.5vw,44px)', fontWeight: 700, color: '#fff', lineHeight: 1.25, marginBottom: 0 }}>
+          <span className="section-label-line">수업 시간표</span>
+          <h2 style={{ fontFamily: "'SUIT', sans-serif", fontSize: 'clamp(28px,3.5vw,44px)', fontWeight: 700, color: '#1c2b3a', lineHeight: 1.25, marginBottom: 0 }}>
             토요일 정기 수업
           </h2>
 
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.5fr', gap: 60, marginTop: 56, alignItems: 'start' }}>
             <div>
               {[
-                { icon: '📅', title: '수업 요일', body: <>매주 <strong style={{ color: '#fff' }}>토요일</strong> 운영<br />학기 중 운영 (뉴질랜드 학교 방학 휴무)</> },
-                { icon: '🕙', title: '정규 수업', body: <><strong style={{ color: '#fff' }}>오전 10:00 ~ 오후 1:40</strong></> },
-                { icon: '🎨', title: '특강 수업', body: <><strong style={{ color: '#fff' }}>오후 1:50 ~ 오후 3:00</strong><br />미술 · 바이올린 · 태권도 · 4D프레임</> },
+                { icon: '📅', title: '수업 요일', body: <>매주 <strong style={{ color: '#1c2b3a' }}>토요일</strong> 운영<br />학기 중 운영 (뉴질랜드 학교 방학 휴무)</> },
+                { icon: '🕙', title: '정규 수업', body: <><strong style={{ color: '#1c2b3a' }}>오전 10:00 ~ 오후 1:40</strong></> },
+                { icon: '🎨', title: '특강 수업', body: <><strong style={{ color: '#1c2b3a' }}>오후 1:50 ~ 오후 3:00</strong><br />미술 · 바이올린 · 태권도 · 4D프레임</> },
                 { icon: '📍', title: '장소', body: <>40 Sartors Avenue<br />Browns Bay, Auckland 0630</> },
               ].map(({ icon, title, body }) => (
                 <div
                   key={title}
                   className="rounded-xl mb-6"
-                  style={{ background: 'rgba(200,151,58,0.1)', border: '1px solid rgba(200,151,58,0.25)', padding: 24 }}
+                  style={{ background: 'rgba(146,120,214,0.1)', border: '1px solid rgba(146,120,214,0.25)', padding: 24 }}
                 >
-                  <h4 style={{ color: '#c8973a', fontSize: 13, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: 8 }}>
+                  <h4 style={{ color: '#B49EE4', fontSize: 13, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: 8 }}>
                     {icon} {title}
                   </h4>
-                  <p style={{ color: 'rgba(255,255,255,0.75)', fontSize: 14, lineHeight: 1.65 }}>{body}</p>
+                  <p style={{ color: '#4a5f75', fontSize: 14, lineHeight: 1.65 }}>{body}</p>
                 </div>
               ))}
-              <p style={{ color: 'rgba(255,255,255,0.55)', fontSize: 13, lineHeight: 1.7 }}>
+              <p style={{ color: '#8a9ab0', fontSize: 13, lineHeight: 1.7 }}>
                 정확한 수업 일정 및 반 배정은 입학 상담 시 안내해 드립니다.
               </p>
             </div>
 
             <div
               className="rounded-2xl overflow-hidden"
-              style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)' }}
+              style={{ background: '#fff', border: '1px solid rgba(0,0,0,0.08)' }}
             >
               <div
                 className="timetable-header px-7 py-5"
-                style={{ background: 'rgba(200,151,58,0.12)', borderBottom: '1px solid rgba(255,255,255,0.08)' }}
+                style={{ background: 'rgba(146,120,214,0.1)', borderBottom: '1px solid rgba(0,0,0,0.07)' }}
               >
-                <span style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#c8973a' }}>교시</span>
-                <span style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#c8973a' }}>시간</span>
-                <span style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#c8973a' }}>내용</span>
+                <span style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#B49EE4' }}>교시</span>
+                <span style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#B49EE4' }}>시간</span>
+                <span style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#B49EE4' }}>내용</span>
               </div>
               {[
                 { badge: '1교시', time: '10:00 ~ 10:40', label: '한국어 수업', special: false },
@@ -280,27 +287,27 @@ export default function Home() {
                   key={badge}
                   className="timetable-row px-7 py-[18px] items-center"
                   style={{
-                    borderBottom: special === 'extra' ? 'none' : '1px solid rgba(255,255,255,0.05)',
-                    background: special === 'extra' ? 'rgba(26,122,110,0.15)' : special === 'lunch' ? 'rgba(255,255,255,0.04)' : 'transparent',
-                    borderTop: special === 'extra' ? '1px solid rgba(26,122,110,0.3)' : 'none',
+                    borderBottom: special === 'extra' ? 'none' : '1px solid rgba(0,0,0,0.06)',
+                    background: special === 'extra' ? 'rgba(146,120,214,0.1)' : special === 'lunch' ? 'rgba(245,224,154,0.15)' : 'transparent',
+                    borderTop: special === 'extra' ? '1px solid rgba(146,120,214,0.2)' : 'none',
                   }}
                 >
                   <span
                     className="px-2.5 py-[5px] rounded-md text-xs font-semibold text-center"
                     style={{
-                      background: special === 'extra' ? '#1a7a6e' : special === 'lunch' ? 'rgba(255,255,255,0.1)' : 'rgba(26,122,110,0.2)',
-                      color: '#2aa99a',
+                      background: special === 'extra' ? '#7c5ecf' : special === 'lunch' ? 'rgba(245,224,154,0.4)' : 'rgba(146,120,214,0.15)',
+                      color: '#B49EE4',
                     }}
                   >
                     {badge}
                   </span>
-                  <span style={{ color: 'rgba(255,255,255,0.72)', fontSize: 13 }}>{time}</span>
+                  <span style={{ color: '#4a5f75', fontSize: 13 }}>{time}</span>
                   <span>
                     <span
                       className="inline-block px-2.5 py-[3px] rounded text-xs font-medium"
                       style={{
-                        background: special === 'extra' ? '#1a7a6e' : 'rgba(26,122,110,0.15)',
-                        color: special === 'extra' ? '#fff' : '#2aa99a',
+                        background: special === 'extra' ? '#7c5ecf' : 'rgba(146,120,214,0.15)',
+                        color: special === 'extra' ? '#fff' : '#B49EE4',
                       }}
                     >
                       {label}
@@ -314,22 +321,22 @@ export default function Home() {
       </section>
 
       {/* ── PROGRAMS / CURRICULUM TABS ────────────────── */}
-      <section id="programs" style={{ background: '#0d2340', color: '#fff', padding: '100px 48px' }}>
+      <section id="programs" style={{ background: '#E8E0F7', padding: '100px 48px' }}>
         <div className="max-w-[1200px] mx-auto">
           <span
             className="inline-block text-[11px] font-bold mb-4 rounded-full"
             style={{
-              letterSpacing: '0.12em', textTransform: 'uppercase', color: '#c8973a',
-              background: 'rgba(200,151,58,0.08)', border: '1px solid rgba(200,151,58,0.3)',
+              letterSpacing: '0.12em', textTransform: 'uppercase', color: '#B49EE4',
+              background: 'rgba(146,120,214,0.08)', border: '1px solid rgba(146,120,214,0.3)',
               padding: '5px 14px',
             }}
           >
             교육 과정
           </span>
-          <h2 style={{ fontFamily: "'Noto Serif KR', serif", fontSize: 'clamp(28px,3.5vw,44px)', fontWeight: 700, color: '#fff', lineHeight: 1.25, marginBottom: 16 }}>
+          <h2 style={{ fontFamily: "'SUIT', sans-serif", fontSize: 'clamp(28px,3.5vw,44px)', fontWeight: 700, color: '#1c2b3a', lineHeight: 1.25, marginBottom: 16 }}>
             학년별 연계 수업 커리큘럼
           </h2>
-          <p style={{ fontSize: 16, color: 'rgba(255,255,255,0.6)', lineHeight: 1.75, maxWidth: 520 }}>
+          <p style={{ fontSize: 16, color: '#4a5f75', lineHeight: 1.75, maxWidth: 520 }}>
             2024년도 학년별 중점 교육 사항입니다. 각 학년의 발달 단계에 맞춘 체계적인 커리큘럼으로 운영됩니다.
           </p>
 
@@ -341,9 +348,9 @@ export default function Home() {
                 className="curriculum-tab flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold cursor-pointer"
                 style={{
                   border: '2px solid',
-                  borderColor: activeTab === t.id ? t.color : 'rgba(255,255,255,0.15)',
-                  background: activeTab === t.id ? t.color : 'rgba(255,255,255,0.05)',
-                  color: activeTab === t.id ? '#0d2340' : 'rgba(255,255,255,0.55)',
+                  borderColor: activeTab === t.id ? t.color : 'rgba(0,0,0,0.12)',
+                  background: activeTab === t.id ? t.color : 'transparent',
+                  color: activeTab === t.id ? '#fff' : '#4a5f75',
                   letterSpacing: '0.02em',
                 }}
                 onClick={() => setActiveTab(t.id)}
@@ -360,13 +367,13 @@ export default function Home() {
               className="rounded-2xl"
               style={{
                 padding: '40px 48px',
-                background: 'rgba(255,255,255,0.04)',
+                background: 'rgba(255,255,255,0.7)',
                 border: `1px solid ${tab.color}40`,
               }}
             >
               <div
                 className="flex items-center gap-5 mb-8 pb-6"
-                style={{ borderBottom: '1px solid rgba(255,255,255,0.08)' }}
+                style={{ borderBottom: '1px solid rgba(0,0,0,0.07)' }}
               >
                 <div
                   className="flex items-center justify-center rounded-2xl text-[26px] flex-shrink-0"
@@ -375,10 +382,10 @@ export default function Home() {
                   {tab.icon}
                 </div>
                 <div>
-                  <div style={{ fontFamily: "'Noto Serif KR', serif", fontSize: 24, fontWeight: 700, color: '#fff', marginBottom: 4 }}>
+                  <div style={{ fontFamily: "'SUIT', sans-serif", fontSize: 24, fontWeight: 700, color: '#1c2b3a', marginBottom: 4 }}>
                     {tab.title}
                   </div>
-                  <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.45)', letterSpacing: '0.03em' }}>
+                  <div style={{ fontSize: 13, color: '#4a5f75', letterSpacing: '0.03em' }}>
                     {tab.sub}
                   </div>
                 </div>
@@ -404,10 +411,10 @@ export default function Home() {
       </section>
 
       {/* ── ANNUAL PLAN ──────────────────────────────────── */}
-      <section id="annual" style={{ background: '#f2f4f7', padding: '80px 48px' }}>
+      <section id="annual" style={{ background: '#F5EFE3', padding: '80px 48px' }}>
         <div className="max-w-[1200px] mx-auto">
           <span className="section-label-line">연간 교육계획</span>
-          <h2 style={{ fontFamily: "'Noto Serif KR', serif", fontSize: 'clamp(28px,3.5vw,44px)', fontWeight: 700, color: '#0d2340', lineHeight: 1.25, marginBottom: 16 }}>
+          <h2 style={{ fontFamily: "'SUIT', sans-serif", fontSize: 'clamp(28px,3.5vw,44px)', fontWeight: 700, color: '#1c2b3a', lineHeight: 1.25, marginBottom: 16 }}>
             2025 연간계획표
           </h2>
           <p style={{ fontSize: 16, color: '#4a5f75', lineHeight: 1.75 }}>
@@ -475,9 +482,9 @@ export default function Home() {
                 ],
               },
             ].map(({ term, hdr, weeks, rows }) => (
-              <div key={term} className={`rounded-2xl overflow-hidden`} style={{ background: '#fff', boxShadow: '0 4px 20px rgba(0,0,0,0.07)' }}>
+              <div key={term} className={`rounded-2xl overflow-hidden`} style={{ background: '#fff', border: '1px solid rgba(0,0,0,0.07)' }}>
                 <div className={`${hdr} px-5 py-4`}>
-                  <div style={{ fontFamily: "'Noto Serif KR', serif", fontWeight: 700, fontSize: 18, color: '#fff' }}>{term}</div>
+                  <div style={{ fontFamily: "'SUIT', sans-serif", fontWeight: 700, fontSize: 18, color: '#fff' }}>{term}</div>
                   <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.75)', marginTop: 2 }}>{weeks}</div>
                 </div>
                 <div className="py-2">
@@ -493,7 +500,7 @@ export default function Home() {
                       <span
                         style={{
                           fontSize: 12, lineHeight: 1.4,
-                          color: type === 'highlight' ? '#e05a2b' : type === 'holiday' ? '#888' : type === 'special' ? '#2a7a2a' : '#1c2b3a',
+                          color: type === 'highlight' ? '#7c5ecf' : type === 'holiday' ? '#888' : type === 'special' ? '#5a4190' : '#1c2b3a',
                           fontWeight: type === 'highlight' || type === 'special' ? 600 : 400,
                           fontStyle: type === 'holiday' ? 'italic' : 'normal',
                         }}
@@ -510,10 +517,10 @@ export default function Home() {
       </section>
 
       {/* ── NOTICE ──────────────────────────────────────── */}
-      <section id="notice" style={{ background: '#f9f5ee', padding: '100px 48px' }}>
+      <section id="notice" style={{ background: '#FAF7F2', padding: '100px 48px' }}>
         <div className="max-w-[1200px] mx-auto">
           <span className="section-label-line">알림마당</span>
-          <h2 style={{ fontFamily: "'Noto Serif KR', serif", fontSize: 'clamp(28px,3.5vw,44px)', fontWeight: 700, color: '#0d2340', lineHeight: 1.25, marginBottom: 16 }}>
+          <h2 style={{ fontFamily: "'SUIT', sans-serif", fontSize: 'clamp(28px,3.5vw,44px)', fontWeight: 700, color: '#1c2b3a', lineHeight: 1.25, marginBottom: 16 }}>
             공지사항
           </h2>
           <p style={{ fontSize: 16, color: '#4a5f75', lineHeight: 1.75, maxWidth: 520 }}>
@@ -528,26 +535,24 @@ export default function Home() {
               { badge: '안내', badgeType: 'general',   title: 'Term 1 특강 안내 – 미술, 바이올린, 태권도, 4D프레임',   date: '2025년 2월 10일' },
             ].map(({ badge, badgeType, title, date }) => {
               const badgeStyle =
-                badgeType === 'important' ? { background: 'rgba(200,151,58,0.15)', color: '#c8973a', border: '1px solid rgba(200,151,58,0.3)' } :
-                badgeType === 'event'     ? { background: 'rgba(13,35,64,0.08)',    color: '#1a3a5c', border: '1px solid rgba(13,35,64,0.15)' } :
-                                            { background: 'rgba(26,122,110,0.1)',   color: '#1a7a6e', border: '1px solid rgba(26,122,110,0.2)' }
+                badgeType === 'important' ? { background: 'rgba(146,120,214,0.15)', color: '#7c5ecf', border: '1px solid rgba(146,120,214,0.3)' } :
+                badgeType === 'event'     ? { background: 'rgba(146,120,214,0.08)',     color: '#1c2b3a', border: '1px solid rgba(146,120,214,0.15)' } :
+                                            { background: 'rgba(90,65,144,0.1)',     color: '#5a4190', border: '1px solid rgba(90,65,144,0.2)' }
               return (
                 <div
                   key={title}
                   className="rounded-2xl flex items-start gap-6 transition-all cursor-default"
                   style={{
                     background: '#fff', border: '1px solid rgba(0,0,0,0.07)',
-                    boxShadow: '0 2px 12px rgba(0,0,0,0.04)',
+                    
                     padding: '24px 32px',
                   }}
                   onMouseOver={e => {
-                    (e.currentTarget as HTMLDivElement).style.borderColor = 'rgba(26,122,110,0.2)'
-                    ;(e.currentTarget as HTMLDivElement).style.boxShadow = '0 8px 24px rgba(0,0,0,0.09)'
+                    (e.currentTarget as HTMLDivElement).style.borderColor = 'rgba(146,120,214,0.3)'
                     ;(e.currentTarget as HTMLDivElement).style.transform = 'translateY(-2px)'
                   }}
                   onMouseOut={e => {
                     ;(e.currentTarget as HTMLDivElement).style.borderColor = 'rgba(0,0,0,0.07)'
-                    ;(e.currentTarget as HTMLDivElement).style.boxShadow = '0 2px 12px rgba(0,0,0,0.04)'
                     ;(e.currentTarget as HTMLDivElement).style.transform = ''
                   }}
                 >
@@ -569,10 +574,10 @@ export default function Home() {
       </section>
 
       {/* ── ADMISSION SNIPPET ────────────────────────────── */}
-      <section id="admission" style={{ background: '#fff', padding: '100px 48px' }}>
+      <section id="admission" style={{ background: '#FDFCFA', padding: '100px 48px' }}>
         <div className="max-w-[1200px] mx-auto">
           <span className="section-label-line">입학 안내</span>
-          <h2 style={{ fontFamily: "'Noto Serif KR', serif", fontSize: 'clamp(28px,3.5vw,44px)', fontWeight: 700, color: '#0d2340', lineHeight: 1.25, marginBottom: 16 }}>
+          <h2 style={{ fontFamily: "'SUIT', sans-serif", fontSize: 'clamp(28px,3.5vw,44px)', fontWeight: 700, color: '#1c2b3a', lineHeight: 1.25, marginBottom: 16 }}>
             함께 시작해요
           </h2>
           <p style={{ fontSize: 16, color: '#4a5f75', lineHeight: 1.75, maxWidth: 520 }}>
@@ -591,12 +596,12 @@ export default function Home() {
                 <div key={num} className="flex gap-6 step-connector">
                   <div
                     className="flex items-center justify-center flex-shrink-0 rounded-full font-bold relative z-[1]"
-                    style={{ width: 40, height: 40, background: '#1a7a6e', color: '#fff', fontSize: 14 }}
+                    style={{ width: 40, height: 40, background: '#9278D6', color: '#fff', fontSize: 14 }}
                   >
                     {num}
                   </div>
                   <div style={{ paddingBottom: i < arr.length - 1 ? 36 : 0 }}>
-                    <h4 style={{ fontSize: 16, fontWeight: 700, color: '#0d2340', marginBottom: 6 }}>{title}</h4>
+                    <h4 style={{ fontSize: 16, fontWeight: 700, color: '#1c2b3a', marginBottom: 6 }}>{title}</h4>
                     <p style={{ fontSize: 13, color: '#4a5f75', lineHeight: 1.7 }}>{body}</p>
                   </div>
                 </div>
@@ -604,28 +609,28 @@ export default function Home() {
             </div>
 
             {/* Contact */}
-            <div className="rounded-3xl sticky top-[100px]" style={{ background: '#0d2340', padding: 48, color: '#fff' }}>
-              <h3 style={{ fontFamily: "'Noto Serif KR', serif", fontSize: 24, fontWeight: 700, marginBottom: 8 }}>지금 문의하세요</h3>
-              <p style={{ color: 'rgba(255,255,255,0.55)', fontSize: 14, marginBottom: 36 }}>입학 관련 궁금한 점을 자유롭게 문의해 주세요</p>
+            <div className="rounded-3xl sticky top-[100px]" style={{ background: '#E8E0F7', padding: 48 }}>
+              <h3 style={{ fontFamily: "'SUIT', sans-serif", fontSize: 24, fontWeight: 700, color: '#1c2b3a', marginBottom: 8 }}>지금 문의하세요</h3>
+              <p style={{ color: '#4a5f75', fontSize: 14, marginBottom: 36 }}>입학 관련 궁금한 점을 자유롭게 문의해 주세요</p>
 
               {[
-                { icon: '📞', label: '전화', value: '021 733 5706' },
-                { icon: '✉️', label: '이메일', value: 'admin@nzsok.school.nz' },
-                { icon: '📘', label: 'Facebook', value: 'newzealandschoolofkorea' },
+                { icon: <Phone size={18} />, label: '전화', value: '021 733 5706' },
+                { icon: <Mail size={18} />, label: '이메일', value: 'admin@nzsok.school.nz' },
+                { icon: <InstagramIcon size={18} />, label: 'Instagram', value: 'nzsok.official' },
               ].map(({ icon, label, value }) => (
                 <div
                   key={label}
                   className="flex items-center gap-4 py-4"
-                  style={{ borderBottom: '1px solid rgba(255,255,255,0.08)' }}
+                  style={{ borderBottom: '1px solid rgba(0,0,0,0.08)' }}
                 >
-                  <div className="flex items-center justify-center rounded-xl flex-shrink-0 text-lg" style={{ width: 42, height: 42, background: 'rgba(200,151,58,0.12)' }}>
+                  <div className="flex items-center justify-center rounded-xl flex-shrink-0" style={{ width: 42, height: 42, background: 'rgba(146,120,214,0.15)', color: '#9278D6' }}>
                     {icon}
                   </div>
                   <div>
-                    <label style={{ display: 'block', fontSize: 11, fontWeight: 600, letterSpacing: '0.08em', color: '#c8973a', textTransform: 'uppercase', marginBottom: 2 }}>
+                    <label style={{ display: 'block', fontSize: 11, fontWeight: 600, letterSpacing: '0.08em', color: '#9278D6', textTransform: 'uppercase', marginBottom: 2 }}>
                       {label}
                     </label>
-                    <span style={{ fontSize: 14, color: 'rgba(255,255,255,0.8)' }}>{value}</span>
+                    <span style={{ fontSize: 14, color: '#1c2b3a' }}>{value}</span>
                   </div>
                 </div>
               ))}
@@ -633,18 +638,18 @@ export default function Home() {
               <Link
                 to="/admission"
                 className="flex items-center justify-center no-underline font-bold rounded-xl mt-2 transition-all"
-                style={{ background: '#c8973a', color: '#0d2340', padding: '14px 32px', fontSize: 15, width: '100%' }}
-                onMouseOver={e => { e.currentTarget.style.background = '#e8b84b'; e.currentTarget.style.transform = 'translateY(-2px)' }}
-                onMouseOut={e => { e.currentTarget.style.background = '#c8973a'; e.currentTarget.style.transform = '' }}
+                style={{ background: '#9278D6', color: '#fff', padding: '14px 32px', fontSize: 15, width: '100%' }}
+                onMouseOver={e => { e.currentTarget.style.background = '#B49EE4'; e.currentTarget.style.transform = 'translateY(-2px)' }}
+                onMouseOut={e => { e.currentTarget.style.background = '#9278D6'; e.currentTarget.style.transform = '' }}
               >
                 입학 신청하기 →
               </Link>
 
-              <div className="mt-7 rounded-xl p-5" style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.08)' }}>
-                <h4 style={{ fontSize: 12, fontWeight: 600, letterSpacing: '0.08em', color: '#c8973a', textTransform: 'uppercase', marginBottom: 6 }}>
+              <div className="mt-7 rounded-xl p-5" style={{ background: 'rgba(146,120,214,0.08)', border: '1px solid rgba(146,120,214,0.15)' }}>
+                <h4 style={{ fontSize: 12, fontWeight: 600, letterSpacing: '0.08em', color: '#9278D6', textTransform: 'uppercase', marginBottom: 6 }}>
                   🗺 찾아오시는 길
                 </h4>
-                <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)', lineHeight: 1.6 }}>
+                <p style={{ fontSize: 13, color: '#4a5f75', lineHeight: 1.6 }}>
                   40 Sartors Avenue, Browns Bay<br />Auckland 0630, New Zealand
                 </p>
               </div>

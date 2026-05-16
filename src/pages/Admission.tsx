@@ -1,5 +1,14 @@
+import { Phone, Mail, Clock } from 'lucide-react'
 import Navigation from '../components/Navigation'
 import Footer from '../components/Footer'
+
+const InstagramIcon = ({ size = 18 }: { size?: number }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+  </svg>
+)
 
 export default function Admission() {
   return (
@@ -15,13 +24,13 @@ export default function Admission() {
         <div className="relative z-[1] max-w-[1200px] mx-auto">
           <span
             className="inline-flex items-center gap-2.5 mb-4"
-            style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', color: '#2aa99a' }}
+            style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', color: '#B49EE4' }}
           >
-            <span style={{ display: 'block', width: 24, height: 2, background: '#2aa99a' }} />
+            <span style={{ display: 'block', width: 24, height: 2, background: '#B49EE4' }} />
             입학안내
           </span>
-          <h1 style={{ fontFamily: "'Noto Serif KR', serif", fontSize: 'clamp(32px,5vw,60px)', fontWeight: 900, color: '#fff', marginBottom: 16 }}>
-            <em style={{ color: '#c8973a', fontStyle: 'normal' }}>한민족 한글학교</em>에<br />오신 것을 환영합니다
+          <h1 style={{ fontFamily: "'SUIT', sans-serif", fontSize: 'clamp(32px,5vw,60px)', fontWeight: 900, color: '#fff', marginBottom: 16 }}>
+            <em style={{ color: '#B49EE4', fontStyle: 'normal' }}>한민족 한글학교</em>에<br />오신 것을 환영합니다
           </h1>
           <p style={{ color: 'rgba(255,255,255,0.55)', fontSize: 15, lineHeight: 1.7 }}>
             입학 절차는 간단합니다. 아래 내용을 참고하시고 궁금한 점은 언제든지 문의해 주세요.
@@ -36,12 +45,12 @@ export default function Admission() {
         <section style={{ marginBottom: 80 }}>
           <span
             className="inline-flex items-center gap-2.5 mb-3"
-            style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', color: '#1a7a6e' }}
+            style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', color: '#9278D6' }}
           >
-            <span style={{ display: 'block', width: 24, height: 2, background: '#1a7a6e' }} />
+            <span style={{ display: 'block', width: 24, height: 2, background: '#9278D6' }} />
             학교 기본 정보
           </span>
-          <h2 style={{ fontFamily: "'Noto Serif KR', serif", fontSize: 'clamp(24px,3vw,36px)', fontWeight: 700, color: '#0d2340', lineHeight: 1.3, marginBottom: 40 }}>
+          <h2 style={{ fontFamily: "'SUIT', sans-serif", fontSize: 'clamp(24px,3vw,36px)', fontWeight: 700, color: '#1c2b3a', lineHeight: 1.3, marginBottom: 40 }}>
             수업 일정 및 위치
           </h2>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 20 }}>
@@ -53,10 +62,10 @@ export default function Admission() {
               <div
                 key={title}
                 className="rounded-2xl"
-                style={{ background: '#f2f4f7', border: '1px solid rgba(0,0,0,0.06)', padding: '28px 24px' }}
+                style={{ background: '#F5EFE3', border: '1px solid rgba(0,0,0,0.06)', padding: '28px 24px' }}
               >
                 <div style={{ fontSize: 28, marginBottom: 12 }}>{icon}</div>
-                <h3 style={{ fontSize: 15, fontWeight: 700, color: '#0d2340', marginBottom: 6 }}>{title}</h3>
+                <h3 style={{ fontSize: 15, fontWeight: 700, color: '#1c2b3a', marginBottom: 6 }}>{title}</h3>
                 <p style={{ fontSize: 13, color: '#4a5f75', lineHeight: 1.7 }}>{body}</p>
               </div>
             ))}
@@ -67,12 +76,12 @@ export default function Admission() {
         <section style={{ marginBottom: 80 }}>
           <span
             className="inline-flex items-center gap-2.5 mb-3"
-            style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', color: '#1a7a6e' }}
+            style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', color: '#9278D6' }}
           >
-            <span style={{ display: 'block', width: 24, height: 2, background: '#1a7a6e' }} />
+            <span style={{ display: 'block', width: 24, height: 2, background: '#9278D6' }} />
             입학 절차
           </span>
-          <h2 style={{ fontFamily: "'Noto Serif KR', serif", fontSize: 'clamp(24px,3vw,36px)', fontWeight: 700, color: '#0d2340', lineHeight: 1.3, marginBottom: 0 }}>
+          <h2 style={{ fontFamily: "'SUIT', sans-serif", fontSize: 'clamp(24px,3vw,36px)', fontWeight: 700, color: '#1c2b3a', lineHeight: 1.3, marginBottom: 0 }}>
             4단계로 간단하게
           </h2>
           <div className="steps-horizontal">
@@ -87,15 +96,15 @@ export default function Admission() {
                   className="flex items-center justify-center rounded-full mb-5"
                   style={{
                     width: 56, height: 56,
-                    background: '#0d2340', color: '#c8973a',
-                    fontFamily: "'Noto Serif KR', serif", fontSize: 20, fontWeight: 700,
-                    border: '3px solid #c8973a',
-                    boxShadow: '0 4px 16px rgba(13,35,64,0.15)',
+                    background: '#E8E0F7', color: '#B49EE4',
+                    fontFamily: "'SUIT', sans-serif", fontSize: 20, fontWeight: 700,
+                    border: '3px solid #9278D6',
+                    
                   }}
                 >
                   {num}
                 </div>
-                <h4 style={{ fontSize: 15, fontWeight: 700, color: '#0d2340', marginBottom: 8 }}>{title}</h4>
+                <h4 style={{ fontSize: 15, fontWeight: 700, color: '#1c2b3a', marginBottom: 8 }}>{title}</h4>
                 <p style={{ fontSize: 13, color: '#4a5f75', lineHeight: 1.7 }}>{body}</p>
               </div>
             ))}
@@ -106,24 +115,24 @@ export default function Admission() {
         <section style={{ marginBottom: 80 }}>
           <span
             className="inline-flex items-center gap-2.5 mb-3"
-            style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', color: '#1a7a6e' }}
+            style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', color: '#9278D6' }}
           >
-            <span style={{ display: 'block', width: 24, height: 2, background: '#1a7a6e' }} />
+            <span style={{ display: 'block', width: 24, height: 2, background: '#9278D6' }} />
             수업료 안내
           </span>
-          <h2 style={{ fontFamily: "'Noto Serif KR', serif", fontSize: 'clamp(24px,3vw,36px)', fontWeight: 700, color: '#0d2340', lineHeight: 1.3, marginBottom: 0 }}>
+          <h2 style={{ fontFamily: "'SUIT', sans-serif", fontSize: 'clamp(24px,3vw,36px)', fontWeight: 700, color: '#1c2b3a', lineHeight: 1.3, marginBottom: 0 }}>
             학기별 수업료
           </h2>
           <table
             style={{
               width: '100%', borderCollapse: 'collapse', marginTop: 32,
-              borderRadius: 16, overflow: 'hidden', boxShadow: '0 2px 20px rgba(0,0,0,0.07)',
+              borderRadius: 16, overflow: 'hidden', 
             }}
           >
             <thead>
               <tr>
                 {['구분', '내용', '금액', '비고'].map(h => (
-                  <th key={h} style={{ background: '#0d2340', color: '#fff', padding: '16px 24px', fontSize: 13, fontWeight: 700, letterSpacing: '0.05em', textAlign: 'left' }}>
+                  <th key={h} style={{ background: '#E8E0F7', color: '#1c2b3a', padding: '16px 24px', fontSize: 13, fontWeight: 700, letterSpacing: '0.05em', textAlign: 'left' }}>
                     {h}
                   </th>
                 ))}
@@ -144,7 +153,7 @@ export default function Admission() {
                       style={{
                         padding: '16px 24px', fontSize: 14, color: '#1c2b3a',
                         borderBottom: i < 4 ? '1px solid rgba(0,0,0,0.06)' : 'none',
-                        background: i % 2 === 1 ? '#f2f4f7' : '#fff',
+                        background: i % 2 === 1 ? '#F5EFE3' : '#fff',
                       }}
                     >
                       {cell}
@@ -155,7 +164,7 @@ export default function Admission() {
             </tbody>
           </table>
           <p style={{ marginTop: 12, fontSize: 13, color: '#4a5f75', display: 'flex', gap: 8, alignItems: 'flex-start', lineHeight: 1.6 }}>
-            <span style={{ flexShrink: 0, color: '#c8973a', fontWeight: 700 }}>※</span>
+            <span style={{ flexShrink: 0, color: '#9278D6', fontWeight: 700 }}>※</span>
             정확한 수업료는 학기마다 변동될 수 있습니다. 자세한 금액은 이메일 또는 전화로 문의해 주세요.
           </p>
         </section>
@@ -164,57 +173,55 @@ export default function Admission() {
         <section style={{ marginBottom: 80 }}>
           <span
             className="inline-flex items-center gap-2.5 mb-3"
-            style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', color: '#1a7a6e' }}
+            style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', color: '#9278D6' }}
           >
-            <span style={{ display: 'block', width: 24, height: 2, background: '#1a7a6e' }} />
+            <span style={{ display: 'block', width: 24, height: 2, background: '#9278D6' }} />
             연락처 & 위치
           </span>
-          <h2 style={{ fontFamily: "'Noto Serif KR', serif", fontSize: 'clamp(24px,3vw,36px)', fontWeight: 700, color: '#0d2340', lineHeight: 1.3, marginBottom: 0 }}>
+          <h2 style={{ fontFamily: "'SUIT', sans-serif", fontSize: 'clamp(24px,3vw,36px)', fontWeight: 700, color: '#1c2b3a', lineHeight: 1.3, marginBottom: 0 }}>
             지금 문의하세요
           </h2>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 40, marginTop: 32 }}>
-            {/* Contact card */}
-            <div className="rounded-3xl" style={{ background: '#0d2340', padding: 40, color: '#fff' }}>
-              <h3 style={{ fontFamily: "'Noto Serif KR', serif", fontSize: 20, fontWeight: 700, marginBottom: 24 }}>문의하기</h3>
+            <div className="rounded-3xl" style={{ background: '#E8E0F7', padding: 40 }}>
+              <h3 style={{ fontFamily: "'SUIT', sans-serif", fontSize: 20, fontWeight: 700, color: '#1c2b3a', marginBottom: 24 }}>문의하기</h3>
               {[
-                { icon: '📞', label: '전화', value: '021 733 5706', href: null },
-                { icon: '✉️', label: '이메일', value: 'admin@nzsok.school.nz', href: 'mailto:admin@nzsok.school.nz' },
-                { icon: '📘', label: 'Facebook', value: 'newzealandschoolofkorea', href: 'https://www.facebook.com/newzealandschoolofkorea/' },
-                { icon: '🕐', label: '문의 가능 시간', value: '월–금 오전 9시 – 오후 5시', href: null },
+                { icon: <Phone size={18} />, label: '전화', value: '021 733 5706', href: null },
+                { icon: <Mail size={18} />, label: '이메일', value: 'admin@nzsok.school.nz', href: 'mailto:admin@nzsok.school.nz' },
+                { icon: <InstagramIcon size={18} />, label: 'Instagram', value: 'nzsok.official', href: 'https://www.instagram.com/nzsok.official' },
+                { icon: <Clock size={18} />, label: '문의 가능 시간', value: '월–금 오전 9시 – 오후 5시', href: null },
               ].map(({ icon, label, value, href }) => (
                 <div
                   key={label}
                   className="flex items-center gap-4 py-3.5"
-                  style={{ borderBottom: '1px solid rgba(255,255,255,0.08)' }}
+                  style={{ borderBottom: '1px solid rgba(0,0,0,0.08)' }}
                 >
                   <div
-                    className="flex items-center justify-center rounded-xl flex-shrink-0 text-lg"
-                    style={{ width: 40, height: 40, background: 'rgba(200,151,58,0.12)' }}
+                    className="flex items-center justify-center rounded-xl flex-shrink-0"
+                    style={{ width: 40, height: 40, background: 'rgba(146,120,214,0.15)', color: '#9278D6' }}
                   >
                     {icon}
                   </div>
                   <div>
-                    <label style={{ display: 'block', fontSize: 10, fontWeight: 700, letterSpacing: '0.1em', color: '#c8973a', textTransform: 'uppercase', marginBottom: 2 }}>
+                    <label style={{ display: 'block', fontSize: 10, fontWeight: 700, letterSpacing: '0.1em', color: '#B49EE4', textTransform: 'uppercase', marginBottom: 2 }}>
                       {label}
                     </label>
                     {href ? (
-                      <a href={href} target={href.startsWith('http') ? '_blank' : undefined} rel="noopener noreferrer" style={{ fontSize: 14, color: '#2aa99a', textDecoration: 'none' }}>
+                      <a href={href} target={href.startsWith('http') ? '_blank' : undefined} rel="noopener noreferrer" style={{ fontSize: 14, color: '#9278D6', textDecoration: 'none' }}>
                         {value}
                       </a>
                     ) : (
-                      <span style={{ fontSize: 14, color: 'rgba(255,255,255,0.82)' }}>{value}</span>
+                      <span style={{ fontSize: 14, color: '#1c2b3a' }}>{value}</span>
                     )}
                   </div>
                 </div>
               ))}
             </div>
 
-            {/* Map card */}
-            <div className="rounded-3xl" style={{ background: '#f9f5ee', padding: 40, border: '1px solid rgba(0,0,0,0.07)' }}>
-              <h3 style={{ fontFamily: "'Noto Serif KR', serif", fontSize: 20, fontWeight: 700, color: '#0d2340', marginBottom: 24 }}>찾아오시는 길</h3>
+            <div className="rounded-3xl" style={{ background: '#FAF7F2', padding: 40, border: '1px solid rgba(0,0,0,0.07)' }}>
+              <h3 style={{ fontFamily: "'SUIT', sans-serif", fontSize: 20, fontWeight: 700, color: '#1c2b3a', marginBottom: 24 }}>찾아오시는 길</h3>
               <div
                 className="rounded-2xl mb-4 overflow-hidden"
-                style={{ background: '#f2f4f7', aspectRatio: '16/10', border: '1px solid rgba(0,0,0,0.08)' }}
+                style={{ background: '#F5EFE3', aspectRatio: '16/10', border: '1px solid rgba(0,0,0,0.08)' }}
               >
                 <iframe
                   src="https://maps.google.com/maps?q=40+Sartors+Avenue,+Browns+Bay,+Auckland+0630,+New+Zealand&output=embed"
@@ -226,7 +233,7 @@ export default function Admission() {
                 />
               </div>
               <p style={{ fontSize: 14, color: '#4a5f75', lineHeight: 1.7 }}>
-                <strong style={{ color: '#0d2340', display: 'block', fontSize: 15, marginBottom: 4 }}>40 Sartors Avenue, Browns Bay</strong>
+                <strong style={{ color: '#1c2b3a', display: 'block', fontSize: 15, marginBottom: 4 }}>40 Sartors Avenue, Browns Bay</strong>
                 Auckland 0630, New Zealand<br />
                 <span style={{ fontSize: 12, marginTop: 4, display: 'block', color: '#8a9ab0' }}>Browns Bay 지역, 대중교통 이용 가능</span>
               </p>
@@ -238,23 +245,23 @@ export default function Admission() {
         <div
           className="rounded-3xl text-center"
           style={{
-            background: 'linear-gradient(135deg,#0d2340,#1a3a5c)',
-            padding: '60px 48px', color: '#fff',
+            background: 'linear-gradient(135deg,#E8E0F7,#D0BFEF)',
+            padding: '60px 48px',
           }}
         >
-          <h2 style={{ fontFamily: "'Noto Serif KR', serif", fontSize: 'clamp(24px,3vw,36px)', fontWeight: 700, marginBottom: 12 }}>
+          <h2 style={{ fontFamily: "'SUIT', sans-serif", fontSize: 'clamp(24px,3vw,36px)', fontWeight: 700, color: '#1c2b3a', marginBottom: 12 }}>
             지금 바로 입학 문의하세요
           </h2>
-          <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: 15, marginBottom: 32 }}>
+          <p style={{ color: '#4a5f75', fontSize: 15, marginBottom: 32 }}>
             궁금한 점이 있으시면 편하게 연락 주세요. 친절하게 안내해 드리겠습니다.
           </p>
           <div className="flex gap-4 justify-center flex-wrap">
             <a
               href="mailto:admin@nzsok.school.nz"
               className="inline-flex items-center gap-2 font-bold rounded-xl no-underline transition-all"
-              style={{ background: '#c8973a', color: '#0d2340', fontSize: 15, padding: '14px 32px' }}
-              onMouseOver={e => { e.currentTarget.style.background = '#e8b84b'; e.currentTarget.style.transform = 'translateY(-2px)' }}
-              onMouseOut={e => { e.currentTarget.style.background = '#c8973a'; e.currentTarget.style.transform = '' }}
+              style={{ background: '#9278D6', color: '#fff', fontSize: 15, padding: '14px 32px' }}
+              onMouseOver={e => { e.currentTarget.style.background = '#B49EE4'; e.currentTarget.style.transform = 'translateY(-2px)' }}
+              onMouseOut={e => { e.currentTarget.style.background = '#9278D6'; e.currentTarget.style.transform = '' }}
             >
               ✉️ 이메일 문의하기
             </a>

@@ -73,7 +73,6 @@ export default function Gallery() {
 
   const filtered = albums.filter(a => a.published !== false && (filter === 'all' || a.category === filter))
 
-  // Group by year
   const byYear: Record<number, Album[]> = {}
   filtered.forEach(a => {
     const y = getYear(a.date)
@@ -120,22 +119,22 @@ export default function Gallery() {
         <div className="relative z-[1] max-w-[1200px] mx-auto">
           <span
             className="inline-flex items-center gap-2.5 mb-4"
-            style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', color: '#2aa99a' }}
+            style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', color: '#B49EE4' }}
           >
-            <span style={{ display: 'block', width: 24, height: 2, background: '#2aa99a' }} />
+            <span style={{ display: 'block', width: 24, height: 2, background: '#B49EE4' }} />
             알림마당
           </span>
-          <h1 style={{ fontFamily: "'Noto Serif KR', serif", fontSize: 'clamp(32px,5vw,60px)', fontWeight: 900, color: '#fff', marginBottom: 16 }}>
-            학교 <em style={{ color: '#c8973a', fontStyle: 'normal' }}>앨범</em>
+          <h1 style={{ fontFamily: "'SUIT', sans-serif", fontSize: 'clamp(32px,5vw,60px)', fontWeight: 900, color: '#1c2b3a', marginBottom: 16 }}>
+            학교 <em style={{ color: '#9278D6', fontStyle: 'normal' }}>앨범</em>
           </h1>
-          <p style={{ color: 'rgba(255,255,255,0.55)', fontSize: 15 }}>소중한 순간들을 함께 나눕니다</p>
+          <p style={{ color: '#4a5f75', fontSize: 15 }}>소중한 순간들을 함께 나눕니다</p>
         </div>
       </div>
 
       {/* ── FILTERS ───────────────────────────────────── */}
       <div
-        className="bg-white sticky z-50"
-        style={{ padding: '28px 48px', borderBottom: '1px solid rgba(0,0,0,0.07)', top: 72 }}
+        className="sticky z-50"
+        style={{ background: '#FDFCFA', padding: '28px 48px', borderBottom: '1px solid #EDE4D3', top: 72 }}
       >
         <div className="max-w-[1200px] mx-auto flex gap-2.5 flex-wrap items-center">
           <span style={{ fontSize: 12, fontWeight: 700, color: '#4a5f75', letterSpacing: '0.08em', textTransform: 'uppercase', marginRight: 8 }}>
@@ -147,9 +146,9 @@ export default function Gallery() {
               className="filter-btn px-4 py-2 rounded-full text-sm font-medium cursor-pointer"
               style={{
                 border: '1px solid',
-                borderColor: filter === val ? 'transparent' : 'rgba(0,0,0,0.12)',
-                background: filter === val ? '#0d2340' : 'transparent',
-                color: filter === val ? '#fff' : '#4a5f75',
+                borderColor: filter === val ? '#9278D6' : 'rgba(0,0,0,0.12)',
+                background: filter === val ? '#E8E0F7' : 'transparent',
+                color: filter === val ? '#9278D6' : '#4a5f75',
               }}
               onClick={() => setFilter(val)}
             >
@@ -166,14 +165,14 @@ export default function Gallery() {
         ) : filtered.length === 0 ? (
           <div className="text-center py-24">
             <div style={{ fontSize: 64, marginBottom: 20 }}>📷</div>
-            <h3 style={{ fontFamily: "'Noto Serif KR', serif", fontSize: 24, color: '#0d2340', marginBottom: 10 }}>아직 앨범이 없어요</h3>
+            <h3 style={{ fontFamily: "'SUIT', sans-serif", fontSize: 24, color: '#1c2b3a', marginBottom: 10 }}>아직 앨범이 없어요</h3>
             <p style={{ color: '#4a5f75', fontSize: 15 }}>곧 추가될 예정입니다</p>
           </div>
         ) : (
           years.map(year => (
             <div key={year} style={{ marginBottom: 64 }}>
               <div className="flex items-center gap-4 mb-7">
-                <span style={{ fontFamily: "'Noto Serif KR', serif", fontSize: 32, fontWeight: 900, color: '#0d2340' }}>{year}</span>
+                <span style={{ fontFamily: "'SUIT', sans-serif", fontSize: 32, fontWeight: 900, color: '#1c2b3a' }}>{year}</span>
                 <div style={{ flex: 1, height: 1, background: 'rgba(0,0,0,0.08)' }} />
                 <span style={{ fontSize: 12, color: '#4a5f75', fontWeight: 500 }}>앨범 {byYear[year].length}개</span>
               </div>
@@ -183,36 +182,36 @@ export default function Gallery() {
                     key={album.slug}
                     href="#"
                     className="album-card block rounded-2xl overflow-hidden no-underline"
-                    style={{ background: '#f2f4f7', border: '1px solid transparent' }}
+                    style={{ background: '#F5EFE3', border: '1px solid transparent' }}
                     onClick={e => { e.preventDefault(); openLightbox(album) }}
                   >
-                    <div className="album-thumb relative" style={{ aspectRatio: '4/3', background: '#1a3a5c', overflow: 'hidden' }}>
+                    <div className="album-thumb relative" style={{ aspectRatio: '4/3', background: '#D0BFEF', overflow: 'hidden' }}>
                       {album.cover ? (
                         <img src={album.cover} alt={album.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} loading="lazy" />
                       ) : (
-                        <div className="w-full h-full flex flex-col items-center justify-center" style={{ background: 'linear-gradient(135deg,#1a3a5c,#0f3050)' }}>
+                        <div className="w-full h-full flex flex-col items-center justify-center" style={{ background: 'linear-gradient(135deg,#D0BFEF,#E8E0F7)' }}>
                           <div style={{ fontSize: 40, marginBottom: 8, opacity: 0.6 }}>{EMOJIS[album.category] || '📷'}</div>
-                          <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.3)' }}>{album.title}</div>
+                          <div style={{ fontSize: 12, color: 'rgba(146,120,214,0.7)' }}>{album.title}</div>
                         </div>
                       )}
                       {album.photos.length > 0 && (
                         <span
                           className="absolute top-3 right-3 text-white text-xs font-semibold px-2.5 py-1 rounded-full"
-                          style={{ background: 'rgba(13,35,64,0.85)', backdropFilter: 'blur(8px)', border: '1px solid rgba(255,255,255,0.1)' }}
+                          style={{ background: 'rgba(146,120,214,0.85)', backdropFilter: 'blur(8px)', border: '1px solid rgba(146,120,214,0.2)' }}
                         >
                           📸 {album.photos.length}장
                         </span>
                       )}
                       <span
                         className="absolute bottom-3 left-3 text-xs font-bold px-2.5 py-1 rounded-md"
-                        style={{ background: 'rgba(200,151,58,0.9)', color: '#0d2340' }}
+                        style={{ background: 'rgba(146,120,214,0.9)', color: '#fff' }}
                       >
                         {CATEGORIES[album.category] || '기타'}
                       </span>
                     </div>
                     <div style={{ padding: 20 }}>
                       <div style={{ fontSize: 12, color: '#4a5f75', marginBottom: 6 }}>{formatDate(album.date)}</div>
-                      <div style={{ fontFamily: "'Noto Serif KR', serif", fontSize: 17, fontWeight: 700, color: '#0d2340', marginBottom: 6, lineHeight: 1.4 }}>
+                      <div style={{ fontFamily: "'SUIT', sans-serif", fontSize: 17, fontWeight: 700, color: '#1c2b3a', marginBottom: 6, lineHeight: 1.4 }}>
                         {album.title}
                       </div>
                       {album.description && (
@@ -230,12 +229,12 @@ export default function Gallery() {
       </main>
 
       {/* Admin footer link */}
-      <div style={{ textAlign: 'center', padding: '24px 48px', background: '#060f1a', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
+      <div style={{ textAlign: 'center', padding: '24px 48px', background: '#EDE4D3', borderTop: '1px solid rgba(0,0,0,0.06)' }}>
         <a
           href="/admin/"
-          style={{ color: 'rgba(255,255,255,0.3)', fontSize: 12, textDecoration: 'none', transition: 'color 0.2s' }}
-          onMouseOver={e => (e.currentTarget.style.color = '#c8973a')}
-          onMouseOut={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.3)')}
+          style={{ color: '#8a9ab0', fontSize: 12, textDecoration: 'none', transition: 'color 0.2s' }}
+          onMouseOver={e => (e.currentTarget.style.color = '#9278D6')}
+          onMouseOut={e => (e.currentTarget.style.color = '#8a9ab0')}
         >
           ⚙️ 관리자 페이지 (앨범 등록/수정)
         </a>
@@ -245,7 +244,7 @@ export default function Gallery() {
       {lightbox && (
         <div
           className="fixed inset-0 z-[1000] flex items-center justify-center p-6"
-          style={{ background: 'rgba(5,12,22,0.96)', backdropFilter: 'blur(8px)' }}
+          style={{ background: 'rgba(244,241,252,0.96)', backdropFilter: 'blur(8px)' }}
           onClick={e => { if (e.target === e.currentTarget) closeLightbox() }}
         >
           <div
@@ -310,16 +309,16 @@ export default function Gallery() {
             <div className="flex flex-col overflow-y-auto" style={{ padding: '36px 32px' }}>
               <button
                 className="self-end flex items-center justify-center rounded-full mb-6 cursor-pointer transition-colors"
-                style={{ width: 36, height: 36, background: '#f2f4f7', border: 'none', fontSize: 18, color: '#1c2b3a' }}
+                style={{ width: 36, height: 36, background: '#F5EFE3', border: 'none', fontSize: 18, color: '#1c2b3a' }}
                 onClick={closeLightbox}
                 aria-label="닫기"
               >
                 ✕
               </button>
-              <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#1a7a6e', marginBottom: 8 }}>
+              <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#9278D6', marginBottom: 8 }}>
                 {CATEGORIES[lightbox.album.category] || ''}
               </div>
-              <h2 style={{ fontFamily: "'Noto Serif KR', serif", fontSize: 22, fontWeight: 700, color: '#0d2340', marginBottom: 8, lineHeight: 1.35 }}>
+              <h2 style={{ fontFamily: "'SUIT', sans-serif", fontSize: 22, fontWeight: 700, color: '#1c2b3a', marginBottom: 8, lineHeight: 1.35 }}>
                 {lightbox.album.title}
               </h2>
               <p style={{ fontSize: 13, color: '#4a5f75', marginBottom: 16 }}>{formatDate(lightbox.album.date)}</p>
@@ -337,7 +336,7 @@ export default function Gallery() {
                     className="cursor-pointer rounded-lg overflow-hidden"
                     style={{
                       aspectRatio: '1',
-                      border: `2px solid ${i === lightbox.photoIdx ? '#c8973a' : 'transparent'}`,
+                      border: `2px solid ${i === lightbox.photoIdx ? '#9278D6' : 'transparent'}`,
                       transition: 'all 0.15s',
                     }}
                     onClick={() => setLightbox(lb => lb ? { ...lb, photoIdx: i } : lb)}
@@ -345,7 +344,7 @@ export default function Gallery() {
                     {photo.image ? (
                       <img src={photo.image} alt={photo.caption || ''} style={{ width: '100%', height: '100%', objectFit: 'cover' }} loading="lazy" />
                     ) : (
-                      <div className="w-full h-full flex items-center justify-center text-lg" style={{ background: '#1a3a5c' }}>📷</div>
+                      <div className="w-full h-full flex items-center justify-center text-lg" style={{ background: '#D0BFEF' }}>📷</div>
                     )}
                   </div>
                 ))}
