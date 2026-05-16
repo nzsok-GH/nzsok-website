@@ -20,6 +20,7 @@ export default function HeroPhysics() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const sectionRef = useRef<HTMLElement>(null)
   const textRef = useRef<HTMLHeadingElement>(null)
+  const resetRef = useRef<() => void>(() => {})
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -188,7 +189,7 @@ export default function HeroPhysics() {
       ctx.clearRect(0, 0, W, H)
       ctx.textAlign = 'center'
       ctx.textBaseline = 'middle'
-      ctx.font = `900 ${FONT_SIZE}px 'Paperlogy', sans-serif`
+      ctx.font = `700 ${FONT_SIZE}px 'KerisKedyuche', sans-serif`
 
       // Draw jaso — letters only, no circle background
       for (const body of jasoBodies) {
@@ -235,6 +236,20 @@ export default function HeroPhysics() {
       rafId = requestAnimationFrame(loop)
     }
 
+    resetRef.current = () => {
+      jasoBodies.forEach((body, i) => {
+        const pos = START_POSITIONS[i]
+        Body.setPosition(body, pos)
+        Body.setVelocity(body, { x: (Math.random() - 0.5) * 0.8, y: (Math.random() - 0.5) * 0.8 })
+        Body.setAngle(body, 0)
+        Body.setAngularVelocity(body, 0)
+      })
+      Body.setPosition(logoBall, LOGO_START)
+      Body.setVelocity(logoBall, { x: (Math.random() - 0.5) * 1, y: (Math.random() - 0.5) * 1 })
+      Body.setAngle(logoBall, 0)
+      Body.setAngularVelocity(logoBall, 0)
+    }
+
     loop()
 
     return () => {
@@ -259,6 +274,7 @@ export default function HeroPhysics() {
       <h1
         ref={textRef}
         className="absolute z-10"
+        onClick={() => resetRef.current()}
         style={{
           bottom: '3rem',
           right: '3rem',
@@ -268,7 +284,8 @@ export default function HeroPhysics() {
           color: '#1c2b3a',
           lineHeight: 1.2,
           textAlign: 'right',
-          pointerEvents: 'none',
+          cursor: 'pointer',
+          userSelect: 'none',
         }}
       >
         뉴질랜드<br />
