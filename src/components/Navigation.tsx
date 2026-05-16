@@ -178,6 +178,9 @@ export default function Navigation({
                 <Link to="/education#campus" onClick={closeMenu}>
                   Sherwood School
                 </Link>
+                <Link to="/education#classdojo" onClick={closeMenu}>
+                  클래스도조
+                </Link>
               </div>
             </li>
             <li>
@@ -250,6 +253,7 @@ export default function Navigation({
                 { to: "/education#programs", label: "커리큘럼" },
                 { to: "/education#annual", label: "연간 교육계획" },
                 { to: "/education#campus", label: "Sherwood School" },
+                { to: "/education#classdojo", label: "클래스도조" },
               ],
             },
             {

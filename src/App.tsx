@@ -11,11 +11,18 @@ const Media = lazy(() => import("./pages/Media"));
 function ScrollRestore() {
   const { pathname, hash } = useLocation();
   useEffect(() => {
-    if (hash) {
-      const el = document.querySelector(hash);
-      if (el) el.scrollIntoView({ behavior: "smooth" });
-    } else {
+    if (!hash) {
       window.scrollTo(0, 0);
+      return;
+    }
+    const tryScroll = () => {
+      const el = document.querySelector(hash);
+      if (el) { el.scrollIntoView({ behavior: "smooth" }); return true; }
+      return false;
+    };
+    if (!tryScroll()) {
+      const t = setTimeout(tryScroll, 400);
+      return () => clearTimeout(t);
     }
   }, [pathname, hash]);
   return null;

@@ -1,12 +1,67 @@
+import { useEffect, useRef, useState } from "react";
 import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
 import SectionTabs from "../components/SectionTabs";
+
+const CLASSDOJO_IMAGES = [
+  "/classdojo/post1.jpg",
+  "/classdojo/post2.jpg",
+  "/classdojo/post3.jpg",
+  "/classdojo/post4.jpg",
+];
+
+function ClassDojoCarousel() {
+  const [active, setActive] = useState(0);
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  useEffect(() => {
+    timerRef.current = setInterval(() => {
+      setActive((i) => (i + 1) % CLASSDOJO_IMAGES.length);
+    }, 3500);
+    return () => {
+      if (timerRef.current) clearInterval(timerRef.current);
+    };
+  }, []);
+
+  return (
+    <div
+      style={{
+        position: "relative",
+        width: "100%",
+        maxWidth: 340,
+        aspectRatio: "1206/1435",
+        borderRadius: 20,
+        overflow: "hidden",
+        background: "#fff",
+        boxShadow: "none",
+      }}
+    >
+      {CLASSDOJO_IMAGES.map((src, i) => (
+        <img
+          key={src}
+          src={src}
+          alt={`클래스도조 게시물 ${i + 1}`}
+          style={{
+            position: "absolute",
+            inset: 0,
+            width: "100%",
+            height: "100%",
+            objectFit: "contain",
+            opacity: i === active ? 1 : 0,
+            transition: "opacity 1.5s ease",
+          }}
+        />
+      ))}
+    </div>
+  );
+}
 
 const SECTIONS = [
   { id: "schedule", label: "시간표" },
   { id: "programs", label: "커리큘럼" },
   { id: "annual", label: "연간 교육계획" },
   { id: "campus", label: "Sherwood School" },
+  { id: "classdojo", label: "클래스도조" },
 ];
 
 const LEVELS = [
@@ -743,7 +798,7 @@ export default function Education() {
         </section>
 
         {/* ── 4. Sherwood School ── */}
-        <section id="campus" style={{ marginTop: 80 }}>
+        <section id="campus" style={{ marginTop: 80, marginBottom: 80 }}>
           <h2 style={{ ...H2_STYLE, marginBottom: 40 }}>Sherwood School</h2>
 
           <p
@@ -752,14 +807,29 @@ export default function Education() {
               color: "#4a5f75",
               lineHeight: 1.85,
               marginBottom: 24,
+              maxWidth: 720,
             }}
           >
             수업이 진행되는{" "}
             <strong style={{ color: "#1c2b3a" }}>Sherwood School</strong>은
             브라운스 베이에 위치한 공립 초등학교입니다. 우리 학교는 14개의
-            교실과 3개의 놀이터를 사용하며, 수업 시간 중에는 외부인의
+            교실, 3개의 놀이터와 강당을 사용하며, 수업 시간 중에는 외부인의
             교내 출입이 통제되어 우리 아이들에게 안전한 학습 환경을 제공합니다.
           </p>
+
+          <div
+            className="rounded-2xl overflow-hidden"
+            style={{
+              border: "1px solid rgba(60,120,180,0.18)",
+              marginBottom: 16,
+            }}
+          >
+            <img
+              src="/sherwood-school/sherwood-school.png"
+              alt="Sherwood School campus"
+              style={{ width: "100%", display: "block", objectFit: "cover", maxHeight: 340 }}
+            />
+          </div>
 
           <div
             className="rounded-2xl"
@@ -779,6 +849,54 @@ export default function Education() {
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
             />
+          </div>
+        </section>
+
+        {/* ── 5. 클래스도조 ── */}
+        <section id="classdojo">
+          <h2 style={{ ...H2_STYLE, marginBottom: 32 }}>클래스도조</h2>
+
+          <div style={{ display: "flex", gap: 56, alignItems: "flex-start", flexWrap: "wrap" }}>
+            <ClassDojoCarousel />
+
+            <div style={{ flex: 1, minWidth: 260 }}>
+              <p
+                style={{
+                  fontSize: 15,
+                  color: "#4a5f75",
+                  lineHeight: 1.85,
+                  marginBottom: 28,
+                }}
+              >
+                클래스도조는 학부모님과 학교를 연결하는 온라인
+                플랫폼입니다. 담임 선생님들은 매 수업 후 사진과 함께 수업
+                소식을 게시하며, 반별 공지사항과 학교 전체 공지사항도 함께
+                안내됩니다.
+              </p>
+
+              <p style={{ fontSize: 14, color: "#8a9ab0", lineHeight: 1.75, marginBottom: 24 }}>
+                입학 시 학급 초대 코드가 전송되며, iOS 및 Android 앱을 무료로
+                사용하실 수 있습니다.
+              </p>
+
+              <a
+                href="https://www.classdojo.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: "inline-block",
+                  transition: "opacity 0.2s",
+                }}
+                onMouseOver={(e) => (e.currentTarget.style.opacity = "0.7")}
+                onMouseOut={(e) => (e.currentTarget.style.opacity = "1")}
+              >
+                <img
+                  src="/classdojo/classdojo-logo.svg"
+                  alt="ClassDojo"
+                  style={{ height: 64, width: "auto", display: "block" }}
+                />
+              </a>
+            </div>
           </div>
         </section>
       </main>

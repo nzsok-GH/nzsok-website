@@ -18,6 +18,7 @@ const NAV = [
       ["/education#programs", "커리큘럼"],
       ["/education#annual", "연간 교육계획"],
       ["/education#campus", "Sherwood School"],
+      ["/education#classdojo", "클래스도조"],
     ],
   },
   {
