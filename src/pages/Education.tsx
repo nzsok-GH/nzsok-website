@@ -20,7 +20,7 @@ const LEVELS = [
       "기초 어휘",
       "짧은 문장",
       "주제별 수업",
-      "사회성 인성 교육",
+      "사회성 · 인성 교육",
     ],
   },
   {
@@ -36,7 +36,7 @@ const LEVELS = [
       "의성어, 의태어",
       "기본 문법",
       "문장 연습",
-      "초3부터 역사",
+      "역사 (3학년)",
     ],
   },
   {
@@ -50,10 +50,10 @@ const LEVELS = [
       "중급 어휘",
       "어휘 확장 (동의어, 반의어)",
       "중급 문법",
-      "글의 흐름 이해",
+      "글의 흐름",
       "자신의 생각 표현",
-      "역사",
       "속담, 한자어, 사자성어",
+      "역사",
     ],
   },
   {
@@ -68,11 +68,11 @@ const LEVELS = [
       "고급 문법",
       "여러 종류의 글",
       "배경 지식 확장",
-      "내용 요약하기",
+      "내용 요약",
       "자신의 의견 표현",
-      "토론, 발표",
-      "역사",
+      "토론 · 발표",
       "속담, 한자어, 사자성어",
+      "역사",
     ],
   },
 ];
@@ -263,11 +263,13 @@ export default function Education() {
                       <strong style={{ color: "#1c2b3a" }}>
                         오전 10:00 ~ 오후 1:40
                       </strong>
+                      <br />
+                      한국어 · 독서 · 체육 · 음악
                     </>
                   ),
                 },
                 {
-                  title: "특강 수업",
+                  title: "특강 수업 (선택)",
                   body: (
                     <>
                       <strong style={{ color: "#1c2b3a" }}>
@@ -392,7 +394,7 @@ export default function Education() {
                     {
                       badge: "특강",
                       time: "1:50 ~ 3:00",
-                      label: "미술 · 4D프레임 · 태권도 · 바이올린",
+                      label: "특강 수업",
                       type: "extra",
                     },
                   ].map(({ badge, time, label, type }, i) => (
@@ -556,7 +558,7 @@ export default function Education() {
               }}
             />
             <span style={{ fontSize: 13, color: "#1c2b3a" }}>
-              독서 프로그램 · 체육 · 음악
+              독서 · 체육 · 음악
             </span>
           </div>
         </section>
