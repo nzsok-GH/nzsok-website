@@ -820,19 +820,35 @@ footer a:hover {
   padding: 64px 48px 32px;
 }
 .footer-grid {
-  display: grid;
-  grid-template-columns: 1.8fr 1fr 1fr 1fr 1fr;
+  display: flex;
+  justify-content: space-between;
   gap: 48px;
   padding-bottom: 48px;
+}
+.footer-brand {
+  flex: 0 0 auto;
+  max-width: 280px;
+}
+.footer-sitemap {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 48px;
 }
 @media (max-width: 767px) {
   .footer-root {
     padding: 48px 24px 28px;
   }
   .footer-grid {
-    grid-template-columns: 1fr;
+    flex-direction: column;
     gap: 32px;
     padding-bottom: 36px;
+  }
+  .footer-brand {
+    max-width: none;
+  }
+  .footer-sitemap {
+    grid-template-columns: 1fr;
+    gap: 24px;
   }
 }
 

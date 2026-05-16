@@ -42,8 +42,8 @@ export default function Footer() {
     <footer className="footer-root">
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
         <div className="footer-grid">
-          {/* Brand column */}
-          <div>
+          {/* Section 1: Brand */}
+          <div className="footer-brand">
             <Link
               to="/"
               style={{
@@ -93,39 +93,41 @@ export default function Footer() {
             </p>
           </div>
 
-          {/* Sitemap columns */}
-          {NAV.map(({ title, links }) => (
-            <div key={title}>
-              <h4
-                style={{
-                  fontSize: 13,
-                  fontWeight: 700,
-                  letterSpacing: "0.1em",
-                  textTransform: "uppercase",
-                  color: "#9278D6",
-                  marginBottom: 16,
-                }}
-              >
-                {title}
-              </h4>
-              <ul className="list-none flex flex-col gap-2">
-                {links.map(([href, label]) => (
-                  <li key={label + href}>
-                    <Link
-                      to={href}
-                      style={{
-                        fontSize: 15,
-                        color: "#4a5f75",
-                        textDecoration: "none",
-                      }}
-                    >
-                      {label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+          {/* Section 2: Sitemap */}
+          <div className="footer-sitemap">
+            {NAV.map(({ title, links }) => (
+              <div key={title}>
+                <h4
+                  style={{
+                    fontSize: 13,
+                    fontWeight: 700,
+                    letterSpacing: "0.1em",
+                    textTransform: "uppercase",
+                    color: "#9278D6",
+                    marginBottom: 16,
+                  }}
+                >
+                  {title}
+                </h4>
+                <ul className="list-none flex flex-col gap-2">
+                  {links.map(([href, label]) => (
+                    <li key={label + href}>
+                      <Link
+                        to={href}
+                        style={{
+                          fontSize: 15,
+                          color: "#4a5f75",
+                          textDecoration: "none",
+                        }}
+                      >
+                        {label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </footer>
