@@ -21,7 +21,7 @@ export default function Admission() {
     <div>
       <Navigation />
 
-      <main style={{ maxWidth: 1200, margin: '0 auto', padding: '80px 48px 120px' }}>
+      <main style={{ maxWidth: 1200, margin: '0 auto', padding: '152px 48px 120px' }}>
 
         {/* 수업 일정 및 위치 */}
         <section style={{ marginBottom: 80 }}>
@@ -236,7 +236,7 @@ export default function Admission() {
 
         {/* 문의하기 */}
         <section style={{ marginBottom: 80 }}>
-          <h2 style={{ ...H2_STYLE, marginBottom: 32 }}>궁금하신 게 있으신가요?</h2>
+          <h2 style={{ ...H2_STYLE, marginBottom: 32 }}>입학 문의</h2>
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 20 }}>
             {[
