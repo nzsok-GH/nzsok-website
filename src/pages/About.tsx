@@ -57,149 +57,33 @@ export default function About() {
         {/* ── 1. 소개글 ─────────────────────────────────── */}
         <section id="intro" style={{ marginBottom: 80 }}>
           <div
-            className="about-intro-card rounded-2xl overflow-hidden"
             style={{
-              background:
-                "linear-gradient(160deg, #ede8f8 0%, #c9b8ec 60%, #b8a8e0 100%)",
-              border: "1px solid rgba(146,120,214,0.25)",
+              marginBottom: 32,
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
               textAlign: "center",
-              marginBottom: 64,
-              position: "relative",
+              padding: "48px 0 0",
             }}
           >
-            {/* decorative circles */}
-            <div
-              style={{
-                position: "absolute",
-                top: -40,
-                right: -40,
-                width: 180,
-                height: 180,
-                borderRadius: "50%",
-                background: "rgba(255,255,255,0.18)",
-                pointerEvents: "none",
-              }}
-            />
-            <div
-              style={{
-                position: "absolute",
-                bottom: -28,
-                left: -28,
-                width: 120,
-                height: 120,
-                borderRadius: "50%",
-                background: "rgba(255,255,255,0.13)",
-                pointerEvents: "none",
-              }}
-            />
-            <div
-              style={{
-                position: "absolute",
-                top: 24,
-                left: 32,
-                width: 48,
-                height: 48,
-                borderRadius: "50%",
-                background: "rgba(255,255,255,0.2)",
-                pointerEvents: "none",
-              }}
-            />
-
             <p
               style={{
-                position: "relative",
                 fontFamily: "'SUIT', sans-serif",
                 fontSize: "clamp(22px,3vw,34px)",
                 fontWeight: 800,
                 color: "#1c2b3a",
                 lineHeight: 1.4,
-                marginBottom: 16,
+                marginBottom: 20,
               }}
             >
-              긍정적인 생활태도와 이중문화 소유자
+              긍정적인 생활태도와
+              <br />
+              이중문화 소유자
             </p>
-            <p
-              style={{
-                position: "relative",
-                fontSize: 15,
-                color: "#6b4faa",
-                letterSpacing: "0.04em",
-              }}
-            >
+            <div style={{ width: 40, height: 2, background: "rgba(146,120,214,0.45)", borderRadius: 2, marginBottom: 18 }} />
+            <p style={{ fontSize: 15, color: "#6b4faa", letterSpacing: "0.04em" }}>
               Think positively and be bicultural
             </p>
-          </div>
-
-          <h2 style={{ ...H2_STYLE, marginBottom: 32 }}>
-            한국어와 문화를 미래 세대에게
-          </h2>
-          <p
-            style={{
-              fontSize: 15,
-              color: "#4a5f75",
-              lineHeight: 1.8,
-              marginBottom: 40,
-            }}
-          >
-            뉴질랜드에서 자라는 한국계 어린이들이 한국어와 한국 문화를
-            자연스럽게 습득하고, 두 문화권에서 자신감 있게 성장할 수 있도록 돕는
-            교육 공동체입니다.
-          </p>
-
-          <div className="about-feature-grid">
-            {[
-              {
-                icon: "🇰🇷",
-                title: "언어 · 문화 교육",
-                body: "체계적인 한국어 읽기·쓰기·말하기와 함께 전통 문화와 역사를 배웁니다.",
-              },
-              {
-                icon: "🌏",
-                title: "이중문화 정체성",
-                body: "뉴질랜드 사회의 일원이면서도 한국인으로서의 자부심을 키웁니다.",
-              },
-              {
-                icon: "🤝",
-                title: "한인 커뮤니티",
-                body: "같은 배경을 가진 가족들과 함께 따뜻한 공동체를 이룹니다.",
-              },
-              {
-                icon: "📚",
-                title: "체계적 커리큘럼",
-                body: "연령별 맞춤 교재와 레벨별 수업으로 효율적인 학습 환경을 제공합니다.",
-              },
-            ].map(({ icon, title, body }) => (
-              <div
-                key={title}
-                className="rounded-2xl flex gap-4 items-start"
-                style={{
-                  background: "#FAF7F2",
-                  border: "1px solid rgba(0,0,0,0.07)",
-                  padding: "20px 24px",
-                }}
-              >
-                <div style={{ fontSize: 24, flexShrink: 0, marginTop: 2 }}>
-                  {icon}
-                </div>
-                <div>
-                  <h4
-                    style={{
-                      fontSize: 15,
-                      fontWeight: 700,
-                      color: "#1c2b3a",
-                      marginBottom: 4,
-                    }}
-                  >
-                    {title}
-                  </h4>
-                  <p
-                    style={{ fontSize: 13, color: "#4a5f75", lineHeight: 1.7 }}
-                  >
-                    {body}
-                  </p>
-                </div>
-              </div>
-            ))}
           </div>
         </section>
 
