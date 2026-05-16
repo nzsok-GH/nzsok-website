@@ -6,21 +6,23 @@ import Education from './pages/Education'
 import Admission from './pages/Admission'
 import Gallery from './pages/Gallery'
 
-function ScrollToHash() {
-  const { hash } = useLocation()
+function ScrollRestore() {
+  const { pathname, hash } = useLocation()
   useEffect(() => {
     if (hash) {
       const el = document.querySelector(hash)
       if (el) el.scrollIntoView({ behavior: 'smooth' })
+    } else {
+      window.scrollTo(0, 0)
     }
-  }, [hash])
+  }, [pathname, hash])
   return null
 }
 
 function AppRoutes() {
   return (
     <>
-      <ScrollToHash />
+      <ScrollRestore />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
