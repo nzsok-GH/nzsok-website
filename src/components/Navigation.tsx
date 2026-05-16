@@ -15,7 +15,7 @@ export default function Navigation({ variant = 'full', transparent = false }: Na
   const closeMenu = () => setMenuOpen(false)
 
   const Logo = () => (
-    <Link to="/" className="flex items-center no-underline" onClick={closeMenu}>
+    <Link to="/" className="flex items-center no-underline transition-transform duration-[350ms] hover:scale-110" onClick={closeMenu}>
       <img src="/logo.png" alt="NZSOK 로고" style={{ height: 44, width: 'auto' }} />
     </Link>
   )
@@ -27,7 +27,7 @@ export default function Navigation({ variant = 'full', transparent = false }: Na
           className="fixed top-0 left-0 right-0 z-[100] px-12 flex items-center justify-between"
           style={{
             height: 72,
-            background: 'rgba(253,252,250,0.97)',
+            background: 'rgba(250,247,242,0.97)',
             backdropFilter: 'blur(12px)',
             borderBottom: '1px solid #EDE4D3',
           }}
@@ -77,7 +77,7 @@ export default function Navigation({ variant = 'full', transparent = false }: Na
 
   const navBg = transparent
     ? 'transparent'
-    : 'rgba(253,252,250,0.97)'
+    : 'rgba(250,247,242,0.97)'
   const navBorder = transparent ? 'none' : '1px solid #EDE4D3'
   const linkColor = transparent ? '#1c2b3a' : '#4a5f75'
 
