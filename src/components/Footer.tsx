@@ -9,7 +9,7 @@ const NAV = [
       ['/about#hymn', '교가'],
       ['/about#history', '연혁'],
       ['/about#board', '이사회'],
-      ['/about#staff', '교직원 소개'],
+      ['/about#staff', '교직원'],
     ],
   },
   {
@@ -27,13 +27,21 @@ const NAV = [
       ['/media#instagram', '인스타그램'],
     ],
   },
+  {
+    title: '입학안내',
+    links: [
+      ['/enrol#procedure', '등록 절차'],
+      ['/enrol#tuition', '학비 안내'],
+      ['/enrol#contact', '입학 문의'],
+    ],
+  },
 ]
 
 export default function Footer() {
   return (
     <footer style={{ background: '#E8E0F7', padding: '64px 48px 32px' }}>
       <div className="max-w-[1200px] mx-auto">
-        <div style={{ display: 'grid', gridTemplateColumns: '1.8fr 1fr 1fr 1fr', gap: 48, paddingBottom: 48, borderBottom: '1px solid rgba(0,0,0,0.08)', marginBottom: 28 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1.8fr 1fr 1fr 1fr 1fr', gap: 48, paddingBottom: 48, borderBottom: '1px solid rgba(0,0,0,0.08)', marginBottom: 28 }}>
 
           {/* Brand column */}
           <div>

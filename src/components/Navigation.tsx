@@ -109,7 +109,7 @@ export default function Navigation({ variant = 'full', transparent = false }: Na
               <Link to="/about#hymn" onClick={closeMenu}>교가</Link>
               <Link to="/about#history" onClick={closeMenu}>연혁</Link>
               <Link to="/about#board" onClick={closeMenu}>이사회</Link>
-              <Link to="/about#staff" onClick={closeMenu}>교직원 소개</Link>
+              <Link to="/about#staff" onClick={closeMenu}>교직원</Link>
             </div>
           </li>
           <li>
@@ -176,7 +176,7 @@ export default function Navigation({ variant = 'full', transparent = false }: Na
             { to: '/about#hymn', label: 'ㄴ 교가' },
             { to: '/about#history', label: 'ㄴ 연혁' },
             { to: '/about#board', label: 'ㄴ 이사회' },
-            { to: '/about#staff', label: 'ㄴ 교직원 소개' },
+            { to: '/about#staff', label: 'ㄴ 교직원' },
             { to: '/education#schedule', label: '교육 – 시간표' },
             { to: '/education#programs', label: '교육 – 커리큘럼' },
             { to: '/education#annual', label: '교육 – 연간 교육계획' },
