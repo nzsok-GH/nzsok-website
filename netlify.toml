@@ -1,19 +1,14 @@
 [build]
-  command = "node build-albums.js"
-  publish = "."
+  command = "npm run build"
+  publish = "dist"
 
-# Identity & Git Gateway (CMS 로그인용)
 [template.environment]
   NETLIFY_GRAPH_PERSIST_QUERY_DEPLOY_HOOK = ""
 
+# SPA fallback — all routes served by index.html
 [[redirects]]
-  from = "/gallery"
-  to = "/gallery/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/admin"
-  to = "/admin/index.html"
+  from = "/*"
+  to = "/index.html"
   status = 200
 
 [[headers]]

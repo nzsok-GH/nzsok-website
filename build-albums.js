@@ -5,12 +5,15 @@
  * gallery/albums.json 으로 변환합니다.
  */
 
-const fs = require('fs');
-const path = require('path');
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const ALBUMS_DIR = path.join(__dirname, '_albums');
-// 수정 후 (루트에 생성)
-const OUTPUT_FILE = path.join(__dirname, 'albums.json');
+// Output to public/ so Vite serves it as a static asset
+const OUTPUT_FILE = path.join(__dirname, 'public', 'albums.json');
 
 // Simple frontmatter parser (no dependencies needed)
 function parseFrontmatter(content) {
