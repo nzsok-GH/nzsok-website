@@ -95,7 +95,7 @@ export default function Navigation({ variant = 'full', transparent = false }: Na
         }}
       >
         {/* Left: nav links */}
-        <ul className="nav-links hidden md:flex items-center gap-2 list-none justify-start">
+        <ul className="nav-links hidden md:flex items-center gap-8 list-none justify-start">
           <li>
             <Link
               to="/about"
