@@ -423,39 +423,40 @@ export default function Gallery() {
 
         {/* ── 인스타그램 ──────────────────────────────── */}
         <section id="instagram" style={{ marginTop: 96 }}>
-          <div className="flex items-center justify-between flex-wrap gap-4 mb-20">
+          <div className="flex flex-col mb-8" style={{ gap: 12 }}>
             <h2 style={{ ...H2_STYLE }}>인스타그램</h2>
-            <a
-              href="https://www.instagram.com/nzsok.official"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-1.5 no-underline"
-              style={{
-                fontSize: 15,
-                fontWeight: 600,
-                color: "#9278D6",
-                transition: "opacity 0.2s",
-              }}
-              onMouseOver={(e) => (e.currentTarget.style.opacity = "0.7")}
-              onMouseOut={(e) => (e.currentTarget.style.opacity = "1")}
-            >
-              @nzsok.official
-              <svg
-                width="14"
-                height="14"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth={2.5}
-                strokeLinecap="round"
-                strokeLinejoin="round"
+            <div className="flex justify-end pb-8" style={{ marginBottom: 28 }}>
+              <a
+                href="https://www.instagram.com/nzsok.official"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1.5 no-underline"
+                style={{
+                  fontSize: 15,
+                  fontWeight: 600,
+                  color: "#9278D6",
+                  transition: "opacity 0.2s",
+                }}
+                onMouseOver={(e) => (e.currentTarget.style.opacity = "0.7")}
+                onMouseOut={(e) => (e.currentTarget.style.opacity = "1")}
               >
-                <path d="M7 17L17 7M17 7H7M17 7v10" />
-              </svg>
-            </a>
+                @nzsok.official
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth={2.5}
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M7 17L17 7M17 7H7M17 7v10" />
+                </svg>
+              </a>
+            </div>
           </div>
-          {/* Replace YOUR_FEED_ID after connecting @nzsok.official at behold.so */}
-          <behold-widget feed-id="YOUR_FEED_ID" />
+          <behold-widget feed-id="hXTPq6t7GL3vE8tNJ5vN" />
         </section>
       </main>
 
@@ -473,9 +474,7 @@ export default function Gallery() {
             if (e.target === e.currentTarget) closeLightbox();
           }}
         >
-          <div
-            className="lightbox-inner lightbox-grid bg-white rounded-3xl overflow-hidden w-full"
-          >
+          <div className="lightbox-inner lightbox-grid bg-white rounded-3xl overflow-hidden w-full">
             <div
               className="lightbox-image-pane relative flex items-center justify-center"
               style={{ background: "#000", minHeight: 400 }}
