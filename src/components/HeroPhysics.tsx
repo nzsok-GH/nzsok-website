@@ -218,7 +218,10 @@ export default function HeroPhysics() {
         ctx.shadowColor = 'rgba(0,0,0,0.12)'
         ctx.shadowBlur = 10
         if (logoImg.complete && logoImg.naturalWidth > 0) {
-          ctx.drawImage(logoImg, -LR_DRAW, -LR_DRAW, LR_DRAW * 2, LR_DRAW * 2)
+          const aspect = logoImg.naturalWidth / logoImg.naturalHeight
+          const dw = aspect >= 1 ? LR_DRAW * 2 : LR_DRAW * 2 * aspect
+          const dh = aspect >= 1 ? LR_DRAW * 2 / aspect : LR_DRAW * 2
+          ctx.drawImage(logoImg, -dw / 2, -dh / 2, dw, dh)
         }
 
         ctx.restore()
