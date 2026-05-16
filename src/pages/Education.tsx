@@ -236,7 +236,7 @@ export default function Education() {
         {/* ── 1. 시간표 ── */}
         <section
           id="schedule"
-          style={{ marginBottom: 80, scrollMarginTop: 128 }}
+          style={{ marginBottom: 80 }}
         >
           <h2 style={{ ...H2_STYLE, marginBottom: 40 }}>시간표</h2>
 
@@ -430,7 +430,7 @@ export default function Education() {
         {/* ── 2. 커리큘럼 ── */}
         <section
           id="programs"
-          style={{ marginBottom: 80, scrollMarginTop: 128 }}
+          style={{ marginBottom: 80 }}
         >
           <h2 style={{ ...H2_STYLE, marginBottom: 40 }}>커리큘럼</h2>
 
@@ -543,7 +543,7 @@ export default function Education() {
         </section>
 
         {/* ── 3. 연간 교육계획 ── */}
-        <section id="annual" style={{ scrollMarginTop: 128 }}>
+        <section id="annual">
           <h2 style={{ ...H2_STYLE, marginBottom: 40 }}>연간 교육계획</h2>
 
           <div style={{ overflowX: "auto" }}>
