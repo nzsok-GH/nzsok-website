@@ -86,8 +86,8 @@ export default function Navigation({
     );
   }
 
-  const navBg = transparent ? "transparent" : "rgba(250,247,242,0.97)";
-  const navBorder = transparent ? "none" : "1px solid #EDE4D3";
+  const navBg = transparent ? "#FAF7F2" : "rgba(250,247,242,0.97)";
+  const navBorder = "none";
   const linkColor = transparent ? "#1c2b3a" : "#4a5f75";
 
   return (
