@@ -53,22 +53,15 @@ export default function About() {
       <Navigation variant="full" />
       <SectionTabs tabs={SECTIONS} />
 
-      <main
-        style={{
-          maxWidth: 1200,
-          margin: "0 auto",
-          padding: "140px 48px 120px",
-        }}
-      >
+      <main className="about-main">
         {/* ── 1. 소개글 ─────────────────────────────────── */}
         <section id="intro" style={{ marginBottom: 80 }}>
           <div
-            className="rounded-2xl overflow-hidden"
+            className="about-intro-card rounded-2xl overflow-hidden"
             style={{
               background:
                 "linear-gradient(160deg, #ede8f8 0%, #c9b8ec 60%, #b8a8e0 100%)",
               border: "1px solid rgba(146,120,214,0.25)",
-              padding: "64px 48px",
               textAlign: "center",
               marginBottom: 64,
               position: "relative",
@@ -153,13 +146,7 @@ export default function About() {
             교육 공동체입니다.
           </p>
 
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(2, 1fr)",
-              gap: 16,
-            }}
-          >
+          <div className="about-feature-grid">
             {[
               {
                 icon: "🇰🇷",
@@ -229,13 +216,7 @@ export default function About() {
               display: "block",
             }}
           >
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "repeat(3, 1fr)",
-                gap: "0 40px",
-              }}
-            >
+            <div className="about-hymn-grid">
               {[
                 {
                   verse: "1절",
@@ -267,11 +248,7 @@ export default function About() {
               ].map(({ verse, lines }, colIdx) => (
                 <div
                   key={verse}
-                  style={{
-                    borderLeft:
-                      colIdx > 0 ? "1px solid rgba(44,82,130,0.12)" : "none",
-                    paddingLeft: colIdx > 0 ? 40 : 0,
-                  }}
+                  className={colIdx > 0 ? "about-hymn-col-divider" : ""}
                 >
                   <p
                     style={{
@@ -481,13 +458,7 @@ export default function About() {
         <section id="board" style={{ marginBottom: 80 }}>
           <h2 style={{ ...H2_STYLE, marginBottom: 32 }}>이사회</h2>
 
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(4,1fr)",
-              gap: 12,
-            }}
-          >
+          <div className="about-board-grid">
             {[
               { name: "노재회", role: "이사회 의장" },
               { name: "김보연", role: "이사" },
@@ -589,13 +560,7 @@ export default function About() {
               >
                 {dept}
               </div>
-              <div
-                style={{
-                  display: "grid",
-                  gridTemplateColumns: "repeat(4, 1fr)",
-                  gap: 12,
-                }}
-              >
+              <div className="about-staff-grid">
                 {staff.map(({ name, label }) => (
                   <div key={name + label} style={{ padding: "12px 4px" }}>
                     <div
