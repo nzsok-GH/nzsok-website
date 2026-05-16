@@ -232,13 +232,7 @@ export default function Education() {
       <Navigation variant="full" />
       <SectionTabs tabs={SECTIONS} />
 
-      <main
-        style={{
-          maxWidth: 1200,
-          margin: "0 auto",
-          padding: "140px 48px 120px",
-        }}
-      >
+      <main className="education-main">
         {/* ── 1. 시간표 ── */}
         <section
           id="schedule"
@@ -246,14 +240,7 @@ export default function Education() {
         >
           <h2 style={{ ...H2_STYLE, marginBottom: 40 }}>시간표</h2>
 
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "1fr 1.5fr",
-              gap: 28,
-              alignItems: "start",
-            }}
-          >
+          <div className="education-schedule-grid">
             <div style={{ display: "flex", flexDirection: "column" }}>
               {[
                 {
@@ -309,20 +296,19 @@ export default function Education() {
               ))}
             </div>
 
-            <div style={{ overflowX: "auto" }}>
+            <div>
               <table
                 style={{
                   width: "100%",
                   borderCollapse: "collapse",
                   fontSize: 12,
-                  minWidth: 400,
                 }}
               >
                 <thead>
                   <tr style={{ background: "#FAF7F2" }}>
                     <th
                       style={{
-                        width: 80,
+                        width: 56,
                         padding: "7px 10px",
                         color: "#8a9ab0",
                         fontWeight: 600,
@@ -335,7 +321,7 @@ export default function Education() {
                     </th>
                     <th
                       style={{
-                        width: 160,
+                        width: 110,
                         padding: "7px 10px",
                         color: "#8a9ab0",
                         fontWeight: 600,
@@ -420,7 +406,6 @@ export default function Education() {
                           borderBottom: "1px solid rgba(0,0,0,0.05)",
                           borderRight: "1px solid rgba(0,0,0,0.05)",
                           color: "#4a5f75",
-                          whiteSpace: "nowrap",
                         }}
                       >
                         {time}
@@ -449,13 +434,7 @@ export default function Education() {
         >
           <h2 style={{ ...H2_STYLE, marginBottom: 40 }}>커리큘럼</h2>
 
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(4, 1fr)",
-              gap: 20,
-            }}
-          >
+          <div className="education-curriculum-grid">
             {LEVELS.map(
               ({ label, sub, bg, border, headerBg, headerColor, items }) => (
                 <div
