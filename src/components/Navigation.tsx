@@ -190,16 +190,8 @@ export default function Navigation({ variant = 'full' }: NavigationProps) {
           <li>
             <Link
               to="/admission"
-              className="block px-4 py-2 text-sm font-bold rounded-lg"
-              style={{
-                background: '#9278D6',
-                color: '#fff',
-                textDecoration: 'none',
-                padding: '9px 20px',
-                transition: 'background 0.2s',
-              }}
-              onMouseOver={e => (e.currentTarget.style.background = '#B49EE4')}
-              onMouseOut={e => (e.currentTarget.style.background = '#9278D6')}
+              className="btn-primary block text-sm font-bold rounded-lg no-underline"
+              style={{ padding: '9px 20px' }}
             >
               입학안내
             </Link>

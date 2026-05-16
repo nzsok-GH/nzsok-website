@@ -169,7 +169,7 @@ body {
 /* ── Navigation ─────────────────────────────────────────────── */
 .nav-links > li { position: relative; padding-bottom: 8px; margin-bottom: -8px; }
 .nav-links > li > a { transition: all 0.2s; }
-.nav-links > li > a:hover { color: var(--primary); background: rgba(146,120,214,0.08); }
+.nav-links > li > a:not(.btn-primary):hover { color: var(--primary); }
 
 .dropdown {
   position: absolute;
@@ -438,6 +438,10 @@ body {
 /* ── Card hover (no shadow — border lift only) ───────────────── */
 .card-hover { transition: transform 0.2s, border-color 0.2s; }
 .card-hover:hover { transform: translateY(-3px); }
+
+/* ── Primary button ─────────────────────────────────────────── */
+.btn-primary { background: #9278D6; color: #fff; transition: background 0.2s; }
+.btn-primary:hover { background: #7a62c0; }
 
 /* ── Responsive nav height ───────────────────────────────────── */
 @media (max-width: 900px) {

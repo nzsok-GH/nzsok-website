@@ -84,16 +84,8 @@ export default function Home() {
           <div className="flex gap-4 flex-wrap anim-delay-45">
             <Link
               to="/admission"
-              className="inline-flex items-center gap-2.5 font-bold rounded-xl no-underline transition-all"
-              style={{ background: '#9278D6', color: '#fff', fontSize: 15, padding: '15px 32px' }}
-              onMouseOver={e => {
-                e.currentTarget.style.background = '#B49EE4'
-                e.currentTarget.style.transform = 'translateY(-2px)'
-              }}
-              onMouseOut={e => {
-                e.currentTarget.style.background = '#9278D6'
-                e.currentTarget.style.transform = ''
-              }}
+              className="btn-primary inline-flex items-center gap-2.5 font-bold rounded-xl no-underline"
+              style={{ fontSize: 15, padding: '15px 32px' }}
             >
               <span>입학 안내 보기</span><span>→</span>
             </Link>
@@ -199,10 +191,8 @@ export default function Home() {
           <div className="flex gap-4 mt-10 justify-center flex-wrap">
             <Link
               to="/about"
-              className="inline-flex items-center gap-2 rounded-xl no-underline font-semibold transition-all"
-              style={{ padding: '14px 32px', background: '#9278D6', color: '#fff', fontSize: 15, letterSpacing: '0.02em' }}
-              onMouseOver={e => { e.currentTarget.style.background = '#B49EE4'; e.currentTarget.style.transform = 'translateY(-2px)' }}
-              onMouseOut={e => { e.currentTarget.style.background = '#9278D6'; e.currentTarget.style.transform = '' }}
+              className="btn-primary inline-flex items-center gap-2 rounded-xl no-underline font-semibold"
+              style={{ padding: '14px 32px', fontSize: 15, letterSpacing: '0.02em' }}
             >
               학교소개 자세히 보기 →
             </Link>
@@ -283,10 +273,8 @@ export default function Home() {
 
               <Link
                 to="/admission"
-                className="flex items-center justify-center no-underline font-bold rounded-xl mt-2 transition-all"
-                style={{ background: '#9278D6', color: '#fff', padding: '14px 32px', fontSize: 15, width: '100%' }}
-                onMouseOver={e => { e.currentTarget.style.background = '#B49EE4'; e.currentTarget.style.transform = 'translateY(-2px)' }}
-                onMouseOut={e => { e.currentTarget.style.background = '#9278D6'; e.currentTarget.style.transform = '' }}
+                className="btn-primary flex items-center justify-center no-underline font-bold rounded-xl mt-2"
+                style={{ padding: '14px 32px', fontSize: 15, width: '100%' }}
               >
                 입학 신청하기 →
               </Link>
