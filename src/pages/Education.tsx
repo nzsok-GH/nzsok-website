@@ -1,335 +1,304 @@
-import { useState, useEffect, useRef } from 'react'
 import Navigation from '../components/Navigation'
 import Footer from '../components/Footer'
+import SectionTabs from '../components/SectionTabs'
 
 const SECTIONS = [
-  { id: 'schedule', label: '수업 시간표' },
+  { id: 'schedule', label: '시간표' },
   { id: 'programs', label: '커리큘럼' },
   { id: 'annual',   label: '연간 교육계획' },
 ]
 
-const TABS = [
-  { id: 'kinder',    label: '유치부',           color: '#9278D6', icon: '🌱', title: '유치부', sub: '놀이 중심 한국어 기초 · 정서 발달', tags: ['주제별 수업','사회성·인성 교육','한글 모음 & 자음','기본 어휘','짧은 문장','전래동화'] },
-  { id: 'elem-low',  label: '초등저 (1–3학년)', color: '#7c5ecf', icon: '📖', title: '초등저 (1–3학년)', sub: '읽기·쓰기 기초 완성 · 어휘 확장', tags: ['한글 모음·자음 정리','어휘 확장','기본 문법','문장 연습','전래동화'] },
-  { id: 'elem-high', label: '초등고 (4–6학년)', color: '#B49EE4', icon: '✏️', title: '초등고 (4–6학년)', sub: '고급 어휘 · 문법 심화 · 역사·문화', tags: ['어휘 확장','고급 어휘','기본 문법','자신의 생각 표현','글의 흐름 이해','역사','속담','한자어','사자성어'] },
-  { id: 'middle',    label: '중등',             color: '#5a4190', icon: '🎓', title: '중등', sub: '심화 독해 · 글쓰기 · 토론·발표', tags: ['고급 어휘 확장','문법','글쓰기 확장','여러 종류의 글','배경 지식 확장','토론','발표','역사','한자어','속담','사자성어'] },
-  { id: 'music',     label: '음악',             color: '#1c2b3a', icon: '🎵', title: '음악', sub: '전래동요 · 민요 · 리듬 활동', tags: ['전래동요','창작동요','민요','애국가','교가','리듬 게임'] },
-  { id: 'pe',        label: '체육',             color: '#1c2b3a', icon: '⚽', title: '체육', sub: '신체 발달 · 협동심 · 기초 체력', tags: ['연령에 따른 신체 발달','협동심 발달','사회성 발달','전학년 줄넘기','기초 체력 단련'] },
+const LEVELS = [
+  {
+    label: '유치부',
+    bg: 'rgba(245,224,154,0.25)',
+    border: 'rgba(200,150,58,0.3)',
+    headerBg: 'rgba(245,224,154,0.5)',
+    headerColor: '#8a6200',
+    items: ['한글 모음, 자음', '기초 어휘', '짧은 문장', '주제별 수업', '사회성 인성 교육'],
+  },
+  {
+    label: '초등 저학년',
+    sub: '1–3학년',
+    bg: 'rgba(230,210,245,0.3)',
+    border: 'rgba(146,120,214,0.3)',
+    headerBg: 'rgba(230,210,245,0.6)',
+    headerColor: '#5a4190',
+    items: ['한글 모음, 자음 정리', '기본 어휘', '의성어, 의태어', '기본 문법', '문장 연습', '초3부터 역사'],
+  },
+  {
+    label: '초등 고학년',
+    sub: '4–6학년',
+    bg: 'rgba(193,235,215,0.3)',
+    border: 'rgba(60,160,110,0.3)',
+    headerBg: 'rgba(193,235,215,0.6)',
+    headerColor: '#1e6e48',
+    items: ['중급 어휘', '어휘 확장 (동의어, 반의어)', '중급 문법', '글의 흐름 이해', '자신의 생각 표현', '역사', '속담, 한자어, 사자성어'],
+  },
+  {
+    label: '중등',
+    bg: 'rgba(193,220,245,0.3)',
+    border: 'rgba(60,120,180,0.3)',
+    headerBg: 'rgba(193,220,245,0.6)',
+    headerColor: '#1a4e7a',
+    items: ['고급 어휘', '어휘 확장 (동의어, 반의어)', '고급 문법', '여러 종류의 글', '배경 지식 확장', '내용 요약하기', '자신의 의견 표현', '토론, 발표', '역사', '속담, 한자어, 사자성어'],
+  },
 ]
 
+const MAX_WEEKS = 9
+const TERMS = [
+  {
+    label: '텀 1', weeks: '7주',
+    rows: [
+      { week: 1,  date: '2월 14일',  event: '입학 및 개학식 (1교시)',    type: 'special' },
+      { week: 2,  date: '2월 21일',  event: '',                         type: '' },
+      { week: 3,  date: '2월 28일',  event: '',                         type: '' },
+      { week: 4,  date: '3월 7일',   event: '독서 프로그램 시작',         type: 'special' },
+      { week: 5,  date: '3월 14일',  event: '화재대피 훈련',              type: '' },
+      { week: 6,  date: '3월 21일',  event: '',                         type: '' },
+      { week: 7,  date: '3월 28일',  event: '',                type: '' },
+    ],
+  },
+  {
+    label: '텀 2', weeks: '8주',
+    rows: [
+      { week: 1,  date: '5월 2일',   event: '그림일기 대회',                          type: 'special' },
+      { week: 2,  date: '5월 9일',   event: '',                                       type: '' },
+      { week: 3,  date: '5월 16일',  event: '학부모 상담',                             type: '' },
+      { week: 4,  date: '5월 23일',  event: '학부모 상담', type: '' },
+      { week: 5,  date: '5월 30일',  event: "King's Birthday 휴교",        type: 'holiday' },
+      { week: 6,  date: '6월 6일',   event: '',                                       type: '' },
+      { week: 7,  date: '6월 13일',  event: '중간 평가',                               type: '' },
+      { week: 8,  date: '6월 20일',  event: '지진대피 훈련',                           type: 'special' },
+      { week: 9,  date: '6월 27일',  event: '',                              type: '' },
+    ]
+  },
+  {
+    label: '텀 3', weeks: '9주',
+    rows: [
+      { week: 1,  date: '7월 25일',  event: '',                                              type: '' },
+      { week: 2,  date: '8월 1일',   event: '',                                              type: '' },
+      { week: 3,  date: '8월 8일',   event: '',                                              type: '' },
+      { week: 4,  date: '8월 15일',  event: '',                                              type: '' },
+      { week: 5,  date: '8월 22일',  event: '초등 저학년 동화 발표회',                           type: 'special' },
+      { week: 6,  date: '8월 29일',  event: '',                                              type: '' },
+      { week: 7,  date: '9월 5일',   event: '',                                              type: '' },
+      { week: 8,  date: '9월 12일',  event: '',                                              type: '' },
+      { week: 9,  date: '9월 19일',  event: '추석 수업', type: 'special' },
+    ]
+  },
+  {
+    label: '텀 4', weeks: '8주',
+    rows: [
+      { week: 1,  date: '10월 17일', event: '한글 사랑 대회',                        type: 'special' },
+      { week: 2,  date: '10월 24일', event: 'Labour day 휴교',                            type: 'holiday' },
+      { week: 3,  date: '10월 31일', event: '',                                      type: '' },
+      { week: 4,  date: '11월 7일',  event: '',                                      type: '' },
+      { week: 5,  date: '11월 14일', event: '',                            type: '' },
+      { week: 6,  date: '11월 21일', event: '',  type: '' },
+      { week: 7,  date: '11월 28일', event: '교내 나의 꿈 말하기 대회',              type: 'special' },
+      { week: 8,  date: '12월 5일',  event: '',                                      type: '' },
+      { week: 9,  date: '12월 12일', event: '종업식 및 졸업식',                 type: 'special' },
+    ],
+  },
+]
+
+const H2_STYLE = {
+  fontFamily: "'SUIT', sans-serif", fontSize: 'clamp(24px,3vw,36px)' as const,
+  fontWeight: 700, color: '#1c2b3a', lineHeight: 1.3,
+}
+
+const eventColor = (type: string) =>
+  type === 'holiday' ? '#b94040' : type === 'special' ? '#7c5ecf' : '#1c2b3a'
+
+const TODAY = new Date()
+
+function renderEventLine(line: string, type: string, j: number) {
+  const match = line.match(/^(.*?)\s*(\(.*\))\s*$/)
+  const main = match ? match[1].trim() : line
+  const note = match ? match[2] : null
+  return (
+    <div key={j} style={{ display: 'flex', alignItems: 'baseline', gap: 4, ...(j > 0 ? { marginTop: 5 } : {}) }}>
+      <span style={{ color: eventColor(type), fontWeight: type ? 500 : 400 }}>{main}</span>
+      {note && <span style={{ color: '#8a9ab0', fontSize: 10, fontWeight: 400, flexShrink: 0 }}>{note}</span>}
+    </div>
+  )
+}
+
+function isCurrentWeek(dateStr: string): boolean {
+  const m = dateStr.match(/(\d+)월\s*(\d+)일/)
+  if (!m) return false
+  const month = parseInt(m[1])
+  const day = parseInt(m[2])
+  const year = month >= 10 ? 2026 : month <= 3 ? 2026 : 2026
+  const d = new Date(year, month - 1, day)
+  const diffDays = (d.getTime() - TODAY.getTime()) / (1000 * 60 * 60 * 24)
+  return diffDays >= -6 && diffDays <= 0
+}
+
 export default function Education() {
-  const [activeTab, setActiveTab] = useState('kinder')
-  const tabsRef = useRef<HTMLElement>(null)
-  const tab = TABS.find(t => t.id === activeTab)!
-
-  useEffect(() => {
-    const onScroll = () => {
-      const offset = (tabsRef.current?.clientHeight ?? 0) + 72 + 20
-      for (const { id } of [...SECTIONS].reverse()) {
-        const el = document.getElementById(id)
-        if (el && el.getBoundingClientRect().top <= offset) {
-          tabsRef.current?.querySelectorAll('.section-tab').forEach(t => t.classList.remove('active'))
-          tabsRef.current?.querySelector(`[href="#${id}"]`)?.classList.add('active')
-          break
-        }
-      }
-    }
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
-
   return (
     <div>
       <Navigation variant="full" />
+      <SectionTabs tabs={SECTIONS} />
 
-      {/* ── SECTION TABS (sticky) ──────────────────────── */}
-      <nav
-        ref={tabsRef}
-        className="sticky z-[90] overflow-x-auto"
-        style={{ background: '#FDFCFA', borderBottom: '2px solid #EDE4D3', top: 72, padding: '0 48px' }}
-      >
-        <div className="flex max-w-[1100px] mx-auto" style={{ minWidth: 'max-content' }}>
-          {SECTIONS.map(({ id, label }) => (
-            <a key={id} href={`#${id}`} className={`section-tab${id === 'schedule' ? ' active' : ''}`}>
-              {label}
-            </a>
-          ))}
-        </div>
-      </nav>
+      <main style={{ maxWidth: 1200, margin: '0 auto', padding: '140px 48px 120px' }}>
 
-      {/* ── 1. 수업 시간표 ────────────────────────────── */}
-      <section id="schedule" style={{ background: '#FDFCFA', padding: '100px 48px' }}>
-        <div className="max-w-[1100px] mx-auto">
-          <span className="section-label-pill">수업 시간표</span>
-          <h2 style={{ fontFamily: "'SUIT', sans-serif", fontSize: 36, fontWeight: 900, color: '#1c2b3a', lineHeight: 1.25, marginBottom: 0 }}>
-            토요일 정기 수업
-          </h2>
+        {/* ── 1. 시간표 ── */}
+        <section id="schedule" style={{ marginBottom: 80, scrollMarginTop: 128 }}>
+          <h2 style={{ ...H2_STYLE, marginBottom: 40 }}>시간표</h2>
 
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.5fr', gap: 60, marginTop: 56, alignItems: 'start' }}>
-            <div>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.5fr', gap: 28, alignItems: 'start' }}>
+            <div style={{ display: 'flex', flexDirection: 'column' }}>
               {[
-                { icon: '📅', title: '수업 요일', body: <>매주 <strong style={{ color: '#1c2b3a' }}>토요일</strong> 운영<br />학기 중 운영 (뉴질랜드 학교 방학 휴무)</> },
-                { icon: '🕙', title: '정규 수업', body: <><strong style={{ color: '#1c2b3a' }}>오전 10:00 ~ 오후 1:40</strong></> },
-                { icon: '🎨', title: '특강 수업', body: <><strong style={{ color: '#1c2b3a' }}>오후 1:50 ~ 오후 3:00</strong><br />미술 · 바이올린 · 태권도 · 4D프레임</> },
-                { icon: '📍', title: '장소', body: <>40 Sartors Avenue<br />Browns Bay, Auckland 0630</> },
-              ].map(({ icon, title, body }) => (
-                <div
-                  key={title}
-                  className="rounded-xl mb-6"
-                  style={{ background: 'rgba(146,120,214,0.1)', border: '1px solid rgba(146,120,214,0.25)', padding: 24 }}
-                >
-                  <h4 style={{ color: '#B49EE4', fontSize: 13, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: 8 }}>
-                    {icon} {title}
-                  </h4>
-                  <p style={{ color: '#4a5f75', fontSize: 14, lineHeight: 1.65 }}>{body}</p>
+                { title: '정규 수업', body: <><strong style={{ color: '#1c2b3a' }}>오전 10:00 ~ 오후 1:40</strong></> },
+                { title: '특강 수업', body: <><strong style={{ color: '#1c2b3a' }}>오후 1:50 ~ 오후 3:00</strong><br />미술 · 바이올린 · 태권도 · 4D프레임</> },
+              ].map(({ title, body }, i) => (
+                <div key={title} style={{ padding: '16px 0', borderTop: i > 0 ? '1px solid rgba(0,0,0,0.06)' : 'none' }}>
+                  <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', textTransform: 'uppercase', color: '#9278D6', marginBottom: 6 }}>{title}</p>
+                  <p style={{ color: '#4a5f75', fontSize: 14, lineHeight: 1.7 }}>{body}</p>
                 </div>
               ))}
-              <p style={{ color: '#8a9ab0', fontSize: 13, lineHeight: 1.7 }}>
-                정확한 수업 일정 및 반 배정은 입학 상담 시 안내해 드립니다.
-              </p>
             </div>
 
-            <div
-              className="rounded-2xl overflow-hidden"
-              style={{ background: '#fff', border: '1px solid rgba(0,0,0,0.08)' }}
-            >
-              <div
-                className="timetable-header px-7 py-5"
-                style={{ background: 'rgba(146,120,214,0.1)', borderBottom: '1px solid rgba(0,0,0,0.07)' }}
-              >
-                <span style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#B49EE4' }}>교시</span>
-                <span style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#B49EE4' }}>시간</span>
-                <span style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#B49EE4' }}>내용</span>
+            <div style={{ overflowX: 'auto' }}>
+            <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 12, minWidth: 400 }}>
+              <thead>
+                <tr style={{ background: '#FAF7F2' }}>
+                  <th style={{ width: 80, padding: '7px 10px', color: '#8a9ab0', fontWeight: 600, textAlign: 'center', borderBottom: '1px solid rgba(0,0,0,0.08)', borderRight: '1px solid rgba(0,0,0,0.05)' }}>교시</th>
+                  <th style={{ width: 160, padding: '7px 10px', color: '#8a9ab0', fontWeight: 600, textAlign: 'left', borderBottom: '1px solid rgba(0,0,0,0.08)', borderRight: '1px solid rgba(0,0,0,0.05)' }}>시간</th>
+                  <th style={{ padding: '7px 10px', color: '#8a9ab0', fontWeight: 600, textAlign: 'left', borderBottom: '1px solid rgba(0,0,0,0.08)' }}>내용</th>
+                </tr>
+              </thead>
+              <tbody>
+                {[
+                  { badge: '1교시', time: '10:00 ~ 10:40', label: '정규 수업', type: 'regular' },
+                  { badge: '2교시', time: '10:50 ~ 11:30', label: '정규 수업', type: 'regular' },
+                  { badge: '점심',  time: '11:30 ~ 12:10', label: '점심 시간',  type: 'lunch' },
+                  { badge: '3교시', time: '12:10 ~ 12:50', label: '정규 수업', type: 'regular' },
+                  { badge: '4교시', time: '1:00 ~ 1:40',   label: '정규 수업', type: 'regular' },
+                  { badge: '특강',  time: '1:50 ~ 3:00',   label: '미술 · 바이올린 · 태권도 · 4D프레임', type: 'extra' },
+                ].map(({ badge, time, label, type }, i) => (
+                  <tr key={badge} style={{ background: i % 2 === 0 ? '#fff' : '#FDFCFA' }}>
+                    <td style={{ padding: '8px 10px', borderBottom: '1px solid rgba(0,0,0,0.05)', borderRight: '1px solid rgba(0,0,0,0.05)', textAlign: 'center', color: type === 'lunch' ? '#8a9ab0' : '#4a5f75', fontWeight: 600 }}>
+                      {badge}
+                    </td>
+                    <td style={{ padding: '8px 10px', borderBottom: '1px solid rgba(0,0,0,0.05)', borderRight: '1px solid rgba(0,0,0,0.05)', color: '#4a5f75', whiteSpace: 'nowrap' }}>{time}</td>
+                    <td style={{ padding: '8px 10px', borderBottom: '1px solid rgba(0,0,0,0.05)', color: type === 'lunch' ? '#8a9ab0' : '#4a5f75' }}>{label}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            </div>
+          </div>
+        </section>
+
+        {/* ── 2. 커리큘럼 ── */}
+        <section id="programs" style={{ marginBottom: 80, scrollMarginTop: 128 }}>
+          <h2 style={{ ...H2_STYLE, marginBottom: 40 }}>커리큘럼</h2>
+
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 20 }}>
+            {LEVELS.map(({ label, sub, bg, border, headerBg, headerColor, items }) => (
+              <div key={label} className="rounded-2xl overflow-hidden flex flex-col" style={{ border: `1px solid ${border}` }}>
+                <div style={{ background: headerBg, padding: '14px 18px', borderBottom: `1px solid ${border}` }}>
+                  <div style={{ fontFamily: "'SUIT', sans-serif", fontSize: 15, fontWeight: 700, color: headerColor }}>{label}</div>
+                  <div style={{ fontSize: 11, color: headerColor, opacity: 0.7, marginTop: 2, minHeight: 16 }}>{sub ?? ''}</div>
+                </div>
+                <div style={{ background: bg, padding: '16px 18px', flex: 1 }}>
+                  <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 8 }}>
+                    {items.map(item => (
+                      <li key={item} style={{ fontSize: 13, color: '#1c2b3a', lineHeight: 1.5, display: 'flex', gap: 8, alignItems: 'flex-start' }}>
+                        <span style={{ color: headerColor, flexShrink: 0, marginTop: 3, fontSize: 10 }}>▸</span>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
-              {[
-                { badge: '1교시', time: '10:00 ~ 10:40', label: '한국어 수업', special: false },
-                { badge: '2교시', time: '10:50 ~ 11:30', label: '한국어 수업', special: false },
-                { badge: '점심',  time: '11:30 ~ 12:10', label: '점심 식사',   special: 'lunch' },
-                { badge: '3교시', time: '12:10 ~ 12:50', label: '한국어 수업', special: false },
-                { badge: '4교시', time: '1:00 ~ 1:40',   label: '한국어 수업', special: false },
-                { badge: '특강',  time: '1:50 ~ 3:00',   label: '특강 수업',   special: 'extra' },
-              ].map(({ badge, time, label, special }) => (
-                <div
-                  key={badge}
-                  className="timetable-row px-7 py-[18px] items-center"
-                  style={{
-                    borderBottom: special === 'extra' ? 'none' : '1px solid rgba(0,0,0,0.06)',
-                    background: special === 'extra' ? 'rgba(146,120,214,0.1)' : special === 'lunch' ? 'rgba(245,224,154,0.15)' : 'transparent',
-                    borderTop: special === 'extra' ? '1px solid rgba(146,120,214,0.2)' : 'none',
-                  }}
-                >
-                  <span
-                    className="px-2.5 py-[5px] rounded-md text-xs font-semibold text-center"
-                    style={{
-                      background: special === 'extra' ? '#7c5ecf' : special === 'lunch' ? 'rgba(245,224,154,0.4)' : 'rgba(146,120,214,0.15)',
-                      color: '#B49EE4',
-                    }}
-                  >
-                    {badge}
-                  </span>
-                  <span style={{ color: '#4a5f75', fontSize: 13 }}>{time}</span>
-                  <span>
-                    <span
-                      className="inline-block px-2.5 py-[3px] rounded text-xs font-medium"
+            ))}
+          </div>
+
+          <div
+            className="rounded-2xl flex items-center gap-3"
+            style={{ background: 'rgba(193,220,245,0.25)', border: '1px solid rgba(60,120,180,0.2)', padding: '16px 20px', marginTop: 20 }}
+          >
+            <span style={{ fontSize: 13, fontWeight: 700, color: '#1a4e7a' }}>전학년 공통</span>
+            <span style={{ width: 1, height: 16, background: 'rgba(60,120,180,0.3)', flexShrink: 0 }} />
+            <span style={{ fontSize: 13, color: '#1c2b3a' }}>독서 프로그램 · 체육 · 음악</span>
+          </div>
+        </section>
+
+        {/* ── 3. 연간 교육계획 ── */}
+        <section id="annual" style={{ scrollMarginTop: 128 }}>
+          <h2 style={{ ...H2_STYLE, marginBottom: 40 }}>연간 교육계획</h2>
+
+          <div style={{ overflowX: 'auto' }}>
+            <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 12, minWidth: 720 }}>
+              <thead>
+                {/* Term header row */}
+                <tr>
+                  {TERMS.map(({ label, weeks }) => (
+                    <th
+                      key={label}
+                      colSpan={3}
                       style={{
-                        background: special === 'extra' ? '#7c5ecf' : 'rgba(146,120,214,0.15)',
-                        color: special === 'extra' ? '#fff' : '#B49EE4',
+                        background: '#FAF7F2',
+                        color: '#1c2b3a',
+                        fontFamily: "'SUIT', sans-serif",
+                        fontWeight: 700,
+                        fontSize: 13,
+                        padding: '10px 14px',
+                        textAlign: 'left',
+                        borderBottom: '2px solid rgba(0,0,0,0.10)',
+                        borderRight: '1px solid rgba(0,0,0,0.07)',
                       }}
                     >
-                      {label}
-                    </span>
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── 2. 커리큘럼 ──────────────────────────────── */}
-      <section id="programs" style={{ background: '#F5EFE3', padding: '100px 48px' }}>
-        <div className="max-w-[1100px] mx-auto">
-          <span className="section-label-pill">교육 과정</span>
-          <h2 style={{ fontFamily: "'SUIT', sans-serif", fontSize: 36, fontWeight: 900, color: '#1c2b3a', lineHeight: 1.25, marginBottom: 16 }}>
-            학년별 연계 수업 커리큘럼
-          </h2>
-          <p style={{ fontSize: 16, color: '#4a5f75', lineHeight: 1.75, maxWidth: 520 }}>
-            2024년도 학년별 중점 교육 사항입니다. 각 학년의 발달 단계에 맞춘 체계적인 커리큘럼으로 운영됩니다.
-          </p>
-
-          <div className="flex gap-2 mt-12 flex-wrap justify-center">
-            {TABS.map(t => (
-              <button
-                key={t.id}
-                className="curriculum-tab flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold cursor-pointer"
-                style={{
-                  border: '2px solid',
-                  borderColor: activeTab === t.id ? t.color : 'rgba(0,0,0,0.12)',
-                  background: activeTab === t.id ? t.color : 'transparent',
-                  color: activeTab === t.id ? '#fff' : '#4a5f75',
-                  letterSpacing: '0.02em',
-                }}
-                onClick={() => setActiveTab(t.id)}
-              >
-                <span style={{ width: 8, height: 8, borderRadius: '50%', background: 'currentColor', opacity: 0.8, flexShrink: 0 }} />
-                {t.label}
-              </button>
-            ))}
-          </div>
-
-          <div className="mt-9">
-            <div
-              className="rounded-2xl"
-              style={{
-                padding: '40px 48px',
-                background: 'rgba(255,255,255,0.7)',
-                border: `1px solid ${tab.color}40`,
-              }}
-            >
-              <div
-                className="flex items-center gap-5 mb-8 pb-6"
-                style={{ borderBottom: '1px solid rgba(0,0,0,0.07)' }}
-              >
-                <div
-                  className="flex items-center justify-center rounded-2xl text-[26px] flex-shrink-0"
-                  style={{ width: 56, height: 56, background: `${tab.color}26` }}
-                >
-                  {tab.icon}
-                </div>
-                <div>
-                  <div style={{ fontFamily: "'SUIT', sans-serif", fontSize: 24, fontWeight: 700, color: '#1c2b3a', marginBottom: 4 }}>
-                    {tab.title}
-                  </div>
-                  <div style={{ fontSize: 13, color: '#4a5f75', letterSpacing: '0.03em' }}>
-                    {tab.sub}
-                  </div>
-                </div>
-              </div>
-              <div className="flex flex-wrap gap-2.5">
-                {tab.tags.map(tag => (
-                  <span
-                    key={tag}
-                    className="px-4 py-2 rounded-xl text-sm font-medium transition-transform hover:-translate-y-0.5"
-                    style={{
-                      background: `${tab.color}1f`,
-                      color: tab.color,
-                      border: `1px solid ${tab.color}4d`,
-                    }}
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── 3. 연간 교육계획 ──────────────────────────── */}
-      <section id="annual" style={{ background: '#FDFCFA', padding: '100px 48px' }}>
-        <div className="max-w-[1100px] mx-auto">
-          <span className="section-label-pill">연간 교육계획</span>
-          <h2 style={{ fontFamily: "'SUIT', sans-serif", fontSize: 36, fontWeight: 900, color: '#1c2b3a', lineHeight: 1.25, marginBottom: 16 }}>
-            2025 연간계획표
-          </h2>
-          <p style={{ fontSize: 16, color: '#4a5f75', lineHeight: 1.75 }}>
-            뉴질랜드 한민족 한글학교 2025년도 연간 교육 일정입니다.
-          </p>
-
-          <div className="annual-grid grid gap-4 mt-12">
-            {[
-              {
-                term: 'Term 1', hdr: 'term1-hdr', weeks: '8주 (8주)',
-                rows: [
-                  { date: '2/15', label: '입학식 개학식', type: 'highlight' },
-                  { date: '2/22', label: '특강 시작', type: '' },
-                  { date: '3/1',  label: '', type: '' },
-                  { date: '3/8',  label: '화재 대피 훈련', type: '' },
-                  { date: '3/15', label: '나의 꿈 말하기 대회', type: 'special' },
-                  { date: '3/22', label: '', type: '' },
-                  { date: '3/29', label: '', type: '' },
-                  { date: '4/5',  label: '특강 없음', type: '' },
-                  { date: '4/12', label: '전국말하기대회', type: 'special' },
-                ],
-              },
-              {
-                term: 'Term 2', hdr: 'term2-hdr', weeks: '8주 (6주)',
-                rows: [
-                  { date: '5/3',  label: '어버이날 수업', type: '' },
-                  { date: '5/10', label: '특강 시작', type: '' },
-                  { date: '5/17', label: '', type: '' },
-                  { date: '5/24', label: '지진 대피 훈련', type: '' },
-                  { date: '5/31', label: "King's birthday 휴교", type: 'holiday' },
-                  { date: '6/7',  label: '동화구연 대회', type: 'special' },
-                  { date: '6/14', label: '특강 있음', type: '' },
-                  { date: '6/21', label: 'Matariki 휴교\n자체 교사 연수', type: 'holiday' },
-                  { date: '—',    label: '리더십 워크숍\n중고등 강연회', type: '' },
-                ],
-              },
-              {
-                term: 'Term 3', hdr: 'term3-hdr', weeks: '9주 (9주)',
-                rows: [
-                  { date: '7/19', label: '3팀 독도대회 준비', type: 'highlight' },
-                  { date: '7/26', label: '특강 시작', type: '' },
-                  { date: '8/2',  label: '학부모상담', type: '' },
-                  { date: '8/9',  label: '학부모상담', type: '' },
-                  { date: '8/16', label: '8.15 수업', type: '' },
-                  { date: '8/23', label: '', type: '' },
-                  { date: '8/30', label: '', type: '' },
-                  { date: '9/6',  label: '예술제 (독도대회 시상식)', type: 'special' },
-                  { date: '9/13', label: '특강 없음', type: '' },
-                  { date: '10월 3,4', label: '오세아니아 연수', type: 'special' },
-                ],
-              },
-              {
-                term: 'Term 4', hdr: 'term4-hdr', weeks: '10주 (9주)',
-                rows: [
-                  { date: '10/11', label: '추석 전통 수업', type: '' },
-                  { date: '10/18', label: '한글사랑 대회\n특강 시작', type: 'highlight' },
-                  { date: '10/25', label: 'Labour day 휴교', type: 'holiday' },
-                  { date: '11/1',  label: '', type: '' },
-                  { date: '11/8',  label: '학년말 평가', type: 'special' },
-                  { date: '11/15', label: '', type: '' },
-                  { date: '11/22', label: '성적표', type: '' },
-                  { date: '11/29', label: '', type: '' },
-                  { date: '12/6',  label: '', type: '' },
-                  { date: '12/13', label: '종업식 졸업식\n특강 없음', type: 'highlight' },
-                ],
-              },
-            ].map(({ term, hdr, weeks, rows }) => (
-              <div key={term} className="rounded-2xl overflow-hidden" style={{ background: '#fff', border: '1px solid rgba(0,0,0,0.07)' }}>
-                <div className={`${hdr} px-5 py-4`}>
-                  <div style={{ fontFamily: "'SUIT', sans-serif", fontWeight: 700, fontSize: 18, color: '#fff' }}>{term}</div>
-                  <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.75)', marginTop: 2 }}>{weeks}</div>
-                </div>
-                <div className="py-2">
-                  {rows.map(({ date, label, type }, i) => (
-                    <div
-                      key={i}
-                      className="flex items-start gap-2.5 px-4 py-[7px]"
-                      style={{ borderBottom: i < rows.length - 1 ? '1px solid rgba(0,0,0,0.05)' : 'none' }}
-                    >
-                      <span style={{ fontSize: 12, fontWeight: 600, color: '#4a5f75', whiteSpace: 'nowrap', minWidth: 46, paddingTop: 1 }}>
-                        {date}
-                      </span>
-                      <span
-                        style={{
-                          fontSize: 12, lineHeight: 1.4,
-                          color: type === 'highlight' ? '#7c5ecf' : type === 'holiday' ? '#888' : type === 'special' ? '#5a4190' : '#1c2b3a',
-                          fontWeight: type === 'highlight' || type === 'special' ? 600 : 400,
-                          fontStyle: type === 'holiday' ? 'italic' : 'normal',
-                        }}
-                      >
-                        {label.split('\n').map((l, j) => <span key={j}>{l}{j < label.split('\n').length - 1 && <br />}</span>)}
-                      </span>
-                    </div>
+                      {label} <span style={{ fontWeight: 400, color: '#8a9ab0', marginLeft: 6 }}>{weeks}</span>
+                    </th>
                   ))}
-                </div>
-              </div>
-            ))}
+                </tr>
+                {/* Column labels row */}
+                <tr style={{ background: '#FAF7F2' }}>
+                  {TERMS.map(({ label }) => (
+                    [
+                      <th key={`${label}-w`} style={{ width: 36, padding: '7px 10px', color: '#8a9ab0', fontWeight: 600, textAlign: 'center', borderBottom: '1px solid rgba(0,0,0,0.08)', borderRight: '1px solid rgba(0,0,0,0.05)' }}>W</th>,
+                      <th key={`${label}-d`} style={{ width: 70, padding: '7px 10px', color: '#8a9ab0', fontWeight: 600, textAlign: 'left', borderBottom: '1px solid rgba(0,0,0,0.08)', borderRight: '1px solid rgba(0,0,0,0.05)' }}>날짜</th>,
+                      <th key={`${label}-e`} style={{ padding: '7px 10px', color: '#8a9ab0', fontWeight: 600, textAlign: 'left', borderBottom: '1px solid rgba(0,0,0,0.08)', borderRight: label !== '텀 4' ? '2px solid rgba(0,0,0,0.1)' : 'none' }}>일정</th>,
+                    ]
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {Array.from({ length: MAX_WEEKS }, (_, i) => (
+                  <tr key={i} style={{ background: i % 2 === 0 ? '#fff' : '#FDFCFA' }}>
+                    {TERMS.map(({ label, rows }) => {
+                      const row = rows[i]
+                      const isLast = label === '텀 4'
+                      if (!row) {
+                        return [
+                          <td key={`${label}-w`} style={{ padding: '8px 10px', borderBottom: '1px solid rgba(0,0,0,0.05)', borderRight: '1px solid rgba(0,0,0,0.05)', textAlign: 'center', color: '#c8d4de' }}>—</td>,
+                          <td key={`${label}-d`} style={{ padding: '8px 10px', borderBottom: '1px solid rgba(0,0,0,0.05)', borderRight: '1px solid rgba(0,0,0,0.05)' }} />,
+                          <td key={`${label}-e`} style={{ padding: '8px 10px', borderBottom: '1px solid rgba(0,0,0,0.05)', borderRight: isLast ? 'none' : '2px solid rgba(0,0,0,0.1)' }} />,
+                        ]
+                      }
+                      const current = isCurrentWeek(row.date)
+                      const cellBg = current ? 'rgba(146,120,214,0.08)' : undefined
+                      return [
+                        <td key={`${label}-w`} style={{ padding: '8px 10px', borderBottom: '1px solid rgba(0,0,0,0.05)', borderRight: '1px solid rgba(0,0,0,0.05)', borderLeft: current ? '3px solid #9278D6' : '3px solid transparent', textAlign: 'center', color: current ? '#7c5ecf' : '#8a9ab0', fontWeight: 700, background: cellBg }}>{row.week}</td>,
+                        <td key={`${label}-d`} style={{ padding: '8px 10px', borderBottom: '1px solid rgba(0,0,0,0.05)', borderRight: '1px solid rgba(0,0,0,0.05)', color: '#4a5f75', whiteSpace: 'nowrap', background: cellBg }}>{row.date}</td>,
+                        <td key={`${label}-e`} style={{ padding: '8px 10px', borderBottom: '1px solid rgba(0,0,0,0.05)', borderRight: isLast ? 'none' : '2px solid rgba(0,0,0,0.1)', lineHeight: 1.4, background: cellBg }}>
+                          {row.event.split('\n').map((l, j) => renderEventLine(l, row.type, j))}
+                        </td>,
+                      ]
+                    })}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
-        </div>
-      </section>
+        </section>
+
+      </main>
 
       <Footer />
     </div>

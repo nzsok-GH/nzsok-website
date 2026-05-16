@@ -16,7 +16,7 @@ export default function Enrol() {
       <main style={{ maxWidth: 1200, margin: '0 auto', padding: '120px 48px 120px' }}>
 
         {/* 등록 절차 */}
-        <section style={{ marginBottom: 80 }}>
+        <section id="procedure" style={{ marginBottom: 80, scrollMarginTop: 100 }}>
           <h2 style={{ ...H2_STYLE, marginBottom: 48 }}>등록 절차</h2>
 
           {/* 입학원서 링크 */}
@@ -74,9 +74,9 @@ export default function Enrol() {
           </div>
         </section>
 
-        {/* 학비 안내 */}
-        <section style={{ marginBottom: 80 }}>
-          <h2 style={{ ...H2_STYLE, marginBottom: 32 }}>학비 안내</h2>
+        {/* 학비 */}
+        <section id="tuition" style={{ marginBottom: 80, scrollMarginTop: 100 }}>
+          <h2 style={{ ...H2_STYLE, marginBottom: 32 }}>학비</h2>
 
           {/* 정규 수업 학비 + 다자녀 할인 */}
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20, marginBottom: 20 }}>
@@ -178,7 +178,7 @@ export default function Enrol() {
         </section>
 
         {/* 문의하기 */}
-        <section style={{ marginBottom: 80 }}>
+        <section id="contact" style={{ marginBottom: 80, scrollMarginTop: 100 }}>
           <h2 style={{ ...H2_STYLE, marginBottom: 32 }}>입학 문의</h2>
 
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20 }}>
