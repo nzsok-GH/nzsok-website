@@ -41,7 +41,8 @@ export default function HeroPhysics() {
     ctx.scale(dpr, dpr)
 
     const R = Math.min(W * 0.07, H * 0.085, 164)
-    const FONT_SIZE = R * 1.25
+    const CR = R * 0.72   // collision radius — tuned to glyph size at 2× font
+    const FONT_SIZE = R * 1.25 * 2
 
     // Preload logo image
     const logoImg = new Image()
@@ -59,7 +60,7 @@ export default function HeroPhysics() {
       Bodies.rectangle(W / 2, H + 25, W + 200, 50, wallOpts),        // floor
       Bodies.rectangle(W / 2, navH - 25, W + 200, 50, wallOpts),      // ceiling just below nav
       Bodies.rectangle(-25, H / 2, 50, H + 200, wallOpts),           // left
-      Bodies.rectangle(W - R + 25, H / 2, 50, H + 200, wallOpts),    // right
+      Bodies.rectangle(W + 25, H / 2, 50, H + 200, wallOpts),         // right
     ])
 
     const ballProps = {
@@ -69,30 +70,34 @@ export default function HeroPhysics() {
       friction: 0.01,
     }
 
-    // 3×3 grid: each column = one syllable (한/민/족), rows = initial/vowel/final.
-    // cs and rs are large enough that no two circles overlap (min distance > 2R).
-    const cs = R * 2.3   // column spacing  (~189 px for R=82)
-    const rs = R * 2.15  // row spacing     (~176 px for R=82, just above 2R=164)
-    const cx = W * 0.72  // grid centre — sits in the right half, clear of the text card
+    // Natural Korean syllable layout for 한민족.
+    // 한/민: initial(top-left) + vowel(top-right) + final(bottom-center)
+    // 족: vertical stack — initial(top) + vowel(mid) + final(bottom)
+    const syl = R * 4.0   // centre-to-centre syllable spacing (2× wider for 2× font)
+    const cx = W * 0.54   // centre of 민 — shifted left to keep 족 on-screen
     const cy = H * 0.38
 
+    const han = cx - syl
+    const min = cx
+    const jok = cx + syl
+
     const START_POSITIONS = [
-      { x: cx - cs, y: cy - rs }, // ㅎ  han-initial   col0 row0
-      { x: cx - cs, y: cy      }, // ㅏ  han-vowel     col0 row1
-      { x: cx - cs, y: cy + rs }, // ㄴ  han-final     col0 row2
-      { x: cx,      y: cy - rs }, // ㅁ  min-initial   col1 row0
-      { x: cx,      y: cy      }, // ㅣ  min-vowel     col1 row1
-      { x: cx,      y: cy + rs }, // ㄴ  min-final     col1 row2
-      { x: cx + cs, y: cy - rs }, // ㅈ  jok-initial   col2 row0
-      { x: cx + cs, y: cy      }, // ㅗ  jok-vowel     col2 row1
-      { x: cx + cs, y: cy + rs }, // ㄱ  jok-final     col2 row2
+      { x: han - R * 1.10, y: cy - R * 1.00 }, // ㅎ  top-left
+      { x: han + R * 0.82, y: cy - R * 0.70 }, // ㅏ  top-right
+      { x: han - R * 0.16, y: cy + R * 1.50 }, // ㄴ  bottom
+      { x: min - R * 1.10, y: cy - R * 1.00 }, // ㅁ  top-left
+      { x: min + R * 0.82, y: cy - R * 0.70 }, // ㅣ  top-right
+      { x: min - R * 0.16, y: cy + R * 1.50 }, // ㄴ  bottom
+      { x: jok,            y: cy - R * 1.80  }, // ㅈ  top
+      { x: jok,            y: cy             }, // ㅗ  mid
+      { x: jok,            y: cy + R * 1.80  }, // ㄱ  bottom
     ]
 
-    const LOGO_START = { x: cx - cs * 2.4, y: cy }
+    const LOGO_START = { x: han - syl * 1.1, y: cy }
 
     const jasoBodies = JASO.map((char, i) => {
       const pos = START_POSITIONS[i]
-      const body = Bodies.circle(pos.x, pos.y, R, { ...ballProps, label: 'jaso' })
+      const body = Bodies.circle(pos.x, pos.y, CR, { ...ballProps, label: 'jaso' })
       // Tiny staggered velocity so bodies slowly drift apart from the initial pose
       Body.setVelocity(body, {
         x: (Math.random() - 0.5) * 0.8,
@@ -104,7 +109,8 @@ export default function HeroPhysics() {
     })
 
     // Logo ball — slightly larger for visual emphasis
-    const LR = R * 1.15
+    const LR = CR * 1.15
+    const LR_DRAW = LR * 1.5
     const logoBall = Bodies.circle(LOGO_START.x, LOGO_START.y, LR, {
       ...ballProps,
       label: 'logo',
@@ -184,40 +190,34 @@ export default function HeroPhysics() {
       ctx.textBaseline = 'middle'
       ctx.font = `900 ${FONT_SIZE}px 'Paperlogy', sans-serif`
 
-      // Draw jaso balls
+      // Draw jaso — letters only, no circle background
       for (const body of jasoBodies) {
         const { x, y } = body.position
-        const { bg, fg } = (body as any)._pal
+        const { bg } = (body as any)._pal
 
         ctx.save()
         ctx.translate(x, y)
         ctx.rotate(body.angle)
 
-        ctx.beginPath()
-        ctx.arc(0, 0, R, 0, Math.PI * 2)
+        ctx.shadowColor = 'rgba(0,0,0,0.15)'
+        ctx.shadowBlur = 8
         ctx.fillStyle = bg
-        ctx.fill()
-
-        ctx.fillStyle = fg
         ctx.fillText((body as any)._jaso, 0, FONT_SIZE * 0.05)
 
         ctx.restore()
       }
 
-      // Draw logo ball — image clipped to circle
+      // Draw logo — image only, no circle clip
       {
         const { x, y } = logoBall.position
         ctx.save()
         ctx.translate(x, y)
         ctx.rotate(logoBall.angle)
 
-        ctx.beginPath()
-        ctx.arc(0, 0, LR, 0, Math.PI * 2)
-        ctx.fillStyle = '#FAF7F2'
-        ctx.fill()
-        ctx.clip()
+        ctx.shadowColor = 'rgba(0,0,0,0.12)'
+        ctx.shadowBlur = 10
         if (logoImg.complete && logoImg.naturalWidth > 0) {
-          ctx.drawImage(logoImg, -LR, -LR, LR * 2, LR * 2)
+          ctx.drawImage(logoImg, -LR_DRAW, -LR_DRAW, LR_DRAW * 2, LR_DRAW * 2)
         }
 
         ctx.restore()

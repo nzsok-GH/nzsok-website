@@ -10,7 +10,6 @@ const InstagramIcon = ({ size = 18 }: { size?: number }) => (
   </svg>
 )
 
-
 const H2_STYLE = {
   fontFamily: "'SUIT', sans-serif", fontSize: 'clamp(24px,3vw,36px)' as const,
   fontWeight: 700, color: '#1c2b3a', lineHeight: 1.3,
@@ -21,7 +20,7 @@ export default function Admission() {
     <div>
       <Navigation />
 
-      <main style={{ maxWidth: 1200, margin: '0 auto', padding: '152px 48px 120px' }}>
+      <main style={{ maxWidth: 1200, margin: '0 auto', padding: '120px 48px 120px' }}>
 
         {/* 수업 일정 및 위치 */}
         <section style={{ marginBottom: 80 }}>
