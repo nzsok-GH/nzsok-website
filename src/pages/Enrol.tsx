@@ -337,7 +337,7 @@ export default function Enrol() {
                 >
                   {title}
                 </p>
-                <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+                <ul style={{ listStyle: "none", padding: 0, margin: 0, paddingBottom: 12 }}>
                   {levels.map((l) => (
                     <li
                       key={l}
