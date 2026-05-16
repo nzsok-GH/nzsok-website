@@ -219,9 +219,9 @@ export default function About() {
           </div>
         </section>
 
-        {/* ── 5. 교직원 소개 ─────────────────────────────── */}
+        {/* ── 5. 교직원 ─────────────────────────────── */}
         <section id="staff">
-          <h2 style={{ ...H2_STYLE, marginBottom: 32 }}>교직원 소개</h2>
+          <h2 style={{ ...H2_STYLE, marginBottom: 32 }}>교직원</h2>
 
           {[
             {
