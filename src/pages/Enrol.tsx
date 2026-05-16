@@ -81,7 +81,7 @@ export default function Enrol() {
           {/* 정규 수업 학비 + 다자녀 할인 */}
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20, marginBottom: 20 }}>
             <div style={{ padding: '4px 0' }}>
-              <p style={{ fontSize: 13, color: '#8a9ab0', marginBottom: 6 }}>정규 한국어 수업 · 연 학비</p>
+              <p style={{ fontSize: 13, color: '#8a9ab0', marginBottom: 6 }}>정규 수업</p>
               <div className="flex items-baseline gap-3">
                 <span style={{ fontFamily: "'SUIT', sans-serif", fontSize: 'clamp(36px,5vw,52px)', fontWeight: 800, color: '#9278D6', lineHeight: 1 }}>$450</span>
                 <span style={{ fontSize: 14, color: '#4a5f75' }}>/ 년</span>
@@ -112,41 +112,36 @@ export default function Enrol() {
 
           {/* 특강 */}
           <h3 style={{ fontSize: 14, fontWeight: 700, color: '#1c2b3a', marginBottom: 14, marginTop: 36 }}>
-            특강 안내 <span style={{ fontSize: 13, fontWeight: 400, color: '#8a9ab0' }}>— 선택 수업 · 별도 신청</span>
+            <span style={{ fontSize: 13, fontWeight: 400, color: '#8a9ab0', marginBottom: 24 }}>선택 수업</span><br/>
           </h3>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 16, marginBottom: 36 }}>
             {[
               {
-                emoji: '🎨',
                 title: '미술',
-                levels: ['미술 1 (만 4세)', '미술 2 (만 5세)', '미술 3 (초1–초3)', '미술 4 (초4 이상)'],
+                levels: ['미술 1 (다람쥐반)', '미술 2 (개나리반)', '미술 3 (초등부 저학년)', '미술 4 (초등부 4학년 이상)'],
                 fee: '$350',
                 note: '재료비 $20 포함',
               },
               {
-                emoji: '🧩',
                 title: '4D 프레임',
-                levels: ['초2 이상'],
+                levels: ['초등부 2학년 이상'],
                 fee: '$360',
                 note: '재료비 $30 포함',
               },
               {
-                emoji: '🥋',
                 title: '태권도',
-                levels: ['만 5세 개나리반 이상'],
+                levels: ['개나리반 이상'],
                 fee: '$330',
                 note: null,
               },
               {
-                emoji: '🎻',
                 title: '바이올린',
-                levels: ['바이올린 1 (기초반)', '바이올린 2 (중·고급반)', '만 5세부터 신청 가능'],
+                levels: ['바이올린 1 (기초반)', '바이올린 2 (중·고급반)'],
                 fee: '$330',
                 note: null,
               },
-            ].map(({ emoji, title, levels, fee, note }) => (
+            ].map(({ title, levels, fee, note }) => (
               <div key={title} className="rounded-2xl flex flex-col" style={{ background: '#FAF7F2', border: '1px solid rgba(0,0,0,0.07)', padding: '24px 20px' }}>
-                <div style={{ fontSize: 24, marginBottom: 10 }}>{emoji}</div>
                 <p style={{ fontSize: 15, fontWeight: 700, color: '#1c2b3a', marginBottom: 10 }}>{title}</p>
                 <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
                   {levels.map(l => (
@@ -163,11 +158,11 @@ export default function Enrol() {
 
           {/* 학비 납부 */}
           <div style={{ padding: '4px 0' }}>
-            <p style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.06em', color: '#9278D6', textTransform: 'uppercase', marginBottom: 16 }}>학비 납부 — 인터넷 뱅킹</p>
+            <p style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.06em', color: '#9278D6', textTransform: 'uppercase', marginBottom: 16 }}>학비 납부</p>
             {[
               { label: '계좌명', value: 'The NZ School of Korea Charitable Trust' },
               { label: '계좌번호', value: 'ANZ 01-0277-0861225-51' },
-              { label: 'Reference', value: '학생 이름(영문) / 출생연월 · 예) HongGildong1105' },
+              { label: '레퍼런스', value: '학생 이름(영문) / 출생연월 · 예) HongGildong1105' },
             ].map(({ label, value }) => (
               <div key={label} className="flex items-baseline gap-6" style={{ paddingBlock: 8 }}>
                 <span style={{ fontSize: 11, fontWeight: 700, color: '#8a9ab0', letterSpacing: '0.06em', textTransform: 'uppercase', flexShrink: 0, width: 72 }}>{label}</span>
