@@ -304,7 +304,7 @@ export default function Home() {
         </div>
       </section>
 
-      <Footer variant="full" />
+      <Footer />
     </div>
   )
 }

@@ -431,7 +431,7 @@ export default function About() {
         </div>
       </section>
 
-      <Footer variant="about" />
+      <Footer />
     </div>
   )
 }

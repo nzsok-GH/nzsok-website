@@ -255,7 +255,7 @@ export default function Admission() {
         </div>
       </main>
 
-      <Footer variant="minimal" />
+      <Footer />
     </div>
   )
 }

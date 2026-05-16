@@ -331,7 +331,7 @@ export default function Education() {
         </div>
       </section>
 
-      <Footer variant="about" />
+      <Footer />
     </div>
   )
 }
