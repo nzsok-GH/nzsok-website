@@ -1,6 +1,6 @@
 # NZSOK Website
 
-Official website for the New Zealand Society of Korean (뉴질랜드 한민족 한글학교).
+Official website for the New Zealand School of Korea (뉴질랜드 한민족 한글학교).
 
 Built with Vite 6, React 19, TypeScript, and Tailwind CSS v4. Deployed on Vercel.
 
