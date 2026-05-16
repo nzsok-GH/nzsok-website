@@ -15,13 +15,7 @@ export default function Enrol() {
     <div>
       <Navigation />
 
-      <main
-        style={{
-          maxWidth: 1200,
-          margin: "0 auto",
-          padding: "120px 48px 120px",
-        }}
-      >
+      <main className="enrol-main">
         {/* 등록 절차 */}
         <section
           id="procedure"
@@ -31,7 +25,7 @@ export default function Enrol() {
 
           {/* 입학원서 링크 */}
           <div
-            className="rounded-2xl flex items-center justify-between gap-6"
+            className="enrol-form-card rounded-2xl"
             style={{
               background: "#E8E0F7",
               border: "1px solid rgba(146,120,214,0.2)",
@@ -59,14 +53,7 @@ export default function Enrol() {
           </div>
 
           {/* 2 steps */}
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "1fr 1fr",
-              gap: 20,
-              marginBottom: 20,
-            }}
-          >
+          <div className="enrol-procedure-grid">
             {[
               {
                 num: 1,
@@ -152,14 +139,7 @@ export default function Enrol() {
           <h2 style={{ ...H2_STYLE, marginBottom: 32 }}>학비</h2>
 
           {/* 정규 수업 학비 + 다자녀 할인 */}
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "1fr 1fr",
-              gap: 20,
-              marginBottom: 20,
-            }}
-          >
+          <div className="enrol-tuition-grid">
             <div style={{ padding: "4px 0" }}>
               <p style={{ fontSize: 13, color: "#8a9ab0", marginBottom: 6 }}>
                 정규 수업
@@ -279,14 +259,7 @@ export default function Enrol() {
             </span>
             <br />
           </h3>
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(4,1fr)",
-              gap: 16,
-              marginBottom: 36,
-            }}
-          >
+          <div className="enrol-classes-grid">
             {[
               {
                 title: "미술",
@@ -439,9 +412,7 @@ export default function Enrol() {
         >
           <h2 style={{ ...H2_STYLE, marginBottom: 32 }}>입학 문의</h2>
 
-          <div
-            style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }}
-          >
+          <div className="enrol-contact-grid">
             {/* 담당자 */}
             <div style={{ padding: "28px 0" }}>
               <p
