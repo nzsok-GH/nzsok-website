@@ -42,31 +42,6 @@ export default function Education() {
     <div>
       <Navigation variant="full" />
 
-      {/* ── PAGE HERO ─────────────────────────────────── */}
-      <section
-        className="page-hero-gradient text-center"
-        style={{ padding: '140px 48px 80px' }}
-      >
-        <div className="relative z-[1] max-w-[700px] mx-auto">
-          <span
-            className="inline-block rounded-full mb-5"
-            style={{
-              background: 'rgba(146,120,214,0.15)', color: '#B49EE4',
-              border: '1px solid rgba(146,120,214,0.3)',
-              padding: '6px 18px', fontSize: 12, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase',
-            }}
-          >
-            교육
-          </span>
-          <h1 style={{ fontFamily: "'SUIT', sans-serif", fontSize: 48, fontWeight: 900, color: '#1c2b3a', lineHeight: 1.2, marginBottom: 16 }}>
-            체계적인 한국어 교육<br />커리큘럼을 소개합니다
-          </h1>
-          <p style={{ fontSize: 16, color: '#4a5f75', lineHeight: 1.7 }}>
-            매주 토요일, 연령별 맞춤 수업과 다양한 특강으로<br />한국어와 문화를 재미있게 배웁니다.
-          </p>
-        </div>
-      </section>
-
       {/* ── SECTION TABS (sticky) ──────────────────────── */}
       <nav
         ref={tabsRef}

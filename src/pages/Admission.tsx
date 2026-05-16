@@ -15,29 +15,6 @@ export default function Admission() {
     <div>
       <Navigation variant="simple" />
 
-      {/* ── HERO ──────────────────────────────────────── */}
-      <div
-        className="page-hero-gradient"
-        data-word="입학"
-        style={{ padding: '140px 48px 80px' }}
-      >
-        <div className="relative z-[1] max-w-[1200px] mx-auto">
-          <span
-            className="inline-flex items-center gap-2.5 mb-4"
-            style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', color: '#B49EE4' }}
-          >
-            <span style={{ display: 'block', width: 24, height: 2, background: '#B49EE4' }} />
-            입학안내
-          </span>
-          <h1 style={{ fontFamily: "'SUIT', sans-serif", fontSize: 'clamp(32px,5vw,60px)', fontWeight: 900, color: '#fff', marginBottom: 16 }}>
-            <em style={{ color: '#B49EE4', fontStyle: 'normal' }}>한민족 한글학교</em>에<br />오신 것을 환영합니다
-          </h1>
-          <p style={{ color: 'rgba(255,255,255,0.55)', fontSize: 15, lineHeight: 1.7 }}>
-            입학 절차는 간단합니다. 아래 내용을 참고하시고 궁금한 점은 언제든지 문의해 주세요.
-          </p>
-        </div>
-      </div>
-
       {/* ── MAIN ──────────────────────────────────────── */}
       <main style={{ maxWidth: 1200, margin: '0 auto', padding: '80px 48px 120px' }}>
 

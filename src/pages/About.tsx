@@ -39,31 +39,6 @@ export default function About() {
     <div>
       <Navigation variant="full" />
 
-      {/* ── PAGE HERO ─────────────────────────────────── */}
-      <section
-        className="page-hero-gradient text-center"
-        style={{ padding: '140px 48px 80px' }}
-      >
-        <div className="relative z-[1] max-w-[700px] mx-auto">
-          <span
-            className="inline-block rounded-full mb-5"
-            style={{
-              background: 'rgba(146,120,214,0.15)', color: '#B49EE4',
-              border: '1px solid rgba(146,120,214,0.3)',
-              padding: '6px 18px', fontSize: 12, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase',
-            }}
-          >
-            학교소개
-          </span>
-          <h1 style={{ fontFamily: "'SUIT', sans-serif", fontSize: 48, fontWeight: 900, color: '#1c2b3a', lineHeight: 1.2, marginBottom: 16 }}>
-            뉴질랜드 한민족<br />한글학교를 소개합니다
-          </h1>
-          <p style={{ fontSize: 16, color: '#4a5f75', lineHeight: 1.7 }}>
-            1997년 설립 이래, 한국어와 문화를 미래 세대에 전하는<br />뉴질랜드 오클랜드의 한글 교육 공동체입니다.
-          </p>
-        </div>
-      </section>
-
       {/* ── SECTION TABS (sticky) ──────────────────────── */}
       <nav
         ref={tabsRef}

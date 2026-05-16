@@ -110,27 +110,6 @@ export default function Gallery() {
     <div>
       <Navigation variant="full" />
 
-      {/* ── HERO ──────────────────────────────────────── */}
-      <div
-        className="page-hero-gradient"
-        data-word="알림마당"
-        style={{ padding: '140px 48px 80px' }}
-      >
-        <div className="relative z-[1] max-w-[1200px] mx-auto">
-          <span
-            className="inline-flex items-center gap-2.5 mb-4"
-            style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', color: '#B49EE4' }}
-          >
-            <span style={{ display: 'block', width: 24, height: 2, background: '#B49EE4' }} />
-            알림마당
-          </span>
-          <h1 style={{ fontFamily: "'SUIT', sans-serif", fontSize: 'clamp(32px,5vw,60px)', fontWeight: 900, color: '#1c2b3a', marginBottom: 16 }}>
-            공지 &amp; <em style={{ color: '#9278D6', fontStyle: 'normal' }}>앨범</em>
-          </h1>
-          <p style={{ color: '#4a5f75', fontSize: 15 }}>학교 소식과 앨범을 한곳에서 확인하세요</p>
-        </div>
-      </div>
-
       {/* ── NOTICES ───────────────────────────────────── */}
       <section id="notice" style={{ background: '#FAF7F2', padding: '80px 48px' }}>
         <div className="max-w-[1200px] mx-auto">
