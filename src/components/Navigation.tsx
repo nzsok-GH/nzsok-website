@@ -106,11 +106,10 @@ export default function Navigation({ variant = 'full', transparent = false }: Na
             </Link>
             <div className="dropdown">
               <Link to="/about#intro" onClick={closeMenu}>소개글</Link>
-              <Link to="/about#purpose" onClick={closeMenu}>설립 취지</Link>
-              <Link to="/about#staff" onClick={closeMenu}>교직원 소개</Link>
-              <Link to="/about#hymn" onClick={closeMenu}>학교 교가</Link>
-              <Link to="/about#history" onClick={closeMenu}>학교 연혁</Link>
+              <Link to="/about#hymn" onClick={closeMenu}>교가</Link>
+              <Link to="/about#history" onClick={closeMenu}>연혁</Link>
               <Link to="/about#board" onClick={closeMenu}>이사회</Link>
+              <Link to="/about#staff" onClick={closeMenu}>교직원 소개</Link>
             </div>
           </li>
           <li>
@@ -122,7 +121,7 @@ export default function Navigation({ variant = 'full', transparent = false }: Na
               교육
             </Link>
             <div className="dropdown">
-              <Link to="/education#schedule" onClick={closeMenu}>수업 시간</Link>
+              <Link to="/education#schedule" onClick={closeMenu}>시간표</Link>
               <Link to="/education#programs" onClick={closeMenu}>커리큘럼</Link>
               <Link to="/education#annual" onClick={closeMenu}>연간 교육계획</Link>
             </div>
@@ -136,8 +135,8 @@ export default function Navigation({ variant = 'full', transparent = false }: Na
               알림마당
             </Link>
             <div className="dropdown">
-              <Link to="/media#notice" onClick={closeMenu}>공지사항</Link>
-              <Link to="/media" onClick={closeMenu}>학교앨범</Link>
+              <Link to="/media#album" onClick={closeMenu}>앨범</Link>
+              <Link to="/media#instagram" onClick={closeMenu}>인스타그램</Link>
             </div>
           </li>
         </ul>
@@ -174,15 +173,15 @@ export default function Navigation({ variant = 'full', transparent = false }: Na
           {[
             { to: '/about', label: '학교소개' },
             { to: '/about#intro', label: 'ㄴ 소개글' },
-            { to: '/about#purpose', label: 'ㄴ 설립 취지' },
-            { to: '/about#staff', label: 'ㄴ 교직원 소개' },
             { to: '/about#hymn', label: 'ㄴ 교가' },
             { to: '/about#history', label: 'ㄴ 연혁' },
-            { to: '/education#schedule', label: '교육 – 수업 시간' },
+            { to: '/about#board', label: 'ㄴ 이사회' },
+            { to: '/about#staff', label: 'ㄴ 교직원 소개' },
+            { to: '/education#schedule', label: '교육 – 시간표' },
             { to: '/education#programs', label: '교육 – 커리큘럼' },
             { to: '/education#annual', label: '교육 – 연간 교육계획' },
-            { to: '/media#notice', label: '알림마당 – 공지사항' },
-            { to: '/media', label: '알림마당 – 학교앨범' },
+            { to: '/media#album', label: '알림마당 – 앨범' },
+            { to: '/media#instagram', label: '알림마당 – 인스타그램' },
           ].map(({ to, label }) => (
             <Link
               key={to}

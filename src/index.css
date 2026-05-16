@@ -397,8 +397,10 @@ footer a:hover { color: var(--primary) !important; }
 
 /* ── Section tabs (About page) ───────────────────────────────── */
 /* nav (72px) + sticky tab bar (~50px) + small gap */
-#intro, #staff, #hymn, #history, #board {
-  scroll-margin-top: 180px;
+#intro, #staff, #hymn, #history, #board,
+#schedule, #programs, #annual,
+#notice, #album, #instagram {
+  scroll-margin-top: 148px;
 }
 
 .section-tab {
@@ -486,3 +488,8 @@ footer a:hover { color: var(--primary) !important; }
 @media (max-width: 900px) {
   .mobile-menu { top: 60px; }
 }
+
+/* ── 연혁 horizontal scrollbar ───────────────────────────────── */
+.history-scroll { scrollbar-width: none; }
+.history-scroll::-webkit-scrollbar { display: none; }
+
