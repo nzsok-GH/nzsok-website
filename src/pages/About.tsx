@@ -200,7 +200,7 @@ export default function About() {
         <section id="board" style={{ marginBottom: 80 }}>
           <h2 style={{ ...H2_STYLE, marginBottom: 32 }}>이사회</h2>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 12 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 12 }}>
             {[
               { name: '노재회', role: '이사회 의장' },
               { name: '김보연', role: '이사' },
@@ -210,10 +210,9 @@ export default function About() {
             ].map(({ name, role }) => (
               <div
                 key={name}
-                className="rounded-xl"
-                style={{ background: '#FAF7F2', border: '1px solid rgba(0,0,0,0.07)', padding: '16px 20px' }}
+                style={{ padding: '12px 4px' }}
               >
-                <div style={{ fontSize: 14, fontWeight: 700, color: '#1c2b3a', marginBottom: 4 }}>{name}</div>
+                <div style={{ fontSize: 14, fontWeight: 700, color: '#1c2b3a', marginBottom: 3 }}>{name}</div>
                 <div style={{ fontSize: 12, color: '#4a5f75', fontWeight: 400 }}>{role}</div>
               </div>
             ))}
@@ -227,7 +226,7 @@ export default function About() {
           {[
             {
               dept: '교장단',
-              cols: 3,
+
               staff: [
                 { name: '김현정', label: '교장' },
                 { name: '장우리', label: '교감' },
@@ -235,7 +234,7 @@ export default function About() {
             },
             {
               dept: '유치부',
-              cols: 3,
+
               staff: [
                 { name: '유은경', label: '다람쥐 1반' },
                 { name: '강수진', label: '다람쥐 2반' },
@@ -245,7 +244,7 @@ export default function About() {
             },
             {
               dept: '초등부',
-              cols: 3,
+
               staff: [
                 { name: '권영희', label: '1학년 1반' },
                 { name: '김민경', label: '1학년 2반' },
@@ -259,7 +258,7 @@ export default function About() {
             },
             {
               dept: '중등부',
-              cols: 3,
+
               staff: [
                 { name: '홍성룡', label: '1학년' },
                 { name: '이계우', label: '2·3학년' },
@@ -267,7 +266,7 @@ export default function About() {
             },
             {
               dept: '특강',
-              cols: 3,
+
               staff: [
                 { name: '조하은', label: '미술 1·2' },
                 { name: '이계우', label: '미술 3' },
@@ -277,19 +276,18 @@ export default function About() {
                 { name: '이건', label: '태권도' },
               ],
             },
-          ].map(({ dept, cols, staff }) => (
+          ].map(({ dept, staff }) => (
             <div key={dept} style={{ marginBottom: 40 }}>
               <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#9278D6', borderBottom: '1px solid rgba(0,0,0,0.07)', paddingBottom: 10, marginBottom: 20 }}>
                 {dept}
               </div>
-              <div style={{ display: 'grid', gridTemplateColumns: `repeat(${cols}, 1fr)`, gap: 12 }}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 12 }}>
                 {staff.map(({ name, label }) => (
                   <div
                     key={name + label}
-                    className="rounded-xl"
-                    style={{ background: '#FAF7F2', border: '1px solid rgba(0,0,0,0.07)', padding: '16px 20px' }}
+                    style={{ padding: '12px 4px' }}
                   >
-                    <div style={{ fontSize: 14, fontWeight: 700, color: '#1c2b3a', marginBottom: 4 }}>{name}</div>
+                    <div style={{ fontSize: 14, fontWeight: 700, color: '#1c2b3a', marginBottom: 3 }}>{name}</div>
                     <div style={{ fontSize: 12, color: '#4a5f75', fontWeight: 400 }}>{label}</div>
                   </div>
                 ))}
