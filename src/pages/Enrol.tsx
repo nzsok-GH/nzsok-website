@@ -412,31 +412,23 @@ export default function Enrol() {
         >
           <h2 style={{ ...H2_STYLE, marginBottom: 32 }}>입학 문의</h2>
 
-          <div className="enrol-contact-grid">
+          <div
+            className="rounded-2xl enrol-contact-card"
+            style={{
+              background: "#FAF7F2",
+              border: "1px solid rgba(0,0,0,0.07)",
+            }}
+          >
             {/* 담당자 */}
-            <div style={{ padding: "28px 0" }}>
-              <p
-                style={{
-                  fontSize: 18,
-                  fontWeight: 700,
-                  color: "#1c2b3a",
-                  marginBottom: 4,
-                }}
-              >
-                장우리
-              </p>
-              <p style={{ fontSize: 13, color: "#8a9ab0" }}>교감</p>
+            <div className="enrol-contact-person">
+              <p style={{ fontSize: 13, color: "#8a9ab0", marginBottom: 4 }}>교감</p>
+              <p style={{ fontSize: 18, fontWeight: 700, color: "#1c2b3a" }}>장우리</p>
             </div>
 
+            <div className="enrol-contact-divider" />
+
             {/* 연락처 */}
-            <div
-              className="rounded-2xl flex flex-col justify-center gap-3"
-              style={{
-                background: "#FAF7F2",
-                border: "1px solid rgba(0,0,0,0.07)",
-                padding: "28px 32px",
-              }}
-            >
+            <div className="enrol-contact-links">
               {[
                 {
                   icon: <Phone size={16} />,
@@ -455,9 +447,7 @@ export default function Enrol() {
                   className="no-underline flex items-center gap-3"
                   style={{ color: "#1c2b3a" }}
                 >
-                  <span style={{ color: "#8a9ab0", flexShrink: 0 }}>
-                    {icon}
-                  </span>
+                  <span style={{ color: "#8a9ab0", flexShrink: 0 }}>{icon}</span>
                   <span style={{ fontSize: 14, fontWeight: 600 }}>{value}</span>
                 </a>
               ))}
