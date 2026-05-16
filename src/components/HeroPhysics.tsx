@@ -276,7 +276,7 @@ export default function HeroPhysics() {
 
       <h1
         ref={textRef}
-        className="absolute z-10"
+        className="absolute z-10 hidden md:block"
         onClick={() => resetRef.current()}
         style={{
           bottom: '3rem',
