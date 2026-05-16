@@ -6,7 +6,13 @@ export interface AlbumPhoto {
 export interface Album {
   title: string;
   date: string;
-  category: 'graduation' | 'event' | 'class' | 'culture' | 'performance' | 'other';
+  category:
+    | "graduation"
+    | "event"
+    | "class"
+    | "culture"
+    | "performance"
+    | "other";
   cover: string | null;
   photos: AlbumPhoto[];
   description?: string;
@@ -14,4 +20,4 @@ export interface Album {
   slug: string;
 }
 
-export type FilterCategory = 'all' | Album['category'];
+export type FilterCategory = "all" | Album["category"];

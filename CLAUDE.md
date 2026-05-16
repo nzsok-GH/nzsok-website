@@ -21,12 +21,14 @@ This is a single-page application deployed on Netlify. React Router handles clie
 **Home page** (`src/pages/Home.tsx`): single full-viewport Hero section only — school name, tagline, CTA buttons, and key stats. No other sections.
 
 **Shared components** (`src/components/`):
+
 - `Navigation.tsx` — takes a `variant` prop: `'full'` (home/about, with dropdown nav), `'simple'` (admission, logo + back link), `'gallery'` (gallery page, logo + back + admin link)
 - `Footer.tsx` — single unified design, no variant prop; used on all pages
 
 **Styling** (`src/index.css`): Tailwind v4 loaded via `@import "tailwindcss"`. Brand colors and fonts are declared in `@theme { }` (makes them available as Tailwind utilities like `bg-navy`, `text-gold`) and mirrored in `:root { }` as `var(--navy)` etc. for use inside custom CSS rules. Animations, pseudo-elements, and complex gradients are written as regular CSS classes below the theme block.
 
 **Gallery + CMS pipeline**:
+
 - `_albums/*.md` — frontmatter-only markdown files created/edited by Decap CMS at `/admin`
 - `build-albums.js` — ES module script run at build time; parses the frontmatter and writes `public/albums.json`
 - `src/pages/Gallery.tsx` — fetches `/albums.json` at runtime; falls back to `SAMPLE_ALBUMS` if the fetch fails

@@ -1,6 +1,6 @@
-import Navigation from '../components/Navigation'
-import Footer from '../components/Footer'
-import HeroPhysics from '../components/HeroPhysics'
+import Navigation from "../components/Navigation";
+import Footer from "../components/Footer";
+import HeroPhysics from "../components/HeroPhysics";
 
 export default function Home() {
   return (
@@ -9,5 +9,5 @@ export default function Home() {
       <HeroPhysics />
       <Footer />
     </div>
-  )
+  );
 }

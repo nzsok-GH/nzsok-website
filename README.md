@@ -22,6 +22,7 @@ nzsok/
 ## 🚀 배포 방법 (처음 1회)
 
 ### 1단계. GitHub 저장소 만들기
+
 1. [github.com](https://github.com) 접속 → 로그인
 2. 오른쪽 상단 **+** → **New repository**
 3. Repository name: `nzsok-website`
@@ -29,6 +30,7 @@ nzsok/
 5. 모든 파일을 이 저장소에 업로드
 
 ### 2단계. Netlify 연동
+
 1. [netlify.com](https://netlify.com) 접속 → GitHub로 로그인
 2. **Add new site** → **Import an existing project**
 3. **Deploy with GitHub** → `nzsok-website` 선택
@@ -37,12 +39,14 @@ nzsok/
 6. **Deploy site** 클릭
 
 ### 3단계. Netlify Identity 활성화 (CMS 로그인용)
+
 1. Netlify 대시보드 → **Site settings**
 2. **Identity** 탭 → **Enable Identity**
 3. **Git Gateway** → **Enable Git Gateway**
 4. **Registration** → **Invite only** (보안!)
 
 ### 4단계. 관리자 계정 만들기
+
 1. **Identity** 탭 → **Invite users**
 2. 선생님 이메일 주소 입력 → **Send**
 3. 이메일 확인 → 비밀번호 설정
@@ -80,4 +84,5 @@ A. Netlify 대시보드 → Domain settings → Add custom domain
 ---
 
 ## 📞 기술 지원
+
 admin@nzsok.school.nz

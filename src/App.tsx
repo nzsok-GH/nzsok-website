@@ -1,24 +1,24 @@
-import { lazy, Suspense, useEffect } from 'react'
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
-import LoadingScreen from './components/LoadingScreen'
+import { lazy, Suspense, useEffect } from "react";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import LoadingScreen from "./components/LoadingScreen";
 
-const Home      = lazy(() => import('./pages/Home'))
-const About     = lazy(() => import('./pages/About'))
-const Education = lazy(() => import('./pages/Education'))
-const Enrol = lazy(() => import('./pages/Enrol'))
-const Media     = lazy(() => import('./pages/Media'))
+const Home = lazy(() => import("./pages/Home"));
+const About = lazy(() => import("./pages/About"));
+const Education = lazy(() => import("./pages/Education"));
+const Enrol = lazy(() => import("./pages/Enrol"));
+const Media = lazy(() => import("./pages/Media"));
 
 function ScrollRestore() {
-  const { pathname, hash } = useLocation()
+  const { pathname, hash } = useLocation();
   useEffect(() => {
     if (hash) {
-      const el = document.querySelector(hash)
-      if (el) el.scrollIntoView({ behavior: 'smooth' })
+      const el = document.querySelector(hash);
+      if (el) el.scrollIntoView({ behavior: "smooth" });
     } else {
-      window.scrollTo(0, 0)
+      window.scrollTo(0, 0);
     }
-  }, [pathname, hash])
-  return null
+  }, [pathname, hash]);
+  return null;
 }
 
 function AppRoutes() {
@@ -33,7 +33,7 @@ function AppRoutes() {
         <Route path="/media" element={<Media />} />
       </Routes>
     </Suspense>
-  )
+  );
 }
 
 export default function App() {
@@ -41,5 +41,5 @@ export default function App() {
     <BrowserRouter>
       <AppRoutes />
     </BrowserRouter>
-  )
+  );
 }

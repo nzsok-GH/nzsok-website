@@ -4,7 +4,7 @@ backend:
   branch: main # 배포 중인 브랜치 이름
 
 media_folder: "images/albums" # 이미지가 저장될 경로
-public_folder: "/images/albums"    # 웹사이트에서 불러올 이미지 주소
+public_folder: "/images/albums" # 웹사이트에서 불러올 이미지 주소
 
 collections:
   - name: "albums"
@@ -15,12 +15,40 @@ collections:
     fields:
       - { label: "제목", name: "title", widget: "string" }
       - { label: "날짜", name: "date", widget: "datetime" }
-      - { label: "분류", name: "category", widget: "select", options: [{label: "🎓 졸업식", value: "graduation"}, {label: "🎉 학교 행사", value: "event"}, {label: "📚 수업 활동", value: "class"}, {label: "🎨 문화 체험", value: "culture"}, {label: "🏅 발표회", value: "performance"}, {label: "📷 기타", value: "other"}] }
-      - { label: "대표 이미지(썸네일)", name: "cover", widget: "image", required: false }
-      - { label: "앨범 설명", name: "description", widget: "text", required: false }
+      - {
+          label: "분류",
+          name: "category",
+          widget: "select",
+          options:
+            [
+              { label: "🎓 졸업식", value: "graduation" },
+              { label: "🎉 학교 행사", value: "event" },
+              { label: "📚 수업 활동", value: "class" },
+              { label: "🎨 문화 체험", value: "culture" },
+              { label: "🏅 발표회", value: "performance" },
+              { label: "📷 기타", value: "other" },
+            ],
+        }
+      - {
+          label: "대표 이미지(썸네일)",
+          name: "cover",
+          widget: "image",
+          required: false,
+        }
+      - {
+          label: "앨범 설명",
+          name: "description",
+          widget: "text",
+          required: false,
+        }
       - label: "사진 목록 (여러 장 추가)"
         name: "photos"
         widget: "list"
         fields:
           - { label: "사진", name: "image", widget: "image" }
-          - { label: "사진 캡션(선택)", name: "caption", widget: "string", required: false }
+          - {
+              label: "사진 캡션(선택)",
+              name: "caption",
+              widget: "string",
+              required: false,
+            }

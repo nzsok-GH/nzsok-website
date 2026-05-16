@@ -5,15 +5,15 @@
  * gallery/albums.json 으로 변환합니다.
  */
 
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-const ALBUMS_DIR = path.join(__dirname, '_albums');
+const ALBUMS_DIR = path.join(__dirname, "_albums");
 // Output to public/ so Vite serves it as a static asset
-const OUTPUT_FILE = path.join(__dirname, 'public', 'albums.json');
+const OUTPUT_FILE = path.join(__dirname, "public", "albums.json");
 
 // Simple frontmatter parser (no dependencies needed)
 function parseFrontmatter(content) {
@@ -22,7 +22,7 @@ function parseFrontmatter(content) {
 
   const body = content.slice(match[0].length).trim();
   const data = {};
-  const lines = match[1].split('\n');
+  const lines = match[1].split("\n");
 
   let currentKey = null;
   let currentList = null;
@@ -31,55 +31,63 @@ function parseFrontmatter(content) {
 
   for (const line of lines) {
     // List item continuation
-    if (line.startsWith('  - ') || line.startsWith('    ')) {
+    if (line.startsWith("  - ") || line.startsWith("    ")) {
       const trimmed = line.trim();
-      if (trimmed.startsWith('- ')) {
+      if (trimmed.startsWith("- ")) {
         // New photo item
-        if (currentKey === 'photos') {
+        if (currentKey === "photos") {
           if (inPhotoItem) currentList.push(photoItem);
           photoItem = {};
           inPhotoItem = true;
           const val = trimmed.slice(2).trim();
-          if (val.includes(':')) {
+          if (val.includes(":")) {
             const [k, v] = val.split(/:\s+(.+)/);
-            photoItem[k.trim()] = v ? v.trim().replace(/^["']|["']$/g, '') : '';
+            photoItem[k.trim()] = v ? v.trim().replace(/^["']|["']$/g, "") : "";
           }
         } else if (currentList) {
-          currentList.push(trimmed.slice(2).trim().replace(/^["']|["']$/g, ''));
+          currentList.push(
+            trimmed
+              .slice(2)
+              .trim()
+              .replace(/^["']|["']$/g, ""),
+          );
         }
-      } else if (inPhotoItem && trimmed.includes(':')) {
+      } else if (inPhotoItem && trimmed.includes(":")) {
         const [k, v] = trimmed.split(/:\s+(.+)/);
-        photoItem[k.trim()] = v ? v.trim().replace(/^["']|["']$/g, '') : '';
+        photoItem[k.trim()] = v ? v.trim().replace(/^["']|["']$/g, "") : "";
       }
       continue;
     }
 
     // Finish any ongoing list item
-    if (inPhotoItem && !line.startsWith(' ')) {
+    if (inPhotoItem && !line.startsWith(" ")) {
       currentList.push(photoItem);
       photoItem = {};
       inPhotoItem = false;
     }
 
-    if (!line.trim() || !line.includes(':')) continue;
+    if (!line.trim() || !line.includes(":")) continue;
 
-    const colonIdx = line.indexOf(':');
+    const colonIdx = line.indexOf(":");
     const key = line.slice(0, colonIdx).trim();
     const value = line.slice(colonIdx + 1).trim();
 
-    if (value === '' || value === '[]') {
+    if (value === "" || value === "[]") {
       // Start of a list
       currentKey = key;
       currentList = [];
       data[key] = currentList;
-    } else if (value.startsWith('[')) {
+    } else if (value.startsWith("[")) {
       // Inline list
-      data[key] = value.slice(1, -1).split(',').map(v => v.trim().replace(/^["']|["']$/g, ''));
+      data[key] = value
+        .slice(1, -1)
+        .split(",")
+        .map((v) => v.trim().replace(/^["']|["']$/g, ""));
     } else {
-      data[key] = value.replace(/^["']|["']$/g, '');
+      data[key] = value.replace(/^["']|["']$/g, "");
       // Handle booleans
-      if (data[key] === 'true') data[key] = true;
-      if (data[key] === 'false') data[key] = false;
+      if (data[key] === "true") data[key] = true;
+      if (data[key] === "false") data[key] = false;
     }
   }
 
@@ -94,30 +102,30 @@ function parseFrontmatter(content) {
 function buildAlbums() {
   // Ensure _albums directory exists
   if (!fs.existsSync(ALBUMS_DIR)) {
-    console.log('📁 _albums 폴더가 없습니다. 빈 albums.json을 생성합니다.');
+    console.log("📁 _albums 폴더가 없습니다. 빈 albums.json을 생성합니다.");
     fs.mkdirSync(ALBUMS_DIR, { recursive: true });
     fs.writeFileSync(OUTPUT_FILE, JSON.stringify([], null, 2));
     return;
   }
 
-  const files = fs.readdirSync(ALBUMS_DIR).filter(f => f.endsWith('.md'));
+  const files = fs.readdirSync(ALBUMS_DIR).filter((f) => f.endsWith(".md"));
 
   if (files.length === 0) {
-    console.log('📷 앨범 파일이 없습니다.');
+    console.log("📷 앨범 파일이 없습니다.");
     fs.writeFileSync(OUTPUT_FILE, JSON.stringify([], null, 2));
     return;
   }
 
   const albums = files
-    .map(filename => {
-      const content = fs.readFileSync(path.join(ALBUMS_DIR, filename), 'utf8');
+    .map((filename) => {
+      const content = fs.readFileSync(path.join(ALBUMS_DIR, filename), "utf8");
       const { data } = parseFrontmatter(content);
       return {
         ...data,
-        slug: filename.replace('.md', '')
+        slug: filename.replace(".md", ""),
       };
     })
-    .filter(a => a.published !== false)
+    .filter((a) => a.published !== false)
     .sort((a, b) => new Date(b.date) - new Date(a.date));
 
   fs.writeFileSync(OUTPUT_FILE, JSON.stringify(albums, null, 2));
