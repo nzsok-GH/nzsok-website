@@ -176,12 +176,16 @@ export default function Navigation({ variant = 'full' }: NavigationProps) {
           </li>
           <li>
             <Link
-              to="/gallery"
+              to="/media"
               className="block px-4 py-2 text-sm font-medium rounded-md"
-              style={{ color: 'rgba(255,255,255,0.82)', textDecoration: 'none', letterSpacing: '0.02em' }}
+              style={{ color: '#4a5f75', textDecoration: 'none', letterSpacing: '0.02em' }}
             >
-              알림마당
+              알림마당 ▾
             </Link>
+            <div className="dropdown">
+              <Link to="/media#notice" onClick={closeMenu}>공지사항</Link>
+              <Link to="/media" onClick={closeMenu}>학교앨범</Link>
+            </div>
           </li>
           <li>
             <Link
@@ -227,7 +231,8 @@ export default function Navigation({ variant = 'full' }: NavigationProps) {
             { to: '/education#schedule', label: '교육 – 수업 시간' },
             { to: '/education#programs', label: '교육 – 커리큘럼' },
             { to: '/education#annual', label: '교육 – 연간 교육계획' },
-            { to: '/gallery', label: '알림마당' },
+            { to: '/media#notice', label: '알림마당 – 공지사항' },
+            { to: '/media', label: '알림마당 – 학교앨범' },
           ].map(({ to, label }) => (
             <Link
               key={to}

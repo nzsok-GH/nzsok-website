@@ -26,6 +26,7 @@ function AppRoutes() {
         <Route path="/about" element={<About />} />
         <Route path="/education" element={<Education />} />
         <Route path="/admission" element={<Admission />} />
+        <Route path="/media" element={<Gallery />} />
         <Route path="/gallery" element={<Gallery />} />
       </Routes>
     </>

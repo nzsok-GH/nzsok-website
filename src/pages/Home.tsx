@@ -219,63 +219,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── NOTICE ──────────────────────────────────────── */}
-      <section id="notice" style={{ background: '#FAF7F2', padding: '100px 48px' }}>
-        <div className="max-w-[1200px] mx-auto">
-          <span className="section-label-line">알림마당</span>
-          <h2 style={{ fontFamily: "'SUIT', sans-serif", fontSize: 'clamp(28px,3.5vw,44px)', fontWeight: 700, color: '#1c2b3a', lineHeight: 1.25, marginBottom: 16 }}>
-            공지사항
-          </h2>
-          <p style={{ fontSize: 16, color: '#4a5f75', lineHeight: 1.75, maxWidth: 520 }}>
-            한민족 한글학교의 주요 소식과 공지를 안내합니다.
-          </p>
-
-          <div className="flex flex-col gap-4 mt-12">
-            {[
-              { badge: '중요', badgeType: 'important', title: '2025년 Term 1 개학 안내 – 2월 15일(토) 입학식 및 개학식', date: '2025년 2월 10일' },
-              { badge: '행사', badgeType: 'event',     title: '나의 꿈 말하기 대회 – 3월 15일(토)',                    date: '2025년 3월 1일' },
-              { badge: '행사', badgeType: 'event',     title: '전국 말하기 대회 – 4월 12일(토)',                      date: '2025년 4월 1일' },
-              { badge: '안내', badgeType: 'general',   title: 'Term 1 특강 안내 – 미술, 바이올린, 태권도, 4D프레임',   date: '2025년 2월 10일' },
-            ].map(({ badge, badgeType, title, date }) => {
-              const badgeStyle =
-                badgeType === 'important' ? { background: 'rgba(146,120,214,0.15)', color: '#7c5ecf', border: '1px solid rgba(146,120,214,0.3)' } :
-                badgeType === 'event'     ? { background: 'rgba(146,120,214,0.08)',     color: '#1c2b3a', border: '1px solid rgba(146,120,214,0.15)' } :
-                                            { background: 'rgba(90,65,144,0.1)',     color: '#5a4190', border: '1px solid rgba(90,65,144,0.2)' }
-              return (
-                <div
-                  key={title}
-                  className="rounded-2xl flex items-start gap-6 transition-all cursor-default"
-                  style={{
-                    background: '#fff', border: '1px solid rgba(0,0,0,0.07)',
-                    
-                    padding: '24px 32px',
-                  }}
-                  onMouseOver={e => {
-                    (e.currentTarget as HTMLDivElement).style.borderColor = 'rgba(146,120,214,0.3)'
-                    ;(e.currentTarget as HTMLDivElement).style.transform = 'translateY(-2px)'
-                  }}
-                  onMouseOut={e => {
-                    ;(e.currentTarget as HTMLDivElement).style.borderColor = 'rgba(0,0,0,0.07)'
-                    ;(e.currentTarget as HTMLDivElement).style.transform = ''
-                  }}
-                >
-                  <span
-                    className="flex-shrink-0 rounded-full text-[11px] font-bold text-center"
-                    style={{ minWidth: 64, padding: '4px 12px', letterSpacing: '0.05em', textTransform: 'uppercase', ...badgeStyle }}
-                  >
-                    {badge}
-                  </span>
-                  <div>
-                    <div style={{ fontSize: 16, fontWeight: 700, color: '#1c2b3a', marginBottom: 6, lineHeight: 1.4 }}>{title}</div>
-                    <div style={{ fontSize: 13, color: '#4a5f75' }}>{date}</div>
-                  </div>
-                </div>
-              )
-            })}
-          </div>
-        </div>
-      </section>
-
       {/* ── ADMISSION SNIPPET ────────────────────────────── */}
       <section id="admission" style={{ background: '#FDFCFA', padding: '100px 48px' }}>
         <div className="max-w-[1200px] mx-auto">

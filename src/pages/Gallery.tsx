@@ -108,12 +108,12 @@ export default function Gallery() {
 
   return (
     <div>
-      <Navigation variant="gallery" />
+      <Navigation variant="full" />
 
       {/* ── HERO ──────────────────────────────────────── */}
       <div
         className="page-hero-gradient"
-        data-word="앨범"
+        data-word="알림마당"
         style={{ padding: '140px 48px 80px' }}
       >
         <div className="relative z-[1] max-w-[1200px] mx-auto">
@@ -125,36 +125,90 @@ export default function Gallery() {
             알림마당
           </span>
           <h1 style={{ fontFamily: "'SUIT', sans-serif", fontSize: 'clamp(32px,5vw,60px)', fontWeight: 900, color: '#1c2b3a', marginBottom: 16 }}>
-            학교 <em style={{ color: '#9278D6', fontStyle: 'normal' }}>앨범</em>
+            공지 &amp; <em style={{ color: '#9278D6', fontStyle: 'normal' }}>앨범</em>
           </h1>
-          <p style={{ color: '#4a5f75', fontSize: 15 }}>소중한 순간들을 함께 나눕니다</p>
+          <p style={{ color: '#4a5f75', fontSize: 15 }}>학교 소식과 앨범을 한곳에서 확인하세요</p>
         </div>
       </div>
 
-      {/* ── FILTERS ───────────────────────────────────── */}
-      <div
-        className="sticky z-50"
-        style={{ background: '#FDFCFA', padding: '28px 48px', borderBottom: '1px solid #EDE4D3', top: 72 }}
-      >
-        <div className="max-w-[1200px] mx-auto flex gap-2.5 flex-wrap items-center">
-          <span style={{ fontSize: 12, fontWeight: 700, color: '#4a5f75', letterSpacing: '0.08em', textTransform: 'uppercase', marginRight: 8 }}>
-            분류
-          </span>
-          {([['all', '전체'], ['graduation', '🎓 졸업식'], ['event', '🎉 학교 행사'], ['class', '📚 수업 활동'], ['culture', '🎨 문화 체험'], ['performance', '🏅 발표회']] as [FilterCategory, string][]).map(([val, label]) => (
-            <button
-              key={val}
-              className="filter-btn px-4 py-2 rounded-full text-sm font-medium cursor-pointer"
-              style={{
-                border: '1px solid',
-                borderColor: filter === val ? '#9278D6' : 'rgba(0,0,0,0.12)',
-                background: filter === val ? '#E8E0F7' : 'transparent',
-                color: filter === val ? '#9278D6' : '#4a5f75',
-              }}
-              onClick={() => setFilter(val)}
-            >
-              {label}
-            </button>
-          ))}
+      {/* ── NOTICES ───────────────────────────────────── */}
+      <section id="notice" style={{ background: '#FAF7F2', padding: '80px 48px' }}>
+        <div className="max-w-[1200px] mx-auto">
+          <span className="section-label-line">공지사항</span>
+          <h2 style={{ fontFamily: "'SUIT', sans-serif", fontSize: 'clamp(24px,3vw,38px)', fontWeight: 700, color: '#1c2b3a', lineHeight: 1.25, marginBottom: 12 }}>
+            공지사항
+          </h2>
+          <p style={{ fontSize: 15, color: '#4a5f75', lineHeight: 1.75, maxWidth: 520, marginBottom: 40 }}>
+            한민족 한글학교의 주요 소식과 공지를 안내합니다.
+          </p>
+          <div className="flex flex-col gap-4">
+            {[
+              { badge: '중요', badgeType: 'important', title: '2025년 Term 1 개학 안내 – 2월 15일(토) 입학식 및 개학식', date: '2025년 2월 10일' },
+              { badge: '행사', badgeType: 'event',     title: '나의 꿈 말하기 대회 – 3월 15일(토)',                    date: '2025년 3월 1일' },
+              { badge: '행사', badgeType: 'event',     title: '전국 말하기 대회 – 4월 12일(토)',                      date: '2025년 4월 1일' },
+              { badge: '안내', badgeType: 'general',   title: 'Term 1 특강 안내 – 미술, 바이올린, 태권도, 4D프레임',   date: '2025년 2월 10일' },
+            ].map(({ badge, badgeType, title, date }) => {
+              const badgeStyle =
+                badgeType === 'important' ? { background: 'rgba(146,120,214,0.15)', color: '#7c5ecf', border: '1px solid rgba(146,120,214,0.3)' } :
+                badgeType === 'event'     ? { background: 'rgba(146,120,214,0.08)', color: '#1c2b3a', border: '1px solid rgba(146,120,214,0.15)' } :
+                                            { background: 'rgba(90,65,144,0.1)',   color: '#5a4190', border: '1px solid rgba(90,65,144,0.2)' }
+              return (
+                <div
+                  key={title}
+                  className="rounded-2xl flex items-start gap-6 transition-all cursor-default"
+                  style={{ background: '#fff', border: '1px solid rgba(0,0,0,0.07)', padding: '24px 32px' }}
+                  onMouseOver={e => {
+                    (e.currentTarget as HTMLDivElement).style.borderColor = 'rgba(146,120,214,0.3)'
+                    ;(e.currentTarget as HTMLDivElement).style.transform = 'translateY(-2px)'
+                  }}
+                  onMouseOut={e => {
+                    ;(e.currentTarget as HTMLDivElement).style.borderColor = 'rgba(0,0,0,0.07)'
+                    ;(e.currentTarget as HTMLDivElement).style.transform = ''
+                  }}
+                >
+                  <span
+                    className="flex-shrink-0 rounded-full text-[11px] font-bold text-center"
+                    style={{ minWidth: 64, padding: '4px 12px', letterSpacing: '0.05em', textTransform: 'uppercase', ...badgeStyle }}
+                  >
+                    {badge}
+                  </span>
+                  <div>
+                    <div style={{ fontSize: 16, fontWeight: 700, color: '#1c2b3a', marginBottom: 6, lineHeight: 1.4 }}>{title}</div>
+                    <div style={{ fontSize: 13, color: '#4a5f75' }}>{date}</div>
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* ── ALBUM FILTERS ─────────────────────────────── */}
+      <div id="album" className="sticky z-50" style={{ background: '#FDFCFA', padding: '28px 48px', borderBottom: '1px solid #EDE4D3', top: 72 }}>
+        <div className="max-w-[1200px] mx-auto">
+          <div className="mb-4">
+            <span className="section-label-line">학교앨범</span>
+          </div>
+          <div className="flex gap-2.5 flex-wrap items-center">
+            <span style={{ fontSize: 12, fontWeight: 700, color: '#4a5f75', letterSpacing: '0.08em', textTransform: 'uppercase', marginRight: 8 }}>
+              분류
+            </span>
+            {([['all', '전체'], ['graduation', '🎓 졸업식'], ['event', '🎉 학교 행사'], ['class', '📚 수업 활동'], ['culture', '🎨 문화 체험'], ['performance', '🏅 발표회']] as [FilterCategory, string][]).map(([val, label]) => (
+              <button
+                key={val}
+                className="filter-btn px-4 py-2 rounded-full text-sm font-medium cursor-pointer"
+                style={{
+                  border: '1px solid',
+                  borderColor: filter === val ? '#9278D6' : 'rgba(0,0,0,0.12)',
+                  background: filter === val ? '#E8E0F7' : 'transparent',
+                  color: filter === val ? '#9278D6' : '#4a5f75',
+                }}
+                onClick={() => setFilter(val)}
+              >
+                {label}
+              </button>
+            ))}
+          </div>
         </div>
       </div>
 
