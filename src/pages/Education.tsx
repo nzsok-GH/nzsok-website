@@ -86,7 +86,7 @@ const TERMS = [
       {
         week: 1,
         date: "2월 14일",
-        event: "입학 및 개학식 (1교시)",
+        event: "입학 및 개학식",
         type: "special",
       },
       { week: 2, date: "2월 21일", event: "", type: "" },
@@ -106,7 +106,7 @@ const TERMS = [
     label: "텀 2",
     weeks: "8주",
     rows: [
-      { week: 1, date: "5월 2일", event: "그림일기 대회", type: "special" },
+      { week: 1, date: "5월 2일", event: "", type: "" },
       { week: 2, date: "5월 9일", event: "", type: "" },
       { week: 3, date: "5월 16일", event: "학부모 상담", type: "" },
       { week: 4, date: "5월 23일", event: "학부모 상담", type: "" },
@@ -133,7 +133,7 @@ const TERMS = [
       {
         week: 5,
         date: "8월 22일",
-        event: "초등 저학년 동화 발표회",
+        event: "동화 발표회",
         type: "special",
       },
       { week: 6, date: "8월 29일", event: "", type: "" },
