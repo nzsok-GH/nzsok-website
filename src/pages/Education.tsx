@@ -274,7 +274,7 @@ export default function Education() {
                         오후 1:50 ~ 오후 3:00
                       </strong>
                       <br />
-                      미술 · 바이올린 · 태권도 · 4D프레임
+                      미술 · 4D프레임 · 태권도 · 바이올린
                     </>
                   ),
                 },
@@ -392,7 +392,7 @@ export default function Education() {
                     {
                       badge: "특강",
                       time: "1:50 ~ 3:00",
-                      label: "미술 · 바이올린 · 태권도 · 4D프레임",
+                      label: "미술 · 4D프레임 · 태권도 · 바이올린",
                       type: "extra",
                     },
                   ].map(({ badge, time, label, type }, i) => (
