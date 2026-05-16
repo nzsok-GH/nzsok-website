@@ -9,7 +9,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@types/matter-js": "^0.20.2",
     "lucide-react": "^1.16.0",
+    "matter-js": "^0.20.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-router-dom": "^7.1.0"
