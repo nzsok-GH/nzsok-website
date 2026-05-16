@@ -378,9 +378,10 @@ export default function Enrol() {
               { label: "계좌번호", value: "ANZ 01-0277-0861225-51" },
               {
                 label: "레퍼런스",
-                value: "학생 이름(영문) / 출생연월 · 예) HongGildong1105",
+                value: "학생 이름(영문) / 출생연월",
+                example: "예) HongGildong1105",
               },
-            ].map(({ label, value }) => (
+            ].map(({ label, value, example }) => (
               <div
                 key={label}
                 className="flex items-baseline gap-6"
@@ -399,7 +400,12 @@ export default function Enrol() {
                 >
                   {label}
                 </span>
-                <span style={{ fontSize: 16, color: "#1c2b3a" }}>{value}</span>
+                <span style={{ fontSize: 16, color: "#1c2b3a" }}>
+                  {value}
+                  {example && (
+                    <span style={{ color: "#9ca3af" }}> · {example}</span>
+                  )}
+                </span>
               </div>
             ))}
           </div>
