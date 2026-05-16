@@ -308,7 +308,7 @@ body {
   padding: 9px 14px;
   color: var(--text-light);
   text-decoration: none;
-  font-size: 13px;
+  font-size: 14px;
   border-radius: 7px;
   transition: color 0.15s;
   white-space: nowrap;
@@ -498,7 +498,7 @@ footer a:hover {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.15em;
   text-transform: uppercase;
@@ -514,7 +514,7 @@ footer a:hover {
 }
 .section-label-pill {
   display: inline-block;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -626,7 +626,7 @@ footer a:hover {
 
 .section-tab {
   padding: 16px 20px;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 500;
   color: var(--text-light);
   text-decoration: none;

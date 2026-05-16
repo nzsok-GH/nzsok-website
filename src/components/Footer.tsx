@@ -60,7 +60,7 @@ export default function Footer() {
             <h3
               style={{
                 fontFamily: "'SUIT', sans-serif",
-                fontSize: 15,
+                fontSize: 17,
                 fontWeight: 700,
                 color: "#1c2b3a",
                 marginBottom: 6,
@@ -70,7 +70,7 @@ export default function Footer() {
             </h3>
             <p
               style={{
-                fontSize: 13,
+                fontSize: 15,
                 lineHeight: 1.8,
                 color: "#4a5f75",
                 marginBottom: 0,
@@ -82,7 +82,7 @@ export default function Footer() {
             </p>
             <p
               style={{
-                fontSize: 12,
+                fontSize: 13,
                 color: "#8a9ab0",
                 marginTop: 24,
                 marginBottom: 0,
@@ -97,7 +97,7 @@ export default function Footer() {
             <div key={title}>
               <h4
                 style={{
-                  fontSize: 12,
+                  fontSize: 13,
                   fontWeight: 700,
                   letterSpacing: "0.1em",
                   textTransform: "uppercase",
@@ -113,7 +113,7 @@ export default function Footer() {
                     <Link
                       to={href}
                       style={{
-                        fontSize: 13,
+                        fontSize: 15,
                         color: "#4a5f75",
                         textDecoration: "none",
                       }}

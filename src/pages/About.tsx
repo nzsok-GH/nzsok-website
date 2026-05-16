@@ -69,7 +69,7 @@ export default function About() {
             <p
               style={{
                 fontFamily: "'SUIT', sans-serif",
-                fontSize: "clamp(22px,3vw,34px)",
+                fontSize: "clamp(24px,3vw,36px)",
                 fontWeight: 800,
                 color: "#1c2b3a",
                 lineHeight: 1.4,
@@ -81,7 +81,7 @@ export default function About() {
               이중문화 소유자
             </p>
             <div style={{ width: 40, height: 2, background: "rgba(146,120,214,0.45)", borderRadius: 2, marginBottom: 18 }} />
-            <p style={{ fontSize: 15, color: "#6b4faa", letterSpacing: "0.04em" }}>
+            <p style={{ fontSize: 17, color: "#6b4faa", letterSpacing: "0.04em" }}>
               Think positively and be bicultural
             </p>
           </div>
@@ -136,7 +136,7 @@ export default function About() {
                 >
                   <p
                     style={{
-                      fontSize: 11,
+                      fontSize: 12,
                       color: "rgba(44,82,130,0.6)",
                       letterSpacing: "0.08em",
                       marginBottom: 8,
@@ -145,7 +145,7 @@ export default function About() {
                     {verse}
                   </p>
                   <p
-                    style={{ fontSize: 14, lineHeight: 2.2, color: "#4a5f75" }}
+                    style={{ fontSize: 16, lineHeight: 2.2, color: "#4a5f75" }}
                   >
                     {lines.map((l, i) => (
                       <span key={i}>
@@ -164,7 +164,7 @@ export default function About() {
             <div style={{ marginTop: 28, textAlign: "right" }}>
               <span
                 style={{
-                  fontSize: 11,
+                  fontSize: 12,
                   color: "#8a9ab0",
                   letterSpacing: "0.05em",
                 }}
@@ -298,7 +298,7 @@ export default function About() {
                   {/* date */}
                   <p
                     style={{
-                      fontSize: 12,
+                      fontSize: 13,
                       fontWeight: 700,
                       color: "#9278D6",
                       letterSpacing: "0.04em",
@@ -311,7 +311,7 @@ export default function About() {
                   {/* title */}
                   <p
                     style={{
-                      fontSize: 14,
+                      fontSize: 15,
                       fontWeight: 700,
                       color: "#1c2b3a",
                       lineHeight: 1.5,
@@ -324,7 +324,7 @@ export default function About() {
                   {item.body && (
                     <p
                       style={{
-                        fontSize: 12,
+                        fontSize: 13,
                         color: "#8a9ab0",
                         lineHeight: 1.6,
                       }}
@@ -353,7 +353,7 @@ export default function About() {
               <div key={name} style={{ padding: "12px 4px" }}>
                 <div
                   style={{
-                    fontSize: 14,
+                    fontSize: 16,
                     fontWeight: 700,
                     color: "#1c2b3a",
                     marginBottom: 3,
@@ -362,7 +362,7 @@ export default function About() {
                   {name}
                 </div>
                 <div
-                  style={{ fontSize: 12, color: "#4a5f75", fontWeight: 400 }}
+                  style={{ fontSize: 14, color: "#4a5f75", fontWeight: 400 }}
                 >
                   {role}
                 </div>
@@ -432,7 +432,7 @@ export default function About() {
             <div key={dept} style={{ marginBottom: 40 }}>
               <div
                 style={{
-                  fontSize: 12,
+                  fontSize: 13,
                   fontWeight: 700,
                   letterSpacing: "0.1em",
                   textTransform: "uppercase",
@@ -449,7 +449,7 @@ export default function About() {
                   <div key={name + label} style={{ padding: "12px 4px" }}>
                     <div
                       style={{
-                        fontSize: 14,
+                        fontSize: 16,
                         fontWeight: 700,
                         color: "#1c2b3a",
                         marginBottom: 3,
@@ -459,7 +459,7 @@ export default function About() {
                     </div>
                     <div
                       style={{
-                        fontSize: 12,
+                        fontSize: 14,
                         color: "#4a5f75",
                         fontWeight: 400,
                       }}

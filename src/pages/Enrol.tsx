@@ -34,7 +34,7 @@ export default function Enrol() {
                   height: 40,
                   background: "#E8E0F7",
                   color: "#9278D6",
-                  fontSize: 17,
+                  fontSize: 19,
                   fontWeight: 700,
                   fontFamily: "'SUIT', sans-serif",
                   marginBottom: 20,
@@ -44,7 +44,7 @@ export default function Enrol() {
               </div>
               <h3
                 style={{
-                  fontSize: 16,
+                  fontSize: 17,
                   fontWeight: 700,
                   color: "#1c2b3a",
                   marginBottom: 8,
@@ -52,7 +52,7 @@ export default function Enrol() {
               >
                 입학 원서 제출
               </h3>
-              <p style={{ fontSize: 13, color: "#4a5f75", lineHeight: 1.7, marginBottom: 16 }}>
+              <p style={{ fontSize: 15, color: "#4a5f75", lineHeight: 1.7, marginBottom: 16 }}>
                 입학 원서를 작성해 제출해 주세요. 교감 선생님께서 확인 이메일을 보내드립니다.
               </p>
               <a
@@ -60,7 +60,7 @@ export default function Enrol() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-primary inline-flex items-center gap-2 rounded-xl no-underline"
-                style={{ fontSize: 13, fontWeight: 700, padding: "10px 20px" }}
+                style={{ fontSize: 14, fontWeight: 700, padding: "10px 20px" }}
               >
                 양식 작성 <ExternalLink size={14} />
               </a>
@@ -75,7 +75,7 @@ export default function Enrol() {
                   height: 40,
                   background: "#E8E0F7",
                   color: "#9278D6",
-                  fontSize: 17,
+                  fontSize: 19,
                   fontWeight: 700,
                   fontFamily: "'SUIT', sans-serif",
                   marginBottom: 20,
@@ -85,7 +85,7 @@ export default function Enrol() {
               </div>
               <h3
                 style={{
-                  fontSize: 16,
+                  fontSize: 17,
                   fontWeight: 700,
                   color: "#1c2b3a",
                   marginBottom: 8,
@@ -93,7 +93,7 @@ export default function Enrol() {
               >
                 학비 납부
               </h3>
-              <p style={{ fontSize: 13, color: "#4a5f75", lineHeight: 1.7 }}>
+              <p style={{ fontSize: 15, color: "#4a5f75", lineHeight: 1.7 }}>
                 학비 입금이 확인되면 2026학년도 등록이 최종 완료됩니다.
               </p>
             </div>
@@ -111,7 +111,7 @@ export default function Enrol() {
               style={{
                 color: "#c8963a",
                 fontWeight: 700,
-                fontSize: 14,
+                fontSize: 15,
                 flexShrink: 0,
               }}
             >
@@ -119,7 +119,7 @@ export default function Enrol() {
             </span>
             <p
               style={{
-                fontSize: 13,
+                fontSize: 15,
                 color: "#6b5000",
                 lineHeight: 1.6,
                 margin: 0,
@@ -141,7 +141,7 @@ export default function Enrol() {
           {/* 정규 수업 학비 + 다자녀 할인 */}
           <div className="enrol-tuition-grid">
             <div style={{ padding: "4px 0" }}>
-              <p style={{ fontSize: 13, color: "#8a9ab0", marginBottom: 6 }}>
+              <p style={{ fontSize: 14, color: "#8a9ab0", marginBottom: 6 }}>
                 정규 수업
               </p>
               <div className="flex items-baseline gap-3">
@@ -156,11 +156,11 @@ export default function Enrol() {
                 >
                   $450
                 </span>
-                <span style={{ fontSize: 14, color: "#4a5f75" }}>/ 년</span>
+                <span style={{ fontSize: 15, color: "#4a5f75" }}>/ 년</span>
               </div>
               <p
                 style={{
-                  fontSize: 13,
+                  fontSize: 15,
                   color: "#4a5f75",
                   marginTop: 8,
                   lineHeight: 1.6,
@@ -182,7 +182,7 @@ export default function Enrol() {
             >
               <p
                 style={{
-                  fontSize: 13,
+                  fontSize: 14,
                   fontWeight: 700,
                   color: "#7a62c0",
                   letterSpacing: "0.06em",
@@ -205,14 +205,14 @@ export default function Enrol() {
                       label !== "셋째" ? "1px solid rgba(0,0,0,0.07)" : "none",
                   }}
                 >
-                  <span style={{ fontSize: 14, color: "#4a5f75" }}>
+                  <span style={{ fontSize: 15, color: "#4a5f75" }}>
                     {label}
                   </span>
                   <div className="flex items-center gap-2">
                     {note && (
                       <span
                         style={{
-                          fontSize: 11,
+                          fontSize: 12,
                           color: "#9278D6",
                           background: "rgba(146,120,214,0.12)",
                           padding: "2px 7px",
@@ -224,7 +224,7 @@ export default function Enrol() {
                     )}
                     <span
                       style={{
-                        fontSize: 16,
+                        fontSize: 17,
                         fontWeight: 700,
                         color: "#1c2b3a",
                       }}
@@ -240,7 +240,7 @@ export default function Enrol() {
           {/* 특강 */}
           <h3
             style={{
-              fontSize: 14,
+              fontSize: 15,
               fontWeight: 700,
               color: "#1c2b3a",
               marginBottom: 14,
@@ -249,7 +249,7 @@ export default function Enrol() {
           >
             <span
               style={{
-                fontSize: 13,
+                fontSize: 14,
                 fontWeight: 400,
                 color: "#8a9ab0",
                 marginBottom: 24,
@@ -302,7 +302,7 @@ export default function Enrol() {
               >
                 <p
                   style={{
-                    fontSize: 15,
+                    fontSize: 17,
                     fontWeight: 700,
                     color: "#1c2b3a",
                     marginBottom: 10,
@@ -315,7 +315,7 @@ export default function Enrol() {
                     <li
                       key={l}
                       style={{
-                        fontSize: 12,
+                        fontSize: 14,
                         color: "#4a5f75",
                         lineHeight: 1.7,
                       }}
@@ -333,7 +333,7 @@ export default function Enrol() {
                 >
                   <p
                     style={{
-                      fontSize: 17,
+                      fontSize: 19,
                       fontWeight: 800,
                       color: "#9278D6",
                       fontFamily: "'SUIT', sans-serif",
@@ -343,7 +343,7 @@ export default function Enrol() {
                   </p>
                   <p
                     style={{
-                      fontSize: 11,
+                      fontSize: 12,
                       color: "#8a9ab0",
                       marginTop: 2,
                       minHeight: 16,
@@ -360,7 +360,7 @@ export default function Enrol() {
           <div style={{ padding: "4px 0" }}>
             <p
               style={{
-                fontSize: 12,
+                fontSize: 13,
                 fontWeight: 700,
                 letterSpacing: "0.06em",
                 color: "#9278D6",
@@ -388,7 +388,7 @@ export default function Enrol() {
               >
                 <span
                   style={{
-                    fontSize: 11,
+                    fontSize: 12,
                     fontWeight: 700,
                     color: "#8a9ab0",
                     letterSpacing: "0.06em",
@@ -399,7 +399,7 @@ export default function Enrol() {
                 >
                   {label}
                 </span>
-                <span style={{ fontSize: 14, color: "#1c2b3a" }}>{value}</span>
+                <span style={{ fontSize: 16, color: "#1c2b3a" }}>{value}</span>
               </div>
             ))}
           </div>
@@ -421,8 +421,8 @@ export default function Enrol() {
           >
             {/* 담당자 */}
             <div className="enrol-contact-person">
-              <p style={{ fontSize: 13, color: "#8a9ab0", marginBottom: 4 }}>교감</p>
-              <p style={{ fontSize: 18, fontWeight: 700, color: "#1c2b3a" }}>장우리</p>
+              <p style={{ fontSize: 14, color: "#8a9ab0", marginBottom: 4 }}>교감</p>
+              <p style={{ fontSize: 20, fontWeight: 700, color: "#1c2b3a" }}>장우리</p>
             </div>
 
             <div className="enrol-contact-divider" />
@@ -448,7 +448,7 @@ export default function Enrol() {
                   style={{ color: "#1c2b3a" }}
                 >
                   <span style={{ color: "#8a9ab0", flexShrink: 0 }}>{icon}</span>
-                  <span style={{ fontSize: 14, fontWeight: 600 }}>{value}</span>
+                  <span style={{ fontSize: 16, fontWeight: 600 }}>{value}</span>
                 </a>
               ))}
             </div>

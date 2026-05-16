@@ -50,7 +50,7 @@ export default function Navigation({
               style={{
                 color: "#4a5f75",
                 textDecoration: "none",
-                fontSize: 14,
+                fontSize: 15,
                 display: "flex",
                 alignItems: "center",
                 gap: 6,
@@ -126,7 +126,7 @@ export default function Navigation({
             <li>
               <Link
                 to="/about"
-                className="block px-4 py-2 text-sm font-medium rounded-md"
+                className="block px-4 py-2 text-base font-medium rounded-md"
                 style={{
                   color: linkColor,
                   textDecoration: "none",
@@ -156,7 +156,7 @@ export default function Navigation({
             <li>
               <Link
                 to="/education"
-                className="block px-4 py-2 text-sm font-medium rounded-md"
+                className="block px-4 py-2 text-base font-medium rounded-md"
                 style={{
                   color: linkColor,
                   textDecoration: "none",
@@ -180,7 +180,7 @@ export default function Navigation({
             <li>
               <Link
                 to="/media"
-                className="block px-4 py-2 text-sm font-medium rounded-md"
+                className="block px-4 py-2 text-base font-medium rounded-md"
                 style={{
                   color: linkColor,
                   textDecoration: "none",

@@ -220,7 +220,7 @@ export default function Gallery() {
                   style={{
                     padding: "7px 16px",
                     borderRadius: 999,
-                    fontSize: 13,
+                    fontSize: 14,
                     fontWeight: 500,
                     cursor: "pointer",
                     border: "1px solid",
@@ -240,7 +240,7 @@ export default function Gallery() {
           {loading ? (
             <div
               className="text-center py-20"
-              style={{ color: "#4a5f75", fontSize: 15 }}
+              style={{ color: "#4a5f75", fontSize: 16 }}
             >
               앨범을 불러오는 중...
             </div>
@@ -250,7 +250,7 @@ export default function Gallery() {
               <h3
                 style={{
                   fontFamily: "'SUIT', sans-serif",
-                  fontSize: 22,
+                  fontSize: 24,
                   color: "#1c2b3a",
                 }}
               >
@@ -264,7 +264,7 @@ export default function Gallery() {
                   <span
                     style={{
                       fontFamily: "'SUIT', sans-serif",
-                      fontSize: 28,
+                      fontSize: 30,
                       fontWeight: 900,
                       color: "#1c2b3a",
                     }}
@@ -279,7 +279,7 @@ export default function Gallery() {
                     }}
                   />
                   <span
-                    style={{ fontSize: 12, color: "#8a9ab0", fontWeight: 500 }}
+                    style={{ fontSize: 13, color: "#8a9ab0", fontWeight: 500 }}
                   >
                     앨범 {byYear[year].length}개
                   </span>
@@ -333,7 +333,7 @@ export default function Gallery() {
                             </div>
                             <div
                               style={{
-                                fontSize: 12,
+                                fontSize: 13,
                                 color: "rgba(146,120,214,0.7)",
                               }}
                             >
@@ -365,7 +365,7 @@ export default function Gallery() {
                       <div style={{ padding: "18px 20px" }}>
                         <div
                           style={{
-                            fontSize: 12,
+                            fontSize: 13,
                             color: "#8a9ab0",
                             marginBottom: 5,
                           }}
@@ -375,7 +375,7 @@ export default function Gallery() {
                         <div
                           style={{
                             fontFamily: "'SUIT', sans-serif",
-                            fontSize: 16,
+                            fontSize: 17,
                             fontWeight: 700,
                             color: "#1c2b3a",
                             marginBottom: 5,
@@ -388,7 +388,7 @@ export default function Gallery() {
                           <div
                             className="album-desc"
                             style={{
-                              fontSize: 13,
+                              fontSize: 15,
                               color: "#4a5f75",
                               lineHeight: 1.6,
                             }}
@@ -409,7 +409,7 @@ export default function Gallery() {
               href="/admin/"
               style={{
                 color: "#c4cdd6",
-                fontSize: 12,
+                fontSize: 13,
                 textDecoration: "none",
                 transition: "color 0.2s",
               }}
@@ -431,7 +431,7 @@ export default function Gallery() {
               rel="noopener noreferrer"
               className="flex items-center gap-1.5 no-underline"
               style={{
-                fontSize: 14,
+                fontSize: 15,
                 fontWeight: 600,
                 color: "#9278D6",
                 transition: "opacity 0.2s",
@@ -571,7 +571,7 @@ export default function Gallery() {
               </button>
               <div
                 style={{
-                  fontSize: 11,
+                  fontSize: 12,
                   fontWeight: 700,
                   letterSpacing: "0.1em",
                   textTransform: "uppercase",
@@ -584,7 +584,7 @@ export default function Gallery() {
               <h2
                 style={{
                   fontFamily: "'SUIT', sans-serif",
-                  fontSize: 22,
+                  fontSize: 24,
                   fontWeight: 700,
                   color: "#1c2b3a",
                   marginBottom: 8,
@@ -593,13 +593,13 @@ export default function Gallery() {
               >
                 {lightbox.album.title}
               </h2>
-              <p style={{ fontSize: 13, color: "#4a5f75", marginBottom: 16 }}>
+              <p style={{ fontSize: 14, color: "#4a5f75", marginBottom: 16 }}>
                 {formatDate(lightbox.album.date)}
               </p>
               {lightbox.album.description && (
                 <p
                   style={{
-                    fontSize: 14,
+                    fontSize: 16,
                     color: "#4a5f75",
                     lineHeight: 1.75,
                     marginBottom: 24,
