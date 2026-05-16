@@ -345,7 +345,7 @@ footer a:hover {
 
 /* mobile menu */
 .mobile-menu {
-  display: none;
+  display: block;
   position: fixed;
   top: 72px;
   left: 0;
@@ -356,14 +356,50 @@ footer a:hover {
   border-bottom: 1px solid var(--bg-300);
   transform: translateY(-10px);
   opacity: 0;
+  visibility: hidden;
   pointer-events: none;
-  transition: all 0.25s ease;
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
 }
 .mobile-menu.open {
-  display: block;
   transform: translateY(0);
   opacity: 1;
+  visibility: visible;
   pointer-events: all;
+}
+.mobile-menu-section {
+  padding: 18px 0 14px;
+  border-bottom: 1px solid var(--bg-300);
+  margin: 0 4px;
+}
+.mobile-menu-section:last-child {
+  border-bottom: none;
+}
+.mobile-menu-header {
+  display: block;
+  padding: 2px 8px 10px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--gray);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+.mobile-menu-header:hover {
+  color: var(--primary);
+}
+.mobile-menu-link {
+  display: block;
+  padding: 9px 12px 9px 16px;
+  color: var(--text-light);
+  text-decoration: none;
+  font-size: 14.5px;
+  border-radius: 8px;
+  transition: background 0.15s, color 0.15s;
+}
+.mobile-menu-link:hover {
+  background: var(--bg-200);
+  color: var(--text);
 }
 
 /* ── Hero ────────────────────────────────────────────────────── */
@@ -796,5 +832,108 @@ footer a:hover {
     grid-template-columns: 1fr;
     gap: 32px;
     padding-bottom: 36px;
+  }
+}
+
+/* ── Media page ──────────────────────────────────────────────── */
+.media-main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 140px 48px 120px;
+}
+.album-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.lightbox-grid {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  max-width: 1000px;
+  max-height: 90vh;
+}
+@media (max-width: 767px) {
+  .media-main {
+    padding: 120px 20px 80px;
+  }
+  .album-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .lightbox-grid {
+    grid-template-columns: 1fr;
+    max-height: 88vh;
+    overflow-y: auto;
+  }
+  .lightbox-image-pane {
+    min-height: 240px !important;
+  }
+  .lightbox-info-pane {
+    padding: 24px 20px !important;
+  }
+}
+@media (max-width: 480px) {
+  .album-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── About page ───────────────────────────────────────────────── */
+.about-main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 140px 48px 120px;
+}
+.about-intro-card {
+  padding: 64px 48px;
+}
+.about-feature-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+.about-hymn-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0 40px;
+}
+.about-hymn-col-divider {
+  border-left: 1px solid rgba(44, 82, 130, 0.12);
+  padding-left: 40px;
+}
+.about-board-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+.about-staff-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+@media (max-width: 767px) {
+  .about-main {
+    padding: 120px 20px 80px;
+  }
+  .about-intro-card {
+    padding: 40px 24px;
+  }
+  .about-feature-grid {
+    grid-template-columns: 1fr;
+  }
+  .about-hymn-grid {
+    grid-template-columns: 1fr;
+    gap: 32px 0;
+  }
+  .about-hymn-col-divider {
+    border-left: none;
+    padding-left: 0;
+    border-top: 1px solid rgba(44, 82, 130, 0.12);
+    padding-top: 32px;
+  }
+  .about-board-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .about-staff-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }

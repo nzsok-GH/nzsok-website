@@ -226,54 +226,59 @@ export default function Navigation({
 
       {/* Mobile menu */}
       <div className={`mobile-menu ${menuOpen ? "open" : ""}`}>
-        <div className="flex flex-col p-5 pb-6 gap-0.5 max-h-[calc(100vh-72px)] overflow-y-auto">
+        <div className="flex flex-col px-5 py-2 max-h-[calc(100vh-72px)] overflow-y-auto">
           {[
-            { to: "/about", label: "학교소개" },
-            { to: "/about#intro", label: "ㄴ 소개글" },
-            { to: "/about#hymn", label: "ㄴ 교가" },
-            { to: "/about#history", label: "ㄴ 연혁" },
-            { to: "/about#board", label: "ㄴ 이사회" },
-            { to: "/about#staff", label: "ㄴ 교직원" },
-            { to: "/education#schedule", label: "교육 – 시간표" },
-            { to: "/education#programs", label: "교육 – 커리큘럼" },
-            { to: "/education#annual", label: "교육 – 연간 교육계획" },
-            { to: "/media#album", label: "알림마당 – 앨범" },
-            { to: "/media#instagram", label: "알림마당 – 인스타그램" },
-          ].map(({ to, label }) => (
-            <Link
-              key={to}
-              to={to}
-              onClick={closeMenu}
-              style={{
-                display: "block",
-                padding: "10px 12px",
-                color: "#4a5f75",
-                textDecoration: "none",
-                fontSize: 14,
-                borderRadius: 8,
-                transition: "all 0.15s",
-              }}
-            >
-              {label}
-            </Link>
+            {
+              header: "학교소개",
+              headerTo: "/about",
+              links: [
+                { to: "/about#intro", label: "소개글" },
+                { to: "/about#hymn", label: "교가" },
+                { to: "/about#history", label: "연혁" },
+                { to: "/about#board", label: "이사회" },
+                { to: "/about#staff", label: "교직원" },
+              ],
+            },
+            {
+              header: "교육",
+              headerTo: "/education",
+              links: [
+                { to: "/education#schedule", label: "시간표" },
+                { to: "/education#programs", label: "커리큘럼" },
+                { to: "/education#annual", label: "연간 교육계획" },
+              ],
+            },
+            {
+              header: "알림마당",
+              headerTo: "/media",
+              links: [
+                { to: "/media#album", label: "앨범" },
+                { to: "/media#instagram", label: "인스타그램" },
+              ],
+            },
+          ].map(({ header, headerTo, links }) => (
+            <div key={header} className="mobile-menu-section">
+              <Link
+                to={headerTo}
+                onClick={closeMenu}
+                className="mobile-menu-header"
+              >
+                {header}
+              </Link>
+              <div className="flex flex-col gap-0.5">
+                {links.map(({ to, label }) => (
+                  <Link
+                    key={to}
+                    to={to}
+                    onClick={closeMenu}
+                    className="mobile-menu-link"
+                  >
+                    {label}
+                  </Link>
+                ))}
+              </div>
+            </div>
           ))}
-          <Link
-            to="/enrol"
-            onClick={closeMenu}
-            style={{
-              display: "block",
-              marginTop: 12,
-              background: "#9278D6",
-              color: "#fff",
-              fontWeight: 700,
-              textAlign: "center",
-              borderRadius: 10,
-              padding: 12,
-              textDecoration: "none",
-            }}
-          >
-            입학안내
-          </Link>
         </div>
       </div>
 
