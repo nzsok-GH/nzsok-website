@@ -1,10 +1,12 @@
-import { useEffect } from 'react'
+import { lazy, Suspense, useEffect } from 'react'
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
-import Home from './pages/Home'
-import About from './pages/About'
-import Education from './pages/Education'
-import Admission from './pages/Admission'
-import Gallery from './pages/Gallery'
+import LoadingScreen from './components/LoadingScreen'
+
+const Home      = lazy(() => import('./pages/Home'))
+const About     = lazy(() => import('./pages/About'))
+const Education = lazy(() => import('./pages/Education'))
+const Admission = lazy(() => import('./pages/Admission'))
+const Gallery   = lazy(() => import('./pages/Gallery'))
 
 function ScrollRestore() {
   const { pathname, hash } = useLocation()
@@ -21,7 +23,7 @@ function ScrollRestore() {
 
 function AppRoutes() {
   return (
-    <>
+    <Suspense fallback={<LoadingScreen />}>
       <ScrollRestore />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -31,7 +33,7 @@ function AppRoutes() {
         <Route path="/media" element={<Gallery />} />
         <Route path="/gallery" element={<Gallery />} />
       </Routes>
-    </>
+    </Suspense>
   )
 }
 
