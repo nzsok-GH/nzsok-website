@@ -484,12 +484,33 @@ footer a:hover { color: var(--primary) !important; }
 .btn-primary { background: #9278D6; color: #fff; transition: background 0.2s; }
 .btn-primary:hover { background: #7a62c0; }
 
-/* ── Responsive nav height ───────────────────────────────────── */
+/* ── Responsive nav ──────────────────────────────────────────── */
+.nav-main { padding: 0 48px; }
 @media (max-width: 900px) {
-  .mobile-menu { top: 60px; }
+  .nav-main { padding: 0 16px; }
 }
 
 /* ── 연혁 horizontal scrollbar ───────────────────────────────── */
 .history-scroll { scrollbar-width: none; }
 .history-scroll::-webkit-scrollbar { display: none; }
+
+/* ── Footer ──────────────────────────────────────────────────── */
+.footer-root { background: #E8E0F7; padding: 64px 48px 32px; }
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.8fr 1fr 1fr 1fr 1fr;
+  gap: 48px;
+  padding-bottom: 48px;
+}
+.footer-copyright {
+  font-size: 12px;
+  color: #8a9ab0;
+  text-align: center;
+  margin: 0;
+}
+@media (max-width: 767px) {
+  .footer-root { padding: 48px 24px 28px; }
+  .footer-grid { grid-template-columns: 1fr; gap: 32px; padding-bottom: 36px; }
+}
+
 

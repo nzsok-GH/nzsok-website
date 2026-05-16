@@ -31,7 +31,7 @@ const NAV = [
     title: '입학안내',
     links: [
       ['/enrol#procedure', '등록 절차'],
-      ['/enrol#tuition', '학비 안내'],
+      ['/enrol#tuition', '학비'],
       ['/enrol#contact', '입학 문의'],
     ],
   },
@@ -39,9 +39,9 @@ const NAV = [
 
 export default function Footer() {
   return (
-    <footer style={{ background: '#E8E0F7', padding: '64px 48px 32px' }}>
-      <div className="max-w-[1200px] mx-auto">
-        <div style={{ display: 'grid', gridTemplateColumns: '1.8fr 1fr 1fr 1fr 1fr', gap: 48, paddingBottom: 48, borderBottom: '1px solid rgba(0,0,0,0.08)', marginBottom: 28 }}>
+    <footer className="footer-root">
+      <div style={{ maxWidth: 1200, margin: '0 auto' }}>
+        <div className="footer-grid">
 
           {/* Brand column */}
           <div>
@@ -51,7 +51,7 @@ export default function Footer() {
             <h3 style={{ fontFamily: "'SUIT', sans-serif", fontSize: 15, fontWeight: 700, color: '#1c2b3a', marginBottom: 6 }}>
               뉴질랜드 한민족 한글학교
             </h3>
-            <p style={{ fontSize: 13, lineHeight: 1.8, color: '#4a5f75', marginBottom: 20 }}>
+            <p style={{ fontSize: 13, lineHeight: 1.8, color: '#4a5f75', marginBottom: 0 }}>
               New Zealand School of Korea (NZSOK)<br />
               40 Sartors Avenue, Browns Bay, Auckland 0630
             </p>
@@ -75,12 +75,9 @@ export default function Footer() {
             </div>
           ))}
         </div>
-
-        <div className="flex justify-between items-center flex-wrap gap-2" style={{ fontSize: 12, color: '#8a9ab0' }}>
-          <span>Copyright © 2012–2026 NZSOK. All rights reserved.</span>
-          <span>40 Sartors Avenue, Browns Bay, Auckland 0630, NZ</span>
-        </div>
       </div>
+
+      <p className="footer-copyright">Copyright © 2012–2026 NZSOK. All rights reserved.</p>
     </footer>
   )
 }
