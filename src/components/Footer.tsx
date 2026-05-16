@@ -55,6 +55,7 @@ export default function Footer() {
               New Zealand School of Korea (NZSOK)<br />
               40 Sartors Avenue, Browns Bay, Auckland 0630
             </p>
+            <p style={{ fontSize: 12, color: '#8a9ab0', marginTop: 24, marginBottom: 0 }}>© 2012–2026 NZSOK</p>
           </div>
 
           {/* Sitemap columns */}
@@ -77,7 +78,6 @@ export default function Footer() {
         </div>
       </div>
 
-      <p className="footer-copyright">Copyright © 2012–2026 NZSOK. All rights reserved.</p>
     </footer>
   )
 }
