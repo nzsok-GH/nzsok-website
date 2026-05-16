@@ -15,7 +15,7 @@ export default function Home() {
 
   return (
     <div>
-      <Navigation variant="full" />
+      <Navigation variant="full" transparent />
 
       {/* ── HERO ─────────────────────────────────────────── */}
       <section

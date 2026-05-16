@@ -6,57 +6,17 @@ type NavVariant = 'full' | 'simple' | 'gallery'
 
 interface NavigationProps {
   variant?: NavVariant
+  transparent?: boolean
 }
 
-export default function Navigation({ variant = 'full' }: NavigationProps) {
+export default function Navigation({ variant = 'full', transparent = false }: NavigationProps) {
   const [menuOpen, setMenuOpen] = useState(false)
 
   const closeMenu = () => setMenuOpen(false)
 
   const Logo = () => (
-    <Link
-      to="/"
-      className="flex items-center gap-3 no-underline"
-      onClick={closeMenu}
-    >
-      <div
-        className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0"
-        style={{
-          background: '#9278D6',
-          fontFamily: "'SUIT', sans-serif",
-          fontWeight: 900,
-          color: '#fff',
-          fontSize: 15,
-        }}
-      >
-        한글
-      </div>
-      <div className="flex flex-col">
-        <span
-          style={{
-            fontFamily: "'SUIT', sans-serif",
-            fontSize: 13,
-            fontWeight: 700,
-            color: '#fff',
-            letterSpacing: '0.02em',
-            lineHeight: 1.2,
-          }}
-        >
-          한민족 한글학교
-        </span>
-        <span
-          style={{
-            fontSize: 10,
-            color: '#B49EE4',
-            letterSpacing: '0.12em',
-            textTransform: 'uppercase',
-            fontWeight: 500,
-            lineHeight: 1.2,
-          }}
-        >
-          NZSOK · Auckland
-        </span>
-      </div>
+    <Link to="/" className="flex items-center no-underline" onClick={closeMenu}>
+      <img src="/logo.png" alt="NZSOK 로고" style={{ height: 44, width: 'auto' }} />
     </Link>
   )
 
@@ -110,63 +70,56 @@ export default function Navigation({ variant = 'full' }: NavigationProps) {
               </Link>
             )}
           </div>
-          <button
-            className="nav-hamburger hidden md:hidden flex-col justify-center gap-[5px] w-9 h-9 bg-transparent border-0 cursor-pointer p-1 rounded-lg"
-            style={{ display: 'none' }}
-            onClick={() => setMenuOpen(!menuOpen)}
-            aria-label="메뉴 열기"
-          >
-            <span /><span /><span />
-          </button>
         </nav>
       </>
     )
   }
 
+  const navBg = transparent
+    ? 'transparent'
+    : 'rgba(253,252,250,0.97)'
+  const navBorder = transparent ? 'none' : '1px solid #EDE4D3'
+  const linkColor = transparent ? '#1c2b3a' : '#4a5f75'
+
   return (
     <>
       <nav
-        className="fixed top-0 left-0 right-0 z-[100] flex items-center justify-between"
+        className="fixed top-0 left-0 right-0 z-[100] grid"
         style={{
+          gridTemplateColumns: '1fr auto 1fr',
           padding: '0 48px',
           height: 72,
-          background: 'rgba(253,252,250,0.97)',
-          backdropFilter: 'blur(12px)',
-          borderBottom: '1px solid #EDE4D3',
+          background: navBg,
+          backdropFilter: transparent ? undefined : 'blur(12px)',
+          borderBottom: navBorder,
         }}
       >
-        <Logo />
-
-        {/* Desktop links */}
-        <ul className="nav-links hidden md:flex items-center gap-2 list-none">
+        {/* Left: nav links */}
+        <ul className="nav-links hidden md:flex items-center gap-2 list-none justify-start">
           <li>
             <Link
               to="/about"
               className="block px-4 py-2 text-sm font-medium rounded-md"
-              style={{
-                color: '#4a5f75',
-                textDecoration: 'none',
-                letterSpacing: '0.02em',
-              }}
+              style={{ color: linkColor, textDecoration: 'none', letterSpacing: '0.02em' }}
             >
-              학교소개 ▾
+              학교소개
             </Link>
             <div className="dropdown">
               <Link to="/about#intro" onClick={closeMenu}>소개글</Link>
-              <Link to="/about#purpose" onClick={closeMenu}>학교 설립 취지</Link>
+              <Link to="/about#purpose" onClick={closeMenu}>설립 취지</Link>
+              <Link to="/about#staff" onClick={closeMenu}>교직원 소개</Link>
               <Link to="/about#hymn" onClick={closeMenu}>학교 교가</Link>
               <Link to="/about#history" onClick={closeMenu}>학교 연혁</Link>
               <Link to="/about#board" onClick={closeMenu}>이사회</Link>
-              <Link to="/about#staff" onClick={closeMenu}>교직원 소개</Link>
             </div>
           </li>
           <li>
             <Link
               to="/education"
               className="block px-4 py-2 text-sm font-medium rounded-md"
-              style={{ color: '#4a5f75', textDecoration: 'none', letterSpacing: '0.02em' }}
+              style={{ color: linkColor, textDecoration: 'none', letterSpacing: '0.02em' }}
             >
-              교육 ▾
+              교육
             </Link>
             <div className="dropdown">
               <Link to="/education#schedule" onClick={closeMenu}>수업 시간</Link>
@@ -178,36 +131,41 @@ export default function Navigation({ variant = 'full' }: NavigationProps) {
             <Link
               to="/media"
               className="block px-4 py-2 text-sm font-medium rounded-md"
-              style={{ color: '#4a5f75', textDecoration: 'none', letterSpacing: '0.02em' }}
+              style={{ color: linkColor, textDecoration: 'none', letterSpacing: '0.02em' }}
             >
-              알림마당 ▾
+              알림마당
             </Link>
             <div className="dropdown">
               <Link to="/media#notice" onClick={closeMenu}>공지사항</Link>
               <Link to="/media" onClick={closeMenu}>학교앨범</Link>
             </div>
           </li>
-          <li>
-            <Link
-              to="/admission"
-              className="btn-primary block text-sm font-bold rounded-lg no-underline"
-              style={{ padding: '9px 20px' }}
-            >
-              입학안내
-            </Link>
-          </li>
         </ul>
 
-        {/* Hamburger button */}
-        <button
-          className={`nav-hamburger flex flex-col justify-center gap-[5px] w-9 h-9 bg-transparent border-0 cursor-pointer p-1 rounded-lg md:hidden ${menuOpen ? 'open' : ''}`}
-          style={{ display: 'none' }}
-          id="navHamburger"
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="메뉴 열기"
-        >
-          <span /><span /><span />
-        </button>
+        {/* Center: logo image only */}
+        <div className="flex items-center justify-center">
+          <Logo />
+        </div>
+
+        {/* Right: admission button + hamburger */}
+        <div className="flex items-center justify-end gap-4">
+          <Link
+            to="/admission"
+            className="btn-primary hidden md:block text-sm font-bold rounded-lg no-underline"
+            style={{ padding: '9px 20px' }}
+          >
+            입학안내
+          </Link>
+          <button
+            className={`nav-hamburger flex flex-col justify-center gap-[5px] w-9 h-9 bg-transparent border-0 cursor-pointer p-1 rounded-lg ${menuOpen ? 'open' : ''}`}
+            style={{ display: 'none' }}
+            id="navHamburger"
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="메뉴 열기"
+          >
+            <span /><span /><span />
+          </button>
+        </div>
       </nav>
 
       {/* Mobile menu */}
@@ -217,9 +175,9 @@ export default function Navigation({ variant = 'full' }: NavigationProps) {
             { to: '/about', label: '학교소개' },
             { to: '/about#intro', label: 'ㄴ 소개글' },
             { to: '/about#purpose', label: 'ㄴ 설립 취지' },
+            { to: '/about#staff', label: 'ㄴ 교직원 소개' },
             { to: '/about#hymn', label: 'ㄴ 교가' },
             { to: '/about#history', label: 'ㄴ 연혁' },
-            { to: '/about#staff', label: 'ㄴ 교직원 소개' },
             { to: '/education#schedule', label: '교육 – 수업 시간' },
             { to: '/education#programs', label: '교육 – 커리큘럼' },
             { to: '/education#annual', label: '교육 – 연간 교육계획' },
@@ -263,11 +221,11 @@ export default function Navigation({ variant = 'full' }: NavigationProps) {
         </div>
       </div>
 
-      {/* Show hamburger on mobile via media query override */}
       <style>{`
         @media (max-width: 900px) {
           #navHamburger { display: flex !important; }
         }
+        #navHamburger span { background: ${transparent ? '#1c2b3a' : 'var(--text)'}; }
       `}</style>
     </>
   )

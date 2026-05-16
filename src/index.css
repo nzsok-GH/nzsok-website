@@ -169,12 +169,12 @@ body {
 /* ── Navigation ─────────────────────────────────────────────── */
 .nav-links > li { position: relative; padding-bottom: 8px; margin-bottom: -8px; }
 .nav-links > li > a { transition: all 0.2s; }
-.nav-links > li > a:not(.btn-primary):hover { color: var(--primary); }
+.nav-links > li > a:not(.btn-primary):hover { color: var(--primary) !important; }
 
 .dropdown {
   position: absolute;
-  top: 100%; left: 50%;
-  transform: translateX(-50%);
+  top: 100%; left: 0;
+  transform: none;
   background: var(--bg-50);
   border: 1px solid var(--bg-300);
   border-radius: 12px;
@@ -193,10 +193,13 @@ body {
   text-decoration: none;
   font-size: 13px;
   border-radius: 7px;
-  transition: all 0.15s;
+  transition: color 0.15s;
   white-space: nowrap;
 }
-.dropdown a:hover { color: var(--primary); background: rgba(146,120,214,0.08); padding-left: 18px; }
+.dropdown a:hover { color: var(--primary); }
+
+footer a { transition: color 0.15s; }
+footer a:hover { color: var(--primary) !important; }
 
 /* hamburger */
 .nav-hamburger span { display: block; width: 22px; height: 2px; background: var(--text); border-radius: 2px; transition: all 0.3s; }

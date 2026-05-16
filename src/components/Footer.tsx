@@ -13,7 +13,7 @@ const NAV = [
     title: '학교소개',
     links: [
       ['/about#intro', '소개글'],
-      ['/about#purpose', '학교 설립 취지'],
+      ['/about#purpose', '설립 취지'],
       ['/about#staff', '교직원 소개'],
       ['/about#hymn', '학교 교가'],
       ['/about#history', '학교 연혁'],
@@ -29,10 +29,10 @@ const NAV = [
     ],
   },
   {
-    title: '안내',
+    title: '알림마당',
     links: [
       ['/media#notice', '공지사항'],
-      ['/media#album', '학교앨범'],
+      ['/media', '학교앨범'],
     ],
   },
 ]
