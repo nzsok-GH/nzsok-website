@@ -18,7 +18,7 @@ export default function Admission() {
       {/* ── MAIN ──────────────────────────────────────── */}
       <main style={{ maxWidth: 1200, margin: '0 auto', padding: '80px 48px 120px' }}>
 
-        {/* 기본 정보 */}
+        {/* 수업 일정 및 위치 */}
         <section style={{ marginBottom: 80 }}>
           <span
             className="inline-flex items-center gap-2.5 mb-3"
@@ -30,61 +30,33 @@ export default function Admission() {
           <h2 style={{ fontFamily: "'SUIT', sans-serif", fontSize: 'clamp(24px,3vw,36px)', fontWeight: 700, color: '#1c2b3a', lineHeight: 1.3, marginBottom: 40 }}>
             수업 일정 및 위치
           </h2>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 20 }}>
-            {[
-              { icon: '📅', title: '수업 요일 & 시간', body: <span>매주 <strong>토요일</strong> 오전 9:00 – 11:30<br />뉴질랜드 학교 학기 중 운영<br />방학 기간 휴무</span> },
-              { icon: '📍', title: '위치', body: <span><strong>40 Sartors Avenue</strong><br />Browns Bay, Auckland 0630<br />New Zealand</span> },
-              { icon: '👶', title: '입학 대상', body: <span>한국어를 배우고자 하는<br />모든 어린이 환영<br /><strong>초보자도 걱정 없이 오세요!</strong></span> },
-            ].map(({ icon, title, body }) => (
-              <div
-                key={title}
-                className="rounded-2xl"
-                style={{ background: '#F5EFE3', border: '1px solid rgba(0,0,0,0.06)', padding: '28px 24px' }}
-              >
-                <div style={{ fontSize: 28, marginBottom: 12 }}>{icon}</div>
-                <h3 style={{ fontSize: 15, fontWeight: 700, color: '#1c2b3a', marginBottom: 6 }}>{title}</h3>
-                <p style={{ fontSize: 13, color: '#4a5f75', lineHeight: 1.7 }}>{body}</p>
-              </div>
-            ))}
-          </div>
-        </section>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.6fr', gap: 28 }}>
+            {/* 수업 시간 */}
+            <div className="rounded-2xl" style={{ background: '#F5EFE3', border: '1px solid rgba(0,0,0,0.06)', padding: '32px 28px' }}>
+              <div style={{ fontSize: 28, marginBottom: 14 }}>📅</div>
+              <h3 style={{ fontSize: 15, fontWeight: 700, color: '#1c2b3a', marginBottom: 12 }}>수업 요일 & 시간</h3>
+              <p style={{ fontSize: 14, color: '#4a5f75', lineHeight: 1.9 }}>
+                매주 <strong style={{ color: '#1c2b3a' }}>토요일</strong> 오전 9:00 – 11:30<br />
+                뉴질랜드 학교 학기 중 운영<br />
+                방학 기간 휴무
+              </p>
+            </div>
 
-        {/* 입학 절차 */}
-        <section style={{ marginBottom: 80 }}>
-          <span
-            className="inline-flex items-center gap-2.5 mb-3"
-            style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', color: '#9278D6' }}
-          >
-            <span style={{ display: 'block', width: 24, height: 2, background: '#9278D6' }} />
-            입학 절차
-          </span>
-          <h2 style={{ fontFamily: "'SUIT', sans-serif", fontSize: 'clamp(24px,3vw,36px)', fontWeight: 700, color: '#1c2b3a', lineHeight: 1.3, marginBottom: 0 }}>
-            4단계로 간단하게
-          </h2>
-          <div className="steps-horizontal">
-            {[
-              { num: 1, title: '문의 & 상담', body: '이메일 또는 전화로 문의해 주세요. 자녀에게 맞는 반을 안내해 드립니다.' },
-              { num: 2, title: '레벨 테스트', body: '한국어 실력에 맞는 반 배정을 위해 간단한 구두 테스트를 진행합니다.' },
-              { num: 3, title: '등록 & 납부', body: '등록 서류 작성 및 수업료 납부 후 수업 참여가 가능합니다.' },
-              { num: 4, title: '수업 시작! 🎉', body: '한민족 한글학교 가족이 된 것을 환영합니다!' },
-            ].map(({ num, title, body }) => (
-              <div key={num} className="flex flex-col items-center text-center px-4 relative z-[1]">
-                <div
-                  className="flex items-center justify-center rounded-full mb-5"
-                  style={{
-                    width: 56, height: 56,
-                    background: '#E8E0F7', color: '#B49EE4',
-                    fontFamily: "'SUIT', sans-serif", fontSize: 20, fontWeight: 700,
-                    border: '3px solid #9278D6',
-                    
-                  }}
-                >
-                  {num}
-                </div>
-                <h4 style={{ fontSize: 15, fontWeight: 700, color: '#1c2b3a', marginBottom: 8 }}>{title}</h4>
-                <p style={{ fontSize: 13, color: '#4a5f75', lineHeight: 1.7 }}>{body}</p>
+            {/* 지도 */}
+            <div className="rounded-2xl overflow-hidden" style={{ border: '1px solid rgba(0,0,0,0.06)', display: 'flex', flexDirection: 'column', aspectRatio: '1.42 / 1' }}>
+              <iframe
+                src="https://maps.google.com/maps?q=40+Sartors+Avenue,+Browns+Bay,+Auckland+0630,+New+Zealand&output=embed"
+                style={{ width: '100%', flex: 1, minHeight: 0, border: 'none', display: 'block' }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="학교 위치"
+              />
+              <div style={{ padding: '16px 20px', background: '#FAF7F2' }}>
+                <p style={{ fontSize: 14, color: '#1c2b3a', fontWeight: 600, marginBottom: 2 }}>40 Sartors Avenue, Browns Bay</p>
+                <p style={{ fontSize: 13, color: '#4a5f75' }}>Auckland 0630, New Zealand</p>
               </div>
-            ))}
+            </div>
           </div>
         </section>
 
@@ -146,113 +118,81 @@ export default function Admission() {
           </p>
         </section>
 
-        {/* 연락처 & 위치 */}
-        <section style={{ marginBottom: 80 }}>
+        {/* 문의하기 */}
+        <section>
           <span
             className="inline-flex items-center gap-2.5 mb-3"
             style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', color: '#9278D6' }}
           >
             <span style={{ display: 'block', width: 24, height: 2, background: '#9278D6' }} />
-            연락처 & 위치
+            연락처
           </span>
-          <h2 style={{ fontFamily: "'SUIT', sans-serif", fontSize: 'clamp(24px,3vw,36px)', fontWeight: 700, color: '#1c2b3a', lineHeight: 1.3, marginBottom: 0 }}>
-            지금 문의하세요
+          <h2 style={{ fontFamily: "'SUIT', sans-serif", fontSize: 'clamp(24px,3vw,36px)', fontWeight: 700, color: '#1c2b3a', lineHeight: 1.3, marginBottom: 8 }}>
+            궁금하신 게 있으신가요?
           </h2>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 40, marginTop: 32 }}>
-            <div className="rounded-3xl" style={{ background: '#E8E0F7', padding: 40 }}>
-              <h3 style={{ fontFamily: "'SUIT', sans-serif", fontSize: 20, fontWeight: 700, color: '#1c2b3a', marginBottom: 24 }}>문의하기</h3>
-              {[
-                { icon: <Phone size={18} />, label: '전화', value: '021 733 5706', href: null },
-                { icon: <Mail size={18} />, label: '이메일', value: 'admin@nzsok.school.nz', href: 'mailto:admin@nzsok.school.nz' },
-                { icon: <InstagramIcon size={18} />, label: 'Instagram', value: 'nzsok.official', href: 'https://www.instagram.com/nzsok.official' },
-                { icon: <Clock size={18} />, label: '문의 가능 시간', value: '월–금 오전 9시 – 오후 5시', href: null },
-              ].map(({ icon, label, value, href }) => (
-                <div
-                  key={label}
-                  className="flex items-center gap-4 py-3.5"
-                  style={{ borderBottom: '1px solid rgba(0,0,0,0.08)' }}
-                >
-                  <div
-                    className="flex items-center justify-center rounded-xl flex-shrink-0"
-                    style={{ width: 40, height: 40, background: 'rgba(146,120,214,0.15)', color: '#9278D6' }}
-                  >
-                    {icon}
-                  </div>
-                  <div>
-                    <label style={{ display: 'block', fontSize: 10, fontWeight: 700, letterSpacing: '0.1em', color: '#B49EE4', textTransform: 'uppercase', marginBottom: 2 }}>
-                      {label}
-                    </label>
-                    {href ? (
-                      <a href={href} target={href.startsWith('http') ? '_blank' : undefined} rel="noopener noreferrer" style={{ fontSize: 14, color: '#9278D6', textDecoration: 'none' }}>
-                        {value}
-                      </a>
-                    ) : (
-                      <span style={{ fontSize: 14, color: '#1c2b3a' }}>{value}</span>
-                    )}
-                  </div>
-                </div>
-              ))}
-            </div>
+          <p style={{ fontSize: 15, color: '#4a5f75', lineHeight: 1.7, marginBottom: 40, maxWidth: 560 }}>
+            저희 학교는 학부모님과 자원봉사자들이 함께 운영하는 작은 공동체입니다.<br />
+            편하게 연락 주시면 성심껏 안내해 드리겠습니다.
+          </p>
 
-            <div className="rounded-3xl" style={{ background: '#FAF7F2', padding: 40, border: '1px solid rgba(0,0,0,0.07)' }}>
-              <h3 style={{ fontFamily: "'SUIT', sans-serif", fontSize: 20, fontWeight: 700, color: '#1c2b3a', marginBottom: 24 }}>찾아오시는 길</h3>
-              <div
-                className="rounded-2xl mb-4 overflow-hidden"
-                style={{ background: '#F5EFE3', aspectRatio: '16/10', border: '1px solid rgba(0,0,0,0.08)' }}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 20 }}>
+            {[
+              {
+                icon: <Phone size={22} />,
+                label: '전화',
+                value: '021 733 5706',
+                sub: '월–금 오전 9시 – 오후 5시',
+                href: 'tel:02173356706',
+              },
+              {
+                icon: <Mail size={22} />,
+                label: '이메일',
+                value: 'admin@nzsok.school.nz',
+                sub: '답변까지 1–2 영업일 소요',
+                href: 'mailto:admin@nzsok.school.nz',
+              },
+              {
+                icon: <InstagramIcon size={22} />,
+                label: 'Instagram',
+                value: '@nzsok.official',
+                sub: '학교 소식 및 근황',
+                href: 'https://www.instagram.com/nzsok.official',
+              },
+            ].map(({ icon, label, value, sub, href }) => (
+              <a
+                key={label}
+                href={href}
+                target={href.startsWith('http') ? '_blank' : undefined}
+                rel="noopener noreferrer"
+                className="rounded-2xl no-underline block"
+                style={{ background: '#FAF7F2', border: '1px solid rgba(0,0,0,0.07)', padding: '28px 24px', transition: 'border-color 0.2s, box-shadow 0.2s' }}
+                onMouseOver={e => { e.currentTarget.style.borderColor = '#B49EE4'; e.currentTarget.style.boxShadow = '0 4px 16px rgba(146,120,214,0.12)' }}
+                onMouseOut={e => { e.currentTarget.style.borderColor = 'rgba(0,0,0,0.07)'; e.currentTarget.style.boxShadow = 'none' }}
               >
-                <iframe
-                  src="https://maps.google.com/maps?q=40+Sartors+Avenue,+Browns+Bay,+Auckland+0630,+New+Zealand&output=embed"
-                  style={{ width: '100%', height: '100%', border: 'none', borderRadius: 14 }}
-                  allowFullScreen
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  title="학교 위치"
-                />
-              </div>
-              <p style={{ fontSize: 14, color: '#4a5f75', lineHeight: 1.7 }}>
-                <strong style={{ color: '#1c2b3a', display: 'block', fontSize: 15, marginBottom: 4 }}>40 Sartors Avenue, Browns Bay</strong>
-                Auckland 0630, New Zealand<br />
-                <span style={{ fontSize: 12, marginTop: 4, display: 'block', color: '#8a9ab0' }}>Browns Bay 지역, 대중교통 이용 가능</span>
-              </p>
-            </div>
+                <div
+                  className="flex items-center justify-center rounded-xl mb-5"
+                  style={{ width: 48, height: 48, background: '#E8E0F7', color: '#9278D6' }}
+                >
+                  {icon}
+                </div>
+                <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#B49EE4', marginBottom: 6 }}>{label}</p>
+                <p style={{ fontSize: 14, fontWeight: 600, color: '#1c2b3a', marginBottom: 4 }}>{value}</p>
+                <p style={{ fontSize: 12, color: '#8a9ab0' }}>{sub}</p>
+              </a>
+            ))}
+          </div>
+
+          <div
+            className="rounded-2xl flex items-center gap-4"
+            style={{ background: '#F5EFE3', border: '1px solid rgba(0,0,0,0.06)', padding: '20px 28px', marginTop: 20 }}
+          >
+            <Clock size={18} style={{ color: '#9278D6', flexShrink: 0 }} />
+            <p style={{ fontSize: 13, color: '#4a5f75', lineHeight: 1.6, margin: 0 }}>
+              <strong style={{ color: '#1c2b3a' }}>문의 가능 시간</strong>은 월요일부터 금요일, 오전 9시부터 오후 5시까지입니다.
+              토요일 수업 중 직접 담당 선생님께 여쭤보셔도 됩니다.
+            </p>
           </div>
         </section>
-
-        {/* CTA */}
-        <div
-          className="rounded-3xl text-center"
-          style={{
-            background: 'linear-gradient(135deg,#E8E0F7,#D0BFEF)',
-            padding: '60px 48px',
-          }}
-        >
-          <h2 style={{ fontFamily: "'SUIT', sans-serif", fontSize: 'clamp(24px,3vw,36px)', fontWeight: 700, color: '#1c2b3a', marginBottom: 12 }}>
-            지금 바로 입학 문의하세요
-          </h2>
-          <p style={{ color: '#4a5f75', fontSize: 15, marginBottom: 32 }}>
-            궁금한 점이 있으시면 편하게 연락 주세요. 친절하게 안내해 드리겠습니다.
-          </p>
-          <div className="flex gap-4 justify-center flex-wrap">
-            <a
-              href="mailto:admin@nzsok.school.nz"
-              className="inline-flex items-center gap-2 font-bold rounded-xl no-underline transition-all"
-              style={{ background: '#9278D6', color: '#fff', fontSize: 15, padding: '14px 32px' }}
-              onMouseOver={e => { e.currentTarget.style.background = '#B49EE4'; e.currentTarget.style.transform = 'translateY(-2px)' }}
-              onMouseOut={e => { e.currentTarget.style.background = '#9278D6'; e.currentTarget.style.transform = '' }}
-            >
-              ✉️ 이메일 문의하기
-            </a>
-            <a
-              href="tel:02173356706"
-              className="inline-flex items-center gap-2 font-medium rounded-xl no-underline transition-all"
-              style={{ background: 'transparent', color: '#fff', fontSize: 15, padding: '14px 32px', border: '1px solid rgba(255,255,255,0.3)' }}
-              onMouseOver={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.6)'; e.currentTarget.style.background = 'rgba(255,255,255,0.07)' }}
-              onMouseOut={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.3)'; e.currentTarget.style.background = 'transparent' }}
-            >
-              📞 전화 문의하기
-            </a>
-          </div>
-        </div>
       </main>
 
       <Footer />
