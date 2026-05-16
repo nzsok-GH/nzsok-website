@@ -6,7 +6,7 @@ const Home      = lazy(() => import('./pages/Home'))
 const About     = lazy(() => import('./pages/About'))
 const Education = lazy(() => import('./pages/Education'))
 const Admission = lazy(() => import('./pages/Admission'))
-const Gallery   = lazy(() => import('./pages/Gallery'))
+const Media     = lazy(() => import('./pages/Media'))
 
 function ScrollRestore() {
   const { pathname, hash } = useLocation()
@@ -30,8 +30,7 @@ function AppRoutes() {
         <Route path="/about" element={<About />} />
         <Route path="/education" element={<Education />} />
         <Route path="/admission" element={<Admission />} />
-        <Route path="/media" element={<Gallery />} />
-        <Route path="/gallery" element={<Gallery />} />
+        <Route path="/media" element={<Media />} />
       </Routes>
     </Suspense>
   )
