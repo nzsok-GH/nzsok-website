@@ -149,7 +149,7 @@ export default function Navigation({ variant = 'full', transparent = false }: Na
         {/* Right: admission button + hamburger */}
         <div className="flex items-center justify-end gap-4">
           <Link
-            to="/admission"
+            to="/enrol"
             className="btn-primary hidden md:block text-sm font-bold rounded-lg no-underline"
             style={{ padding: '9px 20px' }}
           >
@@ -201,7 +201,7 @@ export default function Navigation({ variant = 'full', transparent = false }: Na
             </Link>
           ))}
           <Link
-            to="/admission"
+            to="/enrol"
             onClick={closeMenu}
             style={{
               display: 'block',

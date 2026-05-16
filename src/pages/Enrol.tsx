@@ -2,74 +2,18 @@ import { Phone, Mail, ExternalLink } from 'lucide-react'
 import Navigation from '../components/Navigation'
 import Footer from '../components/Footer'
 
-const InstagramIcon = ({ size = 18 }: { size?: number }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
-    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
-    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
-  </svg>
-)
 
 const H2_STYLE = {
   fontFamily: "'SUIT', sans-serif", fontSize: 'clamp(24px,3vw,36px)' as const,
   fontWeight: 700, color: '#1c2b3a', lineHeight: 1.3,
 }
 
-export default function Admission() {
+export default function Enrol() {
   return (
     <div>
       <Navigation />
 
       <main style={{ maxWidth: 1200, margin: '0 auto', padding: '120px 48px 120px' }}>
-
-        {/* 수업 일정 및 위치 */}
-        <section style={{ marginBottom: 80 }}>
-          <h2 style={{ ...H2_STYLE, marginBottom: 40 }}>수업 일정 및 위치</h2>
-
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.6fr', gap: 28 }}>
-            {/* 수업 시간 */}
-            <div className="rounded-2xl" style={{ background: '#FAF7F2', border: '1px solid rgba(0,0,0,0.07)', padding: '32px 28px' }}>
-              <h3 style={{ fontSize: 15, fontWeight: 700, color: '#1c2b3a', marginBottom: 4 }}>수업 시간표</h3>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 6, marginTop: 16 }}>
-                {[
-                  { label: '1교시', time: '10:00 – 10:40', note: null },
-                  { label: '2교시', time: '10:50 – 11:30', note: '점심시간 11:30 – 12:10' },
-                  { label: '3교시', time: '12:10 – 12:50', note: null },
-                  { label: '4교시', time: '13:00 – 13:40', note: null },
-                  { label: '특강', time: '13:50 – 15:00', note: '선택 수업', special: true },
-                ].map(({ label, time, note, special }) => (
-                  <div
-                    key={label}
-                    className="flex items-center justify-between"
-                    style={{ paddingBlock: 4 }}
-                  >
-                    <div className="flex items-center gap-3">
-                      <span style={{ fontSize: 11, fontWeight: 700, color: special ? '#B49EE4' : '#9278D6', width: 32, flexShrink: 0 }}>{label}</span>
-                      <span style={{ fontSize: 14, fontWeight: 600, color: '#1c2b3a' }}>{time}</span>
-                    </div>
-                    {note && <span style={{ fontSize: 11, color: '#8a9ab0' }}>{note}</span>}
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* 지도 */}
-            <div className="rounded-2xl overflow-hidden" style={{ border: '1px solid rgba(0,0,0,0.06)', display: 'flex', flexDirection: 'column', aspectRatio: '1.42 / 1' }}>
-              <iframe
-                src="https://maps.google.com/maps?q=40+Sartors+Avenue,+Browns+Bay,+Auckland+0630,+New+Zealand&output=embed"
-                style={{ width: '100%', flex: 1, minHeight: 0, border: 'none', display: 'block' }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                title="학교 위치"
-              />
-              <div style={{ padding: '16px 20px', background: '#FAF7F2' }}>
-                <p style={{ fontSize: 14, color: '#1c2b3a', fontWeight: 600, marginBottom: 2 }}>40 Sartors Avenue, Browns Bay</p>
-                <p style={{ fontSize: 13, color: '#4a5f75' }}>Auckland 0630, New Zealand</p>
-              </div>
-            </div>
-          </div>
-        </section>
 
         {/* 등록 절차 */}
         <section style={{ marginBottom: 80 }}>
@@ -109,7 +53,7 @@ export default function Admission() {
                 body: '학비 입금이 확인되면 2026학년도 등록이 최종 완료됩니다.',
               },
             ].map(({ num, title, body }) => (
-              <div key={num} className="rounded-2xl" style={{ background: '#FAF7F2', border: '1px solid rgba(0,0,0,0.07)', padding: '28px 28px' }}>
+              <div key={num} style={{ padding: '4px 0' }}>
                 <div
                   className="flex items-center justify-center rounded-full"
                   style={{ width: 40, height: 40, background: '#E8E0F7', color: '#9278D6', fontSize: 17, fontWeight: 700, fontFamily: "'SUIT', sans-serif", marginBottom: 20 }}
@@ -136,7 +80,7 @@ export default function Admission() {
 
           {/* 정규 수업 학비 + 다자녀 할인 */}
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20, marginBottom: 20 }}>
-            <div className="rounded-2xl" style={{ background: '#FAF7F2', border: '1px solid rgba(0,0,0,0.07)', padding: '32px 36px' }}>
+            <div style={{ padding: '4px 0' }}>
               <p style={{ fontSize: 13, color: '#8a9ab0', marginBottom: 6 }}>정규 한국어 수업 · 연 학비</p>
               <div className="flex items-baseline gap-3">
                 <span style={{ fontFamily: "'SUIT', sans-serif", fontSize: 'clamp(36px,5vw,52px)', fontWeight: 800, color: '#9278D6', lineHeight: 1 }}>$450</span>
@@ -218,7 +162,7 @@ export default function Admission() {
           </div>
 
           {/* 학비 납부 */}
-          <div className="rounded-2xl" style={{ background: '#FAF7F2', border: '1px solid rgba(0,0,0,0.07)', padding: '28px 32px' }}>
+          <div style={{ padding: '4px 0' }}>
             <p style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.06em', color: '#9278D6', textTransform: 'uppercase', marginBottom: 16 }}>학비 납부 — 인터넷 뱅킹</p>
             {[
               { label: '계좌명', value: 'The NZ School of Korea Charitable Trust' },
@@ -237,24 +181,30 @@ export default function Admission() {
         <section style={{ marginBottom: 80 }}>
           <h2 style={{ ...H2_STYLE, marginBottom: 32 }}>입학 문의</h2>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 20 }}>
-            {[
-              { icon: <Phone size={20} />, value: '021 391 106', href: 'tel:021391106' },
-              { icon: <Mail size={20} />, value: 'wrjang@nzsok.school.nz', href: 'mailto:wrjang@nzsok.school.nz' },
-              { icon: <InstagramIcon size={20} />, value: '@nzsok.official', href: 'https://www.instagram.com/nzsok.official' },
-            ].map(({ icon, value, href }) => (
-              <a
-                key={value}
-                href={href}
-                target={href.startsWith('http') ? '_blank' : undefined}
-                rel="noopener noreferrer"
-                className="rounded-2xl no-underline flex items-center gap-4"
-                style={{ background: '#FAF7F2', border: '1px solid rgba(0,0,0,0.07)', padding: '20px 24px' }}
-              >
-                <span style={{ color: '#8a9ab0', flexShrink: 0 }}>{icon}</span>
-                <p style={{ fontSize: 14, fontWeight: 600, color: '#1c2b3a' }}>{value}</p>
-              </a>
-            ))}
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20 }}>
+            {/* 담당자 */}
+            <div style={{ padding: '28px 0' }}>
+              <p style={{ fontSize: 18, fontWeight: 700, color: '#1c2b3a', marginBottom: 4 }}>장우리</p>
+              <p style={{ fontSize: 13, color: '#8a9ab0' }}>교감</p>
+            </div>
+
+            {/* 연락처 */}
+            <div className="rounded-2xl flex flex-col justify-center gap-3" style={{ background: '#FAF7F2', border: '1px solid rgba(0,0,0,0.07)', padding: '28px 32px' }}>
+              {[
+                { icon: <Phone size={16} />, value: '021 391 106', href: 'tel:021391106' },
+                { icon: <Mail size={16} />, value: 'wrjang@nzsok.school.nz', href: 'mailto:wrjang@nzsok.school.nz' },
+              ].map(({ icon, value, href }) => (
+                <a
+                  key={value}
+                  href={href}
+                  className="no-underline flex items-center gap-3"
+                  style={{ color: '#1c2b3a' }}
+                >
+                  <span style={{ color: '#8a9ab0', flexShrink: 0 }}>{icon}</span>
+                  <span style={{ fontSize: 14, fontWeight: 600 }}>{value}</span>
+                </a>
+              ))}
+            </div>
           </div>
 
         </section>

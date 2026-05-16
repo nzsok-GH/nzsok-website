@@ -5,7 +5,7 @@ import LoadingScreen from './components/LoadingScreen'
 const Home      = lazy(() => import('./pages/Home'))
 const About     = lazy(() => import('./pages/About'))
 const Education = lazy(() => import('./pages/Education'))
-const Admission = lazy(() => import('./pages/Admission'))
+const Enrol = lazy(() => import('./pages/Enrol'))
 const Media     = lazy(() => import('./pages/Media'))
 
 function ScrollRestore() {
@@ -29,7 +29,7 @@ function AppRoutes() {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/education" element={<Education />} />
-        <Route path="/admission" element={<Admission />} />
+        <Route path="/enrol" element={<Enrol />} />
         <Route path="/media" element={<Media />} />
       </Routes>
     </Suspense>
