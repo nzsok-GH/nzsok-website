@@ -13,7 +13,7 @@ const InstagramIcon = ({ size = 18 }: { size?: number }) => (
 export default function Admission() {
   return (
     <div>
-      <Navigation variant="simple" />
+      <Navigation />
 
       {/* ── MAIN ──────────────────────────────────────── */}
       <main style={{ maxWidth: 1200, margin: '0 auto', padding: '80px 48px 120px' }}>
