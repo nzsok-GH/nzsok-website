@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { ArrowLeft } from 'lucide-react'
 
 type NavVariant = 'full' | 'simple' | 'gallery'
@@ -10,7 +10,6 @@ interface NavigationProps {
 
 export default function Navigation({ variant = 'full' }: NavigationProps) {
   const [menuOpen, setMenuOpen] = useState(false)
-  const location = useLocation()
 
   const closeMenu = () => setMenuOpen(false)
 
@@ -124,9 +123,6 @@ export default function Navigation({ variant = 'full' }: NavigationProps) {
     )
   }
 
-  // Full navigation (home + about pages)
-  const isAbout = location.pathname === '/about'
-
   return (
     <>
       <nav
@@ -166,16 +162,16 @@ export default function Navigation({ variant = 'full' }: NavigationProps) {
           </li>
           <li>
             <Link
-              to={isAbout ? '/#programs' : '#programs'}
+              to="/education"
               className="block px-4 py-2 text-sm font-medium rounded-md"
               style={{ color: '#4a5f75', textDecoration: 'none', letterSpacing: '0.02em' }}
             >
               교육 ▾
             </Link>
             <div className="dropdown">
-              <Link to={isAbout ? '/#schedule' : '#schedule'}>수업 시간</Link>
-              <Link to={isAbout ? '/#programs' : '#programs'}>커리큘럼</Link>
-              <Link to={isAbout ? '/#annual' : '#annual'}>연간 교육계획</Link>
+              <Link to="/education#schedule" onClick={closeMenu}>수업 시간</Link>
+              <Link to="/education#programs" onClick={closeMenu}>커리큘럼</Link>
+              <Link to="/education#annual" onClick={closeMenu}>연간 교육계획</Link>
             </div>
           </li>
           <li>
@@ -228,9 +224,9 @@ export default function Navigation({ variant = 'full' }: NavigationProps) {
             { to: '/about#hymn', label: 'ㄴ 교가' },
             { to: '/about#history', label: 'ㄴ 연혁' },
             { to: '/about#staff', label: 'ㄴ 교직원 소개' },
-            { to: '/#schedule', label: '교육 – 수업 시간' },
-            { to: '/#programs', label: '교육 – 커리큘럼' },
-            { to: '/#annual', label: '교육 – 연간 교육계획' },
+            { to: '/education#schedule', label: '교육 – 수업 시간' },
+            { to: '/education#programs', label: '교육 – 커리큘럼' },
+            { to: '/education#annual', label: '교육 – 연간 교육계획' },
             { to: '/gallery', label: '알림마당' },
           ].map(({ to, label }) => (
             <Link

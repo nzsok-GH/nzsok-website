@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
 import Home from './pages/Home'
 import About from './pages/About'
+import Education from './pages/Education'
 import Admission from './pages/Admission'
 import Gallery from './pages/Gallery'
 
@@ -23,6 +24,7 @@ function AppRoutes() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
+        <Route path="/education" element={<Education />} />
         <Route path="/admission" element={<Admission />} />
         <Route path="/gallery" element={<Gallery />} />
       </Routes>
