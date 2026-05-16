@@ -23,80 +23,80 @@ export default function Enrol() {
         >
           <h2 style={{ ...H2_STYLE, marginBottom: 48 }}>등록 절차</h2>
 
-          {/* 입학원서 링크 */}
-          <div
-            className="enrol-form-card rounded-2xl"
-            style={{
-              background: "#E8E0F7",
-              border: "1px solid rgba(146,120,214,0.2)",
-              padding: "24px 32px",
-              marginBottom: 28,
-            }}
-          >
-            <div>
-              <p style={{ fontSize: 13, color: "#6b5aa0", marginBottom: 4 }}>
-                링크를 누르면 바로 입학원서를 작성하실 수 있습니다.
-              </p>
-              <p style={{ fontSize: 15, fontWeight: 700, color: "#1c2b3a" }}>
-                뉴질랜드 한민족 한글학교 입학원서 2026
-              </p>
-            </div>
-            <a
-              href="https://forms.office.com/r/bRMHMZQF65"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-primary inline-flex items-center gap-2 rounded-xl no-underline flex-shrink-0"
-              style={{ fontSize: 14, fontWeight: 700, padding: "12px 24px" }}
-            >
-              양식 작성 <ExternalLink size={15} />
-            </a>
-          </div>
-
           {/* 2 steps */}
           <div className="enrol-procedure-grid">
-            {[
-              {
-                num: 1,
-                title: "입학 원서 제출",
-                body: "입학 원서를 작성해 제출해 주세요. 교감 선생님께서 확인 이메일을 보내드립니다.",
-              },
-              {
-                num: 2,
-                title: "학비 납부",
-                body: "학비 입금이 확인되면 2026학년도 등록이 최종 완료됩니다.",
-              },
-            ].map(({ num, title, body }) => (
-              <div key={num} style={{ padding: "4px 0" }}>
-                <div
-                  className="flex items-center justify-center rounded-full"
-                  style={{
-                    width: 40,
-                    height: 40,
-                    background: "#E8E0F7",
-                    color: "#9278D6",
-                    fontSize: 17,
-                    fontWeight: 700,
-                    fontFamily: "'SUIT', sans-serif",
-                    marginBottom: 20,
-                  }}
-                >
-                  {num}
-                </div>
-                <h3
-                  style={{
-                    fontSize: 16,
-                    fontWeight: 700,
-                    color: "#1c2b3a",
-                    marginBottom: 8,
-                  }}
-                >
-                  {title}
-                </h3>
-                <p style={{ fontSize: 13, color: "#4a5f75", lineHeight: 1.7 }}>
-                  {body}
-                </p>
+            {/* Step 1 — manual to include the CTA button */}
+            <div style={{ padding: "4px 0" }}>
+              <div
+                className="flex items-center justify-center rounded-full"
+                style={{
+                  width: 40,
+                  height: 40,
+                  background: "#E8E0F7",
+                  color: "#9278D6",
+                  fontSize: 17,
+                  fontWeight: 700,
+                  fontFamily: "'SUIT', sans-serif",
+                  marginBottom: 20,
+                }}
+              >
+                1
               </div>
-            ))}
+              <h3
+                style={{
+                  fontSize: 16,
+                  fontWeight: 700,
+                  color: "#1c2b3a",
+                  marginBottom: 8,
+                }}
+              >
+                입학 원서 제출
+              </h3>
+              <p style={{ fontSize: 13, color: "#4a5f75", lineHeight: 1.7, marginBottom: 16 }}>
+                입학 원서를 작성해 제출해 주세요. 교감 선생님께서 확인 이메일을 보내드립니다.
+              </p>
+              <a
+                href="https://forms.office.com/r/bRMHMZQF65"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-primary inline-flex items-center gap-2 rounded-xl no-underline"
+                style={{ fontSize: 13, fontWeight: 700, padding: "10px 20px" }}
+              >
+                양식 작성 <ExternalLink size={14} />
+              </a>
+            </div>
+
+            {/* Step 2 */}
+            <div style={{ padding: "4px 0" }}>
+              <div
+                className="flex items-center justify-center rounded-full"
+                style={{
+                  width: 40,
+                  height: 40,
+                  background: "#E8E0F7",
+                  color: "#9278D6",
+                  fontSize: 17,
+                  fontWeight: 700,
+                  fontFamily: "'SUIT', sans-serif",
+                  marginBottom: 20,
+                }}
+              >
+                2
+              </div>
+              <h3
+                style={{
+                  fontSize: 16,
+                  fontWeight: 700,
+                  color: "#1c2b3a",
+                  marginBottom: 8,
+                }}
+              >
+                학비 납부
+              </h3>
+              <p style={{ fontSize: 13, color: "#4a5f75", lineHeight: 1.7 }}>
+                학비 입금이 확인되면 2026학년도 등록이 최종 완료됩니다.
+              </p>
+            </div>
           </div>
 
           <div
