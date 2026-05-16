@@ -1,5 +1,17 @@
 @import "tailwindcss";
 
+/* ── KerisKedyuche Font (케리스 케듀체) ──────────────────────── */
+@font-face {
+  font-family: 'KerisKedyuche';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2601-3@1.0/KERISKEDU_R.woff2') format('woff2');
+  font-weight: 400; font-display: block;
+}
+@font-face {
+  font-family: 'KerisKedyuche';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2601-3@1.0/KERISKEDU_B.woff2') format('woff2');
+  font-weight: 700; font-display: block;
+}
+
 /* ── Paperlogy Font ──────────────────────────────────────────── */
 @font-face {
   font-family: 'Paperlogy';
@@ -187,6 +199,15 @@ body {
   from { opacity: 0; transform: scale(0.95); }
   to   { opacity: 1; transform: scale(1); }
 }
+@keyframes logoFillUp {
+  from { clip-path: inset(100% 0 0 0); }
+  to   { clip-path: inset(0% 0 0 0); }
+}
+
+/* ── Loading screen ──────────────────────────────────────────── */
+.logo-fill-reveal {
+  animation: logoFillUp 1.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
 
 /* ── Navigation ─────────────────────────────────────────────── */
 .nav-links > li { position: relative; padding-bottom: 8px; margin-bottom: -8px; }
@@ -370,23 +391,17 @@ footer a:hover { color: var(--primary) !important; }
 }
 
 /* ── Timeline ────────────────────────────────────────────────── */
-.timeline { position: relative; padding-left: 32px; }
-.timeline::before {
-  content: ''; position: absolute; left: 0; top: 8px; bottom: 8px;
-  width: 2px;
-  background: linear-gradient(to bottom, var(--primary), var(--purple-200));
-  border-radius: 2px;
-}
-.timeline-item { position: relative; padding-left: 32px; margin-bottom: 40px; }
-.timeline-item::before {
-  content: ''; position: absolute; left: -38px; top: 8px;
-  width: 10px; height: 10px; border-radius: 50%;
-  background: var(--primary);
-  border: 2px solid var(--bg-50);
-  outline: 2px solid var(--primary);
-}
+
+/* ── Scrollbar hide utility ──────────────────────────────────── */
+.no-scrollbar { scrollbar-width: none; -ms-overflow-style: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
 
 /* ── Section tabs (About page) ───────────────────────────────── */
+/* nav (72px) + sticky tab bar (~50px) + small gap */
+#intro, #staff, #hymn, #history, #board {
+  scroll-margin-top: 180px;
+}
+
 .section-tab {
   padding: 16px 20px; font-size: 14px; font-weight: 500; color: var(--text-light);
   text-decoration: none; border-bottom: 3px solid transparent;
