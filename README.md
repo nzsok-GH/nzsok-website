@@ -4,6 +4,11 @@ Official website for the New Zealand School of Korea (뉴질랜드 한민족 한
 
 Built with Vite 6, React 19, TypeScript, and Tailwind CSS v4. Deployed on Vercel.
 
+| Environment | URL |
+|---|---|
+| Production | https://www.nzsok.school.nz/ |
+| Preview | https://nzsok-website.vercel.app |
+
 ---
 
 ## Tech Stack
