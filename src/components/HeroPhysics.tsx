@@ -44,6 +44,15 @@ export default function HeroPhysics() {
     const CR = R * 0.72; // collision radius — tuned to glyph size at 2× font
     const FONT_SIZE = R * 1.25 * 2;
 
+    // Forces and speeds were tuned at R≈76 (1440×900 desktop). Mass ∝ CR² ∝ R²,
+    // so the same force creates 8× more acceleration on a small-R mobile body.
+    // Scale forces by R² and speeds by R so behaviour is screen-size independent.
+    const isMobile = W < 768;
+    const R_REF = 76;
+    const mobileFactor = isMobile ? 0.35 : 1.0;
+    const forceScale = (R / R_REF) * (R / R_REF) * mobileFactor;
+    const speedScale = (R / R_REF) * mobileFactor;
+
     // Preload logo image
     const logoImg = new Image();
     logoImg.src = "/logo.png";
@@ -102,7 +111,7 @@ export default function HeroPhysics() {
     const LOGO_START = { x: han - syl * 1.1, y: cy };
 
     // Each jaso launches in its own slice of the circle (40° apart)
-    const LAUNCH_SPEED = 0.5;
+    const LAUNCH_SPEED = 0.5 * speedScale;
     const START_VELOCITIES = JASO.map((_, i) => {
       const angle = (i / JASO.length) * Math.PI * 2;
       return { x: Math.cos(angle) * LAUNCH_SPEED, y: Math.sin(angle) * LAUNCH_SPEED };
@@ -128,8 +137,8 @@ export default function HeroPhysics() {
       label: "logo",
     });
     Body.setVelocity(logoBall, {
-      x: (Math.random() - 0.5) * 1,
-      y: (Math.random() - 0.5) * 1,
+      x: (Math.random() - 0.5) * speedScale,
+      y: (Math.random() - 0.5) * speedScale,
     });
 
     World.add(engine.world, [...jasoBodies, logoBall]);
@@ -165,37 +174,43 @@ export default function HeroPhysics() {
     };
     canvas.addEventListener("mousemove", onMouseMove);
     canvas.addEventListener("mouseleave", onMouseLeave);
-    canvas.addEventListener("touchmove", onTouchMove, { passive: true });
+    if (!isMobile) {
+      canvas.addEventListener("touchmove", onTouchMove, { passive: true });
+    }
 
     // Unique phase offset per body so each floats independently
     const PHASES = JASO.map((_, i) => (i / JASO.length) * Math.PI * 2);
 
     let rafId = 0;
     let tick = 0;
+    let lastTime = 0;
 
-    const loop = () => {
-      tick += 0.006;
+    const loop = (time: number) => {
+      const delta = lastTime === 0 ? 1000 / 60 : Math.min(time - lastTime, 50);
+      lastTime = time;
+      const scale = delta / (1000 / 60);
+      tick += 0.006 * scale;
 
       // Apply gentle water-surface forces to each jaso
       jasoBodies.forEach((body, i) => {
         const p = PHASES[i];
         const fx =
-          Math.sin(tick * 1.1 + p) * 0.000022 +
-          Math.sin(tick * 0.6 + p * 1.7) * 0.000012;
+          (Math.sin(tick * 1.1 + p) * 0.000022 +
+           Math.sin(tick * 0.6 + p * 1.7) * 0.000012) * forceScale;
         const fy =
-          Math.cos(tick * 0.8 + p * 1.3) * 0.000022 +
-          Math.cos(tick * 1.4 + p * 0.9) * 0.000012;
+          (Math.cos(tick * 0.8 + p * 1.3) * 0.000022 +
+           Math.cos(tick * 1.4 + p * 0.9) * 0.000012) * forceScale;
         Body.applyForce(body, body.position, { x: fx, y: fy });
       });
       Body.applyForce(logoBall, logoBall.position, {
-        x: Math.sin(tick * 0.9 + 1.2) * 0.000028,
-        y: Math.cos(tick * 0.7 + 2.5) * 0.000028,
+        x: Math.sin(tick * 0.9 + 1.2) * 0.000028 * forceScale,
+        y: Math.cos(tick * 0.7 + 2.5) * 0.000028 * forceScale,
       });
 
-      Engine.update(engine, 1000 / 60);
+      Engine.update(engine, delta);
 
       // Cap speed so bodies can't tunnel through walls after hard collisions or fast drags
-      const MAX_SPEED = 18;
+      const MAX_SPEED = 18 * speedScale;
       for (const body of Composite.allBodies(engine.world)) {
         if (!body.isStatic) {
           const { x: vx, y: vy } = body.velocity;
@@ -272,14 +287,14 @@ export default function HeroPhysics() {
       });
       Body.setPosition(logoBall, LOGO_START);
       Body.setVelocity(logoBall, {
-        x: (Math.random() - 0.5) * 1,
-        y: (Math.random() - 0.5) * 1,
+        x: (Math.random() - 0.5) * speedScale,
+        y: (Math.random() - 0.5) * speedScale,
       });
       Body.setAngle(logoBall, 0);
       Body.setAngularVelocity(logoBall, 0);
     };
 
-    loop();
+    rafId = requestAnimationFrame(loop);
 
     return () => {
       cancelAnimationFrame(rafId);
