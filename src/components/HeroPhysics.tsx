@@ -101,17 +101,20 @@ export default function HeroPhysics() {
 
     const LOGO_START = { x: han - syl * 1.1, y: cy };
 
+    // Each jaso launches in its own slice of the circle (40° apart)
+    const LAUNCH_SPEED = 0.5;
+    const START_VELOCITIES = JASO.map((_, i) => {
+      const angle = (i / JASO.length) * Math.PI * 2;
+      return { x: Math.cos(angle) * LAUNCH_SPEED, y: Math.sin(angle) * LAUNCH_SPEED };
+    });
+
     const jasoBodies = JASO.map((char, i) => {
       const pos = START_POSITIONS[i];
       const body = Bodies.circle(pos.x, pos.y, CR, {
         ...ballProps,
         label: "jaso",
       });
-      // Tiny staggered velocity so bodies slowly drift apart from the initial pose
-      Body.setVelocity(body, {
-        x: (Math.random() - 0.5) * 0.8,
-        y: (Math.random() - 0.5) * 0.8,
-      });
+      Body.setVelocity(body, START_VELOCITIES[i]);
       (body as any)._jaso = char;
       (body as any)._pal = PALETTE[i];
       return body;
@@ -164,14 +167,30 @@ export default function HeroPhysics() {
     canvas.addEventListener("mouseleave", onMouseLeave);
     canvas.addEventListener("touchmove", onTouchMove, { passive: true });
 
+    // Unique phase offset per body so each floats independently
+    const PHASES = JASO.map((_, i) => (i / JASO.length) * Math.PI * 2);
+
     let rafId = 0;
     let tick = 0;
 
     const loop = () => {
       tick += 0.006;
 
-      engine.gravity.y = Math.sin(tick * Math.PI * 0.9) * 0.002;
-      engine.gravity.x = Math.sin(tick * Math.PI * 0.55) * 0.0015;
+      // Apply gentle water-surface forces to each jaso
+      jasoBodies.forEach((body, i) => {
+        const p = PHASES[i];
+        const fx =
+          Math.sin(tick * 1.1 + p) * 0.000022 +
+          Math.sin(tick * 0.6 + p * 1.7) * 0.000012;
+        const fy =
+          Math.cos(tick * 0.8 + p * 1.3) * 0.000022 +
+          Math.cos(tick * 1.4 + p * 0.9) * 0.000012;
+        Body.applyForce(body, body.position, { x: fx, y: fy });
+      });
+      Body.applyForce(logoBall, logoBall.position, {
+        x: Math.sin(tick * 0.9 + 1.2) * 0.000028,
+        y: Math.cos(tick * 0.7 + 2.5) * 0.000028,
+      });
 
       Engine.update(engine, 1000 / 60);
 
@@ -247,10 +266,7 @@ export default function HeroPhysics() {
       jasoBodies.forEach((body, i) => {
         const pos = START_POSITIONS[i];
         Body.setPosition(body, pos);
-        Body.setVelocity(body, {
-          x: (Math.random() - 0.5) * 0.8,
-          y: (Math.random() - 0.5) * 0.8,
-        });
+        Body.setVelocity(body, START_VELOCITIES[i]);
         Body.setAngle(body, 0);
         Body.setAngularVelocity(body, 0);
       });
