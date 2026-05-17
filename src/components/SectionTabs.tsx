@@ -70,6 +70,7 @@ export default function SectionTabs({ tabs }: { tabs: Tab[] }) {
         background: "#FDFCFA",
         borderBottom: "1px solid rgba(0,0,0,0.07)",
         top: 72,
+        overflowY: "hidden",
       }}
     >
       <div className="flex justify-center" style={{ padding: "0 48px" }}>
