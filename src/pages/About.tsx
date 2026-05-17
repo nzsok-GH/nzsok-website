@@ -426,7 +426,8 @@ export default function About() {
               dept: "특강",
 
               staff: [
-                { name: "조하은", label: "미술 1·2" },
+                { name: "조하은", label: "미술 1" },
+                { name: "Eli Francisco", label: "미술 2" },
                 { name: "이계우", label: "미술 3" },
                 { name: "심성미", label: "미술 4" },
                 { name: "권영희", label: "4D 프레임" },
