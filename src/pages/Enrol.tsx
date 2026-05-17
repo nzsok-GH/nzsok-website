@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Phone, Mail, ExternalLink } from "lucide-react";
 import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
@@ -11,6 +12,12 @@ const H2_STYLE = {
 };
 
 export default function Enrol() {
+  useEffect(() => {
+    document.title = "입학신청 | 뉴질랜드 한민족 한글학교";
+    const canonical = document.querySelector<HTMLLinkElement>('link[rel="canonical"]');
+    if (canonical) canonical.href = "https://www.nzsok.school.nz/enrol";
+  }, []);
+
   return (
     <div>
       <Navigation />

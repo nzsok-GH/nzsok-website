@@ -283,6 +283,12 @@ function isCurrentWeek(dateStr: string): boolean {
 }
 
 export default function Education() {
+  useEffect(() => {
+    document.title = "교육과정 | 뉴질랜드 한민족 한글학교";
+    const canonical = document.querySelector<HTMLLinkElement>('link[rel="canonical"]');
+    if (canonical) canonical.href = "https://www.nzsok.school.nz/education";
+  }, []);
+
   return (
     <div>
       <Navigation variant="full" />

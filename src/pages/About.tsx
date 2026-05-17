@@ -23,6 +23,12 @@ export default function About() {
   const historyRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    document.title = "학교소개 | 뉴질랜드 한민족 한글학교";
+    const canonical = document.querySelector<HTMLLinkElement>('link[rel="canonical"]');
+    if (canonical) canonical.href = "https://www.nzsok.school.nz/about";
+  }, []);
+
+  useEffect(() => {
     const el = historyRef.current;
     if (!el) return;
     let raf: number;

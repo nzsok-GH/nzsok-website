@@ -130,6 +130,12 @@ const H2_STYLE = {
 };
 
 export default function Gallery() {
+  useEffect(() => {
+    document.title = "알림마당 | 뉴질랜드 한민족 한글학교";
+    const canonical = document.querySelector<HTMLLinkElement>('link[rel="canonical"]');
+    if (canonical) canonical.href = "https://www.nzsok.school.nz/media";
+  }, []);
+
   const [albums, setAlbums] = useState<Album[]>([]);
   const [filter, setFilter] = useState<FilterCategory>("all");
   const [loading, setLoading] = useState(true);
