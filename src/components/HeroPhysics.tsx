@@ -69,7 +69,7 @@ export default function HeroPhysics() {
       Bodies.rectangle(W + 25, H / 2, 50, H + 200, wallOpts),
     ]);
 
-    const ballProps = { density: 8e-6, frictionAir: 0.006, restitution: 0.65, friction: 0.01 };
+    const ballProps = { density: 8e-6, frictionAir: 0.03, restitution: 0.55, friction: 0.05 };
 
     // Three-row syllable layout — 뉴질랜드 / 한민족 / 한글학교
     const syl1 = R * 2.6;  // row 1 (4 syllables)
@@ -221,8 +221,8 @@ export default function HeroPhysics() {
       if (!dragBody) return;
       Body.setStatic(dragBody, false);
       Body.setVelocity(dragBody, {
-        x: dragCur.x - dragPrev.x,
-        y: dragCur.y - dragPrev.y,
+        x: (dragCur.x - dragPrev.x) * 0.4,
+        y: (dragCur.y - dragPrev.y) * 0.4,
       });
       dragBody = null;
       canvas.style.cursor = CURSOR_OPEN;
