@@ -302,6 +302,9 @@ export default function HeroPhysics() {
       style={{ height: "100vh", background: "#FAF7F2" }}
     >
       <canvas ref={canvasRef} className="absolute inset-0" style={{ touchAction: "none" }} />
+      <p className="absolute bottom-4 left-4 text-xs text-[#1c2b3a] pointer-events-none select-none" style={{ animation: "hint-breathe 3s ease-in-out infinite" }}>
+        글자를 움직여 새로운 단어를 만들어보세요!
+      </p>
     </section>
   );
 }

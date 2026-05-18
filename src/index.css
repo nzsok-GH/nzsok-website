@@ -215,6 +215,10 @@ body {
 }
 
 /* ── Keyframe animations ─────────────────────────────────────── */
+@keyframes hint-breathe {
+  0%, 100% { opacity: 0.18; }
+  50%       { opacity: 0.55; }
+}
 @keyframes pageFadeIn {
   from { opacity: 0; }
   to   { opacity: 1; }
