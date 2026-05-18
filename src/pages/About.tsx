@@ -189,6 +189,7 @@ export default function About() {
             style={{
               overflowX: "auto",
               overflowY: "visible",
+              paddingTop: 8,
               paddingBottom: 8,
               margin: "0 -4px",
             }}
