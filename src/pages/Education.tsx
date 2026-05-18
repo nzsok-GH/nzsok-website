@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
 import SectionTabs from "../components/SectionTabs";
 
@@ -291,7 +290,6 @@ export default function Education() {
 
   return (
     <div>
-      <Navigation variant="full" />
       <SectionTabs tabs={SECTIONS} />
 
       <main className="education-main">

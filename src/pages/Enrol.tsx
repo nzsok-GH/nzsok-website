@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { Phone, Mail, ExternalLink } from "lucide-react";
-import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
 
 const H2_STYLE = {
@@ -20,8 +19,6 @@ export default function Enrol() {
 
   return (
     <div>
-      <Navigation />
-
       <main className="enrol-main">
         {/* 등록 절차 */}
         <section

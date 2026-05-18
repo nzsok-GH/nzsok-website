@@ -215,6 +215,13 @@ body {
 }
 
 /* ── Keyframe animations ─────────────────────────────────────── */
+@keyframes pageFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+.page-enter {
+  animation: pageFadeIn 250ms ease-out both;
+}
 @keyframes pulse-ring {
   0%,
   100% {

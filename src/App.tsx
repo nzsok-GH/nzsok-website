@@ -2,6 +2,7 @@ import { lazy, Suspense, useEffect } from "react";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { Analytics } from "@vercel/analytics/react";
 import LoadingScreen from "./components/LoadingScreen";
+import Navigation from "./components/Navigation";
 
 const Home = lazy(() => import("./pages/Home"));
 const About = lazy(() => import("./pages/About"));
@@ -30,16 +31,20 @@ function ScrollRestore() {
 }
 
 function AppRoutes() {
+  const location = useLocation();
   return (
     <Suspense fallback={<LoadingScreen />}>
       <ScrollRestore />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/education" element={<Education />} />
-        <Route path="/enrol" element={<Enrol />} />
-        <Route path="/media" element={<Media />} />
-      </Routes>
+      <Navigation variant="full" transparent={location.pathname === "/"} />
+      <div key={location.pathname} className="page-enter">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/education" element={<Education />} />
+          <Route path="/enrol" element={<Enrol />} />
+          <Route path="/media" element={<Media />} />
+        </Routes>
+      </div>
     </Suspense>
   );
 }

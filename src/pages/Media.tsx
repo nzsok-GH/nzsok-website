@@ -1,5 +1,4 @@
 import { useState, useEffect, useCallback } from "react";
-import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
 import SectionTabs from "../components/SectionTabs";
 import { Album, FilterCategory } from "../types/album";
@@ -199,7 +198,6 @@ export default function Gallery() {
 
   return (
     <div>
-      <Navigation variant="full" />
       <SectionTabs tabs={SECTIONS} />
 
       <main className="media-main">

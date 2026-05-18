@@ -1,5 +1,4 @@
 import { useRef, useEffect } from "react";
-import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
 import SectionTabs from "../components/SectionTabs";
 
@@ -56,7 +55,6 @@ export default function About() {
 
   return (
     <div>
-      <Navigation variant="full" />
       <SectionTabs tabs={SECTIONS} />
 
       <main className="about-main">
