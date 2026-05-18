@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <div>
       <HeroPhysics />
-      <Footer />
+      <div className="hidden md:block"><Footer /></div>
     </div>
   );
 }

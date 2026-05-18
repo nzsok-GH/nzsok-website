@@ -1,25 +1,26 @@
 import { useEffect, useRef } from "react";
 import Matter from "matter-js";
 
-const JASO = ["ㅎ", "ㅏ", "ㄴ", "ㅁ", "ㅣ", "ㄴ", "ㅈ", "ㅗ", "ㄱ"] as const;
+// Row 1: 뉴질랜드  Row 2: 한민족  Row 3: 한글학교
+const JASO = [
+  "ㄴ", "ㅠ",           // 뉴
+  "ㅈ", "ㅣ", "ㄹ",    // 질
+  "ㄹ", "ㅐ", "ㄴ",    // 랜
+  "ㄷ", "ㅡ",           // 드
+  "ㅎ", "ㅏ", "ㄴ",    // 한
+  "ㅁ", "ㅣ", "ㄴ",    // 민
+  "ㅈ", "ㅗ", "ㄱ",    // 족
+  "ㅎ", "ㅏ", "ㄴ",    // 한
+  "ㄱ", "ㅡ", "ㄹ",    // 글
+  "ㅎ", "ㅏ", "ㄱ",    // 학
+  "ㄱ", "ㅛ",           // 교
+] as const;
 
-const PALETTE = [
-  { bg: "#9278D6", fg: "#FAF7F2" },
-  { bg: "#1c2b3a", fg: "#E8E0F7" },
-  { bg: "#B49EE4", fg: "#1c2b3a" },
-  { bg: "#9278D6", fg: "#FAF7F2" },
-  { bg: "#1c2b3a", fg: "#B49EE4" },
-  { bg: "#7B5FC7", fg: "#FAF7F2" },
-  { bg: "#B49EE4", fg: "#1c2b3a" },
-  { bg: "#1c2b3a", fg: "#FAF7F2" },
-  { bg: "#9278D6", fg: "#FAF7F2" },
-];
+const COLORS = ["#7B5FC7", "#9278D6", "#B49EE4", "#1c2b3a"];
 
 export default function HeroPhysics() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
-  const textRef = useRef<HTMLHeadingElement>(null);
-  const resetRef = useRef<() => void>(() => {});
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -40,176 +41,210 @@ export default function HeroPhysics() {
     const ctx = canvas.getContext("2d")!;
     ctx.scale(dpr, dpr);
 
-    const R = Math.min(W * 0.07, H * 0.085, 164);
-    const CR = R * 0.72; // collision radius — tuned to glyph size at 2× font
-    const FONT_SIZE = R * 1.25 * 2;
+    const R = Math.min(W * 0.055, H * 0.07, 120) * (W < 768 ? 1.25 : 1);
+    const CR = R * 0.42;
+    const FONT_SIZE = R * 1.8;
 
-    // Forces and speeds were tuned at R≈76 (1440×900 desktop). Mass ∝ CR² ∝ R²,
-    // so the same force creates 8× more acceleration on a small-R mobile body.
-    // Scale forces by R² and speeds by R so behaviour is screen-size independent.
-    const isMobile = W < 768;
     const R_REF = 76;
-    const mobileFactor = isMobile ? 0.35 : 1.0;
-    const forceScale = (R / R_REF) * (R / R_REF) * mobileFactor;
-    const speedScale = (R / R_REF) * mobileFactor;
-
-    // Preload logo image
-    const logoImg = new Image();
-    logoImg.src = "/logo.png";
+    const speedScale = R / R_REF;
 
     const engine = Engine.create();
-    engine.gravity.scale = 0.2;
-    engine.gravity.y = 0;
     engine.gravity.x = 0;
+    engine.gravity.y = 0;
+    engine.gravity.scale = 0;
 
     const navH =
       (document.querySelector("nav") as HTMLElement | null)?.clientHeight ?? 70;
 
-    const wallOpts = {
-      isStatic: true,
-      label: "wall",
-      friction: 0.05,
-      restitution: 0.7,
-    };
+    const wallOpts = { isStatic: true, label: "wall", friction: 0.05, restitution: 0.7 };
+    // Ceiling must stop bodies so the visual glyph top (body_y - FONT_SIZE/2) stays below nav.
+    // When a body rests on the ceiling bottom edge (ceilY + 25), body center = ceilY + 25 + CR.
+    // Visual top = body center - FONT_SIZE/2. Setting that = navH + 8px gap:
+    //   ceilY = navH + 8 + FONT_SIZE/2 - CR - 25
+    const ceilY = navH + 8 + FONT_SIZE / 2 - CR - 25;
     World.add(engine.world, [
-      Bodies.rectangle(W / 2, H + 25, W + 200, 50, wallOpts), // floor
-      Bodies.rectangle(W / 2, navH - 25, W + 200, 50, wallOpts), // ceiling just below nav
-      Bodies.rectangle(-25, H / 2, 50, H + 200, wallOpts), // left
-      Bodies.rectangle(W + 25, H / 2, 50, H + 200, wallOpts), // right
+      Bodies.rectangle(W / 2, H + 25, W + 200, 50, wallOpts),
+      Bodies.rectangle(W / 2, ceilY,  W + 200, 50, wallOpts),
+      Bodies.rectangle(-25,   H / 2,  50, H + 200, wallOpts),
+      Bodies.rectangle(W + 25, H / 2, 50, H + 200, wallOpts),
     ]);
 
-    const ballProps = {
-      density: 8e-6,
-      frictionAir: 0.006,
-      restitution: 0.65,
-      friction: 0.01,
-    };
+    const ballProps = { density: 8e-6, frictionAir: 0.006, restitution: 0.65, friction: 0.01 };
 
-    // Natural Korean syllable layout for 한민족.
-    // 한/민: initial(top-left) + vowel(top-right) + final(bottom-center)
-    // 족: vertical stack — initial(top) + vowel(mid) + final(bottom)
-    const syl = R * 4.0; // centre-to-centre syllable spacing (2× wider for 2× font)
-    const cx = W * 0.54; // centre of 민 — shifted left to keep 족 on-screen
-    const cy = H * 0.38;
+    // Three-row syllable layout — 뉴질랜드 / 한민족 / 한글학교
+    const syl1 = R * 2.6;  // row 1 (4 syllables)
+    const syl2 = R * 3.0;  // row 2 (3 syllables)
+    const syl3 = R * 2.6;  // row 3 (4 syllables)
 
-    const han = cx - syl;
-    const min = cx;
-    const jok = cx + syl;
+    const isMobile = W < 768;
+    const cy1 = H * (isMobile ? 0.30 : 0.22);
+    const cy2 = H * 0.50;
+    const cy3 = H * (isMobile ? 0.70 : 0.78);
+
+    // row 1 syllable centres
+    const nyu_x = W / 2 - 1.5 * syl1;
+    const jil_x = W / 2 - 0.5 * syl1;
+    const rae_x = W / 2 + 0.5 * syl1;
+    const deu_x = W / 2 + 1.5 * syl1;
+    // row 2 syllable centres
+    const han1_x = W / 2 - syl2;
+    const min_x  = W / 2;
+    const jok_x  = W / 2 + syl2;
+    // row 3 syllable centres
+    const han2_x = W / 2 - 1.5 * syl3;
+    const gul_x  = W / 2 - 0.5 * syl3;
+    const hak_x  = W / 2 + 0.5 * syl3;
+    const gyo_x  = W / 2 + 1.5 * syl3;
 
     const START_POSITIONS = [
-      { x: han - R * 1.1, y: cy - R * 1.0 }, // ㅎ  top-left
-      { x: han + R * 0.82, y: cy - R * 0.7 }, // ㅏ  top-right
-      { x: han - R * 0.16, y: cy + R * 1.5 }, // ㄴ  bottom
-      { x: min - R * 1.1, y: cy - R * 1.0 }, // ㅁ  top-left
-      { x: min + R * 0.82, y: cy - R * 0.7 }, // ㅣ  top-right
-      { x: min - R * 0.16, y: cy + R * 1.5 }, // ㄴ  bottom
-      { x: jok, y: cy - R * 1.8 }, // ㅈ  top
-      { x: jok, y: cy }, // ㅗ  mid
-      { x: jok, y: cy + R * 1.8 }, // ㄱ  bottom
+      // 뉴 (ㄴ, ㅠ)
+      { x: nyu_x - R * 0.4, y: cy1 - R * 0.5 },
+      { x: nyu_x - R * 0.5, y: cy1 + R * 0.5 },
+      // 질 (ㅈ, ㅣ, ㄹ)
+      { x: jil_x - R * 0.7, y: cy1 - R * 0.6 },
+      { x: jil_x + R * 0.5, y: cy1 - R * 0.4 },
+      { x: jil_x - R * 0.1, y: cy1 + R * 0.9 },
+      // 랜 (ㄹ, ㅐ, ㄴ)
+      { x: rae_x - R * 0.7, y: cy1 - R * 0.6 },
+      { x: rae_x + R * 0.5, y: cy1 - R * 0.4 },
+      { x: rae_x - R * 0.1, y: cy1 + R * 0.9 },
+      // 드 (ㄷ, ㅡ)
+      { x: deu_x,            y: cy1 - R * 0.5 },
+      { x: deu_x,            y: cy1 + R * 0.5 },
+      // 한 (ㅎ, ㅏ, ㄴ)
+      { x: han1_x - R * 0.7, y: cy2 - R * 0.6 },
+      { x: han1_x + R * 0.5, y: cy2 - R * 0.4 },
+      { x: han1_x - R * 0.1, y: cy2 + R * 0.9 },
+      // 민 (ㅁ, ㅣ, ㄴ)
+      { x: min_x - R * 0.7,  y: cy2 - R * 0.6 },
+      { x: min_x + R * 0.5,  y: cy2 - R * 0.4 },
+      { x: min_x - R * 0.1,  y: cy2 + R * 0.9 },
+      // 족 (ㅈ, ㅗ, ㄱ)
+      { x: jok_x,             y: cy2 - R * 1.1 },
+      { x: jok_x,             y: cy2           },
+      { x: jok_x,             y: cy2 + R * 1.1 },
+      // 한 (ㅎ, ㅏ, ㄴ)
+      { x: han2_x - R * 0.7, y: cy3 - R * 0.6 },
+      { x: han2_x + R * 0.5, y: cy3 - R * 0.4 },
+      { x: han2_x - R * 0.1, y: cy3 + R * 0.9 },
+      // 글 (ㄱ, ㅡ, ㄹ)
+      { x: gul_x,             y: cy3 - R * 1.1 },
+      { x: gul_x,             y: cy3           },
+      { x: gul_x,             y: cy3 + R * 1.1 },
+      // 학 (ㅎ, ㅏ, ㄱ)
+      { x: hak_x - R * 0.7,  y: cy3 - R * 0.6 },
+      { x: hak_x + R * 0.5,  y: cy3 - R * 0.4 },
+      { x: hak_x - R * 0.1,  y: cy3 + R * 0.9 },
+      // 교 (ㄱ, ㅛ)
+      { x: gyo_x,             y: cy3 - R * 0.5 },
+      { x: gyo_x,             y: cy3 + R * 0.5 },
     ];
 
-    const LOGO_START = { x: han - syl * 1.1, y: cy };
-
-    // Each jaso launches in its own slice of the circle (40° apart)
-    const LAUNCH_SPEED = 0.5 * speedScale;
-    const START_VELOCITIES = JASO.map((_, i) => {
-      const angle = (i / JASO.length) * Math.PI * 2;
-      return { x: Math.cos(angle) * LAUNCH_SPEED, y: Math.sin(angle) * LAUNCH_SPEED };
-    });
-
+    let prevColor: string | null = null;
     const jasoBodies = JASO.map((char, i) => {
-      const pos = START_POSITIONS[i];
-      const body = Bodies.circle(pos.x, pos.y, CR, {
+      const body = Bodies.circle(START_POSITIONS[i].x, START_POSITIONS[i].y, CR, {
         ...ballProps,
         label: "jaso",
       });
-      Body.setVelocity(body, START_VELOCITIES[i]);
+      const angle = (i / JASO.length) * Math.PI * 2;
+      const speed = 0.35 * speedScale;
+      Body.setVelocity(body, { x: Math.cos(angle) * speed, y: Math.sin(angle) * speed });
       (body as any)._jaso = char;
-      (body as any)._pal = PALETTE[i];
+      const choices = COLORS.filter((c) => c !== prevColor);
+      const bg = choices[Math.floor(Math.random() * choices.length)];
+      prevColor = bg;
+      (body as any)._pal = { bg };
       return body;
     });
 
-    // Logo ball — slightly larger for visual emphasis
-    const LR = CR * 1.15;
-    const LR_DRAW = LR * 1.5;
-    const logoBall = Bodies.circle(LOGO_START.x, LOGO_START.y, LR, {
-      ...ballProps,
-      label: "logo",
-    });
-    Body.setVelocity(logoBall, {
-      x: (Math.random() - 0.5) * speedScale,
-      y: (Math.random() - 0.5) * speedScale,
-    });
+    World.add(engine.world, jasoBodies);
 
-    World.add(engine.world, [...jasoBodies, logoBall]);
-
-    // Physical cursor — a static circle that teleports to the mouse each frame and
-    // collides naturally with the jaso/logo bodies. Starts off-screen.
-    const CURSOR_R = 12;
-    const cursorBody = Bodies.circle(-500, -500, CURSOR_R, {
-      isStatic: true,
-      label: "cursor",
-      restitution: 0.8,
-      friction: 0,
-      frictionAir: 0,
-    });
-    World.add(engine.world, cursorBody);
-
-    const onMouseMove = (e: MouseEvent) => {
-      const rect = canvas.getBoundingClientRect();
-      Body.setPosition(cursorBody, {
-        x: e.clientX - rect.left,
-        y: e.clientY - rect.top,
-      });
+    // Emoji cursors
+    const makeCursor = (emoji: string, size = 40) => {
+      const c = document.createElement("canvas");
+      c.width = size; c.height = size;
+      const cx = c.getContext("2d")!;
+      cx.font = `${Math.round(size * 0.82)}px serif`;
+      cx.textBaseline = "middle";
+      cx.textAlign = "center";
+      cx.fillText(emoji, size / 2, size / 2);
+      return `url(${c.toDataURL()}) ${size / 2} ${size / 2}, auto`;
     };
-    const onMouseLeave = () =>
-      Body.setPosition(cursorBody, { x: -500, y: -500 });
-    const onTouchMove = (e: TouchEvent) => {
-      const rect = canvas.getBoundingClientRect();
-      const t = e.touches[0];
-      Body.setPosition(cursorBody, {
-        x: t.clientX - rect.left,
-        y: t.clientY - rect.top,
-      });
-    };
-    canvas.addEventListener("mousemove", onMouseMove);
-    canvas.addEventListener("mouseleave", onMouseLeave);
-    if (!isMobile) {
-      canvas.addEventListener("touchmove", onTouchMove, { passive: true });
-    }
+    const CURSOR_OPEN = makeCursor("🖐️");
+    const CURSOR_GRAB = makeCursor("✊");
+    canvas.style.cursor = CURSOR_OPEN;
 
-    // Unique phase offset per body so each floats independently
-    const PHASES = JASO.map((_, i) => (i / JASO.length) * Math.PI * 2);
+    // Pointer drag
+    let dragBody: Matter.Body | null = null;
+    let dragPrev = { x: 0, y: 0 };
+    let dragCur  = { x: 0, y: 0 };
+
+    const getPos = (clientX: number, clientY: number) => {
+      const rect = canvas.getBoundingClientRect();
+      return { x: clientX - rect.left, y: clientY - rect.top };
+    };
+
+    const hitTest = (pos: { x: number; y: number }) => {
+      for (const body of jasoBodies) {
+        const dx = pos.x - body.position.x;
+        const dy = pos.y - body.position.y;
+        if (dx * dx + dy * dy <= CR * CR) return body;
+      }
+      return null;
+    };
+
+    const onPointerDown = (e: PointerEvent) => {
+      const pos = getPos(e.clientX, e.clientY);
+      const hit = hitTest(pos);
+      if (!hit) return;
+      dragBody = hit;
+      dragPrev = pos;
+      dragCur  = pos;
+      Body.setStatic(hit, true);
+      canvas.setPointerCapture(e.pointerId);
+      canvas.style.cursor = CURSOR_GRAB;
+    };
+
+    const onPointerMove = (e: PointerEvent) => {
+      const pos = getPos(e.clientX, e.clientY);
+      if (dragBody) {
+        dragPrev = dragCur;
+        dragCur  = pos;
+        Body.setPosition(dragBody, pos);
+        canvas.style.cursor = CURSOR_GRAB;
+      } else {
+        canvas.style.cursor = CURSOR_OPEN;
+      }
+    };
+
+    const onPointerUp = () => {
+      if (!dragBody) return;
+      Body.setStatic(dragBody, false);
+      Body.setVelocity(dragBody, {
+        x: dragCur.x - dragPrev.x,
+        y: dragCur.y - dragPrev.y,
+      });
+      dragBody = null;
+      canvas.style.cursor = CURSOR_OPEN;
+    };
+
+    const onContextMenu = (e: Event) => e.preventDefault();
+
+    canvas.addEventListener("pointerdown",  onPointerDown);
+    canvas.addEventListener("pointermove",  onPointerMove);
+    canvas.addEventListener("pointerup",    onPointerUp);
+    canvas.addEventListener("pointercancel", onPointerUp);
+    canvas.addEventListener("contextmenu",  onContextMenu);
 
     let rafId = 0;
-    let tick = 0;
     let lastTime = 0;
 
     const loop = (time: number) => {
       const delta = lastTime === 0 ? 1000 / 60 : Math.min(time - lastTime, 50);
       lastTime = time;
-      const scale = delta / (1000 / 60);
-      tick += 0.006 * scale;
-
-      // Apply gentle water-surface forces to each jaso
-      jasoBodies.forEach((body, i) => {
-        const p = PHASES[i];
-        const fx =
-          (Math.sin(tick * 1.1 + p) * 0.000022 +
-           Math.sin(tick * 0.6 + p * 1.7) * 0.000012) * forceScale;
-        const fy =
-          (Math.cos(tick * 0.8 + p * 1.3) * 0.000022 +
-           Math.cos(tick * 1.4 + p * 0.9) * 0.000012) * forceScale;
-        Body.applyForce(body, body.position, { x: fx, y: fy });
-      });
-      Body.applyForce(logoBall, logoBall.position, {
-        x: Math.sin(tick * 0.9 + 1.2) * 0.000028 * forceScale,
-        y: Math.cos(tick * 0.7 + 2.5) * 0.000028 * forceScale,
-      });
 
       Engine.update(engine, delta);
 
-      // Cap speed so bodies can't tunnel through walls after hard collisions or fast drags
       const MAX_SPEED = 18 * speedScale;
       for (const body of Composite.allBodies(engine.world)) {
         if (!body.isStatic) {
@@ -225,82 +260,35 @@ export default function HeroPhysics() {
       }
 
       ctx.clearRect(0, 0, W, H);
-      ctx.textAlign = "center";
+      ctx.textAlign    = "center";
       ctx.textBaseline = "middle";
       ctx.font = `700 ${FONT_SIZE}px 'KerisKedyuche', sans-serif`;
 
-      // Draw jaso — letters only, no circle background
       for (const body of jasoBodies) {
         const { x, y } = body.position;
         const { bg } = (body as any)._pal;
-
         ctx.save();
         ctx.translate(x, y);
         ctx.rotate(body.angle);
-
         ctx.shadowColor = "rgba(0,0,0,0.15)";
-        ctx.shadowBlur = 8;
-        ctx.fillStyle = bg;
+        ctx.shadowBlur  = 8;
+        ctx.fillStyle   = bg;
         ctx.fillText((body as any)._jaso, 0, FONT_SIZE * 0.05);
-
         ctx.restore();
-      }
-
-      // Draw logo — image only, no circle clip
-      {
-        const { x, y } = logoBall.position;
-        ctx.save();
-        ctx.translate(x, y);
-        ctx.rotate(logoBall.angle);
-
-        ctx.shadowColor = "rgba(0,0,0,0.12)";
-        ctx.shadowBlur = 10;
-        if (logoImg.complete && logoImg.naturalWidth > 0) {
-          const aspect = logoImg.naturalWidth / logoImg.naturalHeight;
-          const dw = aspect >= 1 ? LR_DRAW * 2 : LR_DRAW * 2 * aspect;
-          const dh = aspect >= 1 ? (LR_DRAW * 2) / aspect : LR_DRAW * 2;
-          ctx.drawImage(logoImg, -dw / 2, -dh / 2, dw, dh);
-        }
-
-        ctx.restore();
-      }
-
-      // Draw cursor dot on top
-      const { x: cx2, y: cy2 } = cursorBody.position;
-      if (cx2 >= 0 && cx2 <= W && cy2 >= 0 && cy2 <= H) {
-        ctx.beginPath();
-        ctx.arc(cx2, cy2, CURSOR_R, 0, Math.PI * 2);
-        ctx.fillStyle = "#1c2b3a";
-        ctx.fill();
       }
 
       rafId = requestAnimationFrame(loop);
-    };
-
-    resetRef.current = () => {
-      jasoBodies.forEach((body, i) => {
-        const pos = START_POSITIONS[i];
-        Body.setPosition(body, pos);
-        Body.setVelocity(body, START_VELOCITIES[i]);
-        Body.setAngle(body, 0);
-        Body.setAngularVelocity(body, 0);
-      });
-      Body.setPosition(logoBall, LOGO_START);
-      Body.setVelocity(logoBall, {
-        x: (Math.random() - 0.5) * speedScale,
-        y: (Math.random() - 0.5) * speedScale,
-      });
-      Body.setAngle(logoBall, 0);
-      Body.setAngularVelocity(logoBall, 0);
     };
 
     rafId = requestAnimationFrame(loop);
 
     return () => {
       cancelAnimationFrame(rafId);
-      canvas.removeEventListener("mousemove", onMouseMove);
-      canvas.removeEventListener("mouseleave", onMouseLeave);
-      canvas.removeEventListener("touchmove", onTouchMove);
+      canvas.removeEventListener("pointerdown",  onPointerDown);
+      canvas.removeEventListener("pointermove",  onPointerMove);
+      canvas.removeEventListener("pointerup",    onPointerUp);
+      canvas.removeEventListener("pointercancel", onPointerUp);
+      canvas.removeEventListener("contextmenu",  onContextMenu);
       World.clear(engine.world, false);
       Engine.clear(engine);
     };
@@ -311,34 +299,9 @@ export default function HeroPhysics() {
       ref={sectionRef}
       id="top"
       className="relative overflow-hidden"
-      style={{ height: "100vh", background: "#FAF7F2", cursor: "none" }}
+      style={{ height: "100vh", background: "#FAF7F2" }}
     >
-      <canvas ref={canvasRef} className="absolute inset-0" />
-
-      <h1
-        ref={textRef}
-        className="absolute z-20 hidden md:block"
-        onClick={() => resetRef.current()}
-        style={{
-          top: "50%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
-          fontFamily: "'SUIT', sans-serif",
-          fontSize: "clamp(26px, 3.5vw, 52px)",
-          fontWeight: 900,
-          color: "#1c2b3a",
-          lineHeight: 1.2,
-          textAlign: "center",
-          cursor: "pointer",
-          userSelect: "none",
-        }}
-      >
-        뉴질랜드
-        <br />
-        <em style={{ fontStyle: "normal", color: "#9278D6" }}>
-          한민족 한글학교
-        </em>
-      </h1>
+      <canvas ref={canvasRef} className="absolute inset-0" style={{ touchAction: "none" }} />
     </section>
   );
 }
