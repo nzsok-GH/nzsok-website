@@ -633,7 +633,11 @@ footer a:hover {
 #classdojo,
 #notice,
 #album,
-#instagram {
+#instagram,
+#grade,
+#procedure,
+#tuition,
+#contact {
   scroll-margin-top: 148px;
 }
 

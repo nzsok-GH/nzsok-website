@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { Phone, Mail, ExternalLink } from "lucide-react";
 import Footer from "../components/Footer";
+import SectionTabs from "../components/SectionTabs";
 
 const H2_STYLE = {
   fontFamily: "'SUIT', sans-serif",
@@ -10,20 +11,117 @@ const H2_STYLE = {
   lineHeight: 1.3,
 };
 
+const SECTIONS = [
+  { id: "grade", label: "학년 안내" },
+  { id: "procedure", label: "등록 절차" },
+  { id: "tuition", label: "학비" },
+  { id: "contact", label: "입학 문의" },
+];
+
+const GRADES = [
+  { school: "다람쥐반", local: "만 4세 (유치원)" },
+  { school: "개나리반", local: "Year 1" },
+  { school: "초등부 1학년", local: "Year 2" },
+  { school: "초등부 2학년", local: "Year 3" },
+  { school: "초등부 3학년", local: "Year 4" },
+  { school: "초등부 4학년", local: "Year 5" },
+  { school: "초등부 5학년", local: "Year 6" },
+  { school: "초등부 6학년", local: "Year 7" },
+  { school: "중등부 1학년", local: "Year 8" },
+  { school: "중등부 2학년", local: "Year 9" },
+  { school: "중등부 3학년", local: "Year 10" },
+];
+
 export default function Enrol() {
   useEffect(() => {
     document.title = "입학신청 | 뉴질랜드 한민족 한글학교";
-    const canonical = document.querySelector<HTMLLinkElement>('link[rel="canonical"]');
+    const canonical = document.querySelector<HTMLLinkElement>(
+      'link[rel="canonical"]',
+    );
     if (canonical) canonical.href = "https://www.nzsok.school.nz/enrol";
   }, []);
 
   return (
     <div>
+      <SectionTabs tabs={SECTIONS} />
       <main className="enrol-main">
+        {/* 학년 안내 */}
+        <section id="grade" style={{ marginBottom: 80, scrollMarginTop: 148 }}>
+          <h2 style={{ ...H2_STYLE, marginBottom: 16 }}>학년 안내</h2>
+
+          <div style={{ overflowX: "auto" }}>
+            <table
+              style={{
+                borderCollapse: "collapse",
+                fontSize: 14,
+                maxWidth: 480,
+                width: "100%",
+              }}
+            >
+              <thead>
+                <tr style={{ background: "#FAF7F2" }}>
+                  <th
+                    style={{
+                      padding: "7px 16px",
+                      color: "#8a9ab0",
+                      fontWeight: 600,
+                      textAlign: "left",
+                      borderBottom: "1px solid rgba(0,0,0,0.08)",
+                      borderRight: "1px solid rgba(0,0,0,0.05)",
+                    }}
+                  >
+                    뉴질랜드 한민족 한글학교
+                  </th>
+                  <th
+                    style={{
+                      padding: "7px 16px",
+                      color: "#8a9ab0",
+                      fontWeight: 600,
+                      textAlign: "left",
+                      borderBottom: "1px solid rgba(0,0,0,0.08)",
+                    }}
+                  >
+                    뉴질랜드 현지 학교
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {GRADES.map(({ school, local }, i) => (
+                  <tr
+                    key={school}
+                    style={{ background: i % 2 === 0 ? "#fff" : "#FDFCFA" }}
+                  >
+                    <td
+                      style={{
+                        padding: "8px 16px",
+                        borderBottom: "1px solid rgba(0,0,0,0.05)",
+                        borderRight: "1px solid rgba(0,0,0,0.05)",
+                        color: "#1c2b3a",
+                        fontWeight: 500,
+                      }}
+                    >
+                      {school}
+                    </td>
+                    <td
+                      style={{
+                        padding: "8px 16px",
+                        borderBottom: "1px solid rgba(0,0,0,0.05)",
+                        color: "#4a5f75",
+                      }}
+                    >
+                      {local}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
+
         {/* 등록 절차 */}
         <section
           id="procedure"
-          style={{ marginBottom: 80, scrollMarginTop: 100 }}
+          style={{ marginBottom: 80, scrollMarginTop: 148 }}
         >
           <h2 style={{ ...H2_STYLE, marginBottom: 48 }}>등록 절차</h2>
 
@@ -56,8 +154,16 @@ export default function Enrol() {
               >
                 입학 원서 제출
               </h3>
-              <p style={{ fontSize: 15, color: "#4a5f75", lineHeight: 1.7, marginBottom: 16 }}>
-                입학 원서를 작성해 제출해 주세요. 교감 선생님께서 확인 이메일을 보내드립니다.
+              <p
+                style={{
+                  fontSize: 15,
+                  color: "#4a5f75",
+                  lineHeight: 1.7,
+                  marginBottom: 16,
+                }}
+              >
+                입학 원서를 작성해 제출해 주세요. 교감 선생님께서 확인 이메일을
+                보내드립니다.
               </p>
               <a
                 href="https://forms.office.com/r/bRMHMZQF65"
@@ -138,7 +244,7 @@ export default function Enrol() {
         {/* 학비 */}
         <section
           id="tuition"
-          style={{ marginBottom: 80, scrollMarginTop: 100 }}
+          style={{ marginBottom: 80, scrollMarginTop: 148 }}
         >
           <h2 style={{ ...H2_STYLE, marginBottom: 32 }}>학비</h2>
 
@@ -314,7 +420,14 @@ export default function Enrol() {
                 >
                   {title}
                 </p>
-                <ul style={{ listStyle: "none", padding: 0, margin: 0, paddingBottom: 12 }}>
+                <ul
+                  style={{
+                    listStyle: "none",
+                    padding: 0,
+                    margin: 0,
+                    paddingBottom: 12,
+                  }}
+                >
                   {levels.map((l) => (
                     <li
                       key={l}
@@ -418,7 +531,7 @@ export default function Enrol() {
         {/* 문의하기 */}
         <section
           id="contact"
-          style={{ marginBottom: 80, scrollMarginTop: 100 }}
+          style={{ marginBottom: 80, scrollMarginTop: 148 }}
         >
           <h2 style={{ ...H2_STYLE, marginBottom: 32 }}>입학 문의</h2>
 
@@ -431,8 +544,12 @@ export default function Enrol() {
           >
             {/* 담당자 */}
             <div className="enrol-contact-person">
-              <p style={{ fontSize: 14, color: "#8a9ab0", marginBottom: 4 }}>교감</p>
-              <p style={{ fontSize: 20, fontWeight: 700, color: "#1c2b3a" }}>장우리</p>
+              <p style={{ fontSize: 14, color: "#8a9ab0", marginBottom: 4 }}>
+                교감
+              </p>
+              <p style={{ fontSize: 20, fontWeight: 700, color: "#1c2b3a" }}>
+                장우리
+              </p>
             </div>
 
             <div className="enrol-contact-divider" />
@@ -457,7 +574,9 @@ export default function Enrol() {
                   className="no-underline flex items-center gap-3"
                   style={{ color: "#1c2b3a" }}
                 >
-                  <span style={{ color: "#8a9ab0", flexShrink: 0 }}>{icon}</span>
+                  <span style={{ color: "#8a9ab0", flexShrink: 0 }}>
+                    {icon}
+                  </span>
                   <span style={{ fontSize: 16, fontWeight: 600 }}>{value}</span>
                 </a>
               ))}

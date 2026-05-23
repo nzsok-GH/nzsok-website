@@ -31,6 +31,7 @@ const NAV = [
   {
     title: "입학안내",
     links: [
+      ["/enrol#grade", "학년 안내"],
       ["/enrol#procedure", "등록 절차"],
       ["/enrol#tuition", "학비"],
       ["/enrol#contact", "입학 문의"],
