@@ -151,6 +151,9 @@ export default function Navigation({
                 <Link to="/about#staff" onClick={closeMenu}>
                   교직원
                 </Link>
+                <Link to="/about#campus" onClick={closeMenu}>
+                  Sherwood School
+                </Link>
               </div>
             </li>
             <li>
@@ -174,9 +177,6 @@ export default function Navigation({
                 </Link>
                 <Link to="/education#annual" onClick={closeMenu}>
                   연간 교육계획
-                </Link>
-                <Link to="/education#campus" onClick={closeMenu}>
-                  Sherwood School
                 </Link>
                 <Link to="/education#classdojo" onClick={closeMenu}>
                   클래스도조
@@ -243,6 +243,7 @@ export default function Navigation({
                 { to: "/about#history", label: "연혁" },
                 { to: "/about#board", label: "이사회" },
                 { to: "/about#staff", label: "교직원" },
+                { to: "/about#campus", label: "Sherwood School" },
               ],
             },
             {
@@ -252,7 +253,6 @@ export default function Navigation({
                 { to: "/education#schedule", label: "시간표" },
                 { to: "/education#programs", label: "커리큘럼" },
                 { to: "/education#annual", label: "연간 교육계획" },
-                { to: "/education#campus", label: "Sherwood School" },
                 { to: "/education#classdojo", label: "클래스도조" },
               ],
             },

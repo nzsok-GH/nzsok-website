@@ -59,7 +59,6 @@ const SECTIONS = [
   { id: "schedule", label: "시간표" },
   { id: "programs", label: "커리큘럼" },
   { id: "annual", label: "연간 교육계획" },
-  { id: "campus", label: "Sherwood School" },
   { id: "classdojo", label: "클래스도조" },
 ];
 
@@ -801,63 +800,8 @@ export default function Education() {
           </div>
         </section>
 
-        {/* ── 4. Sherwood School ── */}
-        <section id="campus" style={{ marginTop: 80, marginBottom: 80 }}>
-          <h2 style={{ ...H2_STYLE, marginBottom: 40 }}>Sherwood School</h2>
-
-          <p
-            style={{
-              fontSize: 14,
-              color: "#4a5f75",
-              lineHeight: 1.85,
-              marginBottom: 24,
-              maxWidth: 720,
-            }}
-          >
-            수업이 진행되는{" "}
-            <strong style={{ color: "#1c2b3a" }}>Sherwood School</strong>은
-            브라운스 베이에 위치한 공립 초등학교입니다. 우리 학교는 14개의
-            교실, 3개의 놀이터와 강당을 사용하며, 수업 시간 중에는 외부인의
-            교내 출입이 통제되어 우리 아이들에게 안전한 학습 환경을 제공합니다.
-          </p>
-
-          <div
-            className="rounded-2xl overflow-hidden"
-            style={{
-              border: "1px solid rgba(60,120,180,0.18)",
-              marginBottom: 16,
-            }}
-          >
-            <img
-              src="/sherwood-school/sherwood-school.png"
-              alt="Sherwood School campus"
-              style={{ width: "100%", display: "block", objectFit: "cover", maxHeight: 340 }}
-            />
-          </div>
-
-          <div
-            className="rounded-2xl"
-            style={{
-              border: "1px solid rgba(60,120,180,0.18)",
-              overflow: "hidden",
-              height: 400,
-            }}
-          >
-            <iframe
-              title="Sherwood School"
-              src="https://maps.google.com/maps?q=Sherwood+School+Auckland+New+Zealand&output=embed"
-              width="100%"
-              height="100%"
-              style={{ border: 0, display: "block" }}
-              allowFullScreen
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            />
-          </div>
-        </section>
-
-        {/* ── 5. 클래스도조 ── */}
-        <section id="classdojo">
+        {/* ── 4. 클래스도조 ── */}
+        <section id="classdojo" style={{ marginTop: 80 }}>
           <h2 style={{ ...H2_STYLE, marginBottom: 32 }}>클래스도조</h2>
 
           <div style={{ display: "flex", gap: 56, alignItems: "flex-start", flexWrap: "wrap" }}>
