@@ -8,6 +8,7 @@ const SECTIONS = [
   { id: "history", label: "연혁" },
   { id: "board", label: "이사회" },
   { id: "staff", label: "교직원" },
+  { id: "campus", label: "Sherwood School" },
 ];
 
 const H2_STYLE = {
@@ -225,12 +226,12 @@ export default function About() {
                 {
                   date: "1997. 10. 18",
                   title: "개교",
-                  body: "Ponsonby Intermediate School에서 첫 수업 시작",
+                  body: "Ponsonby Intermediate School",
                 },
                 {
                   date: "1999. 1. 30",
                   title: "학교 이전",
-                  body: "St. Mary's School로 이전",
+                  body: "St. Mary's School",
                 },
                 { date: "2001. 1", title: "김종연 교감 취임", body: "" },
                 { date: "2004. 10", title: "조상철 중등교감 취임", body: "" },
@@ -238,8 +239,8 @@ export default function About() {
                 { date: "2007. 2", title: "전임례 교감 취임", body: "" },
                 {
                   date: "2008. 2",
-                  title: "제2대 전임례 교장 취임",
-                  body: "김종연 중등부 교감, 김진미 초등부 교감 취임",
+                  title: "제2대 전임례 교장 · 김종연 중등부 교감 · 김진미 초등부 교감 취임",
+                  body: "",
                 },
                 { date: "2008. 5", title: "유승재 이사회 의장 취임", body: "" },
                 { date: "2009. 2", title: "외국인 한국어반 개설", body: "" },
@@ -252,23 +253,23 @@ export default function About() {
                 {
                   date: "2017. 9",
                   title: "개교 20주년 예술제",
-                  body: "개교 20주년 기념 예술제 개최 (Rosmini College)",
+                  body: "Rosmini College",
                 },
                 {
                   date: "2018. 2",
                   title: "학교 이전",
-                  body: "Sherwood School, Browns Bay로 이전",
+                  body: "Sherwood School",
                 },
                 { date: "2018. 7", title: "김미경 중등교감 취임", body: "" },
                 { date: "2018. 9", title: "정창민 이사 취임", body: "" },
                 {
                   date: "2019. 12. 7",
-                  title: "제5대 김난희 교장 취임",
-                  body: "김미경 교감, 정한진 교감 취임",
+                  title: "제5대 김난희 교장 · 김미경 교감 · 정한진 교감 취임",
+                  body: "",
                 },
                 {
                   date: "2023. 2",
-                  title: "장우리 교감 취임 · 김정근 이사회 의장 취임",
+                  title: "장우리 교감 · 김정근 이사회 의장 취임",
                   body: "",
                 },
                 {
@@ -323,7 +324,12 @@ export default function About() {
                       marginBottom: item.body ? 5 : 0,
                     }}
                   >
-                    {item.title}
+                    {item.title.split(" · ").map((part, i, arr) => (
+                      <span key={i}>
+                        {part}
+                        {i < arr.length - 1 && <br />}
+                      </span>
+                    ))}
                   </p>
                   {/* body */}
                   {item.body && (
@@ -377,7 +383,7 @@ export default function About() {
         </section>
 
         {/* ── 5. 교직원 ─────────────────────────────── */}
-        <section id="staff">
+        <section id="staff" style={{ marginBottom: 80 }}>
           <h2 style={{ ...H2_STYLE, marginBottom: 32 }}>교직원</h2>
 
           {[
@@ -477,6 +483,60 @@ export default function About() {
               </div>
             </div>
           ))}
+        </section>
+        {/* ── 6. Sherwood School ─────────────────────── */}
+        <section id="campus" style={{ marginBottom: 80 }}>
+          <h2 style={{ ...H2_STYLE, marginBottom: 40 }}>Sherwood School</h2>
+
+          <p
+            style={{
+              fontSize: 14,
+              color: "#4a5f75",
+              lineHeight: 1.85,
+              marginBottom: 24,
+              maxWidth: 720,
+            }}
+          >
+            수업이 진행되는{" "}
+            <strong style={{ color: "#1c2b3a" }}>Sherwood School</strong>은
+            브라운스 베이에 위치한 공립 초등학교입니다. 우리 학교는 14개의
+            교실, 3개의 놀이터와 강당을 사용하며, 수업 시간 중에는 외부인의
+            교내 출입이 통제되어 우리 아이들에게 안전한 학습 환경을 제공합니다.
+          </p>
+
+          <div
+            className="rounded-2xl overflow-hidden"
+            style={{
+              border: "1px solid rgba(60,120,180,0.18)",
+              marginBottom: 16,
+            }}
+          >
+            <img
+              src="/sherwood-school/sherwood-school.png"
+              alt="Sherwood School campus"
+              style={{ width: "100%", display: "block", objectFit: "cover", maxHeight: 340 }}
+            />
+          </div>
+
+          <div
+            className="rounded-2xl"
+            style={{
+              border: "1px solid rgba(60,120,180,0.18)",
+              overflow: "hidden",
+              height: 400,
+            }}
+          >
+            <iframe
+              title="Sherwood School"
+              src="https://maps.google.com/maps?q=Sherwood+School+Auckland+New+Zealand&output=embed"
+              width="100%"
+              height="100%"
+              style={{ border: 0, display: "block" }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+          </div>
         </section>
       </main>
 
