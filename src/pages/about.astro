@@ -1,0 +1,31 @@
+---
+import Layout from "../layouts/Layout.astro";
+import SectionTabs from "../components/SectionTabs";
+import { AboutIntroHymn, AboutBoardStaffCampus } from "../components/AboutSections";
+import HistorySection from "../components/HistorySection";
+import Footer from "../components/Footer.astro";
+
+const SECTIONS = [
+  { id: "intro", label: "소개글" },
+  { id: "hymn", label: "교가" },
+  { id: "history", label: "연혁" },
+  { id: "board", label: "이사회" },
+  { id: "staff", label: "교직원" },
+  { id: "campus", label: "Sherwood School" },
+];
+---
+
+<Layout
+  title="학교소개 | 뉴질랜드 한민족 한글학교"
+  canonical="https://www.nzsok.school.nz/about"
+>
+  <SectionTabs client:load tabs={SECTIONS} />
+
+  <main class="about-main">
+    <AboutIntroHymn />
+    <HistorySection client:visible />
+    <AboutBoardStaffCampus />
+  </main>
+
+  <Footer />
+</Layout>

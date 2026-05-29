@@ -5,39 +5,48 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Commands
 
 ```bash
-npm run dev        # start dev server (Vite HMR)
-npm run build      # build-albums.js → tsc -b → vite build
-npm run preview    # preview production build locally
+npm run dev        # start Astro dev server (HMR)
+npm run build      # astro build → static site in dist/
+npm run preview    # preview the production build locally
 ```
-
-The build command runs three steps in sequence: generate `public/albums.json` from `_albums/*.md`, type-check, then bundle.
 
 ## Architecture
 
-This is a single-page application deployed on Netlify. React Router handles client-side routing; Netlify's `/* → /index.html` redirect makes deep links work.
+This is an **Astro** static site deployed on **Vercel**. Astro renders every route to real HTML at build time (`output: "static"`), so there is no SPA redirect — each route is its own `.html` file. Client-side navigation and the cross-page fade are handled by Astro's View Transitions (`<ClientRouter />` in the layout).
 
-**Routing** (`src/App.tsx`): four routes — `/`, `/about`, `/admission`, `/gallery` — each mapped to a page component in `src/pages/`.
+**Routing** is file-based in `src/pages/`: `index.astro` (`/`), `about.astro`, `education.astro`, `enrol.astro`, `media.astro`.
 
-**Home page** (`src/pages/Home.tsx`): single full-viewport Hero section only — school name, tagline, CTA buttons, and key stats. No other sections.
+**Layout** (`src/layouts/Layout.astro`): wraps every page. Holds the `<head>` (meta/OG tags, favicons, fonts preconnect, the Behold Instagram widget script), `<ClientRouter />`, the `<Navigation>` island, and Vercel `<Analytics>`. Pages pass `title` / `description` / `canonical` / `transparentNav` props.
 
-**Shared components** (`src/components/`):
+**Islands vs. static.** Astro renders React components to static HTML with **zero client JS unless given a `client:*` directive**. The pattern here:
 
-- `Navigation.tsx` — takes a `variant` prop: `'full'` (home/about, with dropdown nav), `'simple'` (admission, logo + back link), `'gallery'` (gallery page, logo + back + admin link)
-- `Footer.tsx` — single unified design, no variant prop; used on all pages
+- **Hydrated islands** (interactive): `HeroPhysics.tsx` (`client:only="react"`, Matter.js canvas, home only), `Navigation.tsx` (`client:load`, mobile menu state), `SectionTabs.tsx` (`client:load`, scroll-spy on about/education/enrol), `HistorySection.tsx` (`client:visible`, auto-scrolling 연혁 timeline), `ClassDojoSection.tsx` (`client:visible`, auto carousel).
+- **Static React content** (no directive → server-rendered, no JS shipped): `AboutSections.tsx` (intro/hymn + board/staff/campus), `EducationSections.tsx` (schedule/programs/annual), `EnrolContent.tsx`. These hold the page data as plain consts and render the markup; keep them directive-free.
+- `Footer.astro` is a plain Astro component (links only).
 
-**Styling** (`src/index.css`): Tailwind v4 loaded via `@import "tailwindcss"`. Brand colors and fonts are declared in `@theme { }` (makes them available as Tailwind utilities like `bg-navy`, `text-gold`) and mirrored in `:root { }` as `var(--navy)` etc. for use inside custom CSS rules. Animations, pseudo-elements, and complex gradients are written as regular CSS classes below the theme block.
+When editing a page's static content, edit the corresponding `*Sections.tsx` / `*Content.tsx` component, not the `.astro` page (the page just composes islands + static components + Footer inside `<main>`).
 
-**Gallery + CMS pipeline**:
+**Styling** (`src/styles/index.css`, imported by `Layout.astro`): Tailwind v4 via the `@tailwindcss/vite` plugin (wired in `astro.config.mjs`). Brand colors/fonts are declared in `@theme { }` (available as utilities) and mirrored in `:root { }` as `var(--…)` for use in the custom CSS rules below. Fonts are loaded from jsDelivr via `@font-face`. Per-page hover effects that can't be CSS live inside the relevant island.
 
-- `_albums/*.md` — frontmatter-only markdown files created/edited by Decap CMS at `/admin`
-- `build-albums.js` — ES module script run at build time; parses the frontmatter and writes `public/albums.json`
-- `src/pages/Gallery.tsx` — fetches `/albums.json` at runtime; falls back to `SAMPLE_ALBUMS` if the fetch fails
-- `public/admin/` — static Decap CMS files served as-is (bypasses Vite); uses Netlify Identity + Git Gateway for auth
+### Design system — follow [`DESIGN.md`](DESIGN.md)
 
-**Types** (`src/types/album.ts`): `Album`, `AlbumPhoto`, and `FilterCategory` — import from here when working with album data.
+Before writing or editing ANY UI (new sections, components, styling tweaks), read and follow
+[`DESIGN.md`](DESIGN.md) — it is the source-of-truth design reference. Key rules that are easy
+to violate:
 
-## CMS content editing
+- **Pastel palette only**, from the tokens in `@theme {}` / `:root {}`. Don't introduce
+  off-palette or high-chroma colors; reach for an existing token first.
+- **No `box-shadow` / `text-shadow`** anywhere (the hero canvas is the only exception). Create
+  depth with color and 1px low-alpha borders.
+- **SUIT for all UI text**; section `<h2>`s use the shared `H2_STYLE` values (SUIT,
+  `clamp(24px,3vw,36px)`, 700, `#1c2b3a`).
+- New scroll-target section ids need `scroll-margin-top: 148px`; content sits in the 1200px
+  container with the standard page padding.
+- A genuinely new design token must be added to **both** `@theme` and `:root`, and `DESIGN.md`
+  updated to match.
 
-Albums are managed via `/admin` (Decap CMS). The CMS writes to `_albums/` and `images/albums/`. A new Netlify deploy is triggered automatically on each publish, which re-runs `build-albums.js` to regenerate `public/albums.json`.
+**Media page** (`media.astro`): Instagram only — the `<behold-widget>` web component (script loaded in the layout head). There is no photo-album gallery or CMS.
 
-To add a `published: false` field to hide an album without deleting it, add it in the CMS or directly in the `.md` file — `build-albums.js` filters those out.
+## Deployment
+
+Vercel auto-detects Astro (`astro build` → `dist/`). No `vercel.json` rewrite is needed since routes are real HTML files. `public/` holds static assets (logo, favicons, `classdojo/`, `sherwood-school/`, `robots.txt`). The sitemap is generated automatically at build by `@astrojs/sitemap` (`sitemap-index.xml`) from the actual routes — no manual upkeep.

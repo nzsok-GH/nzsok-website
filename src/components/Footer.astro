@@ -1,0 +1,91 @@
+---
+const NAV = [
+  {
+    title: "학교소개",
+    links: [
+      ["/about#intro", "소개글"],
+      ["/about#hymn", "교가"],
+      ["/about#history", "연혁"],
+      ["/about#board", "이사회"],
+      ["/about#staff", "교직원"],
+      ["/about#campus", "Sherwood School"],
+    ],
+  },
+  {
+    title: "교육",
+    links: [
+      ["/education#schedule", "시간표"],
+      ["/education#programs", "커리큘럼"],
+      ["/education#annual", "연간 교육계획"],
+      ["/education#classdojo", "클래스도조"],
+    ],
+  },
+  {
+    title: "알림마당",
+    links: [["/media#instagram", "인스타그램"]],
+  },
+  {
+    title: "입학안내",
+    links: [
+      ["/enrol#grade", "학년 안내"],
+      ["/enrol#procedure", "등록 절차"],
+      ["/enrol#tuition", "학비"],
+      ["/enrol#contact", "입학 문의"],
+    ],
+  },
+];
+---
+
+<footer class="footer-root">
+  <div style="max-width:1200px;margin:0 auto">
+    <div class="footer-grid">
+      {/* Section 1: Brand */}
+      <div class="footer-brand">
+        <a
+          href="/"
+          style="display:inline-block;margin-bottom:16px;text-decoration:none"
+        >
+          <img src="/logo.png" alt="NZSOK 로고" style="height:48px;width:auto" />
+        </a>
+        <h3
+          style="font-family:'SUIT',sans-serif;font-size:17px;font-weight:700;color:#1c2b3a;margin-bottom:6px"
+        >
+          뉴질랜드 한민족 한글학교
+        </h3>
+        <p style="font-size:15px;line-height:1.8;color:#4a5f75;margin-bottom:0">
+          New Zealand School of Korea (NZSOK)
+          <br />
+          40 Sartors Avenue, Browns Bay, Auckland 0630
+        </p>
+        <p style="font-size:13px;color:#8a9ab0;margin-top:24px;margin-bottom:0">
+          © 2012–2026 NZSOK
+        </p>
+      </div>
+
+      {/* Section 2: Sitemap */}
+      <div class="footer-sitemap">
+        {
+          NAV.map(({ title, links }) => (
+            <div>
+              <h4 style="font-size:13px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#9278D6;margin-bottom:16px">
+                {title}
+              </h4>
+              <ul class="list-none flex flex-col gap-2">
+                {links.map(([href, label]) => (
+                  <li>
+                    <a
+                      href={href}
+                      style="font-size:15px;color:#4a5f75;text-decoration:none"
+                    >
+                      {label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</footer>

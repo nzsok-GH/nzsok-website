@@ -1,0 +1,28 @@
+---
+import Layout from "../layouts/Layout.astro";
+import SectionTabs from "../components/SectionTabs";
+import EducationSections from "../components/EducationSections";
+import ClassDojoSection from "../components/ClassDojoSection";
+import Footer from "../components/Footer.astro";
+
+const SECTIONS = [
+  { id: "schedule", label: "시간표" },
+  { id: "programs", label: "커리큘럼" },
+  { id: "annual", label: "연간 교육계획" },
+  { id: "classdojo", label: "클래스도조" },
+];
+---
+
+<Layout
+  title="교육과정 | 뉴질랜드 한민족 한글학교"
+  canonical="https://www.nzsok.school.nz/education"
+>
+  <SectionTabs client:load tabs={SECTIONS} />
+
+  <main class="education-main">
+    <EducationSections />
+    <ClassDojoSection client:visible />
+  </main>
+
+  <Footer />
+</Layout>

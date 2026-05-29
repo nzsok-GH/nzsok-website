@@ -1,25 +1,17 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import { ArrowLeft } from "lucide-react";
-
-type NavVariant = "full" | "simple" | "gallery";
 
 interface NavigationProps {
-  variant?: NavVariant;
   transparent?: boolean;
 }
 
-export default function Navigation({
-  variant = "full",
-  transparent = false,
-}: NavigationProps) {
+export default function Navigation({ transparent = false }: NavigationProps) {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const closeMenu = () => setMenuOpen(false);
 
   const Logo = () => (
-    <Link
-      to="/"
+    <a
+      href="/"
       className="flex items-center no-underline transition-transform duration-[350ms] hover:scale-110"
       onClick={closeMenu}
     >
@@ -28,66 +20,10 @@ export default function Navigation({
         alt="NZSOK 로고"
         style={{ height: 44, width: "auto" }}
       />
-    </Link>
+    </a>
   );
 
-  if (variant === "simple" || variant === "gallery") {
-    return (
-      <>
-        <nav
-          className="fixed top-0 left-0 right-0 z-[100] nav-main flex items-center justify-between"
-          style={{
-            height: 72,
-            background: "rgba(250,247,242,0.97)",
-            backdropFilter: "blur(12px)",
-            borderBottom: "1px solid #EDE4D3",
-          }}
-        >
-          <Logo />
-          <div className="flex items-center gap-4">
-            <Link
-              to="/"
-              style={{
-                color: "#4a5f75",
-                textDecoration: "none",
-                fontSize: 15,
-                display: "flex",
-                alignItems: "center",
-                gap: 6,
-                transition: "color 0.2s",
-              }}
-              onMouseOver={(e) => (e.currentTarget.style.color = "#9278D6")}
-              onMouseOut={(e) => (e.currentTarget.style.color = "#4a5f75")}
-            >
-              <ArrowLeft size={14} /> 홈으로
-            </Link>
-            {variant === "gallery" && (
-              <Link
-                to="/admin"
-                style={{
-                  color: "rgba(255,255,255,0.45)",
-                  textDecoration: "none",
-                  fontSize: 12,
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 5,
-                  border: "1px solid rgba(255,255,255,0.15)",
-                  borderRadius: 6,
-                  padding: "4px 10px",
-                  transition: "color 0.2s",
-                }}
-              >
-                ⚙️ 관리자
-              </Link>
-            )}
-          </div>
-        </nav>
-      </>
-    );
-  }
-
   const navBg = transparent ? "#FAF7F2" : "rgba(250,247,242,0.97)";
-  const navBorder = "none";
   const linkColor = transparent ? "#1c2b3a" : "#4a5f75";
 
   return (
@@ -99,7 +35,7 @@ export default function Navigation({
           height: 72,
           background: navBg,
           backdropFilter: transparent ? undefined : "blur(12px)",
-          borderBottom: navBorder,
+          borderBottom: "none",
         }}
       >
         {/* Left: hamburger (mobile) + nav links (desktop) */}
@@ -124,8 +60,8 @@ export default function Navigation({
           </button>
           <ul className="nav-links hidden md:flex items-center gap-8 list-none">
             <li>
-              <Link
-                to="/about"
+              <a
+                href="/about"
                 className="block px-4 py-2 text-base font-medium rounded-md"
                 style={{
                   color: linkColor,
@@ -134,31 +70,31 @@ export default function Navigation({
                 }}
               >
                 학교소개
-              </Link>
+              </a>
               <div className="dropdown">
-                <Link to="/about#intro" onClick={closeMenu}>
+                <a href="/about#intro" onClick={closeMenu}>
                   소개글
-                </Link>
-                <Link to="/about#hymn" onClick={closeMenu}>
+                </a>
+                <a href="/about#hymn" onClick={closeMenu}>
                   교가
-                </Link>
-                <Link to="/about#history" onClick={closeMenu}>
+                </a>
+                <a href="/about#history" onClick={closeMenu}>
                   연혁
-                </Link>
-                <Link to="/about#board" onClick={closeMenu}>
+                </a>
+                <a href="/about#board" onClick={closeMenu}>
                   이사회
-                </Link>
-                <Link to="/about#staff" onClick={closeMenu}>
+                </a>
+                <a href="/about#staff" onClick={closeMenu}>
                   교직원
-                </Link>
-                <Link to="/about#campus" onClick={closeMenu}>
+                </a>
+                <a href="/about#campus" onClick={closeMenu}>
                   Sherwood School
-                </Link>
+                </a>
               </div>
             </li>
             <li>
-              <Link
-                to="/education"
+              <a
+                href="/education"
                 className="block px-4 py-2 text-base font-medium rounded-md"
                 style={{
                   color: linkColor,
@@ -167,25 +103,25 @@ export default function Navigation({
                 }}
               >
                 교육
-              </Link>
+              </a>
               <div className="dropdown">
-                <Link to="/education#schedule" onClick={closeMenu}>
+                <a href="/education#schedule" onClick={closeMenu}>
                   시간표
-                </Link>
-                <Link to="/education#programs" onClick={closeMenu}>
+                </a>
+                <a href="/education#programs" onClick={closeMenu}>
                   커리큘럼
-                </Link>
-                <Link to="/education#annual" onClick={closeMenu}>
+                </a>
+                <a href="/education#annual" onClick={closeMenu}>
                   연간 교육계획
-                </Link>
-                <Link to="/education#classdojo" onClick={closeMenu}>
+                </a>
+                <a href="/education#classdojo" onClick={closeMenu}>
                   클래스도조
-                </Link>
+                </a>
               </div>
             </li>
             <li>
-              <Link
-                to="/media"
+              <a
+                href="/media"
                 className="block px-4 py-2 text-base font-medium rounded-md"
                 style={{
                   color: linkColor,
@@ -194,14 +130,11 @@ export default function Navigation({
                 }}
               >
                 알림마당
-              </Link>
+              </a>
               <div className="dropdown">
-                <Link to="/media#album" onClick={closeMenu}>
-                  앨범
-                </Link>
-                <Link to="/media#instagram" onClick={closeMenu}>
+                <a href="/media#instagram" onClick={closeMenu}>
                   인스타그램
-                </Link>
+                </a>
               </div>
             </li>
           </ul>
@@ -220,13 +153,13 @@ export default function Navigation({
           className="flex items-center justify-end"
           style={{ gridColumn: 3 }}
         >
-          <Link
-            to="/enrol"
+          <a
+            href="/enrol"
             className="btn-primary hidden md:block text-sm font-bold rounded-lg no-underline"
             style={{ padding: "9px 20px" }}
           >
             입학안내
-          </Link>
+          </a>
         </div>
       </nav>
 
@@ -259,30 +192,23 @@ export default function Navigation({
             {
               header: "알림마당",
               headerTo: "/media",
-              links: [
-                { to: "/media#album", label: "앨범" },
-                { to: "/media#instagram", label: "인스타그램" },
-              ],
+              links: [{ to: "/media#instagram", label: "인스타그램" }],
             },
           ].map(({ header, headerTo, links }) => (
             <div key={header} className="mobile-menu-section">
-              <Link
-                to={headerTo}
-                onClick={closeMenu}
-                className="mobile-menu-header"
-              >
+              <a href={headerTo} onClick={closeMenu} className="mobile-menu-header">
                 {header}
-              </Link>
+              </a>
               <div className="flex flex-col gap-0.5">
                 {links.map(({ to, label }) => (
-                  <Link
+                  <a
                     key={to}
-                    to={to}
+                    href={to}
                     onClick={closeMenu}
                     className="mobile-menu-link"
                   >
                     {label}
-                  </Link>
+                  </a>
                 ))}
               </div>
             </div>
@@ -291,8 +217,8 @@ export default function Navigation({
       </div>
 
       {/* Mobile floating CTA */}
-      <Link
-        to="/enrol"
+      <a
+        href="/enrol"
         onClick={closeMenu}
         className="btn-primary md:hidden fixed z-[90] text-sm font-bold no-underline"
         style={{
@@ -303,7 +229,7 @@ export default function Navigation({
         }}
       >
         입학안내
-      </Link>
+      </a>
     </>
   );
 }
