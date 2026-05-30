@@ -1,6 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import HeroPhysics from "../components/HeroPhysics";
+import HeroSelector from "../components/HeroSelector";
 import Footer from "../components/Footer.astro";
 ---
 
@@ -9,6 +9,6 @@ import Footer from "../components/Footer.astro";
   transparentNav
 >
   <h1 class="sr-only">뉴질랜드 한민족 한글학교</h1>
-  <HeroPhysics client:only="react" />
+  <HeroSelector client:only="react" />
   <div class="hidden md:block"><Footer /></div>
 </Layout>
