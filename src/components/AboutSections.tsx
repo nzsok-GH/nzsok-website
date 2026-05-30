@@ -131,8 +131,8 @@ export function AboutIntroHymn() {
         <div
           className="rounded-2xl"
           style={{
-            background: "#EDF2F7",
-            border: "1px solid rgba(44,82,130,0.15)",
+            background: "var(--sky-100)",
+            border: "1px solid rgba(168,196,232,0.5)",
             padding: "40px",
             display: "block",
           }}
@@ -143,7 +143,7 @@ export function AboutIntroHymn() {
                 <p
                   style={{
                     fontSize: 12,
-                    color: "rgba(44,82,130,0.6)",
+                    color: "var(--gray)",
                     letterSpacing: "0.08em",
                     marginBottom: 8,
                   }}
@@ -266,7 +266,7 @@ export function AboutBoardStaffCampus() {
 
         <div
           className="rounded-2xl overflow-hidden"
-          style={{ border: "1px solid rgba(60,120,180,0.18)", marginBottom: 16 }}
+          style={{ border: "1px solid rgba(0,0,0,0.07)", marginBottom: 16 }}
         >
           <img
             src="/sherwood-school/sherwood-school.png"
@@ -282,7 +282,7 @@ export function AboutBoardStaffCampus() {
         <div
           className="rounded-2xl"
           style={{
-            border: "1px solid rgba(60,120,180,0.18)",
+            border: "1px solid rgba(0,0,0,0.07)",
             overflow: "hidden",
             height: 400,
           }}

@@ -296,6 +296,7 @@ export default function EducationSections() {
                         borderRight: "1px solid rgba(0,0,0,0.05)",
                         color: "#4a5f75",
                         whiteSpace: "nowrap",
+                        fontVariantNumeric: "tabular-nums",
                       }}
                     >
                       {time}
@@ -549,6 +550,7 @@ export default function EducationSections() {
                           textAlign: "center",
                           color: current ? "#7c5ecf" : "#8a9ab0",
                           fontWeight: 700,
+                          fontVariantNumeric: "tabular-nums",
                           background: cellBg,
                         }}
                       >
@@ -562,6 +564,7 @@ export default function EducationSections() {
                           borderRight: "1px solid rgba(0,0,0,0.05)",
                           color: "#4a5f75",
                           whiteSpace: "nowrap",
+                          fontVariantNumeric: "tabular-nums",
                           background: cellBg,
                         }}
                       >

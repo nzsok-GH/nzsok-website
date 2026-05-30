@@ -13,11 +13,13 @@ export default function SectionTabs({ tabs }: { tabs: Tab[] }) {
   const activate = useCallback((id: string) => {
     if (id === prevRef.current) return;
     prevRef.current = id;
-    navRef.current
-      ?.querySelectorAll(".section-tab")
-      .forEach((t) => t.classList.remove("active"));
+    navRef.current?.querySelectorAll(".section-tab").forEach((t) => {
+      t.classList.remove("active");
+      t.removeAttribute("aria-current");
+    });
     const el = navRef.current?.querySelector<HTMLElement>(`[href="#${id}"]`);
     el?.classList.add("active");
+    el?.setAttribute("aria-current", "location");
     el?.scrollIntoView({
       behavior: "smooth",
       block: "nearest",

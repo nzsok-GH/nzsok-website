@@ -242,6 +242,7 @@ export default function EnrolContent() {
                   fontWeight: 800,
                   color: "#9278D6",
                   lineHeight: 1,
+                  fontVariantNumeric: "tabular-nums",
                 }}
               >
                 $450
@@ -298,7 +299,14 @@ export default function EnrolContent() {
                       {note}
                     </span>
                   )}
-                  <span style={{ fontSize: 17, fontWeight: 700, color: "#1c2b3a" }}>
+                  <span
+                    style={{
+                      fontSize: 17,
+                      fontWeight: 700,
+                      color: "#1c2b3a",
+                      fontVariantNumeric: "tabular-nums",
+                    }}
+                  >
                     {amount}
                   </span>
                 </div>
@@ -358,6 +366,7 @@ export default function EnrolContent() {
                     fontWeight: 800,
                     color: "#9278D6",
                     fontFamily: "'SUIT', sans-serif",
+                    fontVariantNumeric: "tabular-nums",
                   }}
                 >
                   {fee}
