@@ -131,8 +131,8 @@ export function AboutIntroHymn() {
         <div
           className="rounded-2xl"
           style={{
-            background: "var(--sky-100)",
-            border: "1px solid rgba(168,196,232,0.5)",
+            background: "rgba(193,220,245,0.3)",
+            border: "1px solid rgba(60,120,180,0.3)",
             padding: "40px",
             display: "block",
           }}
