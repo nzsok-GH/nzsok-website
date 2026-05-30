@@ -35,8 +35,10 @@ function ClassDojoCarousel() {
         width: "100%",
         maxWidth: 340,
         aspectRatio: "1206/1435",
-        borderRadius: 20,
+        borderRadius: 16,
         overflow: "hidden",
+        border: "4px solid #fff",
+        outline: "1px solid rgba(0,0,0,0.06)",
         background: "#fff",
         boxShadow: "none",
       }}
@@ -55,7 +57,7 @@ function ClassDojoCarousel() {
             inset: 0,
             width: "100%",
             height: "100%",
-            objectFit: "contain",
+            objectFit: "cover",
             opacity: i === active ? 1 : 0,
             transition: "opacity 1.5s ease",
           }}
