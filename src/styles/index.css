@@ -440,6 +440,21 @@ footer a:hover {
 /* ── 연혁 horizontal scrollbar ───────────────────────────────── */
 .history-scroll {
   scrollbar-width: none;
+  /* fade both ends to signal there is more timeline to scroll */
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    #000 32px,
+    #000 calc(100% - 32px),
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    #000 32px,
+    #000 calc(100% - 32px),
+    transparent 100%
+  );
 }
 .history-scroll::-webkit-scrollbar {
   display: none;
