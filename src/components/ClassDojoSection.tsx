@@ -72,7 +72,14 @@ export default function ClassDojoSection() {
     <section id="classdojo" style={{ marginTop: 80 }}>
       <h2 style={{ ...H2_STYLE, marginBottom: 32 }}>클래스도조</h2>
 
-      <div style={{ display: "flex", gap: 56, alignItems: "flex-start", flexWrap: "wrap" }}>
+      <div
+        style={{
+          display: "flex",
+          gap: 56,
+          alignItems: "flex-start",
+          flexWrap: "wrap",
+        }}
+      >
         <ClassDojoCarousel />
 
         <div style={{ flex: 1, minWidth: 260 }}>
@@ -84,9 +91,9 @@ export default function ClassDojoSection() {
               marginBottom: 28,
             }}
           >
-            클래스도조는 학부모님과 학교를 연결하는 온라인 플랫폼입니다. 담임 선생님들은 매
-            수업 후 사진과 함께 수업 소식을 게시하며, 반별 공지사항과 학교 전체 공지사항도 함께
-            안내됩니다.
+            클래스도조는 학부모님과 학교를 연결하는 온라인 플랫폼입니다. 담임
+            선생님들은 매 수업 후 사진과 함께 수업 소식을 게시하며, 반별
+            공지사항과 학교 전체 공지사항도 함께 안내됩니다.
           </p>
 
           <p
@@ -97,7 +104,7 @@ export default function ClassDojoSection() {
               marginBottom: 24,
             }}
           >
-            입학 시 학급 초대 코드가 전송되며, iOS 및 Android 앱을 무료로 사용하실 수
+            입학 시 발급되는 학급 초대 코드로 iOS 및 Android 앱을 사용하실 수
             있습니다.
           </p>
 
