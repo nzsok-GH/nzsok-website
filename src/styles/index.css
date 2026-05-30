@@ -715,6 +715,12 @@ footer a:hover {
   .enrol-classes-grid {
     grid-template-columns: 1fr;
   }
+  .bank-example {
+    display: block;
+  }
+  .bank-example-sep {
+    display: none;
+  }
   .enrol-contact-card {
     flex-direction: column;
     align-items: stretch;

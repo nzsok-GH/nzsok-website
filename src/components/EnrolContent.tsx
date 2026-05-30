@@ -414,7 +414,12 @@ export default function EnrolContent() {
               </span>
               <span style={{ fontSize: 16, color: "#1c2b3a" }}>
                 {value}
-                {example && <span style={{ color: "#9ca3af" }}> · {example}</span>}
+                {example && (
+                  <span className="bank-example" style={{ color: "#9ca3af" }}>
+                    <span className="bank-example-sep"> · </span>
+                    {example}
+                  </span>
+                )}
               </span>
             </div>
           ))}
