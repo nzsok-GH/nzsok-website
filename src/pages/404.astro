@@ -21,6 +21,10 @@ const LINKS = [
     </p>
 
     <a href="/" class="btn-primary notfound-home">홈으로 돌아가기</a>
+
+    <nav class="notfound-links" aria-label="바로가기">
+      {LINKS.map(([href, label]) => <a href={href}>{label}</a>)}
+    </nav>
   </main>
 </Layout>
 
@@ -35,14 +39,6 @@ const LINKS = [
     align-items: center;
     justify-content: center;
     text-align: center;
-  }
-  .notfound-code {
-    font-family: "SUIT", sans-serif;
-    font-size: clamp(80px, 14vw, 160px);
-    font-weight: 800;
-    line-height: 1;
-    color: #9278d6;
-    margin: 16px 0 8px;
   }
   .notfound-title {
     font-family: "SUIT", sans-serif;
