@@ -12,7 +12,7 @@ export default function Navigation({ transparent = false }: NavigationProps) {
   const Logo = () => (
     <a
       href="/"
-      className="flex items-center no-underline transition-transform duration-[350ms] hover:scale-110"
+      className="flex items-center no-underline transition-transform duration-[350ms] hover:scale-105"
       onClick={closeMenu}
     >
       <img
