@@ -25,6 +25,28 @@ const {
   transparentNav = false,
   bare = false,
 } = Astro.props;
+
+const orgSchema = {
+  "@context": "https://schema.org",
+  "@type": "EducationalOrganization",
+  name: SITE,
+  alternateName: "New Zealand School of Korea (NZSOK)",
+  description: DEFAULT_DESCRIPTION,
+  url: Astro.site?.href,
+  logo: "https://www.nzsok.school.nz/logo.png",
+  image: "https://www.nzsok.school.nz/logo.png",
+  email: "admin@nzsok.school.nz",
+  telephone: "+64 21 391 106",
+  foundingDate: "1997",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "40 Sartors Avenue, Browns Bay",
+    addressLocality: "Auckland",
+    postalCode: "0630",
+    addressCountry: "NZ",
+  },
+  sameAs: ["https://www.instagram.com/nzsok.official"],
+};
 ---
 
 <!doctype html>
@@ -44,6 +66,11 @@ const {
     <meta property="og:image" content="https://www.nzsok.school.nz/logo.png" />
     <meta property="og:url" content={canonical} />
     <link rel="canonical" href={canonical} />
+    <script
+      is:inline
+      type="application/ld+json"
+      set:html={JSON.stringify(orgSchema)}
+    />
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
     <script
       is:inline
