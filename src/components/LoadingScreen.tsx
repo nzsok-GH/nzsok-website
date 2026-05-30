@@ -10,9 +10,9 @@ export default function LoadingScreen() {
   const [done, setDone] = useState(false);
 
   useEffect(() => {
-    // reveal: 1.1s  →  hold: 0.3s  →  fade-out: 0.4s
-    const t1 = setTimeout(() => setExiting(true), 1400);
-    const t2 = setTimeout(() => setDone(true), 1800);
+    // reveal: 1.1s  →  hold: 0  →  fade-out: 0.25s
+    const t1 = setTimeout(() => setExiting(true), 1100);
+    const t2 = setTimeout(() => setDone(true), 1350);
     return () => {
       clearTimeout(t1);
       clearTimeout(t2);
@@ -26,7 +26,7 @@ export default function LoadingScreen() {
       style={{
         background: "var(--bg-50)",
         opacity: exiting ? 0 : 1,
-        transition: exiting ? "opacity 0.4s ease" : undefined,
+        transition: exiting ? "opacity 0.25s ease" : undefined,
         pointerEvents: "none",
         display: done ? "none" : undefined,
       }}
