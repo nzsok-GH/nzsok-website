@@ -2,6 +2,7 @@
 import { ClientRouter } from "astro:transitions";
 import Analytics from "@vercel/analytics/astro";
 import Navigation from "../components/Navigation";
+import LoadingScreen from "../components/LoadingScreen";
 import "../styles/index.css";
 
 const DEFAULT_DESCRIPTION =
@@ -48,6 +49,7 @@ const {
     <ClientRouter />
   </head>
   <body>
+    <LoadingScreen client:load transition:persist />
     <Navigation client:load transparent={transparentNav} />
     <slot />
     <Analytics />
