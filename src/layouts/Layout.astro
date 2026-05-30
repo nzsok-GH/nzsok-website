@@ -21,7 +21,7 @@ interface Props {
 const {
   title,
   description = DEFAULT_DESCRIPTION,
-  canonical = "https://www.nzsok.school.nz/",
+  canonical = new URL(Astro.url.pathname, Astro.site).href,
   transparentNav = false,
   bare = false,
 } = Astro.props;
