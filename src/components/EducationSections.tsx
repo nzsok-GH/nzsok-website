@@ -134,8 +134,6 @@ const TERMS = [
 const eventColor = (type: string) =>
   type === "holiday" ? "#b94040" : type === "special" ? "#7c5ecf" : "#1c2b3a";
 
-const TODAY = new Date();
-
 function renderEventLine(line: string, type: string, j: number) {
   const match = line.match(/^(.*?)\s*(\(.*\))\s*$/);
   const main = match ? match[1].trim() : line;
@@ -158,17 +156,6 @@ function renderEventLine(line: string, type: string, j: number) {
       )}
     </div>
   );
-}
-
-function isCurrentWeek(dateStr: string): boolean {
-  const m = dateStr.match(/(\d+)월\s*(\d+)일/);
-  if (!m) return false;
-  const month = parseInt(m[1]);
-  const day = parseInt(m[2]);
-  const year = 2026;
-  const d = new Date(year, month - 1, day);
-  const diffDays = (d.getTime() - TODAY.getTime()) / (1000 * 60 * 60 * 24);
-  return diffDays >= -6 && diffDays <= 0;
 }
 
 const SCHEDULE_INFO = [
@@ -423,8 +410,21 @@ export default function EducationSections() {
 
         <div style={{ overflowX: "auto" }}>
           <table
-            style={{ width: "100%", borderCollapse: "collapse", fontSize: 13, minWidth: 720 }}
+            style={{
+              width: "100%",
+              borderCollapse: "collapse",
+              fontSize: 13,
+              minWidth: 840,
+              tableLayout: "fixed",
+            }}
           >
+            <colgroup>
+              {TERMS.map(({ label }) => [
+                <col key={`${label}-cw`} style={{ width: 52 }} />,
+                <col key={`${label}-cd`} style={{ width: 84 }} />,
+                <col key={`${label}-ce`} />,
+              ])}
+            </colgroup>
             <thead>
               {/* Term header row */}
               <tr>
@@ -457,16 +457,17 @@ export default function EducationSections() {
                   <th
                     key={`${label}-w`}
                     style={{
-                      width: 36,
-                      padding: "7px 10px",
+                      width: 52,
+                      padding: "7px 8px",
                       color: "#8a9ab0",
                       fontWeight: 600,
                       textAlign: "center",
+                      whiteSpace: "nowrap",
                       borderBottom: "1px solid rgba(0,0,0,0.08)",
                       borderRight: "1px solid rgba(0,0,0,0.05)",
                     }}
                   >
-                    W
+                    주차
                   </th>,
                   <th
                     key={`${label}-d`}
@@ -537,21 +538,19 @@ export default function EducationSections() {
                         />,
                       ];
                     }
-                    const current = isCurrentWeek(row.date);
-                    const cellBg = current ? "rgba(146,120,214,0.08)" : undefined;
                     return [
                       <td
                         key={`${label}-w`}
+                        data-edu-week={row.date}
                         style={{
                           padding: "8px 10px",
                           borderBottom: "1px solid rgba(0,0,0,0.05)",
                           borderRight: "1px solid rgba(0,0,0,0.05)",
-                          borderLeft: current ? "3px solid #9278D6" : "3px solid transparent",
+                          borderLeft: "3px solid transparent",
                           textAlign: "center",
-                          color: current ? "#7c5ecf" : "#8a9ab0",
+                          color: "#8a9ab0",
                           fontWeight: 700,
                           fontVariantNumeric: "tabular-nums",
-                          background: cellBg,
                         }}
                       >
                         {row.week}
@@ -565,7 +564,6 @@ export default function EducationSections() {
                           color: "#4a5f75",
                           whiteSpace: "nowrap",
                           fontVariantNumeric: "tabular-nums",
-                          background: cellBg,
                         }}
                       >
                         {row.date}
@@ -577,7 +575,6 @@ export default function EducationSections() {
                           borderBottom: "1px solid rgba(0,0,0,0.05)",
                           borderRight: isLast ? "none" : "2px solid rgba(0,0,0,0.1)",
                           lineHeight: 1.4,
-                          background: cellBg,
                         }}
                       >
                         {row.event.split("\n").map((l, j) => renderEventLine(l, row.type, j))}
@@ -589,6 +586,13 @@ export default function EducationSections() {
             </tbody>
           </table>
         </div>
+        {/* current-week highlight, computed in the visitor's browser (static build
+            would otherwise freeze it to the deploy date) */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){function apply(){var now=new Date();document.querySelectorAll('[data-edu-week]').forEach(function(w){var m=(w.getAttribute('data-edu-week')||'').match(/(\\d+)월\\s*(\\d+)일/);if(!m)return;var d=new Date(2026,parseInt(m[1])-1,parseInt(m[2]));var diff=(d-now)/86400000;var cur=diff>=-6&&diff<=0;var dd=w.nextElementSibling,e=dd&&dd.nextElementSibling,t=cur?'rgba(146,120,214,0.08)':'';[w,dd,e].forEach(function(c){if(c)c.style.background=t;});w.style.borderLeft=cur?'3px solid #9278D6':'3px solid transparent';w.style.color=cur?'#7c5ecf':'#8a9ab0';});}if(document.readyState!=='loading')apply();else document.addEventListener('DOMContentLoaded',apply);document.addEventListener('astro:page-load',apply);})();`,
+          }}
+        />
       </section>
     </>
   );
