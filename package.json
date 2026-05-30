@@ -5,6 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev",
+    "check": "astro check",
+    "prebuild": "astro check",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"
@@ -21,6 +23,7 @@
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
+    "@astrojs/check": "^0.9.9",
     "@tailwindcss/vite": "^4.0.0",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
