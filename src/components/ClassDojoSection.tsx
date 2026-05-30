@@ -9,10 +9,10 @@ const H2_STYLE = {
 };
 
 const CLASSDOJO_IMAGES = [
-  "/classdojo/post1.jpg",
-  "/classdojo/post2.jpg",
-  "/classdojo/post3.jpg",
-  "/classdojo/post4.jpg",
+  { src: "/classdojo/post1.jpg", width: 1206, height: 1435 },
+  { src: "/classdojo/post2.jpg", width: 1206, height: 1633 },
+  { src: "/classdojo/post3.jpg", width: 1206, height: 1510 },
+  { src: "/classdojo/post4.jpg", width: 1206, height: 1654 },
 ];
 
 function ClassDojoCarousel() {
@@ -41,11 +41,15 @@ function ClassDojoCarousel() {
         boxShadow: "none",
       }}
     >
-      {CLASSDOJO_IMAGES.map((src, i) => (
+      {CLASSDOJO_IMAGES.map((img, i) => (
         <img
-          key={src}
-          src={src}
+          key={img.src}
+          src={img.src}
           alt={`클래스도조 게시물 ${i + 1}`}
+          width={img.width}
+          height={img.height}
+          loading="lazy"
+          decoding="async"
           style={{
             position: "absolute",
             inset: 0,
@@ -106,6 +110,8 @@ export default function ClassDojoSection() {
             <img
               src="/classdojo/classdojo-logo.svg"
               alt="ClassDojo"
+              loading="lazy"
+              decoding="async"
               style={{ height: 64, width: "auto", display: "block" }}
             />
           </a>

@@ -37,6 +37,10 @@ export default function LoadingScreen() {
           src="/logo.png"
           alt=""
           aria-hidden
+          width={310}
+          height={293}
+          loading="eager"
+          decoding="async"
           className="absolute inset-0 w-full h-full object-contain"
           style={{ filter: "grayscale(1) opacity(0.1)" }}
         />
@@ -44,6 +48,10 @@ export default function LoadingScreen() {
         <img
           src="/logo.png"
           alt="NZ School of Korean"
+          width={310}
+          height={293}
+          loading="eager"
+          decoding="async"
           className="absolute inset-0 w-full h-full object-contain logo-reveal"
         />
       </div>

@@ -1,4 +1,7 @@
 ---
+import { Image } from "astro:assets";
+import logo from "../../public/logo.png";
+
 const NAV = [
   {
     title: "학교소개",
@@ -45,7 +48,15 @@ const NAV = [
           href="/"
           style="display:inline-block;margin-bottom:16px;text-decoration:none"
         >
-          <img src="/logo.png" alt="NZSOK 로고" style="height:48px;width:auto" />
+          <Image
+            src={logo}
+            alt="NZSOK 로고"
+            width={102}
+            height={96}
+            loading="lazy"
+            decoding="async"
+            style="height:48px;width:auto"
+          />
         </a>
         <h3
           style="font-family:'SUIT',sans-serif;font-size:17px;font-weight:700;color:#1c2b3a;margin-bottom:6px"

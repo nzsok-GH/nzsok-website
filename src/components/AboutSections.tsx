@@ -271,6 +271,10 @@ export function AboutBoardStaffCampus() {
           <img
             src="/sherwood-school/sherwood-school.png"
             alt="Sherwood School campus"
+            width={1910}
+            height={891}
+            loading="lazy"
+            decoding="async"
             style={{ width: "100%", display: "block", objectFit: "cover", maxHeight: 340 }}
           />
         </div>

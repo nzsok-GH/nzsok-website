@@ -18,6 +18,10 @@ export default function Navigation({ transparent = false }: NavigationProps) {
       <img
         src="/logo.png"
         alt="NZSOK 로고"
+        width={310}
+        height={293}
+        loading="eager"
+        decoding="async"
         style={{ height: 44, width: "auto" }}
       />
     </a>
