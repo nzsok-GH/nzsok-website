@@ -75,7 +75,10 @@ export default function SectionTabs({ tabs }: { tabs: Tab[] }) {
         overflowY: "hidden",
       }}
     >
-      <div className="flex justify-center" style={{ padding: "0 48px" }}>
+      <div
+        className="flex"
+        style={{ padding: "0 4px", justifyContent: "safe center" }}
+      >
         {tabs.map(({ id, label }) => (
           <a
             key={id}
