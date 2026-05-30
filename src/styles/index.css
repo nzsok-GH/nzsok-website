@@ -286,7 +286,7 @@ body {
   margin-bottom: -8px;
 }
 .nav-links > li > a {
-  transition: all 0.2s;
+  transition: color 0.2s;
 }
 .nav-links > li > a:not(.btn-primary):hover {
   color: var(--primary) !important;
@@ -342,7 +342,7 @@ footer a:hover {
   height: 2px;
   background: var(--text);
   border-radius: 2px;
-  transition: all 0.3s;
+  transition: transform 0.3s, opacity 0.3s;
 }
 .nav-hamburger.open span:nth-child(1) {
   transform: rotate(45deg) translate(5px, 5px);
@@ -600,7 +600,7 @@ footer a:hover {
 
 /* ── Curriculum tabs ─────────────────────────────────────────── */
 .curriculum-tab {
-  transition: all 0.25s;
+  transition: border-color 0.25s, color 0.25s, background-color 0.25s;
 }
 .curriculum-tab:hover {
   border-color: rgba(146, 120, 214, 0.4) !important;
@@ -648,7 +648,7 @@ footer a:hover {
   color: var(--text-light);
   text-decoration: none;
   border-bottom: 3px solid transparent;
-  transition: all 0.2s;
+  transition: color 0.2s, border-bottom-color 0.2s;
   white-space: nowrap;
   margin-bottom: -2px;
   display: block;
@@ -698,7 +698,7 @@ footer a:hover {
 
 /* ── Album card ──────────────────────────────────────────────── */
 .album-card {
-  transition: all 0.25s;
+  transition: transform 0.25s, border-color 0.25s;
 }
 .album-card:hover {
   transform: translateY(-4px);
@@ -785,7 +785,7 @@ footer a:hover {
 
 /* ── Filter button ───────────────────────────────────────────── */
 .filter-btn {
-  transition: all 0.2s;
+  transition: border-color 0.2s, color 0.2s;
 }
 .filter-btn:hover {
   border-color: var(--primary);
