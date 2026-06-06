@@ -44,7 +44,9 @@ export default function Hero3Collage() {
   // lifts. performance.now() (time since the page first loaded) does NOT reset
   // on View Transition navigations, so returning visitors animate immediately.
   const [introDelay] = useState(() =>
-    typeof performance !== "undefined" ? Math.max(0, 1400 - performance.now()) / 1000 : 0
+    typeof performance !== "undefined"
+      ? Math.max(0, 1400 - performance.now()) / 1000
+      : 0,
   );
 
   useEffect(() => {
@@ -128,18 +130,42 @@ export default function Hero3Collage() {
           <h1
             style={{
               fontFamily: "'SUIT', sans-serif",
-              fontSize: "clamp(36px, 5.4vw, 60px)",
+              fontSize: "clamp(34px, 5vw, 56px)",
               fontWeight: 800,
+              color: "#9278d6",
+              lineHeight: 1.15,
+              letterSpacing: "-0.04em",
+              margin: 0,
+            }}
+          >
+            뉴질랜드 한민족 한글학교
+          </h1>
+
+          <p
+            style={{
+              fontFamily: "'SUIT', sans-serif",
+              fontSize: "clamp(20px, 2.6vw, 28px)",
+              fontWeight: 700,
               color: "#1c2b3a",
-              lineHeight: 1.2,
+              lineHeight: 1.35,
               letterSpacing: "-0.01em",
               margin: "18px 0 0",
             }}
           >
-            언어와 문화로 이어가는
-            <br />
-            우리 아이의 뿌리
-          </h1>
+            긍정적인 생활태도와 이중문화 소유자
+          </p>
+
+          <p
+            style={{
+              fontSize: "clamp(14px, 1.6vw, 17px)",
+              fontWeight: 600,
+              color: "#6b4faa",
+              letterSpacing: "0.04em",
+              margin: "8px 0 0",
+            }}
+          >
+            Think positively and be bicultural
+          </p>
 
           <p
             style={{
@@ -150,7 +176,10 @@ export default function Hero3Collage() {
               maxWidth: 460,
             }}
           >
-            올해로 29주년을 맞은 뉴질랜드 한민족 한글학교는 우리 아이들이 한국인의 정체성과 긍지를 지닌 이중문화와 이중언어의 소유자로서 따뜻한 인성과 지성을 지닌 창의적 인재로 키우는 것을 목표로 하고 있습니다.
+            올해로 29주년을 맞은 뉴질랜드 한민족 한글학교는 우리 아이들이
+            한국인의 정체성과 긍지를 지닌 이중문화와 이중언어의 소유자로서
+            따뜻한 인성과 지성을 지닌 창의적 인재로 키우는 것을 목표로 하고
+            있습니다.
           </p>
 
           <div
@@ -258,6 +287,14 @@ export default function Hero3Collage() {
                     alt=""
                     loading={i < 6 ? "eager" : "lazy"}
                     decoding="async"
+                    // If the Behold CDN image can't load (e.g. behold.pictures
+                    // unreachable on a local network), drop back to the bundled
+                    // fallback photo so the card isn't left blank.
+                    onError={(e) => {
+                      const img = e.currentTarget;
+                      const fb = FALLBACK[i % FALLBACK.length].src;
+                      if (img.src !== location.origin + fb) img.src = fb;
+                    }}
                     style={{
                       width: "100%",
                       height: "100%",
