@@ -14,11 +14,9 @@
   "dependencies": {
     "@astrojs/react": "^4.2.0",
     "@astrojs/sitemap": "^3.7.3",
-    "@types/matter-js": "^0.20.2",
     "@vercel/analytics": "^2.0.1",
     "astro": "^5.5.0",
     "lucide-react": "^1.16.0",
-    "matter-js": "^0.20.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
