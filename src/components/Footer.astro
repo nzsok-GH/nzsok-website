@@ -5,6 +5,7 @@ import logo from "../../public/logo.png";
 const NAV = [
   {
     title: "학교소개",
+    href: "/about",
     links: [
       ["/about#intro", "소개글"],
       ["/about#hymn", "교가"],
@@ -16,6 +17,7 @@ const NAV = [
   },
   {
     title: "교육",
+    href: "/education",
     links: [
       ["/education#schedule", "시간표"],
       ["/education#programs", "커리큘럼"],
@@ -25,10 +27,12 @@ const NAV = [
   },
   {
     title: "알림마당",
+    href: "/media",
     links: [["/media#instagram", "인스타그램"]],
   },
   {
     title: "입학안내",
+    href: "/enrol",
     links: [
       ["/enrol#grade", "학년 안내"],
       ["/enrol#procedure", "등록 절차"],
@@ -76,10 +80,12 @@ const NAV = [
       {/* Section 2: Sitemap */}
       <div class="footer-sitemap">
         {
-          NAV.map(({ title, links }) => (
+          NAV.map(({ title, href, links }) => (
             <div>
               <h4 style="font-size:13px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#9278D6;margin-bottom:16px">
-                {title}
+                <a href={href} style="color:inherit;text-decoration:none">
+                  {title}
+                </a>
               </h4>
               <ul class="list-none flex flex-col gap-2">
                 {links.map(([href, label]) => (
