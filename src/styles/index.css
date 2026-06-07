@@ -212,6 +212,10 @@ body {
   color: var(--text);
   background: var(--bg-50);
   overflow-x: hidden;
+  /* Korean text: never break inside a word — wrap only at spaces.
+     overflow-wrap lets an oversized token (e.g. a URL) still break. */
+  word-break: keep-all;
+  overflow-wrap: break-word;
 }
 
 /* ── Keyframe animations ─────────────────────────────────────── */
