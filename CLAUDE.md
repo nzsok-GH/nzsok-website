@@ -6,7 +6,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ```bash
 npm run dev        # start Astro dev server (HMR)
-npm run build      # astro build → static site in dist/
+npm run check      # astro check (type-check .astro/.tsx)
+npm run build      # astro build → static site in dist/ (prebuild runs astro check)
 npm run preview    # preview the production build locally
 ```
 
@@ -14,14 +15,15 @@ npm run preview    # preview the production build locally
 
 This is an **Astro** static site deployed on **Vercel**. Astro renders every route to real HTML at build time (`output: "static"`), so there is no SPA redirect — each route is its own `.html` file. Client-side navigation and the cross-page fade are handled by Astro's View Transitions (`<ClientRouter />` in the layout).
 
-**Routing** is file-based in `src/pages/`: `index.astro` (`/`), `about.astro`, `education.astro`, `enrol.astro`, `media.astro`.
+**Routing** is file-based in `src/pages/`: `index.astro` (`/`), `about.astro`, `education.astro`, `enrol.astro`, `media.astro`, plus `404.astro` (the not-found page, rendered with the `bare` layout prop — no nav, no intro loader).
 
-**Layout** (`src/layouts/Layout.astro`): wraps every page. Holds the `<head>` (meta/OG tags, favicons, fonts preconnect, the Behold Instagram widget script), `<ClientRouter />`, the `<Navigation>` island, and Vercel `<Analytics>`. Pages pass `title` / `description` / `canonical` / `transparentNav` props.
+**Layout** (`src/layouts/Layout.astro`): wraps every page. Holds the `<head>` (meta/OG tags, favicons, jsDelivr font preconnect, the Behold Instagram widget script, and an `EducationalOrganization` JSON-LD block), `<ClientRouter />`, the `<LoadingScreen>` + `<Navigation>` islands, and Vercel `<Analytics>`. Pages pass `title` / `description` / `canonical` / `transparentNav` / `bare` props. Site-wide prefetch (`prefetchAll`, hover strategy) is configured in `astro.config.mjs`.
 
 **Islands vs. static.** Astro renders React components to static HTML with **zero client JS unless given a `client:*` directive**. The pattern here:
 
-- **Hydrated islands** (interactive): `HeroPhysics.tsx` (`client:only="react"`, Matter.js canvas, home only), `Navigation.tsx` (`client:load`, mobile menu state), `SectionTabs.tsx` (`client:load`, scroll-spy on about/education/enrol), `HistorySection.tsx` (`client:visible`, auto-scrolling 연혁 timeline), `ClassDojoSection.tsx` (`client:visible`, auto carousel).
-- **Static React content** (no directive → server-rendered, no JS shipped): `AboutSections.tsx` (intro/hymn + board/staff/campus), `EducationSections.tsx` (schedule/programs/annual), `EnrolContent.tsx`. These hold the page data as plain consts and render the markup; keep them directive-free.
+- **Hydrated islands** (interactive): `LoadingScreen.tsx` (`client:load transition:persist`, intro logo reveal that plays once per full load, not on View Transition navigations), `Navigation.tsx` (`client:load`, mobile menu state), `SectionTabs.tsx` (`client:load`, scroll-spy on about/education/enrol), `HistorySection.tsx` (`client:visible`, auto-scrolling 연혁 timeline), `ClassDojoSection.tsx` (`client:visible`, auto carousel on education), `CampusSection.tsx` (`client:visible`, auto-scrolling campus photo carousel on about).
+- **Hero** (`HeroSection.tsx`, home only): a **CSS-only** full-bleed photo mosaic — horizontally panning rows of build-optimized WebP photos behind the copy. No directive is needed (the animation is pure CSS keyframes). The photo set is loaded and re-encoded at build time by `src/lib/heroPhotos.ts` (`getHeroPhotos`), which globs `src/assets/hero/hero-*.jpg` through `astro:assets`.
+- **Static React content** (no directive → server-rendered, no JS shipped): `AboutSections.tsx` (exports `AboutIntroSong` = intro/교가 and `AboutBoardStaffCampus` = board/staff/campus intro), `EducationSections.tsx` (schedule/programs/annual), `EnrolContent.tsx` (grade/procedure/tuition/contact). These hold the page data as plain consts and render the markup; keep them directive-free.
 - `Footer.astro` is a plain Astro component (links only).
 
 When editing a page's static content, edit the corresponding `*Sections.tsx` / `*Content.tsx` component, not the `.astro` page (the page just composes islands + static components + Footer inside `<main>`).
@@ -36,8 +38,8 @@ to violate:
 
 - **Pastel palette only**, from the tokens in `@theme {}` / `:root {}`. Don't introduce
   off-palette or high-chroma colors; reach for an existing token first.
-- **No `box-shadow` / `text-shadow`** anywhere (the hero canvas is the only exception). Create
-  depth with color and 1px low-alpha borders.
+- **No `box-shadow` / `text-shadow`** anywhere. Create depth with color and 1px low-alpha
+  borders.
 - **SUIT for all UI text**; section `<h2>`s use the shared `H2_STYLE` values (SUIT,
   `clamp(24px,3vw,36px)`, 700, `#1c2b3a`).
 - New scroll-target section ids need `scroll-margin-top: 148px`; content sits in the 1200px

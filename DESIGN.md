@@ -14,8 +14,7 @@ These are non-negotiable and define the look of the site:
 1. **Pastel only.** Every colour is soft and low-saturation. No pure black, no high-chroma
    accents. New colours must fit within the approved families below.
 2. **No elevation / no shadows.** Depth is created with **colour and 1px borders**, never
-   `box-shadow` or `text-shadow`. (The only shadows in the codebase are inside the hero
-   `<canvas>`, which is drawn imperatively and exempt.)
+   `box-shadow` or `text-shadow`. There are no exceptions.
 3. **One typeface for UI: SUIT.** All headings, body, and labels use SUIT. The decorative
    fonts are reserved for the specific cases noted under Typography.
 4. **Generous whitespace, calm rhythm.** Large section gaps, centered max-width content,
@@ -141,10 +140,11 @@ const H2_STYLE = {
 
 ## Motion
 
-Keyframes available in `index.css` (keep animations subtle, pastel-calm):
-`hint-breathe` (opacity pulse), `pulse-ring` (hero rings), `blink`, `fadeUp` (enter),
-`lbIn` (scale-in), `logoReveal` (clip-path wipe). Cross-page transitions are handled by
-Astro View Transitions (`<ClientRouter />`), so don't reintroduce a manual page-fade wrapper.
+Keyframes in `index.css` (keep animations subtle, pastel-calm): `hint-breathe` (opacity pulse)
+and `logoReveal` (clip-path wipe — the intro `LoadingScreen`). The home hero's panning rows use
+`hero-pan-left` / `hero-pan-right`, defined inline in `HeroSection.tsx`. Cross-page transitions
+are handled by Astro View Transitions (`<ClientRouter />`), so don't reintroduce a manual
+page-fade wrapper.
 
 ---
 

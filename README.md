@@ -36,17 +36,24 @@ nzsok-website/
 │   │   ├── about.astro     ← /about
 │   │   ├── education.astro ← /education
 │   │   ├── enrol.astro     ← /enrol
-│   │   └── media.astro     ← /media (Instagram embed only)
+│   │   ├── media.astro     ← /media (Instagram embed only)
+│   │   └── 404.astro       ← not-found page (bare layout)
 │   ├── components/
+│   │   ├── LoadingScreen.tsx    ← island (client:load, transition:persist) — intro logo reveal
 │   │   ├── Navigation.tsx       ← island (client:load) — mobile menu state
 │   │   ├── SectionTabs.tsx      ← island (client:load) — scroll-spy tabs
-│   │   ├── HeroPhysics.tsx      ← island (client:only) — Matter.js canvas
+│   │   ├── HeroSection.tsx      ← CSS-only — panning photo-mosaic hero (home)
 │   │   ├── HistorySection.tsx   ← island (client:visible) — 연혁 auto-scroll
-│   │   ├── ClassDojoSection.tsx ← island (client:visible) — auto carousel
-│   │   ├── AboutSections.tsx    ← static (no JS) — intro/hymn/board/staff/campus
+│   │   ├── ClassDojoSection.tsx ← island (client:visible) — auto carousel (education)
+│   │   ├── CampusSection.tsx    ← island (client:visible) — campus photo carousel (about)
+│   │   ├── AboutSections.tsx    ← static (no JS) — intro/교가, board/staff/campus
 │   │   ├── EducationSections.tsx← static (no JS) — schedule/programs/annual
 │   │   ├── EnrolContent.tsx     ← static (no JS) — grade/procedure/tuition/contact
 │   │   └── Footer.astro         ← static footer
+│   ├── lib/
+│   │   └── heroPhotos.ts   ← build-time loader: globs + re-encodes hero photos to WebP
+│   ├── assets/
+│   │   └── hero/           ← source hero photos (hero-*.jpg), optimized at build
 │   └── styles/
 │       └── index.css       ← Tailwind v4 + @theme {} brand tokens
 └── public/                 ← logo, favicons, classdojo/, sherwood-school/, robots.txt
@@ -59,7 +66,8 @@ nzsok-website/
 
 ```bash
 npm run dev        # start Astro dev server with HMR
-npm run build      # astro build → static site in dist/
+npm run check      # astro check (type-check .astro/.tsx)
+npm run build      # astro build → static site in dist/ (prebuild runs astro check)
 npm run preview    # preview the production build locally
 ```
 
@@ -69,7 +77,8 @@ npm run preview    # preview the production build locally
 
 Astro renders React components to static HTML at build time and ships **no client JS unless a `client:*` directive is given**. So:
 
-- **Interactive pieces are islands** (`HeroPhysics`, `Navigation`, `SectionTabs`, `HistorySection`, `ClassDojoSection`) — hydrated with `client:load` / `client:visible` / `client:only`.
+- **Interactive pieces are islands** (`LoadingScreen`, `Navigation`, `SectionTabs`, `HistorySection`, `ClassDojoSection`, `CampusSection`) — hydrated with `client:load` / `client:visible`.
+- **The hero** (`HeroSection`) is a **CSS-only** panning photo mosaic — no `client:*` directive. Its photos are globbed from `src/assets/hero/` and re-encoded to WebP at build time by `src/lib/heroPhotos.ts`.
 - **Static page content** (`AboutSections`, `EducationSections`, `EnrolContent`, `Footer.astro`) renders to HTML with zero JS. These hold the page data as plain consts.
 
 When editing a page's static content, edit the matching `*Sections.tsx` / `*Content.tsx` component — the `.astro` page just composes the islands, static components, and footer inside `<main>`.
