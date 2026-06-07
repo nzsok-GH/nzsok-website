@@ -11,12 +11,12 @@ const H2_STYLE = {
 const HISTORY = [
   {
     date: "1997. 8. 23",
-    title: "학교 설립",
-    body: "이사장 임충선, 초대 교장 윤홍기, 교감 김진기 취임",
+    title: "학교 설립 · 이사장 임충선",
+    body: "",
   },
   {
     date: "1997. 10. 18",
-    title: "개교",
+    title: "개교 · 제1대 윤홍기 교장 취임 · 김진미 교감 취임",
     body: "Ponsonby Intermediate School",
   },
   {
@@ -30,7 +30,8 @@ const HISTORY = [
   { date: "2007. 2", title: "전임례 교감 취임", body: "" },
   {
     date: "2008. 2",
-    title: "제2대 전임례 교장 · 김종연 중등부 교감 · 김진미 초등부 교감 취임",
+    title:
+      "제2대 전임례 교장 취임 · 김종연 중등부 교감 · 김진미 초등부 교감 취임",
     body: "",
   },
   { date: "2008. 5", title: "유승재 이사회 의장 취임", body: "" },
@@ -55,12 +56,17 @@ const HISTORY = [
   { date: "2018. 9", title: "정창민 이사 취임", body: "" },
   {
     date: "2019. 12. 7",
-    title: "제5대 김난희 교장 · 김미경 교감 · 정한진 교감 취임",
+    title: "제5대 김난희 교장 취임 · 김미경 교감 · 정한진 교감 취임",
     body: "",
   },
   {
     date: "2023. 2",
-    title: "장우리 교감 · 김정근 이사회 의장 취임",
+    title: "김정근 이사회 의장 취임 · 장우리 교감 취임",
+    body: "",
+  },
+  {
+    date: "2023. 10",
+    title: "김현정 교감 취임",
     body: "",
   },
   {
@@ -68,7 +74,11 @@ const HISTORY = [
     title: "제6대 김현정 교장 취임",
     body: "",
   },
-  { date: "2026. 2", title: "노재회 이사회 의장 취임", body: "" },
+  {
+    date: "2026. 2",
+    title: "노재회 이사회 의장 취임 · 김아름 이사 취임",
+    body: "",
+  },
 ];
 
 export default function HistorySection() {
@@ -121,7 +131,7 @@ export default function HistorySection() {
             alignItems: "flex-start",
             position: "relative",
             minWidth: "max-content",
-            padding: "0 4px",
+            padding: "0 4px 0 32px",
           }}
         >
           {/* track line — vertically centred on the dot */}
@@ -129,7 +139,7 @@ export default function HistorySection() {
             style={{
               position: "absolute",
               top: 5,
-              left: 0,
+              left: 32,
               right: 0,
               height: 1.5,
               background: "rgba(44,82,130,0.18)",

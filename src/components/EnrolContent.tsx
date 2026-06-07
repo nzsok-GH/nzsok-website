@@ -83,7 +83,12 @@ export default function EnrolContent() {
 
         <div style={{ overflowX: "auto" }}>
           <table
-            style={{ borderCollapse: "collapse", fontSize: 14, maxWidth: 480, width: "100%" }}
+            style={{
+              borderCollapse: "collapse",
+              fontSize: 14,
+              maxWidth: 480,
+              width: "100%",
+            }}
           >
             <thead>
               <tr style={{ background: "#FAF7F2" }}>
@@ -114,7 +119,10 @@ export default function EnrolContent() {
             </thead>
             <tbody>
               {GRADES.map(({ school, local }, i) => (
-                <tr key={school} style={{ background: i % 2 === 0 ? "#fff" : "#FDFCFA" }}>
+                <tr
+                  key={school}
+                  style={{ background: i % 2 === 0 ? "#fff" : "#FDFCFA" }}
+                >
                   <td
                     style={{
                       padding: "8px 16px",
@@ -143,7 +151,10 @@ export default function EnrolContent() {
       </section>
 
       {/* 등록 절차 */}
-      <section id="procedure" style={{ marginBottom: 80, scrollMarginTop: 148 }}>
+      <section
+        id="procedure"
+        style={{ marginBottom: 80, scrollMarginTop: 148 }}
+      >
         <h2 style={{ ...H2_STYLE, marginBottom: 48 }}>등록 절차</h2>
 
         {/* 2 steps */}
@@ -165,11 +176,26 @@ export default function EnrolContent() {
             >
               1
             </div>
-            <h3 style={{ fontSize: 17, fontWeight: 700, color: "#1c2b3a", marginBottom: 8 }}>
+            <h3
+              style={{
+                fontSize: 17,
+                fontWeight: 700,
+                color: "#1c2b3a",
+                marginBottom: 8,
+              }}
+            >
               입학 원서 제출
             </h3>
-            <p style={{ fontSize: 15, color: "#4a5f75", lineHeight: 1.7, marginBottom: 16 }}>
-              입학 원서를 작성해 제출해 주세요. 교감 선생님께서 확인 이메일을 보내드립니다.
+            <p
+              style={{
+                fontSize: 15,
+                color: "#4a5f75",
+                lineHeight: 1.7,
+                marginBottom: 16,
+              }}
+            >
+              입학 원서를 작성해서 제출해 주세요. 교감 선생님께서 확인 이메일을
+              보내드립니다.
             </p>
             <a
               href="https://forms.office.com/r/bRMHMZQF65"
@@ -199,7 +225,14 @@ export default function EnrolContent() {
             >
               2
             </div>
-            <h3 style={{ fontSize: 17, fontWeight: 700, color: "#1c2b3a", marginBottom: 8 }}>
+            <h3
+              style={{
+                fontSize: 17,
+                fontWeight: 700,
+                color: "#1c2b3a",
+                marginBottom: 8,
+              }}
+            >
               학비 납부
             </h3>
             <p style={{ fontSize: 15, color: "#4a5f75", lineHeight: 1.7 }}>
@@ -216,12 +249,26 @@ export default function EnrolContent() {
             padding: "16px 20px",
           }}
         >
-          <span style={{ color: "#c8963a", fontWeight: 700, fontSize: 15, flexShrink: 0 }}>
+          <span
+            style={{
+              color: "#c8963a",
+              fontWeight: 700,
+              fontSize: 15,
+              flexShrink: 0,
+            }}
+          >
             ※
           </span>
-          <p style={{ fontSize: 15, color: "#6b5000", lineHeight: 1.6, margin: 0 }}>
-            입학 원서만 제출하신 경우에는 등록이 완료되지 않습니다. 학비 납부까지 완료하셔야
-            등록이 확정됩니다.
+          <p
+            style={{
+              fontSize: 15,
+              color: "#6b5000",
+              lineHeight: 1.6,
+              margin: 0,
+            }}
+          >
+            입학 원서만 제출하신 경우에는 등록이 완료되지 않습니다. 학비
+            납부까지 완료하셔야 등록이 확정됩니다.
           </p>
         </div>
       </section>
@@ -233,7 +280,9 @@ export default function EnrolContent() {
         {/* 정규 수업 학비 + 다자녀 할인 */}
         <div className="enrol-tuition-grid">
           <div style={{ padding: "4px 0" }}>
-            <p style={{ fontSize: 14, color: "#8a9ab0", marginBottom: 6 }}>정규 수업</p>
+            <p style={{ fontSize: 14, color: "#8a9ab0", marginBottom: 6 }}>
+              정규 수업
+            </p>
             <div className="flex items-baseline gap-3">
               <span
                 style={{
@@ -249,7 +298,14 @@ export default function EnrolContent() {
               </span>
               <span style={{ fontSize: 15, color: "#4a5f75" }}>/ 년</span>
             </div>
-            <p style={{ fontSize: 15, color: "#4a5f75", marginTop: 8, lineHeight: 1.6 }}>
+            <p
+              style={{
+                fontSize: 15,
+                color: "#4a5f75",
+                marginTop: 8,
+                lineHeight: 1.6,
+              }}
+            >
               학비는 1년 전체 학비(연 학비)입니다.
               <br />
               학비 납부가 완료되어야 등록이 확정됩니다.
@@ -281,7 +337,8 @@ export default function EnrolContent() {
                 className="flex items-center justify-between"
                 style={{
                   paddingBlock: 8,
-                  borderBottom: label !== "셋째" ? "1px solid rgba(0,0,0,0.07)" : "none",
+                  borderBottom:
+                    label !== "셋째" ? "1px solid rgba(0,0,0,0.07)" : "none",
                 }}
               >
                 <span style={{ fontSize: 15, color: "#4a5f75" }}>{label}</span>
@@ -326,7 +383,12 @@ export default function EnrolContent() {
           }}
         >
           <span
-            style={{ fontSize: 14, fontWeight: 400, color: "#8a9ab0", marginBottom: 24 }}
+            style={{
+              fontSize: 14,
+              fontWeight: 400,
+              color: "#8a9ab0",
+              marginBottom: 24,
+            }}
           >
             선택 수업
           </span>
@@ -343,12 +405,29 @@ export default function EnrolContent() {
                 padding: "24px 20px",
               }}
             >
-              <p style={{ fontSize: 17, fontWeight: 700, color: "#1c2b3a", marginBottom: 10 }}>
+              <p
+                style={{
+                  fontSize: 17,
+                  fontWeight: 700,
+                  color: "#1c2b3a",
+                  marginBottom: 10,
+                }}
+              >
                 {title}
               </p>
-              <ul style={{ listStyle: "none", padding: 0, margin: 0, paddingBottom: 12 }}>
+              <ul
+                style={{
+                  listStyle: "none",
+                  padding: 0,
+                  margin: 0,
+                  paddingBottom: 12,
+                }}
+              >
                 {levels.map((l) => (
-                  <li key={l} style={{ fontSize: 14, color: "#4a5f75", lineHeight: 1.7 }}>
+                  <li
+                    key={l}
+                    style={{ fontSize: 14, color: "#4a5f75", lineHeight: 1.7 }}
+                  >
                     · {l}
                   </li>
                 ))}
@@ -371,7 +450,14 @@ export default function EnrolContent() {
                 >
                   {fee}
                 </p>
-                <p style={{ fontSize: 12, color: "#8a9ab0", marginTop: 2, minHeight: 16 }}>
+                <p
+                  style={{
+                    fontSize: 12,
+                    color: "#8a9ab0",
+                    marginTop: 2,
+                    minHeight: 16,
+                  }}
+                >
                   {note ?? ""}
                 </p>
               </div>
@@ -432,12 +518,19 @@ export default function EnrolContent() {
 
         <div
           className="rounded-2xl enrol-contact-card"
-          style={{ background: "#FAF7F2", border: "1px solid rgba(0,0,0,0.07)" }}
+          style={{
+            background: "#FAF7F2",
+            border: "1px solid rgba(0,0,0,0.07)",
+          }}
         >
           {/* 담당자 */}
           <div className="enrol-contact-person">
-            <p style={{ fontSize: 14, color: "#8a9ab0", marginBottom: 4 }}>교감</p>
-            <p style={{ fontSize: 20, fontWeight: 700, color: "#1c2b3a" }}>장우리</p>
+            <p style={{ fontSize: 14, color: "#8a9ab0", marginBottom: 4 }}>
+              교감
+            </p>
+            <p style={{ fontSize: 20, fontWeight: 700, color: "#1c2b3a" }}>
+              장우리
+            </p>
           </div>
 
           <div className="enrol-contact-divider" />

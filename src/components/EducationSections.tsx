@@ -13,7 +13,13 @@ const LEVELS = [
     border: "rgba(200,150,58,0.3)",
     headerBg: "rgba(245,224,154,0.5)",
     headerColor: "#8a6200",
-    items: ["한글 모음, 자음", "기초 어휘", "짧은 문장", "주제별 수업", "사회성 · 인성 교육"],
+    items: [
+      "한글 모음, 자음",
+      "기초 어휘",
+      "짧은 문장",
+      "주제별 수업",
+      "사회성 · 인성 교육",
+    ],
   },
   {
     label: "초등 저학년",
@@ -78,7 +84,12 @@ const TERMS = [
       { week: 1, date: "2월 14일", event: "입학 및 개학식", type: "special" },
       { week: 2, date: "2월 21일", event: "", type: "" },
       { week: 3, date: "2월 28일", event: "", type: "" },
-      { week: 4, date: "3월 7일", event: "독서 프로그램 시작", type: "special" },
+      {
+        week: 4,
+        date: "3월 7일",
+        event: "독서 프로그램 시작",
+        type: "special",
+      },
       { week: 5, date: "3월 14일", event: "화재대피 훈련", type: "" },
       { week: 6, date: "3월 21일", event: "", type: "" },
       { week: 7, date: "3월 28일", event: "", type: "" },
@@ -92,7 +103,12 @@ const TERMS = [
       { week: 2, date: "5월 9일", event: "", type: "" },
       { week: 3, date: "5월 16일", event: "학부모 상담", type: "" },
       { week: 4, date: "5월 23일", event: "학부모 상담", type: "" },
-      { week: 5, date: "5월 30일", event: "King's Birthday 휴교", type: "holiday" },
+      {
+        week: 5,
+        date: "5월 30일",
+        event: "King's Birthday 휴교",
+        type: "holiday",
+      },
       { week: 6, date: "6월 6일", event: "", type: "" },
       { week: 7, date: "6월 13일", event: "중간 평가", type: "" },
       { week: 8, date: "6월 20일", event: "지진대피 훈련", type: "special" },
@@ -124,9 +140,19 @@ const TERMS = [
       { week: 4, date: "11월 7일", event: "", type: "" },
       { week: 5, date: "11월 14일", event: "", type: "" },
       { week: 6, date: "11월 21일", event: "", type: "" },
-      { week: 7, date: "11월 28일", event: "교내 나의 꿈 말하기 대회", type: "special" },
+      {
+        week: 7,
+        date: "11월 28일",
+        event: "교내 나의 꿈 말하기 대회",
+        type: "special",
+      },
       { week: 8, date: "12월 5일", event: "", type: "" },
-      { week: 9, date: "12월 12일", event: "종업식 및 졸업식", type: "special" },
+      {
+        week: 9,
+        date: "12월 12일",
+        event: "종업식 및 졸업식",
+        type: "special",
+      },
     ],
   },
 ];
@@ -148,9 +174,18 @@ function renderEventLine(line: string, type: string, j: number) {
         ...(j > 0 ? { marginTop: 5 } : {}),
       }}
     >
-      <span style={{ color: eventColor(type), fontWeight: type ? 500 : 400 }}>{main}</span>
+      <span style={{ color: eventColor(type), fontWeight: type ? 500 : 400 }}>
+        {main}
+      </span>
       {note && (
-        <span style={{ color: "#8a9ab0", fontSize: 12, fontWeight: 400, flexShrink: 0 }}>
+        <span
+          style={{
+            color: "#8a9ab0",
+            fontSize: 12,
+            fontWeight: 400,
+            flexShrink: 0,
+          }}
+        >
           {note}
         </span>
       )}
@@ -162,7 +197,7 @@ const SCHEDULE_INFO = [
   {
     title: "정규 수업",
     time: "오전 10:00 ~ 오후 1:40",
-    detail: "한국어 · 독서 · 체육 · 음악",
+    detail: "한국어 · 역사 · 문화 · 독서 · 체육 · 음악",
   },
   {
     title: "특강 수업 (선택)",
@@ -172,10 +207,25 @@ const SCHEDULE_INFO = [
 ];
 
 const TIMETABLE = [
-  { badge: "1교시", time: "10:00 ~ 10:40", label: "정규 수업", type: "regular" },
-  { badge: "2교시", time: "10:50 ~ 11:30", label: "정규 수업", type: "regular" },
+  {
+    badge: "1교시",
+    time: "10:00 ~ 10:40",
+    label: "정규 수업",
+    type: "regular",
+  },
+  {
+    badge: "2교시",
+    time: "10:50 ~ 11:30",
+    label: "정규 수업",
+    type: "regular",
+  },
   { badge: "점심", time: "11:30 ~ 12:10", label: "점심 시간", type: "lunch" },
-  { badge: "3교시", time: "12:10 ~ 12:50", label: "정규 수업", type: "regular" },
+  {
+    badge: "3교시",
+    time: "12:10 ~ 12:50",
+    label: "정규 수업",
+    type: "regular",
+  },
   { badge: "4교시", time: "1:00 ~ 1:40", label: "정규 수업", type: "regular" },
   { badge: "특강", time: "1:50 ~ 3:00", label: "특강 수업", type: "extra" },
 ];
@@ -219,7 +269,13 @@ export default function EducationSections() {
           </div>
 
           <div>
-            <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 14 }}>
+            <table
+              style={{
+                width: "100%",
+                borderCollapse: "collapse",
+                fontSize: 14,
+              }}
+            >
               <thead>
                 <tr style={{ background: "#FAF7F2" }}>
                   <th
@@ -263,7 +319,10 @@ export default function EducationSections() {
               </thead>
               <tbody>
                 {TIMETABLE.map(({ badge, time, label, type }, i) => (
-                  <tr key={badge} style={{ background: i % 2 === 0 ? "#fff" : "#FDFCFA" }}>
+                  <tr
+                    key={badge}
+                    style={{ background: i % 2 === 0 ? "#fff" : "#FDFCFA" }}
+                  >
                     <td
                       style={{
                         padding: "8px 10px",
@@ -310,81 +369,83 @@ export default function EducationSections() {
         <h2 style={{ ...H2_STYLE, marginBottom: 40 }}>커리큘럼</h2>
 
         <div className="education-curriculum-grid">
-          {LEVELS.map(({ label, sub, bg, border, headerBg, headerColor, items }) => (
-            <div
-              key={label}
-              className="rounded-2xl overflow-hidden flex flex-col"
-              style={{ border: `1px solid ${border}` }}
-            >
+          {LEVELS.map(
+            ({ label, sub, bg, border, headerBg, headerColor, items }) => (
               <div
-                style={{
-                  background: headerBg,
-                  padding: "14px 18px",
-                  borderBottom: `1px solid ${border}`,
-                }}
+                key={label}
+                className="rounded-2xl overflow-hidden flex flex-col"
+                style={{ border: `1px solid ${border}` }}
               >
                 <div
                   style={{
-                    fontFamily: "'SUIT', sans-serif",
-                    fontSize: 17,
-                    fontWeight: 700,
-                    color: headerColor,
+                    background: headerBg,
+                    padding: "14px 18px",
+                    borderBottom: `1px solid ${border}`,
                   }}
                 >
-                  {label}
+                  <div
+                    style={{
+                      fontFamily: "'SUIT', sans-serif",
+                      fontSize: 17,
+                      fontWeight: 700,
+                      color: headerColor,
+                    }}
+                  >
+                    {label}
+                  </div>
+                  <div
+                    style={{
+                      fontSize: 12,
+                      color: headerColor,
+                      opacity: 0.7,
+                      marginTop: 2,
+                      minHeight: 16,
+                    }}
+                  >
+                    {sub ?? ""}
+                  </div>
                 </div>
-                <div
-                  style={{
-                    fontSize: 12,
-                    color: headerColor,
-                    opacity: 0.7,
-                    marginTop: 2,
-                    minHeight: 16,
-                  }}
-                >
-                  {sub ?? ""}
-                </div>
-              </div>
-              <div style={{ background: bg, padding: "16px 18px", flex: 1 }}>
-                <ul
-                  style={{
-                    listStyle: "none",
-                    padding: 0,
-                    margin: 0,
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: 8,
-                  }}
-                >
-                  {items.map((item) => (
-                    <li
-                      key={item}
-                      style={{
-                        fontSize: 15,
-                        color: "#1c2b3a",
-                        lineHeight: 1.5,
-                        display: "flex",
-                        gap: 8,
-                        alignItems: "flex-start",
-                      }}
-                    >
-                      <span
+                <div style={{ background: bg, padding: "16px 18px", flex: 1 }}>
+                  <ul
+                    style={{
+                      listStyle: "none",
+                      padding: 0,
+                      margin: 0,
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: 8,
+                    }}
+                  >
+                    {items.map((item) => (
+                      <li
+                        key={item}
                         style={{
-                          color: headerColor,
-                          flexShrink: 0,
-                          marginTop: 3,
-                          fontSize: 11,
+                          fontSize: 15,
+                          color: "#1c2b3a",
+                          lineHeight: 1.5,
+                          display: "flex",
+                          gap: 8,
+                          alignItems: "flex-start",
                         }}
                       >
-                        ▸
-                      </span>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
+                        <span
+                          style={{
+                            color: headerColor,
+                            flexShrink: 0,
+                            marginTop: 3,
+                            fontSize: 11,
+                          }}
+                        >
+                          ▸
+                        </span>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
-            </div>
-          ))}
+            ),
+          )}
         </div>
 
         <div
@@ -396,11 +457,20 @@ export default function EducationSections() {
             marginTop: 20,
           }}
         >
-          <span style={{ fontSize: 15, fontWeight: 700, color: "#1a4e7a" }}>전학년 공통</span>
+          <span style={{ fontSize: 15, fontWeight: 700, color: "#1a4e7a" }}>
+            전학년 공통
+          </span>
           <span
-            style={{ width: 1, height: 16, background: "rgba(60,120,180,0.3)", flexShrink: 0 }}
+            style={{
+              width: 1,
+              height: 16,
+              background: "rgba(60,120,180,0.3)",
+              flexShrink: 0,
+            }}
           />
-          <span style={{ fontSize: 15, color: "#1c2b3a" }}>독서 · 체육 · 음악</span>
+          <span style={{ fontSize: 15, color: "#1c2b3a" }}>
+            문화 · 독서 · 체육 · 음악
+          </span>
         </div>
       </section>
 
@@ -445,7 +515,13 @@ export default function EducationSections() {
                     }}
                   >
                     {label}{" "}
-                    <span style={{ fontWeight: 400, color: "#8a9ab0", marginLeft: 6 }}>
+                    <span
+                      style={{
+                        fontWeight: 400,
+                        color: "#8a9ab0",
+                        marginLeft: 6,
+                      }}
+                    >
                       {weeks}
                     </span>
                   </th>
@@ -502,7 +578,10 @@ export default function EducationSections() {
             </thead>
             <tbody>
               {Array.from({ length: MAX_WEEKS }, (_, i) => (
-                <tr key={i} style={{ background: i % 2 === 0 ? "#fff" : "#FDFCFA" }}>
+                <tr
+                  key={i}
+                  style={{ background: i % 2 === 0 ? "#fff" : "#FDFCFA" }}
+                >
                   {TERMS.map(({ label, rows }) => {
                     const row = rows[i];
                     const isLast = label === "텀 4";
@@ -533,7 +612,9 @@ export default function EducationSections() {
                           style={{
                             padding: "8px 10px",
                             borderBottom: "1px solid rgba(0,0,0,0.05)",
-                            borderRight: isLast ? "none" : "2px solid rgba(0,0,0,0.1)",
+                            borderRight: isLast
+                              ? "none"
+                              : "2px solid rgba(0,0,0,0.1)",
                           }}
                         />,
                       ];
@@ -573,11 +654,15 @@ export default function EducationSections() {
                         style={{
                           padding: "8px 10px",
                           borderBottom: "1px solid rgba(0,0,0,0.05)",
-                          borderRight: isLast ? "none" : "2px solid rgba(0,0,0,0.1)",
+                          borderRight: isLast
+                            ? "none"
+                            : "2px solid rgba(0,0,0,0.1)",
                           lineHeight: 1.4,
                         }}
                       >
-                        {row.event.split("\n").map((l, j) => renderEventLine(l, row.type, j))}
+                        {row.event
+                          .split("\n")
+                          .map((l, j) => renderEventLine(l, row.type, j))}
                       </td>,
                     ];
                   })}
@@ -603,7 +688,9 @@ export default function EducationSections() {
                 }}
               >
                 {label}{" "}
-                <span style={{ fontWeight: 400, color: "#8a9ab0", marginLeft: 6 }}>
+                <span
+                  style={{ fontWeight: 400, color: "#8a9ab0", marginLeft: 6 }}
+                >
                   {weeks}
                 </span>
               </div>
@@ -662,7 +749,10 @@ export default function EducationSections() {
                 </thead>
                 <tbody>
                   {rows.map((row, i) => (
-                    <tr key={i} style={{ background: i % 2 === 0 ? "#fff" : "#FDFCFA" }}>
+                    <tr
+                      key={i}
+                      style={{ background: i % 2 === 0 ? "#fff" : "#FDFCFA" }}
+                    >
                       <td
                         data-edu-week={row.date}
                         style={{
@@ -697,7 +787,9 @@ export default function EducationSections() {
                           lineHeight: 1.4,
                         }}
                       >
-                        {row.event.split("\n").map((l, j) => renderEventLine(l, row.type, j))}
+                        {row.event
+                          .split("\n")
+                          .map((l, j) => renderEventLine(l, row.type, j))}
                       </td>
                     </tr>
                   ))}
