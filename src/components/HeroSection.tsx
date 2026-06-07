@@ -28,8 +28,10 @@ export default function HeroSection({ photos = [] }: { photos?: HeroPhoto[] }) {
       <style>{`
         @keyframes hero-pan-left  { from { transform: translateX(0);    } to { transform: translateX(-50%); } }
         @keyframes hero-pan-right { from { transform: translateX(-50%); } to { transform: translateX(0);    } }
+        /* Top padding clears the 72px transparent nav so the first row isn't
+           clipped under the header. */
         .hero-rows {
-          position: absolute; inset: 0; display: flex; flex-direction: column; gap: 10px; padding: 10px;
+          position: absolute; inset: 0; display: flex; flex-direction: column; gap: 10px; padding: 82px 10px 10px;
         }
         .hero-row { flex: 1; min-height: 0; overflow: hidden; }
         .hero-row-track {
