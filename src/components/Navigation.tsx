@@ -1,10 +1,11 @@
 import { useState } from "react";
+import ErrorBoundary from "./ErrorBoundary";
 
 interface NavigationProps {
   transparent?: boolean;
 }
 
-export default function Navigation({ transparent = false }: NavigationProps) {
+function NavigationInner({ transparent = false }: NavigationProps) {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const closeMenu = () => setMenuOpen(false);
@@ -220,5 +221,13 @@ export default function Navigation({ transparent = false }: NavigationProps) {
         </div>
       </div>
     </>
+  );
+}
+
+export default function Navigation({ transparent = false }: NavigationProps) {
+  return (
+    <ErrorBoundary name="Navigation">
+      <NavigationInner transparent={transparent} />
+    </ErrorBoundary>
   );
 }

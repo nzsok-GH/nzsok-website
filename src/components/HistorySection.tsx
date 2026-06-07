@@ -1,4 +1,5 @@
 import { useRef, useEffect } from "react";
+import ErrorBoundary from "./ErrorBoundary";
 
 const H2_STYLE = {
   fontFamily: "'SUIT', sans-serif",
@@ -81,7 +82,7 @@ const HISTORY = [
   },
 ];
 
-export default function HistorySection() {
+function HistorySectionInner() {
   const historyRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -217,5 +218,13 @@ export default function HistorySection() {
         </div>
       </div>
     </section>
+  );
+}
+
+export default function HistorySection() {
+  return (
+    <ErrorBoundary name="HistorySection">
+      <HistorySectionInner />
+    </ErrorBoundary>
   );
 }

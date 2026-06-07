@@ -1,11 +1,12 @@
 import { useEffect, useRef, useCallback } from "react";
+import ErrorBoundary from "./ErrorBoundary";
 
 interface Tab {
   id: string;
   label: string;
 }
 
-export default function SectionTabs({ tabs }: { tabs: Tab[] }) {
+function SectionTabsInner({ tabs }: { tabs: Tab[] }) {
   const navRef = useRef<HTMLElement>(null);
   const prevRef = useRef<string | null>(null);
   const lockRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -91,5 +92,13 @@ export default function SectionTabs({ tabs }: { tabs: Tab[] }) {
         ))}
       </div>
     </nav>
+  );
+}
+
+export default function SectionTabs({ tabs }: { tabs: Tab[] }) {
+  return (
+    <ErrorBoundary name="SectionTabs">
+      <SectionTabsInner tabs={tabs} />
+    </ErrorBoundary>
   );
 }

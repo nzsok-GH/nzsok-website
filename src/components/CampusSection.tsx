@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import ErrorBoundary from "./ErrorBoundary";
 
 const H2_STYLE = {
   fontFamily: "'SUIT', sans-serif",
@@ -138,7 +139,7 @@ function CampusCarousel() {
   );
 }
 
-export default function CampusSection() {
+function CampusSectionInner() {
   return (
     <section id="campus" style={{ marginBottom: 80 }}>
       <h2 style={{ ...H2_STYLE, marginBottom: 40 }}>Sherwood School</h2>
@@ -180,5 +181,13 @@ export default function CampusSection() {
         />
       </div>
     </section>
+  );
+}
+
+export default function CampusSection() {
+  return (
+    <ErrorBoundary name="CampusSection">
+      <CampusSectionInner />
+    </ErrorBoundary>
   );
 }

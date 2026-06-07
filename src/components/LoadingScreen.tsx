@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
+import ErrorBoundary from "./ErrorBoundary";
 
 /**
  * Intro loading motion — the logo reveals bottom-to-top, holds, then fades.
  * Rendered in the layout with `client:load transition:persist`, so it plays
  * once on a full page load and is NOT replayed on View Transition navigations.
  */
-export default function LoadingScreen() {
+function LoadingScreenInner() {
   const [exiting, setExiting] = useState(false);
   const [done, setDone] = useState(false);
 
@@ -56,5 +57,13 @@ export default function LoadingScreen() {
         />
       </div>
     </div>
+  );
+}
+
+export default function LoadingScreen() {
+  return (
+    <ErrorBoundary name="LoadingScreen">
+      <LoadingScreenInner />
+    </ErrorBoundary>
   );
 }

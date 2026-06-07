@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import ErrorBoundary from "./ErrorBoundary";
 
 const H2_STYLE = {
   fontFamily: "'SUIT', sans-serif",
@@ -67,7 +68,7 @@ function ClassDojoCarousel() {
   );
 }
 
-export default function ClassDojoSection() {
+function ClassDojoSectionInner() {
   return (
     <section id="classdojo" style={{ marginTop: 80 }}>
       <h2 style={{ ...H2_STYLE, marginBottom: 32 }}>클래스도조</h2>
@@ -127,5 +128,13 @@ export default function ClassDojoSection() {
         </div>
       </div>
     </section>
+  );
+}
+
+export default function ClassDojoSection() {
+  return (
+    <ErrorBoundary name="ClassDojoSection">
+      <ClassDojoSectionInner />
+    </ErrorBoundary>
   );
 }
