@@ -1,13 +1,17 @@
+<div align="center">
+
+<img src="public/logo.png" alt="NZSOK logo" width="120" />
+
 # NZSOK Website
 
-Official website for the New Zealand School of Korea (뉴질랜드 한민족 한글학교).
+Official website for the **New Zealand School of Korea**
+(뉴질랜드 한민족 한글학교)
 
-Built with Astro 5, React 19 (islands), TypeScript, and Tailwind CSS v4. Deployed on Vercel.
+Astro 5 · React 19 islands · TypeScript · Tailwind CSS v4 · Vercel
 
-| Environment | URL |
-|---|---|
-| Production | https://www.nzsok.school.nz/ |
-| Preview | https://nzsok-website.vercel.app |
+[Production](https://www.nzsok.school.nz/) · [Preview](https://nzsok-website.vercel.app)
+
+</div>
 
 ---
 
@@ -27,17 +31,18 @@ Built with Astro 5, React 19 (islands), TypeScript, and Tailwind CSS v4. Deploye
 
 ```
 nzsok-website/
-├── astro.config.mjs       ← Astro + React + Tailwind (vite plugin)
+├── astro.config.mjs       ← Astro + React + Tailwind (vite plugin), site URL, prefetch
 ├── src/
 │   ├── layouts/
-│   │   └── Layout.astro    ← <head>, ClientRouter, Navigation island, Analytics
+│   │   └── Layout.astro    ← <head>, ClientRouter, LoadingScreen + Navigation islands, Analytics
 │   ├── pages/              ← file-based routes (real HTML per route)
 │   │   ├── index.astro     ← / (hero)
 │   │   ├── about.astro     ← /about
 │   │   ├── education.astro ← /education
 │   │   ├── enrol.astro     ← /enrol
 │   │   ├── media.astro     ← /media (Instagram embed only)
-│   │   └── 404.astro       ← not-found page (bare layout)
+│   │   ├── 404.astro       ← not-found page (bare layout)
+│   │   └── 500.astro       ← server/render error page (bare layout)
 │   ├── components/
 │   │   ├── LoadingScreen.tsx    ← island (client:load, transition:persist) — intro logo reveal
 │   │   ├── Navigation.tsx       ← island (client:load) — mobile menu state
@@ -46,6 +51,7 @@ nzsok-website/
 │   │   ├── HistorySection.tsx   ← island (client:visible) — 연혁 auto-scroll
 │   │   ├── ClassDojoSection.tsx ← island (client:visible) — auto carousel (education)
 │   │   ├── CampusSection.tsx    ← island (client:visible) — campus photo carousel (about)
+│   │   ├── ErrorBoundary.tsx    ← wraps each island so a client throw degrades gracefully
 │   │   ├── AboutSections.tsx    ← static (no JS) — intro/교가, board/staff/campus
 │   │   ├── EducationSections.tsx← static (no JS) — schedule/programs/annual
 │   │   ├── EnrolContent.tsx     ← static (no JS) — grade/procedure/tuition/contact
@@ -73,11 +79,11 @@ npm run preview    # preview the production build locally
 
 ---
 
-## Islands vs. static content
+## Islands vs. Static Content
 
 Astro renders React components to static HTML at build time and ships **no client JS unless a `client:*` directive is given**. So:
 
-- **Interactive pieces are islands** (`LoadingScreen`, `Navigation`, `SectionTabs`, `HistorySection`, `ClassDojoSection`, `CampusSection`) — hydrated with `client:load` / `client:visible`.
+- **Interactive pieces are islands** (`LoadingScreen`, `Navigation`, `SectionTabs`, `HistorySection`, `ClassDojoSection`, `CampusSection`) — hydrated with `client:load` / `client:visible`. Each is wrapped in `ErrorBoundary` so a client-side throw is caught and logged rather than blanking the page.
 - **The hero** (`HeroSection`) is a **CSS-only** panning photo mosaic — no `client:*` directive. Its photos are globbed from `src/assets/hero/` and re-encoded to WebP at build time by `src/lib/heroPhotos.ts`.
 - **Static page content** (`AboutSections`, `EducationSections`, `EnrolContent`, `Footer.astro`) renders to HTML with zero JS. These hold the page data as plain consts.
 
@@ -90,6 +96,14 @@ When editing a page's static content, edit the matching `*Sections.tsx` / `*Cont
 Brand tokens are declared once in `src/styles/index.css` under `@theme {}` (available as Tailwind utilities) and mirrored in `:root {}` as CSS custom properties (`var(--…)`) for use in custom CSS rules. Fonts are loaded from jsDelivr via `@font-face`.
 
 Animations, pseudo-elements, and complex gradients are written as regular CSS classes below the theme block — not in Tailwind config.
+
+The full design reference (palette, typography, spacing, component patterns) lives in [`DESIGN.md`](DESIGN.md). Read it before any UI work.
+
+---
+
+## Deployment
+
+Vercel auto-detects Astro (`astro build` → `dist/`). No `vercel.json` rewrite is needed since every route is a real HTML file. The sitemap is generated automatically at build by `@astrojs/sitemap`.
 
 ---
 
