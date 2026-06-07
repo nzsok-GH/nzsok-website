@@ -79,7 +79,7 @@ export default function Navigation({ transparent = false }: NavigationProps) {
                 <a href="/about#intro" onClick={closeMenu}>
                   소개글
                 </a>
-                <a href="/about#hymn" onClick={closeMenu}>
+                <a href="/about#song" onClick={closeMenu}>
                   교가
                 </a>
                 <a href="/about#history" onClick={closeMenu}>
@@ -176,7 +176,7 @@ export default function Navigation({ transparent = false }: NavigationProps) {
               headerTo: "/about",
               links: [
                 { to: "/about#intro", label: "소개글" },
-                { to: "/about#hymn", label: "교가" },
+                { to: "/about#song", label: "교가" },
                 { to: "/about#history", label: "연혁" },
                 { to: "/about#board", label: "이사회" },
                 { to: "/about#staff", label: "교직원" },

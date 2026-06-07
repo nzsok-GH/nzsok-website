@@ -1,14 +1,14 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import SectionTabs from "../components/SectionTabs";
-import { AboutIntroHymn, AboutBoardStaffCampus } from "../components/AboutSections";
+import { AboutIntroSong, AboutBoardStaffCampus } from "../components/AboutSections";
 import CampusSection from "../components/CampusSection";
 import HistorySection from "../components/HistorySection";
 import Footer from "../components/Footer.astro";
 
 const SECTIONS = [
   { id: "intro", label: "소개글" },
-  { id: "hymn", label: "교가" },
+  { id: "song", label: "교가" },
   { id: "history", label: "연혁" },
   { id: "board", label: "이사회" },
   { id: "staff", label: "교직원" },
@@ -23,7 +23,7 @@ const SECTIONS = [
 
   <main class="about-main">
     <h1 class="sr-only">학교소개</h1>
-    <AboutIntroHymn />
+    <AboutIntroSong />
     <HistorySection client:visible />
     <AboutBoardStaffCampus />
     <CampusSection client:visible />

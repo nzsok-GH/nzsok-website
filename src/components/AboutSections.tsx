@@ -6,7 +6,7 @@ const H2_STYLE = {
   lineHeight: 1.3,
 };
 
-const HYMN = [
+const SONG = [
   {
     verse: "1절",
     lines: ["우리 모여 배우자", "씩씩하게 즐겁게", "우리글과 우리말", "우리 자랑 익히자"],
@@ -80,7 +80,7 @@ const STAFF = [
   },
 ];
 
-export function AboutIntroHymn() {
+export function AboutIntroSong() {
   return (
     <>
       {/* ── 1. 소개글 ─────────────────────────────────── */}
@@ -125,7 +125,7 @@ export function AboutIntroHymn() {
       </section>
 
       {/* ── 2. 교가 ────────────────────────────────────── */}
-      <section id="hymn" style={{ marginBottom: 80 }}>
+      <section id="song" style={{ marginBottom: 80 }}>
         <h2 style={{ ...H2_STYLE, marginBottom: 32 }}>교가</h2>
 
         <div
@@ -137,9 +137,9 @@ export function AboutIntroHymn() {
             display: "block",
           }}
         >
-          <div className="about-hymn-grid">
-            {HYMN.map(({ verse, lines }, colIdx) => (
-              <div key={verse} className={colIdx > 0 ? "about-hymn-col-divider" : ""}>
+          <div className="about-song-grid">
+            {SONG.map(({ verse, lines }, colIdx) => (
+              <div key={verse} className={colIdx > 0 ? "about-song-col-divider" : ""}>
                 <p
                   style={{
                     fontSize: 12,

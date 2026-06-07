@@ -383,7 +383,7 @@ footer a:hover {
 /* nav (72px) + sticky tab bar (~50px) + small gap */
 #intro,
 #staff,
-#hymn,
+#song,
 #history,
 #board,
 #schedule,
@@ -571,12 +571,12 @@ footer a:hover {
   grid-template-columns: repeat(2, 1fr);
   gap: 16px;
 }
-.about-hymn-grid {
+.about-song-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 0 40px;
 }
-.about-hymn-col-divider {
+.about-song-col-divider {
   border-left: 1px solid rgba(0, 0, 0, 0.07);
   padding-left: 40px;
 }
@@ -600,11 +600,11 @@ footer a:hover {
   .about-feature-grid {
     grid-template-columns: 1fr;
   }
-  .about-hymn-grid {
+  .about-song-grid {
     grid-template-columns: 1fr;
     gap: 32px 0;
   }
-  .about-hymn-col-divider {
+  .about-song-col-divider {
     border-left: none;
     padding-left: 0;
     border-top: 1px solid rgba(0, 0, 0, 0.07);
