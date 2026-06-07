@@ -1,13 +1,16 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Hero3Collage from "../components/heroes/Hero3Collage";
+import HeroSection from "../components/HeroSection";
 import Footer from "../components/Footer.astro";
+import { getHeroPhotos } from "../lib/heroPhotos";
+
+const photos = await getHeroPhotos(520);
 ---
 
 <Layout
   title="뉴질랜드 한민족 한글학교"
   transparentNav
 >
-  <Hero3Collage client:load />
-  <div class="hidden md:block"><Footer /></div>
+  <HeroSection photos={photos} />
+  <Footer />
 </Layout>

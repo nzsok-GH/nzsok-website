@@ -219,21 +219,6 @@ export default function Navigation({ transparent = false }: NavigationProps) {
           ))}
         </div>
       </div>
-
-      {/* Mobile floating CTA */}
-      <a
-        href="/enrol"
-        onClick={closeMenu}
-        className="btn-primary md:hidden fixed z-[90] text-sm font-bold no-underline"
-        style={{
-          bottom: "max(24px, env(safe-area-inset-bottom))",
-          right: 20,
-          borderRadius: 999,
-          padding: "13px 28px",
-        }}
-      >
-        입학안내
-      </a>
     </>
   );
 }
