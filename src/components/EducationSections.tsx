@@ -408,7 +408,7 @@ export default function EducationSections() {
       <section id="annual">
         <h2 style={{ ...H2_STYLE, marginBottom: 40 }}>연간 교육계획</h2>
 
-        <div style={{ overflowX: "auto" }}>
+        <div className="annual-table-desktop" style={{ overflowX: "auto" }}>
           <table
             style={{
               width: "100%",
@@ -585,6 +585,126 @@ export default function EducationSections() {
               ))}
             </tbody>
           </table>
+        </div>
+
+        {/* Mobile: terms stacked vertically (T1, T2, T3, T4), each its own table */}
+        <div className="annual-table-mobile">
+          {TERMS.map(({ label, weeks, rows }) => (
+            <div key={label} style={{ marginBottom: 28 }}>
+              <div
+                style={{
+                  background: "#FAF7F2",
+                  color: "#1c2b3a",
+                  fontFamily: "'SUIT', sans-serif",
+                  fontWeight: 700,
+                  fontSize: 15,
+                  padding: "10px 14px",
+                  borderBottom: "2px solid rgba(0,0,0,0.10)",
+                }}
+              >
+                {label}{" "}
+                <span style={{ fontWeight: 400, color: "#8a9ab0", marginLeft: 6 }}>
+                  {weeks}
+                </span>
+              </div>
+              <table
+                style={{
+                  width: "100%",
+                  borderCollapse: "collapse",
+                  fontSize: 13,
+                  tableLayout: "fixed",
+                }}
+              >
+                <colgroup>
+                  <col style={{ width: 44 }} />
+                  <col style={{ width: 76 }} />
+                  <col />
+                </colgroup>
+                <thead>
+                  <tr style={{ background: "#FAF7F2" }}>
+                    <th
+                      style={{
+                        padding: "7px 8px",
+                        color: "#8a9ab0",
+                        fontWeight: 600,
+                        textAlign: "center",
+                        whiteSpace: "nowrap",
+                        borderBottom: "1px solid rgba(0,0,0,0.08)",
+                        borderRight: "1px solid rgba(0,0,0,0.05)",
+                      }}
+                    >
+                      주차
+                    </th>
+                    <th
+                      style={{
+                        padding: "7px 10px",
+                        color: "#8a9ab0",
+                        fontWeight: 600,
+                        textAlign: "left",
+                        borderBottom: "1px solid rgba(0,0,0,0.08)",
+                        borderRight: "1px solid rgba(0,0,0,0.05)",
+                      }}
+                    >
+                      날짜
+                    </th>
+                    <th
+                      style={{
+                        padding: "7px 10px",
+                        color: "#8a9ab0",
+                        fontWeight: 600,
+                        textAlign: "left",
+                        borderBottom: "1px solid rgba(0,0,0,0.08)",
+                      }}
+                    >
+                      일정
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {rows.map((row, i) => (
+                    <tr key={i} style={{ background: i % 2 === 0 ? "#fff" : "#FDFCFA" }}>
+                      <td
+                        data-edu-week={row.date}
+                        style={{
+                          padding: "8px 10px",
+                          borderBottom: "1px solid rgba(0,0,0,0.05)",
+                          borderRight: "1px solid rgba(0,0,0,0.05)",
+                          borderLeft: "3px solid transparent",
+                          textAlign: "center",
+                          color: "#8a9ab0",
+                          fontWeight: 700,
+                          fontVariantNumeric: "tabular-nums",
+                        }}
+                      >
+                        {row.week}
+                      </td>
+                      <td
+                        style={{
+                          padding: "8px 10px",
+                          borderBottom: "1px solid rgba(0,0,0,0.05)",
+                          borderRight: "1px solid rgba(0,0,0,0.05)",
+                          color: "#4a5f75",
+                          whiteSpace: "nowrap",
+                          fontVariantNumeric: "tabular-nums",
+                        }}
+                      >
+                        {row.date}
+                      </td>
+                      <td
+                        style={{
+                          padding: "8px 10px",
+                          borderBottom: "1px solid rgba(0,0,0,0.05)",
+                          lineHeight: 1.4,
+                        }}
+                      >
+                        {row.event.split("\n").map((l, j) => renderEventLine(l, row.type, j))}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          ))}
         </div>
         {/* current-week highlight, computed in the visitor's browser (static build
             would otherwise freeze it to the deploy date) */}
