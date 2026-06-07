@@ -2,6 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import SectionTabs from "../components/SectionTabs";
 import { AboutIntroHymn, AboutBoardStaffCampus } from "../components/AboutSections";
+import CampusSection from "../components/CampusSection";
 import HistorySection from "../components/HistorySection";
 import Footer from "../components/Footer.astro";
 
@@ -25,6 +26,7 @@ const SECTIONS = [
     <AboutIntroHymn />
     <HistorySection client:visible />
     <AboutBoardStaffCampus />
+    <CampusSection client:visible />
   </main>
 
   <Footer />

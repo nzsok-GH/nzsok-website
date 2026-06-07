@@ -460,6 +460,14 @@ footer a:hover {
   display: none;
 }
 
+/* ── Sherwood campus carousel ────────────────────────────────── */
+.campus-carousel {
+  scrollbar-width: none;
+}
+.campus-carousel::-webkit-scrollbar {
+  display: none;
+}
+
 /* ── Footer ──────────────────────────────────────────────────── */
 .footer-root {
   background: #e8e0f7;
