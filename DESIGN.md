@@ -126,8 +126,9 @@ this table in sync.
 | `SCROLL_MARGIN_TOP` | `76` | Anchor offset (~50px sticky tab bar + gap) so hash links land below the chrome. The nav lives outside the `.page-scroll` region, so it isn't counted here. Every new scroll-target section needs it. |
 
 - **Content container:** `max-width: 1200px; margin: 0 auto`.
-- **Page `<main>` padding:** `140px 48px 120px` desktop, `120px 20px 80px` on mobile
-  (≤767px). The large top padding clears the fixed 72px nav. See `.about-main`,
+- **Page `<main>` padding:** `60px 48px 120px` desktop, `60px 20px 80px` on mobile
+  (≤767px). The `.page-scroll` region already starts below the fixed 72px nav, so the
+  top padding is just breathing room, not nav clearance. See `.about-main`,
   `.education-main`, `.media-main`, `.enrol-main`.
 - **Breakpoints:** mobile ≤767px, tablet 768–1023px, desktop ≥1024px (grids collapse
   4→2→1 columns accordingly).

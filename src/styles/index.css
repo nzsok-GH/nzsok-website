@@ -548,7 +548,7 @@ footer a:hover {
 .media-main {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 140px 48px 120px;
+  padding: 60px 48px 120px;
 }
 .album-grid {
   display: grid;
@@ -563,7 +563,7 @@ footer a:hover {
 }
 @media (max-width: 767px) {
   .media-main {
-    padding: 120px 20px 80px;
+    padding: 60px 20px 80px;
   }
   .album-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -590,7 +590,7 @@ footer a:hover {
 .about-main {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 140px 48px 120px;
+  padding: 60px 48px 120px;
 }
 .about-intro-card {
   padding: 64px 48px;
@@ -621,7 +621,7 @@ footer a:hover {
 }
 @media (max-width: 767px) {
   .about-main {
-    padding: 120px 20px 80px;
+    padding: 60px 20px 80px;
   }
   .about-intro-card {
     padding: 40px 24px;
@@ -659,7 +659,7 @@ footer a:hover {
 .education-main {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 140px 48px 120px;
+  padding: 60px 48px 120px;
 }
 .education-schedule-grid {
   display: grid;
@@ -677,7 +677,7 @@ footer a:hover {
 }
 @media (max-width: 767px) {
   .education-main {
-    padding: 120px 20px 80px;
+    padding: 60px 20px 80px;
   }
   .education-schedule-grid {
     grid-template-columns: 1fr;
@@ -702,7 +702,7 @@ footer a:hover {
 .enrol-main {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 120px 48px 120px;
+  padding: 60px 48px 120px;
 }
 .enrol-form-card {
   display: flex;
@@ -750,7 +750,7 @@ footer a:hover {
 }
 @media (max-width: 767px) {
   .enrol-main {
-    padding: 120px 20px 80px;
+    padding: 60px 20px 80px;
   }
   .enrol-form-card {
     flex-direction: column;
