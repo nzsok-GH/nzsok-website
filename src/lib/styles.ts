@@ -29,3 +29,17 @@ export const H2_STYLE: CSSProperties = {
   lineHeight: 1.3,
   marginBottom: HEADING_GAP,
 };
+
+/**
+ * Canonical eyebrow / section-kicker — the small uppercase purple label that
+ * sits above a heading or card. Spread it and add per-site spacing/border:
+ * `<p style={{ ...EYEBROW_STYLE, marginBottom: 16 }}>`. Does not include a
+ * `marginBottom` so each call site controls its own gap.
+ */
+export const EYEBROW_STYLE: CSSProperties = {
+  fontSize: 13,
+  fontWeight: 700,
+  letterSpacing: "0.08em",
+  textTransform: "uppercase",
+  color: "#9278d6",
+};

@@ -1,4 +1,4 @@
-import { H2_STYLE, SECTION_GAP } from "../lib/styles";
+import { H2_STYLE, EYEBROW_STYLE, SECTION_GAP } from "../lib/styles";
 
 const SONG = [
   {
@@ -204,11 +204,7 @@ export function AboutBoardStaffCampus() {
           <div key={dept} style={{ marginBottom: 40 }}>
             <div
               style={{
-                fontSize: 13,
-                fontWeight: 700,
-                letterSpacing: "0.1em",
-                textTransform: "uppercase",
-                color: "#9278d6",
+                ...EYEBROW_STYLE,
                 borderBottom: "1px solid rgba(0,0,0,0.07)",
                 paddingBottom: 10,
                 marginBottom: 20,

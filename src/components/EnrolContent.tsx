@@ -1,5 +1,5 @@
 import { Phone, Mail, ExternalLink } from "lucide-react";
-import { H2_STYLE, SECTION_GAP, SCROLL_MARGIN_TOP } from "../lib/styles";
+import { H2_STYLE, EYEBROW_STYLE, SECTION_GAP, SCROLL_MARGIN_TOP } from "../lib/styles";
 
 const GRADES = [
   { school: "다람쥐반", local: "만 4세 (유치원)" },
@@ -449,16 +449,7 @@ export default function EnrolContent() {
 
         {/* 학비 납부 */}
         <div style={{ padding: "4px 0" }}>
-          <p
-            style={{
-              fontSize: 13,
-              fontWeight: 700,
-              letterSpacing: "0.06em",
-              color: "#9278d6",
-              textTransform: "uppercase",
-              marginBottom: 16,
-            }}
-          >
+          <p style={{ ...EYEBROW_STYLE, marginBottom: 16 }}>
             학비 납부
           </p>
           {BANK.map(({ label, value, example }) => (

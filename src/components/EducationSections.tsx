@@ -1,4 +1,4 @@
-import { H2_STYLE, SECTION_GAP } from "../lib/styles";
+import { H2_STYLE, EYEBROW_STYLE, SECTION_GAP } from "../lib/styles";
 
 const LEVELS = [
   {
@@ -241,16 +241,7 @@ export default function EducationSections() {
                   borderTop: i > 0 ? "1px solid rgba(0,0,0,0.06)" : "none",
                 }}
               >
-                <p
-                  style={{
-                    fontSize: 12,
-                    fontWeight: 700,
-                    letterSpacing: "0.07em",
-                    textTransform: "uppercase",
-                    color: "#9278d6",
-                    marginBottom: 6,
-                  }}
-                >
+                <p style={{ ...EYEBROW_STYLE, marginBottom: 6 }}>
                   {title}
                 </p>
                 <p style={{ color: "#4a5f75", fontSize: 16, lineHeight: 1.7 }}>
