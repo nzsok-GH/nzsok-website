@@ -1,5 +1,5 @@
 import { Phone, Mail, ExternalLink } from "lucide-react";
-import { H2_STYLE, EYEBROW_STYLE, SECTION_GAP, SCROLL_MARGIN_TOP } from "../lib/styles";
+import { H2_STYLE, H3_STYLE, EYEBROW_STYLE, SECTION_GAP, SCROLL_MARGIN_TOP } from "../lib/styles";
 
 const GRADES = [
   { school: "다람쥐반", local: "만 4세 (유치원)" },
@@ -169,14 +169,7 @@ export default function EnrolContent() {
             >
               1
             </div>
-            <h3
-              style={{
-                fontSize: 17,
-                fontWeight: 700,
-                color: "#1c2b3a",
-                marginBottom: 8,
-              }}
-            >
+            <h3 style={{ ...H3_STYLE, marginBottom: 8 }}>
               입학 원서 제출
             </h3>
             <p
@@ -218,14 +211,7 @@ export default function EnrolContent() {
             >
               2
             </div>
-            <h3
-              style={{
-                fontSize: 17,
-                fontWeight: 700,
-                color: "#1c2b3a",
-                marginBottom: 8,
-              }}
-            >
+            <h3 style={{ ...H3_STYLE, marginBottom: 8 }}>
               학비 납부
             </h3>
             <p style={{ fontSize: 15, color: "#4a5f75", lineHeight: 1.7 }}>
@@ -387,14 +373,7 @@ export default function EnrolContent() {
                 padding: "24px 20px",
               }}
             >
-              <p
-                style={{
-                  fontSize: 17,
-                  fontWeight: 700,
-                  color: "#1c2b3a",
-                  marginBottom: 10,
-                }}
-              >
+              <p style={{ ...H3_STYLE, marginBottom: 10 }}>
                 {title}
               </p>
               <ul

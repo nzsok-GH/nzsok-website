@@ -43,3 +43,15 @@ export const EYEBROW_STYLE: CSSProperties = {
   textTransform: "uppercase",
   color: "#9278d6",
 };
+
+/**
+ * Canonical card / sub-heading — the 17px bold dark title above a card body or
+ * procedure step. Spread it and add per-site spacing:
+ * `<h3 style={{ ...H3_STYLE, marginBottom: 8 }}>`. No `marginBottom` is baked in
+ * so each call site controls its own gap.
+ */
+export const H3_STYLE: CSSProperties = {
+  fontSize: 17,
+  fontWeight: 700,
+  color: "#1c2b3a",
+};
