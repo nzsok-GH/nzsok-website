@@ -170,7 +170,7 @@ function NavigationInner({ transparent = false }: NavigationProps) {
 
       {/* Mobile menu */}
       <div className={`mobile-menu ${menuOpen ? "open" : ""}`}>
-        <div className="flex flex-col px-5 py-2 max-h-[calc(100vh-72px)] overflow-y-auto">
+        <div className="flex flex-col px-5 py-2 h-full overflow-y-auto">
           {[
             {
               header: "학교소개",

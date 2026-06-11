@@ -346,6 +346,7 @@ footer a:hover {
   top: 72px;
   left: 0;
   right: 0;
+  bottom: 0;
   background: var(--bg-50);
   backdrop-filter: blur(16px);
   z-index: 99;
