@@ -84,11 +84,19 @@ Semantic shortcuts (in `:root`): `--primary: #9278d6`, `--primary-dark: #7c5ecf`
 
 All three load from jsDelivr via `@font-face` in `index.css` (no local font files).
 
-**Section heading pattern** — every page-section `<h2>` uses the shared `H2_STYLE` token,
-exported once from [`src/lib/styles.ts`](src/lib/styles.ts) and imported by every content
-component (`import { H2_STYLE } from "../lib/styles"`). Don't redefine it inline or override
-`marginBottom` per heading — the 32px heading→content gap is baked into the token, so call
-sites are just `<h2 style={H2_STYLE}>`:
+**Shared type tokens.** Three recurring text styles are exported once from
+[`src/lib/styles.ts`](src/lib/styles.ts) and imported by every content component
+(`import { H2_STYLE, H3_STYLE, EYEBROW_STYLE } from "../lib/styles"`). Use the token — don't
+re-specify the type inline:
+
+- **`H2_STYLE`** — every page-section `<h2>`. The 32px heading→content gap (`HEADING_GAP`) is
+  baked in, so don't override `marginBottom` per heading. Call sites are just
+  `<h2 style={H2_STYLE}>`.
+- **`H3_STYLE`** — the 17px/700/`#1c2b3a` card or sub-heading title. No `marginBottom` is
+  baked in; spread it and set the gap per site: `<h3 style={{ ...H3_STYLE, marginBottom: 8 }}>`.
+- **`EYEBROW_STYLE`** — the small uppercase purple kicker above a heading or card (13px/700/
+  `0.08em`/`#9278d6`). No `marginBottom` baked in; spread and add per-site spacing/border:
+  `<p style={{ ...EYEBROW_STYLE, marginBottom: 16 }}>`.
 
 ```ts
 // src/lib/styles.ts
@@ -100,14 +108,28 @@ export const H2_STYLE: CSSProperties = {
   lineHeight: 1.3,
   marginBottom: HEADING_GAP, // 32 — gap to the section's content
 };
+
+export const H3_STYLE: CSSProperties = {
+  fontSize: 17,
+  fontWeight: 700,
+  color: "#1c2b3a", // marginBottom set per call site
+};
+
+export const EYEBROW_STYLE: CSSProperties = {
+  fontSize: 13,
+  fontWeight: 700,
+  letterSpacing: "0.08em",
+  textTransform: "uppercase",
+  color: "#9278d6", // marginBottom / border set per call site
+};
 ```
 
-**Type scale (observed conventions):**
-- Section heading `h2`: `clamp(24px,3vw,36px)`, 700
-- Card / sub heading: 17px, 700
-- Body: 15–16px, 400, line-height ~1.7
+**Type scale:**
+- Section heading `h2`: `H2_STYLE` — `clamp(24px,3vw,36px)`, 700
+- Card / sub heading: `H3_STYLE` — 17px, 700, `#1c2b3a`
+- Eyebrow / kicker: `EYEBROW_STYLE` — 13px, 700, uppercase, `0.08em`, purple
+- Body: 15–16px, 400, line-height `1.7`
 - Meta / caption: 12–14px, `--gray`
-- Eyebrow label: 12–13px, 700, `text-transform: uppercase`, `letter-spacing: 0.06–0.1em`, purple
 - Display numbers (e.g. price): SUIT 800, `clamp(36px,5vw,52px)`
 
 ---
