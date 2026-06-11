@@ -208,7 +208,7 @@ export function AboutBoardStaffCampus() {
                 fontWeight: 700,
                 letterSpacing: "0.1em",
                 textTransform: "uppercase",
-                color: "#9278D6",
+                color: "#9278d6",
                 borderBottom: "1px solid rgba(0,0,0,0.07)",
                 paddingBottom: 10,
                 marginBottom: 20,

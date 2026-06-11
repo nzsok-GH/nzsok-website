@@ -84,7 +84,7 @@ export default function EnrolContent() {
             }}
           >
             <thead>
-              <tr style={{ background: "#FAF7F2" }}>
+              <tr style={{ background: "#faf7f2" }}>
                 <th
                   style={{
                     padding: "7px 16px",
@@ -114,7 +114,7 @@ export default function EnrolContent() {
               {GRADES.map(({ school, local }, i) => (
                 <tr
                   key={school}
-                  style={{ background: i % 2 === 0 ? "#fff" : "#FDFCFA" }}
+                  style={{ background: i % 2 === 0 ? "#fff" : "#fdfcfa" }}
                 >
                   <td
                     style={{
@@ -159,8 +159,8 @@ export default function EnrolContent() {
               style={{
                 width: 40,
                 height: 40,
-                background: "#E8E0F7",
-                color: "#9278D6",
+                background: "#e8e0f7",
+                color: "#9278d6",
                 fontSize: 19,
                 fontWeight: 700,
                 fontFamily: "'SUIT', sans-serif",
@@ -208,8 +208,8 @@ export default function EnrolContent() {
               style={{
                 width: 40,
                 height: 40,
-                background: "#E8E0F7",
-                color: "#9278D6",
+                background: "#e8e0f7",
+                color: "#9278d6",
                 fontSize: 19,
                 fontWeight: 700,
                 fontFamily: "'SUIT', sans-serif",
@@ -237,7 +237,7 @@ export default function EnrolContent() {
         <div
           className="rounded-2xl flex items-start gap-3"
           style={{
-            background: "#FFF8EC",
+            background: "#fff8ec",
             border: "1px solid rgba(212,170,80,0.25)",
             padding: "16px 20px",
           }}
@@ -282,7 +282,7 @@ export default function EnrolContent() {
                   fontFamily: "'SUIT', sans-serif",
                   fontSize: "clamp(36px,5vw,52px)",
                   fontWeight: 800,
-                  color: "#9278D6",
+                  color: "#9278d6",
                   lineHeight: 1,
                   fontVariantNumeric: "tabular-nums",
                 }}
@@ -308,7 +308,7 @@ export default function EnrolContent() {
           <div
             className="rounded-2xl"
             style={{
-              background: "#E8E0F7",
+              background: "#e8e0f7",
               border: "1px solid rgba(146,120,214,0.15)",
               padding: "32px 36px",
             }}
@@ -340,7 +340,7 @@ export default function EnrolContent() {
                     <span
                       style={{
                         fontSize: 12,
-                        color: "#9278D6",
+                        color: "#9278d6",
                         background: "rgba(146,120,214,0.12)",
                         padding: "2px 7px",
                         borderRadius: 99,
@@ -393,7 +393,7 @@ export default function EnrolContent() {
               key={title}
               className="rounded-2xl flex flex-col"
               style={{
-                background: "#FAF7F2",
+                background: "#faf7f2",
                 border: "1px solid rgba(0,0,0,0.07)",
                 padding: "24px 20px",
               }}
@@ -436,7 +436,7 @@ export default function EnrolContent() {
                   style={{
                     fontSize: 19,
                     fontWeight: 800,
-                    color: "#9278D6",
+                    color: "#9278d6",
                     fontFamily: "'SUIT', sans-serif",
                     fontVariantNumeric: "tabular-nums",
                   }}
@@ -465,7 +465,7 @@ export default function EnrolContent() {
               fontSize: 13,
               fontWeight: 700,
               letterSpacing: "0.06em",
-              color: "#9278D6",
+              color: "#9278d6",
               textTransform: "uppercase",
               marginBottom: 16,
             }}
@@ -494,7 +494,7 @@ export default function EnrolContent() {
               <span style={{ fontSize: 16, color: "#1c2b3a" }}>
                 {value}
                 {example && (
-                  <span className="bank-example" style={{ color: "#9ca3af" }}>
+                  <span className="bank-example" style={{ color: "#8a9ab0" }}>
                     <span className="bank-example-sep"> · </span>
                     {example}
                   </span>
@@ -512,7 +512,7 @@ export default function EnrolContent() {
         <div
           className="rounded-2xl enrol-contact-card"
           style={{
-            background: "#FAF7F2",
+            background: "#faf7f2",
             border: "1px solid rgba(0,0,0,0.07)",
           }}
         >

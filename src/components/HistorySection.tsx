@@ -158,8 +158,8 @@ function HistorySectionInner() {
                   width: 10,
                   height: 10,
                   borderRadius: "50%",
-                  background: "#9278D6",
-                  border: "2px solid #FDFCFA",
+                  background: "#9278d6",
+                  border: "2px solid #fdfcfa",
                   boxShadow: "0 0 0 2px rgba(146,120,214,0.25)",
                   marginBottom: 14,
                 }}
@@ -169,7 +169,7 @@ function HistorySectionInner() {
                 style={{
                   fontSize: 13,
                   fontWeight: 700,
-                  color: "#9278D6",
+                  color: "#9278d6",
                   letterSpacing: "0.04em",
                   marginBottom: 5,
                   whiteSpace: "nowrap",

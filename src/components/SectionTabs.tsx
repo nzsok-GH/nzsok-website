@@ -30,12 +30,16 @@ function SectionTabsInner({ tabs }: { tabs: Tab[] }) {
 
   // detect active section on scroll, but skip if a click locked it
   useEffect(() => {
+    // scrolling lives in `.page-scroll` (fixed below the nav), not the window
+    const scroller = document.getElementById("page-scroll");
+    if (!scroller) return;
     const onScroll = () => {
       if (lockRef.current) return;
+      // section rects are viewport-relative, so the nav (72px) still counts here
       const offset = 72 + (navRef.current?.clientHeight ?? 48) + 16;
       const atBottom =
-        window.scrollY + window.innerHeight >=
-        document.documentElement.scrollHeight - 80;
+        scroller.scrollTop + scroller.clientHeight >=
+        scroller.scrollHeight - 80;
       let found: string | null = atBottom
         ? (tabs[tabs.length - 1]?.id ?? null)
         : null;
@@ -50,9 +54,9 @@ function SectionTabsInner({ tabs }: { tabs: Tab[] }) {
       }
       activate(found ?? tabs[0]?.id);
     };
-    window.addEventListener("scroll", onScroll, { passive: true });
+    scroller.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
-    return () => window.removeEventListener("scroll", onScroll);
+    return () => scroller.removeEventListener("scroll", onScroll);
   }, [tabs, activate]);
 
   const handleClick = (id: string) => {
@@ -70,9 +74,9 @@ function SectionTabsInner({ tabs }: { tabs: Tab[] }) {
       ref={navRef}
       className="sticky z-[90] overflow-x-auto no-scrollbar"
       style={{
-        background: "#FDFCFA",
+        background: "#fdfcfa",
         borderBottom: "1px solid rgba(0,0,0,0.07)",
-        top: 72,
+        top: 0,
         overflowY: "hidden",
       }}
     >

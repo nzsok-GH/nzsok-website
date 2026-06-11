@@ -247,7 +247,7 @@ export default function EducationSections() {
                     fontWeight: 700,
                     letterSpacing: "0.07em",
                     textTransform: "uppercase",
-                    color: "#9278D6",
+                    color: "#9278d6",
                     marginBottom: 6,
                   }}
                 >
@@ -271,7 +271,7 @@ export default function EducationSections() {
               }}
             >
               <thead>
-                <tr style={{ background: "#FAF7F2" }}>
+                <tr style={{ background: "#faf7f2" }}>
                   <th
                     style={{
                       width: 56,
@@ -315,7 +315,7 @@ export default function EducationSections() {
                 {TIMETABLE.map(({ badge, time, label, type }, i) => (
                   <tr
                     key={badge}
-                    style={{ background: i % 2 === 0 ? "#fff" : "#FDFCFA" }}
+                    style={{ background: i % 2 === 0 ? "#fff" : "#fdfcfa" }}
                   >
                     <td
                       style={{
@@ -497,7 +497,7 @@ export default function EducationSections() {
                     key={label}
                     colSpan={3}
                     style={{
-                      background: "#FAF7F2",
+                      background: "#faf7f2",
                       color: "#1c2b3a",
                       fontFamily: "'SUIT', sans-serif",
                       fontWeight: 700,
@@ -522,7 +522,7 @@ export default function EducationSections() {
                 ))}
               </tr>
               {/* Column labels row */}
-              <tr style={{ background: "#FAF7F2" }}>
+              <tr style={{ background: "#faf7f2" }}>
                 {TERMS.map(({ label }) => [
                   <th
                     key={`${label}-w`}
@@ -574,7 +574,7 @@ export default function EducationSections() {
               {Array.from({ length: MAX_WEEKS }, (_, i) => (
                 <tr
                   key={i}
-                  style={{ background: i % 2 === 0 ? "#fff" : "#FDFCFA" }}
+                  style={{ background: i % 2 === 0 ? "#fff" : "#fdfcfa" }}
                 >
                   {TERMS.map(({ label, rows }) => {
                     const row = rows[i];
@@ -588,7 +588,7 @@ export default function EducationSections() {
                             borderBottom: "1px solid rgba(0,0,0,0.05)",
                             borderRight: "1px solid rgba(0,0,0,0.05)",
                             textAlign: "center",
-                            color: "#c8d4de",
+                            color: "#8a9ab0",
                           }}
                         >
                           —
@@ -672,7 +672,7 @@ export default function EducationSections() {
             <div key={label} style={{ marginBottom: 28 }}>
               <div
                 style={{
-                  background: "#FAF7F2",
+                  background: "#faf7f2",
                   color: "#1c2b3a",
                   fontFamily: "'SUIT', sans-serif",
                   fontWeight: 700,
@@ -702,7 +702,7 @@ export default function EducationSections() {
                   <col />
                 </colgroup>
                 <thead>
-                  <tr style={{ background: "#FAF7F2" }}>
+                  <tr style={{ background: "#faf7f2" }}>
                     <th
                       style={{
                         padding: "7px 8px",
@@ -745,7 +745,7 @@ export default function EducationSections() {
                   {rows.map((row, i) => (
                     <tr
                       key={i}
-                      style={{ background: i % 2 === 0 ? "#fff" : "#FDFCFA" }}
+                      style={{ background: i % 2 === 0 ? "#fff" : "#fdfcfa" }}
                     >
                       <td
                         data-edu-week={row.date}
@@ -796,7 +796,7 @@ export default function EducationSections() {
             would otherwise freeze it to the deploy date) */}
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){function apply(){var now=new Date();document.querySelectorAll('[data-edu-week]').forEach(function(w){var m=(w.getAttribute('data-edu-week')||'').match(/(\\d+)월\\s*(\\d+)일/);if(!m)return;var d=new Date(2026,parseInt(m[1])-1,parseInt(m[2]));var diff=(d-now)/86400000;var cur=diff>=-6&&diff<=0;var dd=w.nextElementSibling,e=dd&&dd.nextElementSibling,t=cur?'rgba(146,120,214,0.08)':'';[w,dd,e].forEach(function(c){if(c)c.style.background=t;});w.style.borderLeft=cur?'3px solid #9278D6':'3px solid transparent';w.style.color=cur?'#7c5ecf':'#8a9ab0';});}if(document.readyState!=='loading')apply();else document.addEventListener('DOMContentLoaded',apply);document.addEventListener('astro:page-load',apply);})();`,
+            __html: `(function(){function apply(){var now=new Date();document.querySelectorAll('[data-edu-week]').forEach(function(w){var m=(w.getAttribute('data-edu-week')||'').match(/(\\d+)월\\s*(\\d+)일/);if(!m)return;var d=new Date(2026,parseInt(m[1])-1,parseInt(m[2]));var diff=(d-now)/86400000;var cur=diff>=-6&&diff<=0;var dd=w.nextElementSibling,e=dd&&dd.nextElementSibling,t=cur?'rgba(146,120,214,0.08)':'';[w,dd,e].forEach(function(c){if(c)c.style.background=t;});w.style.borderLeft=cur?'3px solid #9278d6':'3px solid transparent';w.style.color=cur?'#7c5ecf':'#8a9ab0';});}if(document.readyState!=='loading')apply();else document.addEventListener('DOMContentLoaded',apply);document.addEventListener('astro:page-load',apply);})();`,
           }}
         />
       </section>

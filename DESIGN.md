@@ -26,7 +26,9 @@ These are non-negotiable and define the look of the site:
 
 Declared in `@theme {}` (usable as Tailwind utilities, e.g. `bg-purple-100`, `text-bg-400`)
 and mirrored in `:root {}` as CSS variables (e.g. `var(--purple-400)`) for use inside custom
-CSS. Inline styles in components use the hex values directly.
+CSS. Inline styles in components use the hex values directly — always in the **canonical
+lowercase spelling** shown in the tables below (e.g. `#9278d6`, not `#9278D6`), so the same
+colour reads as one value across the codebase.
 
 ### Warm Ivory — backgrounds & surfaces
 | Token | Hex | Use |
@@ -66,6 +68,9 @@ Semantic shortcuts (in `:root`): `--primary: #9278d6`, `--primary-dark: #7c5ecf`
 
 > When adding a colour, reach for an existing token first. A genuinely new colour must be a
 > pastel that sits alongside these families — add it to **both** `@theme` and `:root`.
+>
+> **No off-palette greys.** Muted labels, captions, meta text, and placeholder marks all use
+> `--gray` (`#8a9ab0`) — never a one-off grey like `#9ca3af` or `#c8d4de`.
 
 ---
 
@@ -118,7 +123,7 @@ this table in sync.
 |---|---|---|
 | `SECTION_GAP` | `80` | Vertical gap between major sections (a `<section>`'s `marginBottom`, or `marginTop` for the first stacked island). |
 | `HEADING_GAP` | `32` | Gap between a section `<h2>` and its content. Baked into `H2_STYLE` — never re-specify per heading. |
-| `SCROLL_MARGIN_TOP` | `148` | Anchor offset (72px nav + ~50px sticky tab bar + gap) so hash links land below the chrome. Every new scroll-target section needs it. |
+| `SCROLL_MARGIN_TOP` | `76` | Anchor offset (~50px sticky tab bar + gap) so hash links land below the chrome. The nav lives outside the `.page-scroll` region, so it isn't counted here. Every new scroll-target section needs it. |
 
 - **Content container:** `max-width: 1200px; margin: 0 auto`.
 - **Page `<main>` padding:** `140px 48px 120px` desktop, `120px 20px 80px` on mobile
@@ -162,7 +167,7 @@ page-fade wrapper.
 
 ## Quick checklist before shipping UI
 
-- [ ] Colours come from the tokens above (pastel, on-palette)
+- [ ] Colours come from the tokens above (pastel, on-palette), written in canonical lowercase hex; muted text uses `--gray`, never a one-off grey
 - [ ] No `box-shadow` / `text-shadow` — depth via colour + 1px border
 - [ ] Text uses SUIT; section `h2` is `<h2 style={H2_STYLE}>` (no inline `marginBottom` override)
 - [ ] Section spacing uses the `SECTION_GAP` / `SCROLL_MARGIN_TOP` tokens from `src/lib/styles.ts`, not raw numbers

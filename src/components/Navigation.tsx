@@ -28,7 +28,7 @@ function NavigationInner({ transparent = false }: NavigationProps) {
     </a>
   );
 
-  const navBg = transparent ? "#FAF7F2" : "rgba(250,247,242,0.97)";
+  const navBg = transparent ? "#faf7f2" : "rgba(250,247,242,0.97)";
   const linkColor = transparent ? "#1c2b3a" : "#4a5f75";
 
   return (

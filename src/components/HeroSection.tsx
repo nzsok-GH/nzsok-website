@@ -23,15 +23,15 @@ export default function HeroSection({ photos = [] }: { photos?: HeroPhoto[] }) {
   return (
     <section
       id="top"
-      style={{ position: "relative", minHeight: "100vh", overflow: "hidden", background: "var(--bg-100)" }}
+      style={{ position: "relative", minHeight: "calc(100vh - var(--nav-h))", overflow: "hidden", background: "var(--bg-100)" }}
     >
       <style>{`
         @keyframes hero-pan-left  { from { transform: translateX(0);    } to { transform: translateX(-50%); } }
         @keyframes hero-pan-right { from { transform: translateX(-50%); } to { transform: translateX(0);    } }
-        /* Top padding clears the 72px transparent nav so the first row isn't
-           clipped under the header. */
+        /* The nav sits outside the scroll region, so the rows just inset
+           evenly from the edges of the hero. */
         .hero-rows {
-          position: absolute; inset: 0; display: flex; flex-direction: column; gap: 10px; padding: 82px 10px 10px;
+          position: absolute; inset: 0; display: flex; flex-direction: column; gap: 10px; padding: 10px;
         }
         .hero-row { flex: 1; min-height: 0; overflow: hidden; }
         .hero-row-track {
@@ -52,7 +52,7 @@ export default function HeroSection({ photos = [] }: { photos?: HeroPhoto[] }) {
         }
         .hero-overlay {
           position: relative; z-index: 1; width: 100%; max-width: 1200px;
-          margin: 0 auto; padding: 120px 24px 72px; min-height: 100vh;
+          margin: 0 auto; padding: 64px 24px 72px; min-height: calc(100vh - var(--nav-h));
           display: flex; align-items: center;
         }
         .hero-ig { transition: opacity 0.2s; }
@@ -183,7 +183,7 @@ export default function HeroSection({ photos = [] }: { photos?: HeroPhoto[] }) {
                 gap: 6,
                 fontSize: 15,
                 fontWeight: 600,
-                color: "#9278D6",
+                color: "#9278d6",
                 textDecoration: "none",
               }}
             >
