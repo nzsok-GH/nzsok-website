@@ -366,27 +366,16 @@ export default function EnrolContent() {
         </div>
 
         {/* 특강 */}
-        <h3
+        <p
           style={{
-            fontSize: 15,
-            fontWeight: 700,
-            color: "#1c2b3a",
-            marginBottom: 14,
+            fontSize: 14,
+            color: "#8a9ab0",
             marginTop: 36,
+            marginBottom: 14,
           }}
         >
-          <span
-            style={{
-              fontSize: 14,
-              fontWeight: 400,
-              color: "#8a9ab0",
-              marginBottom: 24,
-            }}
-          >
-            선택 수업
-          </span>
-          <br />
-        </h3>
+          선택 수업
+        </p>
         <div className="enrol-classes-grid">
           {CLASSES.map(({ title, levels, fee, note }) => (
             <div
