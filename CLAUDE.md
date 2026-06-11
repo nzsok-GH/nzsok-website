@@ -32,6 +32,8 @@ When editing a page's static content, edit the corresponding `*Sections.tsx` / `
 
 **Styling** (`src/styles/index.css`, imported by `Layout.astro`): Tailwind v4 via the `@tailwindcss/vite` plugin (wired in `astro.config.mjs`). Brand colors/fonts are declared in `@theme { }` (available as utilities) and mirrored in `:root { }` as `var(--…)` for use in the custom CSS rules below. Fonts are loaded from jsDelivr via `@font-face`. Per-page hover effects that can't be CSS live inside the relevant island.
 
+Shared style **tokens applied via inline React styles** (not CSS) live in `src/lib/styles.ts`: the section-heading object `H2_STYLE` and the spacing constants `SECTION_GAP` (80), `HEADING_GAP` (32, baked into `H2_STYLE`), and `SCROLL_MARGIN_TOP` (148). The content components import these instead of hard-coding the numbers, so every section shares one heading→content gap and one between-section gap. See [`DESIGN.md`](DESIGN.md) → "Layout & spacing".
+
 ### Design system — follow [`DESIGN.md`](DESIGN.md)
 
 Before writing or editing ANY UI (new sections, components, styling tweaks), read and follow

@@ -1,10 +1,4 @@
-const H2_STYLE = {
-  fontFamily: "'SUIT', sans-serif",
-  fontSize: "clamp(24px,3vw,36px)" as const,
-  fontWeight: 700,
-  color: "#1c2b3a",
-  lineHeight: 1.3,
-};
+import { H2_STYLE, SECTION_GAP } from "../lib/styles";
 
 const LEVELS = [
   {
@@ -234,8 +228,8 @@ export default function EducationSections() {
   return (
     <>
       {/* ── 1. 시간표 ── */}
-      <section id="schedule" style={{ marginBottom: 80 }}>
-        <h2 style={{ ...H2_STYLE, marginBottom: 40 }}>시간표</h2>
+      <section id="schedule" style={{ marginBottom: SECTION_GAP }}>
+        <h2 style={H2_STYLE}>시간표</h2>
 
         <div className="education-schedule-grid">
           <div style={{ display: "flex", flexDirection: "column" }}>
@@ -365,8 +359,8 @@ export default function EducationSections() {
       </section>
 
       {/* ── 2. 커리큘럼 ── */}
-      <section id="programs" style={{ marginBottom: 80 }}>
-        <h2 style={{ ...H2_STYLE, marginBottom: 40 }}>커리큘럼</h2>
+      <section id="programs" style={{ marginBottom: SECTION_GAP }}>
+        <h2 style={H2_STYLE}>커리큘럼</h2>
 
         <div className="education-curriculum-grid">
           {LEVELS.map(
@@ -476,7 +470,7 @@ export default function EducationSections() {
 
       {/* ── 3. 연간 교육계획 ── */}
       <section id="annual">
-        <h2 style={{ ...H2_STYLE, marginBottom: 40 }}>연간 교육계획</h2>
+        <h2 style={H2_STYLE}>연간 교육계획</h2>
 
         <div className="annual-table-desktop" style={{ overflowX: "auto" }}>
           <table

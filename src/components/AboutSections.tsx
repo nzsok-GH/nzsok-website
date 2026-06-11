@@ -1,10 +1,4 @@
-const H2_STYLE = {
-  fontFamily: "'SUIT', sans-serif",
-  fontSize: "clamp(24px,3vw,36px)" as const,
-  fontWeight: 700,
-  color: "#1c2b3a",
-  lineHeight: 1.3,
-};
+import { H2_STYLE, SECTION_GAP } from "../lib/styles";
 
 const SONG = [
   {
@@ -84,7 +78,7 @@ export function AboutIntroSong() {
   return (
     <>
       {/* ── 1. 소개글 ─────────────────────────────────── */}
-      <section id="intro" style={{ marginBottom: 80 }}>
+      <section id="intro" style={{ marginBottom: SECTION_GAP }}>
         <div
           style={{
             marginBottom: 32,
@@ -125,8 +119,8 @@ export function AboutIntroSong() {
       </section>
 
       {/* ── 2. 교가 ────────────────────────────────────── */}
-      <section id="song" style={{ marginBottom: 80 }}>
-        <h2 style={{ ...H2_STYLE, marginBottom: 32 }}>교가</h2>
+      <section id="song" style={{ marginBottom: SECTION_GAP }}>
+        <h2 style={H2_STYLE}>교가</h2>
 
         <div
           className="rounded-2xl"
@@ -180,8 +174,8 @@ export function AboutBoardStaffCampus() {
   return (
     <>
       {/* ── 4. 이사회 ──────────────────────────────────── */}
-      <section id="board" style={{ marginBottom: 80 }}>
-        <h2 style={{ ...H2_STYLE, marginBottom: 32 }}>이사회</h2>
+      <section id="board" style={{ marginBottom: SECTION_GAP }}>
+        <h2 style={H2_STYLE}>이사회</h2>
 
         <div className="about-board-grid">
           {BOARD.map(({ name, role }) => (
@@ -203,8 +197,8 @@ export function AboutBoardStaffCampus() {
       </section>
 
       {/* ── 5. 교직원 ─────────────────────────────── */}
-      <section id="staff" style={{ marginBottom: 80 }}>
-        <h2 style={{ ...H2_STYLE, marginBottom: 32 }}>교직원</h2>
+      <section id="staff" style={{ marginBottom: SECTION_GAP }}>
+        <h2 style={H2_STYLE}>교직원</h2>
 
         {STAFF.map(({ dept, staff }) => (
           <div key={dept} style={{ marginBottom: 40 }}>

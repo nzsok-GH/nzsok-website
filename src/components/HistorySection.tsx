@@ -1,13 +1,6 @@
 import { useRef, useEffect } from "react";
 import ErrorBoundary from "./ErrorBoundary";
-
-const H2_STYLE = {
-  fontFamily: "'SUIT', sans-serif",
-  fontSize: "clamp(24px,3vw,36px)" as const,
-  fontWeight: 700,
-  color: "#1c2b3a",
-  lineHeight: 1.3,
-};
+import { H2_STYLE, SECTION_GAP } from "../lib/styles";
 
 const HISTORY = [
   {
@@ -112,8 +105,8 @@ function HistorySectionInner() {
   }, []);
 
   return (
-    <section id="history" style={{ marginBottom: 80 }}>
-      <h2 style={{ ...H2_STYLE, marginBottom: 32 }}>연혁</h2>
+    <section id="history" style={{ marginBottom: SECTION_GAP }}>
+      <h2 style={H2_STYLE}>연혁</h2>
 
       <div
         ref={historyRef}

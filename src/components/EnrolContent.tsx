@@ -1,12 +1,5 @@
 import { Phone, Mail, ExternalLink } from "lucide-react";
-
-const H2_STYLE = {
-  fontFamily: "'SUIT', sans-serif",
-  fontSize: "clamp(24px,3vw,36px)" as const,
-  fontWeight: 700,
-  color: "#1c2b3a",
-  lineHeight: 1.3,
-};
+import { H2_STYLE, SECTION_GAP, SCROLL_MARGIN_TOP } from "../lib/styles";
 
 const GRADES = [
   { school: "다람쥐반", local: "만 4세 (유치원)" },
@@ -78,8 +71,8 @@ export default function EnrolContent() {
   return (
     <>
       {/* 학년 안내 */}
-      <section id="grade" style={{ marginBottom: 80, scrollMarginTop: 148 }}>
-        <h2 style={{ ...H2_STYLE, marginBottom: 16 }}>학년 안내</h2>
+      <section id="grade" style={{ marginBottom: SECTION_GAP, scrollMarginTop: SCROLL_MARGIN_TOP }}>
+        <h2 style={H2_STYLE}>학년 안내</h2>
 
         <div style={{ overflowX: "auto" }}>
           <table
@@ -153,9 +146,9 @@ export default function EnrolContent() {
       {/* 등록 절차 */}
       <section
         id="procedure"
-        style={{ marginBottom: 80, scrollMarginTop: 148 }}
+        style={{ marginBottom: SECTION_GAP, scrollMarginTop: SCROLL_MARGIN_TOP }}
       >
-        <h2 style={{ ...H2_STYLE, marginBottom: 48 }}>등록 절차</h2>
+        <h2 style={H2_STYLE}>등록 절차</h2>
 
         {/* 2 steps */}
         <div className="enrol-procedure-grid">
@@ -274,8 +267,8 @@ export default function EnrolContent() {
       </section>
 
       {/* 학비 */}
-      <section id="tuition" style={{ marginBottom: 80, scrollMarginTop: 148 }}>
-        <h2 style={{ ...H2_STYLE, marginBottom: 32 }}>학비</h2>
+      <section id="tuition" style={{ marginBottom: SECTION_GAP, scrollMarginTop: SCROLL_MARGIN_TOP }}>
+        <h2 style={H2_STYLE}>학비</h2>
 
         {/* 정규 수업 학비 + 다자녀 할인 */}
         <div className="enrol-tuition-grid">
@@ -513,8 +506,8 @@ export default function EnrolContent() {
       </section>
 
       {/* 문의하기 */}
-      <section id="contact" style={{ marginBottom: 80, scrollMarginTop: 148 }}>
-        <h2 style={{ ...H2_STYLE, marginBottom: 32 }}>입학 문의</h2>
+      <section id="contact" style={{ marginBottom: SECTION_GAP, scrollMarginTop: SCROLL_MARGIN_TOP }}>
+        <h2 style={H2_STYLE}>입학 문의</h2>
 
         <div
           className="rounded-2xl enrol-contact-card"

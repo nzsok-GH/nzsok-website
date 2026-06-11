@@ -79,16 +79,21 @@ Semantic shortcuts (in `:root`): `--primary: #9278d6`, `--primary-dark: #7c5ecf`
 
 All three load from jsDelivr via `@font-face` in `index.css` (no local font files).
 
-**Section heading pattern** — every page-section `<h2>` uses the same style (defined inline
-as `H2_STYLE` in the content components, keep it consistent):
+**Section heading pattern** — every page-section `<h2>` uses the shared `H2_STYLE` token,
+exported once from [`src/lib/styles.ts`](src/lib/styles.ts) and imported by every content
+component (`import { H2_STYLE } from "../lib/styles"`). Don't redefine it inline or override
+`marginBottom` per heading — the 32px heading→content gap is baked into the token, so call
+sites are just `<h2 style={H2_STYLE}>`:
 
-```js
-const H2_STYLE = {
+```ts
+// src/lib/styles.ts
+export const H2_STYLE: CSSProperties = {
   fontFamily: "'SUIT', sans-serif",
   fontSize: "clamp(24px,3vw,36px)",
   fontWeight: 700,
   color: "#1c2b3a",
   lineHeight: 1.3,
+  marginBottom: HEADING_GAP, // 32 — gap to the section's content
 };
 ```
 
@@ -104,14 +109,21 @@ const H2_STYLE = {
 
 ## Layout & spacing
 
+The section-level spacing values live as named tokens in
+[`src/lib/styles.ts`](src/lib/styles.ts) (`SECTION_GAP`, `HEADING_GAP`, `SCROLL_MARGIN_TOP`),
+imported by the content components instead of hard-coded inline. Change them there, and keep
+this table in sync.
+
+| Token | Value | Use |
+|---|---|---|
+| `SECTION_GAP` | `80` | Vertical gap between major sections (a `<section>`'s `marginBottom`, or `marginTop` for the first stacked island). |
+| `HEADING_GAP` | `32` | Gap between a section `<h2>` and its content. Baked into `H2_STYLE` — never re-specify per heading. |
+| `SCROLL_MARGIN_TOP` | `148` | Anchor offset (72px nav + ~50px sticky tab bar + gap) so hash links land below the chrome. Every new scroll-target section needs it. |
+
 - **Content container:** `max-width: 1200px; margin: 0 auto`.
 - **Page `<main>` padding:** `140px 48px 120px` desktop, `120px 20px 80px` on mobile
   (≤767px). The large top padding clears the fixed 72px nav. See `.about-main`,
   `.education-main`, `.media-main`, `.enrol-main`.
-- **Section spacing:** `margin-bottom: 80px` between major sections.
-- **Anchor offset:** all section ids have `scroll-margin-top: 148px` (72px nav + ~50px sticky
-  tab bar + gap) so hash links land below the chrome. New scroll-target sections must keep
-  this.
 - **Breakpoints:** mobile ≤767px, tablet 768–1023px, desktop ≥1024px (grids collapse
   4→2→1 columns accordingly).
 
@@ -152,8 +164,8 @@ page-fade wrapper.
 
 - [ ] Colours come from the tokens above (pastel, on-palette)
 - [ ] No `box-shadow` / `text-shadow` — depth via colour + 1px border
-- [ ] Text uses SUIT; section `h2` uses the `H2_STYLE` values
-- [ ] New section ids carry `scroll-margin-top: 148px`
+- [ ] Text uses SUIT; section `h2` is `<h2 style={H2_STYLE}>` (no inline `marginBottom` override)
+- [ ] Section spacing uses the `SECTION_GAP` / `SCROLL_MARGIN_TOP` tokens from `src/lib/styles.ts`, not raw numbers
 - [ ] Content sits in the 1200px container with the standard page padding
 - [ ] Responsive: grids collapse sensibly at 1023px and 767px
 - [ ] New tokens (if truly needed) added to **both** `@theme` and `:root`

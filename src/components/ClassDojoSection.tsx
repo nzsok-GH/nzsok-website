@@ -1,13 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import ErrorBoundary from "./ErrorBoundary";
-
-const H2_STYLE = {
-  fontFamily: "'SUIT', sans-serif",
-  fontSize: "clamp(24px,3vw,36px)" as const,
-  fontWeight: 700,
-  color: "#1c2b3a",
-  lineHeight: 1.3,
-};
+import { H2_STYLE, SECTION_GAP } from "../lib/styles";
 
 const CLASSDOJO_IMAGES = [
   { src: "/classdojo/post1.jpg", width: 1206, height: 1435 },
@@ -70,8 +63,8 @@ function ClassDojoCarousel() {
 
 function ClassDojoSectionInner() {
   return (
-    <section id="classdojo" style={{ marginTop: 80 }}>
-      <h2 style={{ ...H2_STYLE, marginBottom: 32 }}>클래스도조</h2>
+    <section id="classdojo" style={{ marginTop: SECTION_GAP }}>
+      <h2 style={H2_STYLE}>클래스도조</h2>
 
       <div
         style={{

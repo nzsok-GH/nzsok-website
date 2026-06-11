@@ -1,13 +1,6 @@
 import { useEffect, useRef } from "react";
 import ErrorBoundary from "./ErrorBoundary";
-
-const H2_STYLE = {
-  fontFamily: "'SUIT', sans-serif",
-  fontSize: "clamp(24px,3vw,36px)" as const,
-  fontWeight: 700,
-  color: "#1c2b3a",
-  lineHeight: 1.3,
-};
+import { H2_STYLE, SECTION_GAP } from "../lib/styles";
 
 const CAMPUS_IMAGES = [
   { src: "/sherwood-school/campus/auditorium.jpg", label: "강당" },
@@ -141,8 +134,8 @@ function CampusCarousel() {
 
 function CampusSectionInner() {
   return (
-    <section id="campus" style={{ marginBottom: 80 }}>
-      <h2 style={{ ...H2_STYLE, marginBottom: 40 }}>Sherwood School</h2>
+    <section id="campus" style={{ marginBottom: SECTION_GAP }}>
+      <h2 style={H2_STYLE}>Sherwood School</h2>
 
       <p
         style={{
