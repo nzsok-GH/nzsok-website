@@ -214,7 +214,7 @@ function CampusSectionInner() {
         style={{
           fontSize: 14,
           color: "#4a5f75",
-          lineHeight: 1.85,
+          lineHeight: 1.7,
           marginBottom: 24,
           maxWidth: 720,
         }}

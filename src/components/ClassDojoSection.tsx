@@ -81,7 +81,7 @@ function ClassDojoSectionInner() {
             style={{
               fontSize: 15,
               color: "#4a5f75",
-              lineHeight: 1.85,
+              lineHeight: 1.7,
               marginBottom: 28,
             }}
           >
