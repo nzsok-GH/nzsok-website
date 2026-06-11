@@ -53,13 +53,83 @@ function CampusCarousel() {
       }, 6000);
     };
 
-    el.addEventListener("pointerdown", pause);
+    // mouse drag-to-scroll for desktop (touch/trackpad already scroll natively)
+    let dragging = false;
+    let startX = 0;
+    let startScroll = 0;
+    let moved = false;
+
+    const onPointerDown = (e: PointerEvent) => {
+      pause();
+      if (e.pointerType !== "mouse") return;
+      dragging = true;
+      moved = false;
+      startX = e.clientX;
+      startScroll = el.scrollLeft;
+      el.style.scrollSnapType = "none";
+      el.style.cursor = "grabbing";
+    };
+
+    const onPointerMove = (e: PointerEvent) => {
+      if (!dragging) return;
+      const dx = e.clientX - startX;
+      if (Math.abs(dx) > 3) moved = true;
+      // generous drag: move a bit more than the cursor for a lighter feel
+      el.scrollLeft = startScroll - dx * 1.25;
+    };
+
+    const nearestIndex = () => {
+      const center = el.scrollLeft + el.clientWidth / 2;
+      let best = 0;
+      let bestDist = Infinity;
+      for (let i = 0; i < el.children.length; i++) {
+        const slide = el.children[i] as HTMLElement;
+        const slideCenter = slide.offsetLeft + slide.clientWidth / 2;
+        const dist = Math.abs(slideCenter - center);
+        if (dist < bestDist) {
+          bestDist = dist;
+          best = i;
+        }
+      }
+      return best;
+    };
+
+    const endDrag = () => {
+      if (!dragging) return;
+      dragging = false;
+      el.style.cursor = "";
+      el.style.scrollSnapType = "x mandatory";
+      // snap to nearest slide and keep auto-scroll in sync with where we land
+      index = nearestIndex();
+      goTo(index);
+    };
+
+    // suppress click after a drag so labels/links don't fire
+    const onClickCapture = (e: MouseEvent) => {
+      if (moved) {
+        e.preventDefault();
+        e.stopPropagation();
+        moved = false;
+      }
+    };
+
+    el.addEventListener("pointerdown", onPointerDown);
+    el.addEventListener("pointermove", onPointerMove);
+    el.addEventListener("pointerup", endDrag);
+    el.addEventListener("pointerleave", endDrag);
+    el.addEventListener("pointercancel", endDrag);
+    el.addEventListener("click", onClickCapture, true);
     el.addEventListener("wheel", pause, { passive: true });
 
     return () => {
       clearInterval(timer);
       if (resumeTimer) clearTimeout(resumeTimer);
-      el.removeEventListener("pointerdown", pause);
+      el.removeEventListener("pointerdown", onPointerDown);
+      el.removeEventListener("pointermove", onPointerMove);
+      el.removeEventListener("pointerup", endDrag);
+      el.removeEventListener("pointerleave", endDrag);
+      el.removeEventListener("pointercancel", endDrag);
+      el.removeEventListener("click", onClickCapture, true);
       el.removeEventListener("wheel", pause);
     };
   }, []);
@@ -77,6 +147,8 @@ function CampusCarousel() {
         WebkitOverflowScrolling: "touch",
         paddingBottom: 4,
         marginBottom: 16,
+        cursor: "grab",
+        touchAction: "pan-x",
       }}
     >
       {CAMPUS_IMAGES.map((img) => (
@@ -99,6 +171,7 @@ function CampusCarousel() {
             height={1200}
             loading="lazy"
             decoding="async"
+            draggable={false}
             style={{
               width: "100%",
               display: "block",
