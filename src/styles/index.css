@@ -196,6 +196,9 @@
   --gray: #8a9ab0;
   --text: #1c2b3a;
   --text-light: #4a5f75;
+
+  /* Fixed-nav height — the page scroll region begins below this. */
+  --nav-h: 72px;
 }
 
 /* ── Global reset / base ─────────────────────────────────────── */
@@ -204,6 +207,10 @@
   padding: 0;
   box-sizing: border-box;
 }
+html,
+body {
+  height: 100%;
+}
 html {
   scroll-behavior: smooth;
 }
@@ -211,11 +218,32 @@ body {
   font-family: "SUIT", "Noto Sans KR", sans-serif;
   color: var(--text);
   background: var(--bg-50);
-  overflow-x: hidden;
+  /* The body itself never scrolls — scrolling lives in `.page-scroll` so the
+     scrollbar starts below the fixed nav rather than running the full window. */
+  overflow: hidden;
   /* Korean text: never break inside a word — wrap only at spaces.
      overflow-wrap lets an oversized token (e.g. a URL) still break. */
   word-break: keep-all;
   overflow-wrap: break-word;
+}
+
+/* ── Page scroll region ──────────────────────────────────────────
+   The single scrolling element: fixed below the nav so its scrollbar
+   begins after the header and is scoped to the page content + footer.
+   Bare pages (404/500) have no nav, so they scroll from the top. */
+.page-scroll {
+  position: fixed;
+  top: var(--nav-h);
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+.page-scroll.bare {
+  top: 0;
 }
 
 /* ── Keyframe animations ─────────────────────────────────────── */
@@ -380,7 +408,7 @@ footer a:hover {
 }
 
 /* ── Section tabs (About page) ───────────────────────────────── */
-/* nav (72px) + sticky tab bar (~50px) + small gap */
+/* sticky tab bar (~50px) + small gap — the nav is outside the scroll region */
 #intro,
 #staff,
 #song,
@@ -396,7 +424,7 @@ footer a:hover {
 #procedure,
 #tuition,
 #contact {
-  scroll-margin-top: 148px;
+  scroll-margin-top: 76px;
 }
 
 .section-tab {

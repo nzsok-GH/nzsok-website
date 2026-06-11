@@ -19,6 +19,8 @@ This is an **Astro** static site deployed on **Vercel**. Astro renders every rou
 
 **Layout** (`src/layouts/Layout.astro`): wraps every page. Holds the `<head>` (meta/OG tags, favicons, jsDelivr font preconnect, the Behold Instagram widget script, and an `EducationalOrganization` JSON-LD block), `<ClientRouter />`, the `<LoadingScreen>` + `<Navigation>` islands, and Vercel `<Analytics>`. Pages pass `title` / `description` / `canonical` / `transparentNav` / `bare` props. Site-wide prefetch (`prefetchAll`, hover strategy) is configured in `astro.config.mjs`.
 
+**Scroll region.** The `<body>` itself does not scroll (`overflow: hidden`); the page `<slot>` is wrapped in `#page-scroll` (`.page-scroll`), a `position: fixed` element pinned `top: var(--nav-h)` (72px) → bottom with `overflow-y: auto`. This is so the scrollbar **starts below the fixed nav**, scoped to the page content + footer. Consequences: the scrolling element is `.page-scroll`, **not** `window` — `SectionTabs` scroll-spy listens on it (via `getElementById("page-scroll")`), and the sticky tab bar uses `top: 0` (the region already starts under the nav). `bare` pages (404/500) get `.page-scroll.bare` with `top: 0`. The hero sizes to `calc(100vh - var(--nav-h))` to fill exactly the visible region.
+
 **Islands vs. static.** Astro renders React components to static HTML with **zero client JS unless given a `client:*` directive**. The pattern here:
 
 - **Hydrated islands** (interactive): `LoadingScreen.tsx` (`client:load transition:persist`, intro logo reveal that plays once per full load, not on View Transition navigations), `Navigation.tsx` (`client:load`, mobile menu state), `SectionTabs.tsx` (`client:load`, scroll-spy on about/education/enrol), `HistorySection.tsx` (`client:visible`, auto-scrolling 연혁 timeline), `ClassDojoSection.tsx` (`client:visible`, auto carousel on education), `CampusSection.tsx` (`client:visible`, auto-scrolling campus photo carousel on about).
@@ -32,7 +34,7 @@ When editing a page's static content, edit the corresponding `*Sections.tsx` / `
 
 **Styling** (`src/styles/index.css`, imported by `Layout.astro`): Tailwind v4 via the `@tailwindcss/vite` plugin (wired in `astro.config.mjs`). Brand colors/fonts are declared in `@theme { }` (available as utilities) and mirrored in `:root { }` as `var(--…)` for use in the custom CSS rules below. Fonts are loaded from jsDelivr via `@font-face`. Per-page hover effects that can't be CSS live inside the relevant island.
 
-Shared style **tokens applied via inline React styles** (not CSS) live in `src/lib/styles.ts`: the section-heading object `H2_STYLE` and the spacing constants `SECTION_GAP` (80), `HEADING_GAP` (32, baked into `H2_STYLE`), and `SCROLL_MARGIN_TOP` (148). The content components import these instead of hard-coding the numbers, so every section shares one heading→content gap and one between-section gap. See [`DESIGN.md`](DESIGN.md) → "Layout & spacing".
+Shared style **tokens applied via inline React styles** (not CSS) live in `src/lib/styles.ts`: the section-heading object `H2_STYLE` and the spacing constants `SECTION_GAP` (80), `HEADING_GAP` (32, baked into `H2_STYLE`), and `SCROLL_MARGIN_TOP` (76). The content components import these instead of hard-coding the numbers, so every section shares one heading→content gap and one between-section gap. See [`DESIGN.md`](DESIGN.md) → "Layout & spacing".
 
 ### Design system — follow [`DESIGN.md`](DESIGN.md)
 
@@ -46,7 +48,7 @@ to violate:
   borders.
 - **SUIT for all UI text**; section `<h2>`s use the shared `H2_STYLE` values (SUIT,
   `clamp(24px,3vw,36px)`, 700, `#1c2b3a`).
-- New scroll-target section ids need `scroll-margin-top: 148px`; content sits in the 1200px
+- New scroll-target section ids need `scroll-margin-top: 76px`; content sits in the 1200px
   container with the standard page padding.
 - A genuinely new design token must be added to **both** `@theme` and `:root`, and `DESIGN.md`
   updated to match.

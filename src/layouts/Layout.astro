@@ -86,11 +86,46 @@ const orgSchema = {
       type="module"
       src="https://w.behold.so/widget.js"></script>
     <ClientRouter />
+    {/* The scroll region is a fixed `.page-scroll`, not the window, so the
+        browser's native "scroll to #hash on load" doesn't reach it. Scroll it
+        ourselves (honoring scroll-margin-top) on load + View Transition nav. */}
+    <script is:inline>
+      (function () {
+        function scrollToHash() {
+          var hash = location.hash;
+          if (!hash || hash.length < 2) return;
+          var scroller = document.getElementById("page-scroll");
+          var target = document.getElementById(
+            decodeURIComponent(hash.slice(1)),
+          );
+          if (!scroller || !target) return;
+          var margin = parseFloat(getComputedStyle(target).scrollMarginTop) || 0;
+          var top =
+            target.getBoundingClientRect().top -
+            scroller.getBoundingClientRect().top +
+            scroller.scrollTop -
+            margin;
+          // The region uses `scroll-behavior: smooth` (for tab clicks), which
+          // swallows a programmatic jump — bypass it for this instant landing.
+          var prev = scroller.style.scrollBehavior;
+          scroller.style.scrollBehavior = "auto";
+          scroller.scrollTop = top;
+          scroller.style.scrollBehavior = prev;
+        }
+        var run = function () {
+          requestAnimationFrame(scrollToHash);
+        };
+        window.addEventListener("load", run);
+        document.addEventListener("astro:page-load", run);
+      })();
+    </script>
   </head>
   <body>
     {!bare && <LoadingScreen client:load transition:persist />}
     {!bare && <Navigation client:load transparent={transparentNav} />}
-    <slot />
+    <div id="page-scroll" class:list={["page-scroll", { bare }]}>
+      <slot />
+    </div>
     <Analytics />
   </body>
 </html>

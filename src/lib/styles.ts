@@ -12,8 +12,9 @@ export const SECTION_GAP = 80;
 /** Gap between a section `<h2>` and the content beneath it (baked into `H2_STYLE`). */
 export const HEADING_GAP = 32;
 
-/** Anchor offset so hash links land below the fixed nav + sticky tab bar. */
-export const SCROLL_MARGIN_TOP = 148;
+/** Anchor offset so hash links land below the sticky tab bar. The nav sits
+ *  outside the `.page-scroll` region, so only the tab bar (+ gap) is offset. */
+export const SCROLL_MARGIN_TOP = 76;
 
 /**
  * Canonical section-heading style — every page-section `<h2>` uses this as-is.
