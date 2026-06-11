@@ -23,7 +23,7 @@ export default function HeroSection({ photos = [] }: { photos?: HeroPhoto[] }) {
   return (
     <section
       id="top"
-      style={{ position: "relative", minHeight: "100vh", overflow: "hidden", background: "var(--bg-50)" }}
+      style={{ position: "relative", minHeight: "100vh", overflow: "hidden", background: "var(--bg-100)" }}
     >
       <style>{`
         @keyframes hero-pan-left  { from { transform: translateX(0);    } to { transform: translateX(-50%); } }
@@ -47,8 +47,8 @@ export default function HeroSection({ photos = [] }: { photos?: HeroPhoto[] }) {
         .hero-scrim {
           position: absolute; inset: 0;
           background:
-            linear-gradient(to right, rgba(253,252,250,1) 0%, rgba(253,252,250,0.98) 44%, rgba(253,252,250,0.58) 72%, rgba(253,252,250,0.16) 100%),
-            linear-gradient(to bottom, rgba(253,252,250,0.18), rgba(253,252,250,0.30));
+            linear-gradient(to right, rgba(250,247,242,1) 0%, rgba(250,247,242,0.98) 44%, rgba(250,247,242,0.58) 72%, rgba(250,247,242,0.16) 100%),
+            linear-gradient(to bottom, rgba(250,247,242,0.18), rgba(250,247,242,0.30));
         }
         .hero-overlay {
           position: relative; z-index: 1; width: 100%; max-width: 1200px;
@@ -63,7 +63,7 @@ export default function HeroSection({ photos = [] }: { photos?: HeroPhoto[] }) {
           /* Anchor the copy to the top so it sits in the strong tint band, with
              photos revealed below — the vertical mirror of the desktop layout. */
           .hero-overlay { align-items: flex-start; }
-          .hero-scrim { background: linear-gradient(to bottom, rgba(253,252,250,1) 0%, rgba(253,252,250,0.97) 44%, rgba(253,252,250,0.5) 72%, rgba(253,252,250,0.14) 100%); }
+          .hero-scrim { background: linear-gradient(to bottom, rgba(250,247,242,1) 0%, rgba(250,247,242,0.97) 44%, rgba(250,247,242,0.5) 72%, rgba(250,247,242,0.14) 100%); }
         }
         @media (prefers-reduced-motion: reduce) { .hero-row-track { animation: none; } }
       `}</style>
