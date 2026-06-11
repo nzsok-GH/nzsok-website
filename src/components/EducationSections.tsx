@@ -504,7 +504,7 @@ export default function EducationSections() {
                       fontSize: 15,
                       padding: "10px 14px",
                       textAlign: "left",
-                      borderBottom: "2px solid rgba(0,0,0,0.10)",
+                      borderBottom: "2px solid rgba(0,0,0,0.1)",
                       borderRight: "1px solid rgba(0,0,0,0.07)",
                     }}
                   >
@@ -678,7 +678,7 @@ export default function EducationSections() {
                   fontWeight: 700,
                   fontSize: 15,
                   padding: "10px 14px",
-                  borderBottom: "2px solid rgba(0,0,0,0.10)",
+                  borderBottom: "2px solid rgba(0,0,0,0.1)",
                 }}
               >
                 {label}{" "}
