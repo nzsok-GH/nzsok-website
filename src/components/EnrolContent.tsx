@@ -187,8 +187,7 @@ export default function EnrolContent() {
               href="https://forms.office.com/r/bRMHMZQF65"
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-primary inline-flex items-center gap-2 rounded-xl no-underline"
-              style={{ fontSize: 14, fontWeight: 700, padding: "10px 20px" }}
+              className="btn-primary inline-flex items-center gap-2 no-underline"
             >
               양식 작성 <ExternalLink size={14} />
             </a>
@@ -329,7 +328,7 @@ export default function EnrolContent() {
                         color: "#9278d6",
                         background: "rgba(146,120,214,0.12)",
                         padding: "2px 7px",
-                        borderRadius: 99,
+                        borderRadius: 999,
                       }}
                     >
                       {note}

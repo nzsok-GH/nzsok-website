@@ -454,6 +454,10 @@ footer a:hover {
 .btn-primary {
   background: #9278d6;
   color: #fff;
+  padding: 10px 20px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 700;
   transition: background 0.2s;
 }
 .btn-primary:hover {

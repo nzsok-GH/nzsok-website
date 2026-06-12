@@ -160,8 +160,7 @@ function NavigationInner({ transparent = false }: NavigationProps) {
         >
           <a
             href="/enrol"
-            className="btn-primary hidden md:block text-sm font-bold rounded-full no-underline"
-            style={{ padding: "9px 20px" }}
+            className="btn-primary hidden md:block no-underline"
           >
             입학안내
           </a>

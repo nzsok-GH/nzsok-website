@@ -162,8 +162,12 @@ this table in sync.
 - **Cards:** `border-radius: 16px` (`rounded-2xl`), `1px solid` border in a low-alpha colour,
   background `#faf7f2` or `#fff`. **No shadow.** Hover = `transform: translateY(-3px/-4px)`
   and a slightly stronger purple border (`.card-hover`, `.album-card`).
-- **Primary button** (`.btn-primary`): background `#9278d6`, white text, hover `#7a62c0`,
-  rounded. Used for the 입학안내 CTA and form links.
+- **Primary button** (`.btn-primary`): background `#9278d6`, white text, hover `#7a62c0`.
+  Shape/size are baked into the class — fully-rounded `border-radius: 999px` (pill),
+  `padding: 10px 20px`, `14px`/`700` — so call sites just add `.btn-primary` (plus layout
+  classes like `inline-flex` or `hidden md:block`); don't re-specify radius/padding/font
+  inline. The home hero uses the larger `.hero-cta` variant (bigger padding + 15px), but the
+  **same pill corner**. Used for the 입학안내 CTA and form links.
 - **Eyebrow / section labels** (`.section-label-line`, `.section-label-pill`): uppercase,
   tracked-out, purple — a short kicker above a heading.
 - **Navigation** (`.nav-main`): fixed, 72px tall, translucent ivory with `backdrop-filter:
@@ -171,8 +175,8 @@ this table in sync.
   appear on hover (`.dropdown`); mobile uses the slide-down `.mobile-menu` + hamburger.
 - **Section tabs** (`.section-tab`): sticky bar at `top: 72px`; active tab = bold + 3px purple
   bottom border. Scroll-spy driven (the `SectionTabs` island).
-- **Pills / badges:** fully rounded (`border-radius: 999px` or `20px`), purple-tinted
-  background, small tracked text.
+- **Pills / badges:** fully rounded (`border-radius: 999px` / `rounded-full`), purple-tinted
+  background, small tracked text. Use `999`, not a one-off like `99`.
 - **Dividers / borders:** prefer low-alpha rgba over solid greys, e.g. `rgba(0,0,0,0.05–0.08)`
   for table/cell borders, `bg-300` for structural dividers.
 

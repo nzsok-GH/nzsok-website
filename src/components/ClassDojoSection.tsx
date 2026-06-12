@@ -24,12 +24,12 @@ function ClassDojoCarousel() {
 
   return (
     <div
+      className="rounded-2xl"
       style={{
         position: "relative",
         width: "100%",
         maxWidth: 340,
         aspectRatio: "1206/1435",
-        borderRadius: 16,
         overflow: "hidden",
         border: "4px solid #fff",
         outline: "1px solid rgba(0,0,0,0.06)",
