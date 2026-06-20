@@ -417,6 +417,7 @@ footer a:hover {
 #board,
 #schedule,
 #programs,
+#reading,
 #annual,
 #campus,
 #classdojo,
@@ -676,6 +677,12 @@ footer a:hover {
   grid-template-columns: repeat(4, 1fr);
   gap: 20px;
 }
+.reading-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  align-items: start;
+}
 .annual-table-mobile {
   display: none;
 }
@@ -687,6 +694,9 @@ footer a:hover {
     grid-template-columns: 1fr;
   }
   .education-curriculum-grid {
+    grid-template-columns: 1fr;
+  }
+  .reading-gallery {
     grid-template-columns: 1fr;
   }
   .annual-table-desktop {

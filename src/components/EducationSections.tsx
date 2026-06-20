@@ -224,6 +224,29 @@ const TIMETABLE = [
   { badge: "특강", time: "1:50 ~ 3:00", label: "특강 수업", type: "extra" },
 ];
 
+const READING_IMAGES = [
+  {
+    src: "/reading/poster-leader.jpg",
+    alt: "‘책 읽는 즐거움, 미래의 리더’ 독서 프로그램 안내 포스터",
+    crop: true,
+  },
+  {
+    src: "/reading/poster-rules.jpg",
+    alt: "‘즐거운 책 놀이터’ 이용 약속을 담은 안내 포스터",
+    crop: true,
+  },
+  {
+    src: "/reading/playground.jpg",
+    alt: "야외 테이블에서 함께 책을 읽는 한민족 책 놀이터 학생들",
+    crop: false,
+  },
+  {
+    src: "/reading/journals.jpg",
+    alt: "학생들이 직접 작성한 독서 기록장",
+    crop: false,
+  },
+];
+
 export default function EducationSections() {
   return (
     <>
@@ -459,7 +482,35 @@ export default function EducationSections() {
         </div>
       </section>
 
-      {/* ── 3. 연간 교육계획 ── */}
+      {/* ── 3. 독서 프로그램 ── */}
+      <section id="reading" style={{ marginBottom: SECTION_GAP }}>
+        <h2 style={H2_STYLE}>독서 프로그램</h2>
+
+        <div className="reading-gallery">
+          {READING_IMAGES.map(({ src, alt, crop }) => (
+            <img
+              key={src}
+              src={src}
+              alt={alt}
+              loading="lazy"
+              className="rounded-2xl"
+              style={{
+                display: "block",
+                width: "100%",
+                height: "auto",
+                // First two posters share the first poster's aspect ratio:
+                // image 1 matches its own ratio (no crop), image 2 (taller)
+                // crops to the same height.
+                aspectRatio: crop ? "1086 / 1593" : undefined,
+                objectFit: crop ? "cover" : undefined,
+                border: "1px solid rgba(0,0,0,0.08)",
+              }}
+            />
+          ))}
+        </div>
+      </section>
+
+      {/* ── 4. 연간 교육계획 ── */}
       <section id="annual">
         <h2 style={H2_STYLE}>연간 교육계획</h2>
 

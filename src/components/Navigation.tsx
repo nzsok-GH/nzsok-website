@@ -116,6 +116,9 @@ function NavigationInner({ transparent = false }: NavigationProps) {
                 <a href="/education#programs" onClick={closeMenu}>
                   커리큘럼
                 </a>
+                <a href="/education#reading" onClick={closeMenu}>
+                  독서 프로그램
+                </a>
                 <a href="/education#annual" onClick={closeMenu}>
                   연간 교육계획
                 </a>
@@ -189,6 +192,7 @@ function NavigationInner({ transparent = false }: NavigationProps) {
               links: [
                 { to: "/education#schedule", label: "시간표" },
                 { to: "/education#programs", label: "커리큘럼" },
+                { to: "/education#reading", label: "독서 프로그램" },
                 { to: "/education#annual", label: "연간 교육계획" },
                 { to: "/education#classdojo", label: "클래스도조" },
               ],
