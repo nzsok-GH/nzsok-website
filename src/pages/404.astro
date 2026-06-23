@@ -26,6 +26,26 @@ const LINKS = [
       {LINKS.map(([href, label]) => <a href={href}>{label}</a>)}
     </nav>
   </main>
+
+  {/* Safety net: any old (pre-Astro) sub-page we didn't enumerate as an explicit
+      redirect lands on the right section page instead of this 404. Explicit
+      redirects in astro.config.mjs handle the known URLs with proper 3xx. */}
+  <script is:inline>
+    (() => {
+      const p = decodeURIComponent(location.pathname);
+      const rules = [
+        [/^\/학교소개(\/|$)/, "/about"],
+        [/^\/교육(\/|$)/, "/education"],
+        [/^\/입학안내(\/|$)/, "/enrol"],
+        [/^\/이사회(\/|$)/, "/about#board"],
+        [/^\/admission(\/|$)/, "/enrol"],
+        [/^\/gallery(\/|$)/, "/media"],
+      ];
+      for (const [re, dest] of rules) {
+        if (re.test(p)) { location.replace(dest); break; }
+      }
+    })();
+  </script>
 </Layout>
 
 <style>
