@@ -1,0 +1,36 @@
+{
+  "projectId": "eb1d628c-4511-4247-916a-82df37d0a454",
+  "shape": "package",
+  "pkg": "nzsok-website",
+  "globalName": "NZSOK",
+  "srcDir": "src/components",
+  "tsconfig": "tsconfig.json",
+  "buildCmd": "npm run build && cp \"$(find dist -name '*.css' | head -1)\" .design-sync/.cache/compiled.css",
+  "cssEntry": ".design-sync/.cache/compiled.css",
+  "readmeHeader": ".design-sync/conventions.md",
+  "componentSrcMap": {
+    "CampusSection": "src/components/CampusSection.tsx",
+    "ClassDojoSection": "src/components/ClassDojoSection.tsx",
+    "AboutIntroSong": "src/components/AboutSections.tsx",
+    "AboutBoardStaffCampus": "src/components/AboutSections.tsx",
+    "EducationSections": "src/components/EducationSections.tsx",
+    "HeroSection": "src/components/HeroSection.tsx",
+    "Navigation": "src/components/Navigation.tsx",
+    "EnrolContent": "src/components/EnrolContent.tsx",
+    "SectionTabs": "src/components/SectionTabs.tsx",
+    "HistorySection": "src/components/HistorySection.tsx",
+    "LoadingScreen": null
+  },
+  "dtsPropsFor": {
+    "HeroSection": "/** Build-optimized hero photos panned behind the copy. */\n  photos?: { src: string; w: number; h: number }[];",
+    "Navigation": "/** Flat ivory bar (over a hero) instead of the frosted default. */\n  transparent?: boolean;",
+    "SectionTabs": "/** In-page sections to anchor scroll-spy tabs to. */\n  tabs: { id: string; label: string }[];",
+    "CampusSection": "",
+    "ClassDojoSection": "",
+    "AboutIntroSong": "",
+    "AboutBoardStaffCampus": "",
+    "EducationSections": "",
+    "EnrolContent": "",
+    "HistorySection": ""
+  }
+}
