@@ -73,6 +73,11 @@ const HISTORY = [
     title: "노재회 이사회 의장 취임 · 김아름 이사 취임",
     body: "",
   },
+  {
+    date: "2026. 9",
+    title: "홍성룡 이사 취임",
+    body: "",
+  },
 ];
 
 function HistorySectionInner() {

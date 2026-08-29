@@ -20,7 +20,7 @@ const BOARD = [
   { name: "김보연", role: "이사" },
   { name: "정창민", role: "이사" },
   { name: "김정근", role: "이사" },
-  { name: "김아름", role: "이사" },
+  { name: "홍성룡", role: "이사" },
 ];
 
 const STAFF = [
