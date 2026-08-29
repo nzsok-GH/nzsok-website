@@ -129,9 +129,9 @@ const TERMS = [
     weeks: "8주",
     rows: [
       { week: 1, date: "10월 17일", event: "한글 사랑 대회", type: "special" },
-      { week: 2, date: "10월 24일", event: "Labour day 휴교", type: "holiday" },
+      { week: 2, date: "10월 24일", event: "", type: "" },
       { week: 3, date: "10월 31일", event: "", type: "" },
-      { week: 4, date: "11월 7일", event: "", type: "" },
+      { week: 4, date: "11월 7일", event: "휴교", type: "holiday" },
       { week: 5, date: "11월 14일", event: "", type: "" },
       { week: 6, date: "11월 21일", event: "", type: "" },
       {
