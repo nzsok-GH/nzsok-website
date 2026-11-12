@@ -184,7 +184,7 @@ export default function EnrolContent() {
               보내드립니다.
             </p>
             <a
-              href="https://forms.office.com/r/bRMHMZQF65"
+              href="https://hub.nzsok.school.nz/apply"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-primary inline-flex items-center gap-2 no-underline"
