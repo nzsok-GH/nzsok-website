@@ -214,7 +214,7 @@ export default function EnrolContent() {
               학비 납부
             </h3>
             <p style={{ fontSize: 15, color: "#4a5f75", lineHeight: 1.7 }}>
-              학비 입금이 확인되면 2026학년도 등록이 최종 완료됩니다.
+              학비 입금이 확인되면 2027학년도 등록이 최종 완료됩니다.
             </p>
           </div>
         </div>
