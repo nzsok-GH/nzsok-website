@@ -1,5 +1,5 @@
 // Home hero — full-bleed photo mosaic of horizontally panning rows behind the
-// copy, which sits on a left-weighted scrim. Every photo is used; each row is
+// copy, masked out where the copy sits. Every photo is used; each row is
 // rendered twice and its track translates -50% for a seamless loop. CSS-only.
 import type { HeroPhoto } from "../lib/heroPhotos";
 
@@ -23,15 +23,25 @@ export default function HeroSection({ photos = [] }: { photos?: HeroPhoto[] }) {
   return (
     <section
       id="top"
-      style={{ position: "relative", minHeight: "calc(100vh - var(--nav-h))", overflow: "hidden", background: "var(--bg-100)" }}
+      style={{
+        position: "relative",
+        minHeight: "calc(100vh - var(--nav-h))",
+        overflow: "hidden",
+        background: "var(--bg-100)",
+      }}
     >
       <style>{`
         @keyframes hero-pan-left  { from { transform: translateX(0);    } to { transform: translateX(-50%); } }
         @keyframes hero-pan-right { from { transform: translateX(-50%); } to { transform: translateX(0);    } }
         /* The nav sits outside the scroll region, so the rows just inset
-           evenly from the edges of the hero. */
+           evenly from the edges of the hero. The mask keeps the wall out from
+           under the copy. --copy-end is the copy column's right edge: 24px
+           padding + 560px max-width inside the centred 1200px container. */
         .hero-rows {
           position: absolute; inset: 0; display: flex; flex-direction: column; gap: 10px; padding: 10px;
+          --copy-end: max(584px, calc(50% - 16px));
+          -webkit-mask-image: linear-gradient(to right, transparent var(--copy-end), #000 calc(var(--copy-end) + 240px));
+          mask-image: linear-gradient(to right, transparent var(--copy-end), #000 calc(var(--copy-end) + 240px));
         }
         .hero-row { flex: 1; min-height: 0; overflow: hidden; }
         .hero-row-track {
@@ -41,14 +51,6 @@ export default function HeroSection({ photos = [] }: { photos?: HeroPhoto[] }) {
         .hero-row--right .hero-row-track { animation-name: hero-pan-right; }
         .hero-row img {
           height: 100%; width: auto; display: block; margin-right: 10px; border-radius: 10px;
-        }
-        /* Left-weighted ivory scrim for dark-copy contrast, plus a gentle veil
-           that softens the photos to a pastel wash on brand. */
-        .hero-scrim {
-          position: absolute; inset: 0;
-          background:
-            linear-gradient(to right, rgba(250,247,242,1) 0%, rgba(250,247,242,0.98) 44%, rgba(250,247,242,0.58) 72%, rgba(250,247,242,0.16) 100%),
-            linear-gradient(to bottom, rgba(250,247,242,0.18), rgba(250,247,242,0.30));
         }
         .hero-overlay {
           position: relative; z-index: 1; width: 100%; max-width: 1200px;
@@ -60,10 +62,13 @@ export default function HeroSection({ photos = [] }: { photos?: HeroPhoto[] }) {
         .hero-cta { background: #9278d6; transition: background 0.2s; }
         .hero-cta:hover { background: #7a62c0; }
         @media (max-width: 640px) {
-          /* Anchor the copy to the top so it sits in the strong tint band, with
-             photos revealed below — the vertical mirror of the desktop layout. */
+          /* Anchor the copy to the top, with photos revealed below — the
+             vertical mirror of the desktop layout. */
           .hero-overlay { align-items: flex-start; }
-          .hero-scrim { background: linear-gradient(to bottom, rgba(250,247,242,1) 0%, rgba(250,247,242,0.97) 44%, rgba(250,247,242,0.5) 72%, rgba(250,247,242,0.14) 100%); }
+          .hero-rows {
+            -webkit-mask-image: linear-gradient(to bottom, transparent 50%, #000 68%);
+            mask-image: linear-gradient(to bottom, transparent 50%, #000 68%);
+          }
         }
         @media (prefers-reduced-motion: reduce) { .hero-row-track { animation: none; } }
       `}</style>
@@ -73,8 +78,14 @@ export default function HeroSection({ photos = [] }: { photos?: HeroPhoto[] }) {
           const half = Array.from({ length: HALF_REPEAT }, () => row).flat();
           const full = [...half, ...half];
           return (
-            <div key={ri} className={`hero-row${ROWS[ri].right ? " hero-row--right" : ""}`}>
-              <div className="hero-row-track" style={{ ["--dur" as any]: `${ROWS[ri].dur}s` }}>
+            <div
+              key={ri}
+              className={`hero-row${ROWS[ri].right ? " hero-row--right" : ""}`}
+            >
+              <div
+                className="hero-row-track"
+                style={{ ["--dur" as any]: `${ROWS[ri].dur}s` }}
+              >
                 {full.map((p, i) => (
                   <img
                     key={i}
@@ -91,7 +102,6 @@ export default function HeroSection({ photos = [] }: { photos?: HeroPhoto[] }) {
           );
         })}
       </div>
-      <div className="hero-scrim" aria-hidden="true" />
 
       <div className="hero-overlay">
         <div style={{ maxWidth: 560 }}>
@@ -144,9 +154,10 @@ export default function HeroSection({ photos = [] }: { photos?: HeroPhoto[] }) {
               maxWidth: 460,
             }}
           >
-            올해로 29주년을 맞은 뉴질랜드 한민족 한글학교는 우리 아이들이 한국인의
-            정체성과 긍지를 지닌 이중문화와 이중언어의 소유자로서 따뜻한 인성과
-            지성을 지닌 창의적 인재로 키우는 것을 목표로 하고 있습니다.
+            올해로 29주년을 맞은 뉴질랜드 한민족 한글학교는 우리 아이들이
+            한국인의 정체성과 긍지를 지닌 이중문화와 이중언어의 소유자로서
+            따뜻한 인성과 지성을 지닌 창의적 인재로 키우는 것을 목표로 하고
+            있습니다.
           </p>
 
           <div
