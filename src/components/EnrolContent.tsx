@@ -21,33 +21,6 @@ const DISCOUNTS = [
   { label: "셋째", amount: "$225", note: "50% 할인" },
 ];
 
-const CLASSES = [
-  {
-    title: "미술",
-    levels: [
-      "미술 1 (다람쥐반)",
-      "미술 2 (개나리반)",
-      "미술 3 (초등부 저학년)",
-      "미술 4 (초등부 4학년 이상)",
-    ],
-    fee: "$350",
-    note: "재료비 $20 포함",
-  },
-  {
-    title: "4D 프레임",
-    levels: ["초등부 2학년 이상"],
-    fee: "$360",
-    note: "재료비 $30 포함",
-  },
-  { title: "태권도", levels: ["개나리반 이상"], fee: "$330", note: null },
-  {
-    title: "바이올린",
-    levels: ["바이올린 1 (기초반)", "바이올린 2 (중·고급반)"],
-    fee: "$330",
-    note: null,
-  },
-];
-
 const BANK = [
   { label: "계좌명", value: "The NZ School of Korea Charitable Trust" },
   { label: "계좌번호", value: "ANZ 01-0277-0861225-51" },
@@ -184,7 +157,7 @@ export default function EnrolContent() {
               보내드립니다.
             </p>
             <a
-              href="https://forms.office.com/r/bRMHMZQF65"
+              href="https://hub.nzsok.school.nz/apply"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-primary inline-flex items-center gap-2 no-underline"
@@ -214,7 +187,7 @@ export default function EnrolContent() {
               학비 납부
             </h3>
             <p style={{ fontSize: 15, color: "#4a5f75", lineHeight: 1.7 }}>
-              학비 입금이 확인되면 2026학년도 등록이 최종 완료됩니다.
+              학비 입금이 확인되면 2027학년도 등록이 최종 완료됩니다.
             </p>
           </div>
         </div>
@@ -350,83 +323,8 @@ export default function EnrolContent() {
           </div>
         </div>
 
-        {/* 특강 */}
-        <p
-          style={{
-            fontSize: 14,
-            color: "#8a9ab0",
-            marginTop: 36,
-            marginBottom: 14,
-          }}
-        >
-          선택 수업
-        </p>
-        <div className="enrol-classes-grid">
-          {CLASSES.map(({ title, levels, fee, note }) => (
-            <div
-              key={title}
-              className="rounded-2xl flex flex-col"
-              style={{
-                background: "#faf7f2",
-                border: "1px solid rgba(0,0,0,0.07)",
-                padding: "24px 20px",
-              }}
-            >
-              <p style={{ ...H3_STYLE, marginBottom: 10 }}>
-                {title}
-              </p>
-              <ul
-                style={{
-                  listStyle: "none",
-                  padding: 0,
-                  margin: 0,
-                  paddingBottom: 12,
-                }}
-              >
-                {levels.map((l) => (
-                  <li
-                    key={l}
-                    style={{ fontSize: 14, color: "#4a5f75", lineHeight: 1.7 }}
-                  >
-                    · {l}
-                  </li>
-                ))}
-              </ul>
-              <div
-                style={{
-                  borderTop: "1px solid rgba(0,0,0,0.07)",
-                  marginTop: "auto",
-                  paddingTop: 14,
-                }}
-              >
-                <p
-                  style={{
-                    fontSize: 19,
-                    fontWeight: 800,
-                    color: "#9278d6",
-                    fontFamily: "'SUIT', sans-serif",
-                    fontVariantNumeric: "tabular-nums",
-                  }}
-                >
-                  {fee}
-                </p>
-                <p
-                  style={{
-                    fontSize: 12,
-                    color: "#8a9ab0",
-                    marginTop: 2,
-                    minHeight: 16,
-                  }}
-                >
-                  {note ?? ""}
-                </p>
-              </div>
-            </div>
-          ))}
-        </div>
-
         {/* 학비 납부 */}
-        <div style={{ padding: "4px 0" }}>
+        <div style={{ padding: "4px 0", marginTop: 36 }}>
           <p style={{ ...EYEBROW_STYLE, marginBottom: 16 }}>
             학비 납부
           </p>
