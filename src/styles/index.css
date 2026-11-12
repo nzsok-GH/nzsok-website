@@ -736,12 +736,6 @@ footer a:hover {
   gap: 20px;
   margin-bottom: 20px;
 }
-.enrol-classes-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
-  margin-bottom: 36px;
-}
 .enrol-contact-card {
   display: flex;
   flex-direction: row;
@@ -776,9 +770,6 @@ footer a:hover {
   .enrol-tuition-grid {
     grid-template-columns: 1fr;
   }
-  .enrol-classes-grid {
-    grid-template-columns: 1fr;
-  }
   .bank-example {
     display: block;
   }
@@ -793,10 +784,5 @@ footer a:hover {
     width: auto;
     height: 1px;
     align-self: auto;
-  }
-}
-@media (min-width: 768px) and (max-width: 1023px) {
-  .enrol-classes-grid {
-    grid-template-columns: repeat(2, 1fr);
   }
 }
